@@ -1,6 +1,8 @@
 import React from "react";
 import './About.css'
 import { ArrowRight, ArrowDown } from "lucide-react";
+import WhyCirculogy from "../About/Whycirculogy";
+import CirculogyEdge from "../About/CirculogyEdge";
 
 function About() {
   return (
@@ -141,155 +143,11 @@ function About() {
 
       {/* part2  */}
 
-      {/* ================= WHY CIRCULOGY SECTION ================= */}
-      <section
-        className=" relative min-h-[650px] w-full overflow-hidden bg-[#F7FAF9] px-8 py-24 text-[#073B3B] md:px-12 lg:px-16 xl:px-[80px]"
+    <WhyCirculogy></WhyCirculogy>
+    
 
-      >
-        {/* Decorative Circles - Top Right */}
-        <div
-          className=" pointer-events-none absolute right-[-10px] top-[35px] h-[260px] w-[260px] rounded-full border border-[#DDEBE9]
-    "
-        />
-
-        <div
-          className=" pointer-events-none absolute right-[65px] top-[105px] h-[125px] w-[125px] rounded-full border border-[#D5E5E3]
-    "
-        />
-
-        <div
-          className=" pointer-events-none absolute right-[90px] top-[128px] h-[80px] w-[80px] rounded-full border border-[#D5E5E3]
-    "
-        />
-
-        {/* Main Content */}
-        <div
-          className=" relative z-10 mx-auto flex min-h-[500px] max-w-[1400px] items-center
-    "
-        >
-          <div
-            className=" grid w-full grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-[80px]
-      "
-          >
-
-            {/* ================= LEFT CONTENT ================= */}
-            <div>
-              {/* Small Label */}
-              <p
-                className=" mb-9 text-[11px] font-bold uppercase tracking-[3px] text-[#073B3B]
-          "
-              >
-                WHY CIRCULOGY
-              </p>
-
-              {/* Heading */}
-              <h2
-                className=" max-w-[540px] text-[44px] font-medium leading-[1.15] tracking-[-2px] text-[#073B3B] sm:text-[50px] md:text-[56px] lg:text-[55px] xl:text-[58px]
-          "
-              >
-                Connecting the
-                <br />
-                ecosystem.
-                <br />
-                Enabling circularity.
-              </h2>
-            </div>
-
-            {/* ================= RIGHT CONTENT ================= */}
-            <div className="pt-4 lg:pt-0">
-
-              {/* Paragraph */}
-              <p
-                className=" max-w-[650px] text-[17px] font-medium leading-[1.65] text-[#718584] md:text-[18px] lg:text-[19px]
-          "
-              >
-                Whether you are an OEM looking to fulfill EPR obligations, a
-                recycler aiming to access consistent supply, or a policymaker
-                seeking scalable models, Circulogy provides a{" "}
-
-                <span className="font-semibold text-[#111F1E]">
-                  reliable, fast and practical solution
-                </span>{" "}
-
-                without the delays and complexities of traditional compliance
-                businesses.
-              </p>
-
-              {/* Divider */}
-              <div className="mt-9 h-[1px] w-full bg-[#C9DAD8]" />
-
-              {/* Values */}
-              <div
-                className="
-            mt-7
-            flex
-            flex-wrap
-            items-center
-            gap-x-7
-            gap-y-5
-          "
-              >
-                {/* Value */}
-                <div className="flex items-center gap-3">
-                  <span className="text-[9px] font-bold text-[#809694]">
-                    01
-                  </span>
-
-                  <span className="text-[14px] font-semibold text-[#147A73]">
-                    Value
-                  </span>
-                </div>
-
-                {/* Transparency */}
-                <div className="flex items-center gap-3">
-                  <span className="text-[9px] font-bold text-[#809694]">
-                    02
-                  </span>
-
-                  <span className="text-[14px] font-semibold text-[#147A73]">
-                    Transparency
-                  </span>
-                </div>
-
-                {/* Trust */}
-                <div className="flex items-center gap-3">
-                  <span className="text-[9px] font-bold text-[#809694]">
-                    03
-                  </span>
-
-                  <span className="text-[14px] font-semibold text-[#147A73]">
-                    Trust
-                  </span>
-                </div>
-
-                {/* Collaboration */}
-                <div className="flex items-center gap-3">
-                  <span className="text-[9px] font-bold text-[#809694]">
-                    04
-                  </span>
-
-                  <span className="text-[14px] font-semibold text-[#147A73]">
-                    Collaboration
-                  </span>
-                </div>
-
-                {/* Circularity */}
-                <div className="flex items-center gap-3">
-                  <span className="text-[9px] font-bold text-[#809694]">
-                    05
-                  </span>
-
-                  <span className="text-[14px] font-semibold text-[#147A73]">
-                    Circularity
-                  </span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
+    {/* part 3 */}
+    <CirculogyEdge></CirculogyEdge>
 
 
 
