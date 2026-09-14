@@ -1,10 +1,21 @@
 import React from 'react'
+import PledgeHero from '../Pledge/PledgeHero'
+import PledgeForm from '../Pledge/PLedgeForm'
+import PledgeType from '../Pledge/PledgeType'
+
 
 const Pledge = () => {
   return (
-    <div>
-      Pleadge
-    </div>
+<>
+  {/* Part 1 */}
+ <PledgeHero></PledgeHero>
+
+ <PledgeType></PledgeType>
+
+  {/* part 2 */}
+  <PledgeForm></PledgeForm>
+  
+</>
   )
 }
 
