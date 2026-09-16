@@ -160,7 +160,7 @@ const Footer = () => {
           {/* CTA Button */}
           <div className="hidden flex-col items-end gap-[17px] lg:flex">
 
-            <a href="#" className="flex h-[60px] min-w-[292px] items-center justify-between rounded-full border border-[#4ebaa8] bg-[#118b79] px-[25px] text-[16px] font-medium transition-all duration-300 hover:bg-[#159c87] hover:shadow-[0_0_30px_rgba(27,216,179,0.15)]">
+            <a href="#" className="flex h-[60px] min-w-[292px] animate-bounce items-center justify-between rounded-full border border-[#4ebaa8] bg-[#118b79] px-[25px] text-[16px] font-medium transition-all duration-300 hover:bg-[#159c87] hover:shadow-[0_0_30px_rgba(27,216,179,0.15)]">
               <span>Partner with Circulogy</span>
 
               <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.7">

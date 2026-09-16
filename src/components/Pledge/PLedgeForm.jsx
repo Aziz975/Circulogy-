@@ -66,9 +66,9 @@ export default function PledgeForm() {
               className="mb-7 h-12 rounded-md border border-[#34403e] bg-[#181e1d] px-4 text-sm text-white outline-none placeholder:text-gray-600 focus:border-[#35a98f]"
             />
 
-            <button
+            <button  animate-bounce
               type="submit"
-              className="rounded-full bg-[#35a98f] py-3 text-sm font-bold text-white transition hover:bg-[#258c75]"
+              className="animate-bounce  rounded-full bg-[#35a98f] py-3 text-sm font-bold text-white transition hover:bg-[#258c75]"
             >
               I Pledge Now
             </button>

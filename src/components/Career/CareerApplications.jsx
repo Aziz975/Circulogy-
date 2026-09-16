@@ -84,7 +84,7 @@ function CareerApplication() {
               By submitting, you agree that Circulogy may use your information to review and respond to your application.
             </p>
 
-            <button type="submit" className="h-[37px] rounded-[6px] bg-[#078b78] px-6 text-[9px] font-bold text-white transition-all duration-300 hover:bg-[#056e60]">
+            <button type="submit" className=" animate-bounce h-[37px] rounded-[6px] bg-[#078b78] px-6 text-[9px] font-bold text-white transition-all duration-300 hover:bg-[#056e60]">
               Apply Now&nbsp;&nbsp;→
             </button>
           </div>
