@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
-
 /* =========================
    GLOBAL
 ========================= */
@@ -26,7 +25,6 @@ body {
   color: #061817;
 }
 
-
 /* =========================
    EARTH SPIN
 ========================= */
@@ -47,13 +45,9 @@ body {
   will-change: transform;
 }
 
-
-
-
 /* =========================
    NEON TEXT
 ========================= */
-
 
 @keyframes glow {
   0% {
@@ -74,7 +68,6 @@ body {
       0 0 160px #00d4ff;
   }
 }
-
 
 /* =========================
    PLEDGE ANIMATION
