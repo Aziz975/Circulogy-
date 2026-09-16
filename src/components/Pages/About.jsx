@@ -1,14 +1,17 @@
 import React from "react";
 import './About.css'
-import WhyCirculogy from "../About/Whycirculogy";
-import CirculogyEdge from "../About/CirculogyEdge";
+
+import CirculogyEdge from "../About/OurFounders.jsx";
 import PartnerWithCirculogy from "../PartnerWithCirculogy";
 
-import ImpactSystem from "../About/ImpactSystem.jsx";
+import ImpactSystem from "../About/WorkWithUs.jsx";
 import DirectionSection from "../About/DirectionSection";
 import TeamAdvisors from "../About/TeamAdvisors";
 import SharedAmbition from "../About/SharedAmbition.jsx";
-import AboutCirculogy from "../About/AboutCirculogy.jsx";
+import CriticalMineralsHero from "../About/CriticalMineralsHero.jsx";
+import WhatWeDo from "../About/WhatWedo.jsx";
+import OurFounders from "../About/OurFounders.jsx";
+import WorkWithUs from "../About/WorkWithUs.jsx";
 
 function About() {
   return (
@@ -16,37 +19,21 @@ function About() {
 
       {/* part 1 */}
 
-     <AboutCirculogy></AboutCirculogy>
+     <CriticalMineralsHero></CriticalMineralsHero>
 
       {/* part2  */}
 
-    <WhyCirculogy></WhyCirculogy>
+     <WhatWeDo></WhatWeDo>
     
 
     {/* part 3 */}
 
-    <CirculogyEdge></CirculogyEdge>
+     <OurFounders></OurFounders>
 
 
     {/*   part 4 */}
-     <ImpactSystem></ImpactSystem>
+     <WorkWithUs></WorkWithUs>
 
-
-      {/* part 5 */}
-
-      <DirectionSection></DirectionSection>
-
-      
-       {/* part 6  */}
-
-       <TeamAdvisors></TeamAdvisors>
-
-
-      <SharedAmbition></SharedAmbition>
-
-
-      {/* part 7 */}
-<PartnerWithCirculogy></PartnerWithCirculogy>
 
     </>
   );
