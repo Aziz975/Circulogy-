@@ -3,7 +3,9 @@ import './About.css'
 import CriticalMineralsHero from "../About/CriticalMineralsHero.jsx";
 import OurFounders from "../About/OurFounders.jsx";
 import WorkWithUs from "../About/WorkWithUs.jsx";
-import WhatWeDo from "../About/WhatWedo.jsx";
+import WhatWeDo from '../About/WhatWeDo.jsx';
+
+
 
 function About() {
   return (
@@ -14,8 +16,7 @@ function About() {
      <CriticalMineralsHero></CriticalMineralsHero>
 
       {/* part2  */}
-
-     <WhatWeDo></WhatWeDo>
+ <WhatWeDo></WhatWeDo>
     
 
     {/* part 3 */}
