@@ -1,7 +1,5 @@
 import React from "react";
 import './About.css'
-
-
 import CriticalMineralsHero from "../About/CriticalMineralsHero.jsx";
 import WhatWeDo from "../About/WhatWedo.jsx";
 import OurFounders from "../About/OurFounders.jsx";
