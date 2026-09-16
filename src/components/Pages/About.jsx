@@ -1,13 +1,7 @@
 import React from "react";
 import './About.css'
 
-import CirculogyEdge from "../About/OurFounders.jsx";
-import PartnerWithCirculogy from "../PartnerWithCirculogy";
 
-import ImpactSystem from "../About/WorkWithUs.jsx";
-import DirectionSection from "../About/DirectionSection";
-import TeamAdvisors from "../About/TeamAdvisors";
-import SharedAmbition from "../About/SharedAmbition.jsx";
 import CriticalMineralsHero from "../About/CriticalMineralsHero.jsx";
 import WhatWeDo from "../About/WhatWedo.jsx";
 import OurFounders from "../About/OurFounders.jsx";
