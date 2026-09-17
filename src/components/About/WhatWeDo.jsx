@@ -51,14 +51,14 @@ export default function WhatWeDo() {
             </div>
 
             {/* Heading */}
-            <h2 className="text-[28px] font-semibold text-[#073f3d] transition-all duration-500 ease-out group-hover:-translate-y-2">
+            <h2 className="  max-w-[680px] text-[42px] font-semibold leading-[0.99] tracking-[-0.045em] text-[#0a0d0c] sm:text-[50px] md:text-[58px] lg:text-[55px] xl:text-[60px]">
               Turning end-of-life
               <br />
               materials into the
               <br />
-              <span className="text-[#279c8d] ">building blocks of</span>
+              <span className="text-[#279c8d]">building blocks of</span>
               <br />
-              <span className="text-[#279c8d]" >India's clean energy</span>
+              <span className="text-[#279c8d]">India's clean energy</span>
               <br />
               <span className="text-[#279c8d]">economy.</span>
             </h2>
