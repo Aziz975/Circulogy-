@@ -3,7 +3,7 @@ import './About.css'
 import CriticalMineralsHero from "../About/CriticalMineralsHero.jsx";
 import OurFounders from "../About/OurFounders.jsx";
 import WorkWithUs from "../About/WorkWithUs.jsx";
-import WhatWeDo from '../About/WhatWedo.jsx';
+
 
 
 
@@ -19,7 +19,7 @@ function About() {
 
       {/* part2  */}
    
-   <WhatWeDo></WhatWeDo>
+
 
 
     {/* part 3 */}
