@@ -150,7 +150,7 @@ export default function WhatDo() {
           </div>
 
 
-          {/* ================= RIGHT CARDS ================= */}
+       
           {/* ================= RIGHT CARDS ================= */}
 <div className="relative top-[8%]">
   <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
