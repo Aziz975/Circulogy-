@@ -1,30 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Diamond, Circle, Minus, CircleDot } from "lucide-react";
+
 
 const cards = [
   {
     number: "01",
     title: "Urban Mining & Feedstock",
     text: "Spent lithium-ion batteries, e-waste and NdFeB magnets aggregated at source through a pan-India network of formal and informal collection channels.",
-    icon: Diamond,
+    image: "/images/urban.png",
   },
   {
     number: "02",
     title: "Hydrometallurgical Refining",
     text: "One proprietary hydromet process. Two output streams — battery-grade critical minerals from black mass, and rare earth elements from NdFeB magnets.",
-    icon: Circle,
+    image: "/images/refining.png",
   },
   {
     number: "03",
     title: "Domestic Supply Chain",
     text: "Refined outputs supplied to cathode manufacturers, cell makers, EV OEMs and defence users — closing India's loop and two of its most critical import dependencies.",
-    icon: Minus,
+    image: "/images/supply-chain.png",
   },
   {
     number: "04",
     title: "EPR & Compliance",
     text: "Every tonne of feedstock is traceable and certified — managed end-to-end through our EPRSense™ compliance infrastructure.",
-    icon: CircleDot,
+    image: "/images/epr.png",
   },
 ];
 
@@ -151,53 +151,38 @@ export default function WhatDo() {
 
 
           {/* ================= RIGHT CARDS ================= */}
-          <div className="relative top-[8%]">
-            
-            {/* Cards Grid */}
-            <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
+          {/* ================= RIGHT CARDS ================= */}
+<div className="relative top-[8%]">
+  <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
+    {cards.map((card, index) => {
+      return (
+        <div key={index} className="group relative rounded-[24px] border border-[#d7ebe5] bg-[#f8fcfa] p-6 transition-all duration-500 hover:-translate-y-2 hover:border-[#56b7a8] hover:shadow-[0_20px_40px_rgba(7,63,61,0.12)]">
 
-              {cards.map((card, index) => {
-                const Icon = card.icon;
-
-                return (
-                  <div key={card.number} className={`group relative min-h-[250px] overflow-hidden rounded-[19px] border border-[#d9e8e3] bg-white px-6 py-6 shadow-[0_8px_25px_rgba(7,63,61,0.045)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.015] hover:border-[#56b7a8] hover:shadow-[0_22px_45px_rgba(7,63,61,0.12)] sm:min-h-[264px] sm:px-6 sm:py-6 ${visible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`} style={{ transitionDelay: `${index * 130 + 150}ms` }}>
-                    
-                    {/* Top Accent */}
-                    <div className="absolute left-0 right-0 top-0 h-[4px] origin-left scale-x-100 bg-[#3ba997] transition-transform duration-700 ease-out group-hover:scale-x-[0.35]" />
-
-                    {/* Decorative Circle */}
-                    <div className="pointer-events-none absolute -right-[42px] -top-[42px] h-[125px] w-[125px] rounded-full border border-[#43a99a]/[0.12] transition-all duration-700 ease-out group-hover:scale-[1.55] group-hover:border-[#43a99a]/[0.24]" />
-
-                    {/* Number */}
-                    <div className="relative z-10 text-[11px] font-bold tracking-[0.08em] text-[#48a596] transition-all duration-500 group-hover:-translate-y-1 group-hover:tracking-[0.15em]">
-                      {card.number}
-                    </div>
-
-                    {/* Icon */}
-                    <div className="relative z-10 mt-6 flex h-[45px] w-[45px] items-center justify-center rounded-full border border-[#cfe5df] bg-[#eef7f4] text-[#43a394] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:rotate-12 group-hover:scale-110 group-hover:border-[#43a394] group-hover:bg-[#dcefe9]">
-                      <Icon size={21} strokeWidth={1.8} />
-                    </div>
-
-                    {/* Content */}
-                    <div className="relative z-10 mt-5">
-                      <h3 className="text-[18px] font-semibold leading-[1.15] tracking-[-0.025em] text-[#111817] transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:text-[#218e80] sm:text-[19px]">
-                        {card.title}
-                      </h3>
-
-                      <p className="mt-4 text-[12px] leading-[1.65] text-[#687773] transition-all duration-500 ease-out group-hover:translate-y-[-2px] group-hover:text-[#40534f] sm:text-[13px]">
-                        {card.text}
-                      </p>
-                    </div>
-
-                    {/* Bottom Accent */}
-                    <div className="absolute bottom-0 left-6 h-[2px] w-0 bg-[#2da18f] transition-all duration-700 ease-out group-hover:w-[calc(100%-48px)]" />
-
-                  </div>
-                );
-              })}
-
-            </div>
+          {/* Icon / Image */}
+          <div className="mb-6 flex h-[52px] w-[52px] items-center justify-center overflow-hidden rounded-full border border-[#cfe5df] bg-[#eef7f4] transition-all duration-500 group-hover:scale-110 group-hover:border-[#43a394]">
+            <img src={card.image} alt={card.title} className="h-[30px] w-[30px] object-contain transition-transform duration-500 group-hover:scale-110" />
           </div>
+
+          {/* Number */}
+          <span className="mb-3 block text-[13px] font-medium text-[#11706a]">
+            {card.number}
+          </span>
+
+          {/* Title */}
+          <h3 className="text-[22px] font-semibold leading-[1.1] text-[#073f3d] transition-transform duration-500 group-hover:-translate-y-1">
+            {card.title}
+          </h3>
+
+          {/* Text */}
+          <p className="mt-4 text-[15px] leading-[1.6] text-[#55716d] transition-transform duration-500 group-hover:-translate-y-1">
+            {card.text}
+          </p>
+
+        </div>
+      );
+    })}
+  </div>
+</div>
 
         </div>
       </div>
