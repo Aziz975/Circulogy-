@@ -12,6 +12,12 @@ const founders = [
     role: "Co-Founder & COO",
     src: "/images/abhishek-tiwari.jpeg",
   },
+
+    {
+    name: "Abhishek Tiwari",
+    role: "Co-Founder & COO",
+    src: "/images/abhishek-tiwari.jpeg",
+  },
 ];
 
 function FounderCard({ name, role, src }) {
@@ -43,7 +49,7 @@ function FounderCard({ name, role, src }) {
 
 export default function OurFounders() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#f8fbfa] px-5 py-14 text-[#101716] sm:px-8 md:px-12 lg:px-[5vw] lg:py-[78px]">
+    <section className="relative  overflow-hidden bg-[#f8fbfa] px-5 py-14 text-[#101716] sm:px-8 md:px-12 lg:px-[5vw] lg:py-[78px]">
       
       {/* Background Grid */}
       <div className="pointer-events-none absolute inset-0 opacity-60 bg-[linear-gradient(to_right,#e4eeeb_1px,transparent_1px),linear-gradient(to_bottom,#e4eeeb_1px,transparent_1px)] bg-[size:54px_54px]" />
@@ -80,7 +86,7 @@ export default function OurFounders() {
               <span className="text-[11px] font-black tracking-[0.25em] text-[#409e93] sm:text-[12px]">
                 OUR FOUNDERS
               </span>
-              <span className="h-[2px] w-[62px] bg-[#4ba99f]" />
+              <span />
             </div>
 
             {/* Heading */}
@@ -102,7 +108,7 @@ export default function OurFounders() {
 
 
           {/* RIGHT FOUNDERS */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:gap-7 xl:gap-8">
+          <div className="grid gap-6 sm:grid-cols-3 lg:gap-7 xl:gap-8 mt-8">
             {founders.map((founder) => (
               <FounderCard key={founder.name} {...founder} />
             ))}
@@ -112,7 +118,7 @@ export default function OurFounders() {
 
         {/* Bottom Left Label */}
         <div className="mt-16 flex items-center gap-4 pb-1 lg:mt-[35px]">
-          <span className="h-[1px] w-[43px] bg-[#66b3a9]" />
+          <span/>
           <span className="text-[9px] font-bold tracking-[0.24em] text-[#9ec7c2] sm:text-[10px]">
             RECOVER · REFINE · REBUILD
           </span>

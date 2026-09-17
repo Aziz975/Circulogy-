@@ -106,7 +106,7 @@ export default function CriticalMineralsHero() {
 
             {/* Description */}
             <p className="mt-7 max-w-[590px] animate-[fadeUp_.8s_ease-out_.55s_forwards] text-[15px] leading-[1.55] text-[#4d5b59] opacity-0 md:text-[17px]">
-              Circulogy is India's critical mineral and rare earth refinery —
+              Circulogy is India's critical mineral and rare earth refinery 
               recovering battery-grade critical minerals (Lithium, Cobalt,
               Nickel, Graphite, Manganese) and rare earth elements
               (Neodymium, Dysprosium, Praseodymium) from end-of-life batteries,
@@ -202,22 +202,22 @@ export default function CriticalMineralsHero() {
 
 
               {/* Labels */}
-              <div className="absolute left-[7%] top-[18%] rounded-full border border-[#d1ebe7] bg-white/90 px-4 py-2 text-[10px] font-black tracking-wider text-[#1b2927] shadow-lg backdrop-blur-md md:text-xs">
+              <div className="absolute left-[23%] top-[15%] rounded-full border border-[#d1ebe7] bg-white/90 px-4 py-2 text-[10px] font-black tracking-wider text-[#1b2927] shadow-lg backdrop-blur-md md:text-xs animate-[float_5s_ease-in-out_infinite]">
                 <span className="mr-2 inline-block h-2 w-2 rounded-full bg-[#249d8d]" />
                 LITHIUM
               </div>
 
-              <div className="absolute right-[1%] top-[28%] rounded-full border border-[#d1ebe7] bg-white/90 px-4 py-2 text-[10px] font-black tracking-wider text-[#1b2927] shadow-lg backdrop-blur-md md:text-xs">
+              <div className="absolute  right-[-9%] top-[43%] rounded-full border border-[#d1ebe7] bg-white/90 px-4 py-2 text-[10px] font-black tracking-wider text-[#1b2927] shadow-lg backdrop-blur-md md:text-xs animate-[float_5s_ease-in-out_infinite]">
                 <span className="mr-2 inline-block h-2 w-2 rounded-full bg-[#249d8d]" />
                 NICKEL
               </div>
 
-              <div className="absolute right-[-1%] bottom-[30%] rounded-full border border-[#d1ebe7] bg-white/90 px-4 py-2 text-[10px] font-black tracking-wider text-[#1b2927] shadow-lg backdrop-blur-md md:text-xs">
+              <div className="absolute right-[23%] bottom-[8%] rounded-full border border-[#d1ebe7] bg-white/90 px-4 py-2 text-[10px] font-black tracking-wider text-[#1b2927] shadow-lg backdrop-blur-md md:text-xs animate-[float_5s_ease-in-out_infinite]">
                 <span className="mr-2 inline-block h-2 w-2 rounded-full bg-[#249d8d]" />
                 GRAPHITE
               </div>
 
-              <div className="absolute left-[5%] bottom-[25%] rounded-full border border-[#d1ebe7] bg-white/90 px-4 py-2 text-[10px] font-black tracking-wider text-[#1b2927] shadow-lg backdrop-blur-md md:text-xs">
+              <div className="absolute left-[-7%] bottom-[35%] rounded-full border border-[#d1ebe7] bg-white/90 px-4 py-2 text-[10px] font-black tracking-wider text-[#1b2927] shadow-lg backdrop-blur-md md:text-xs animate-[float_5s_ease-in-out_infinite]">
                 <span className="mr-2 inline-block h-2 w-2 rounded-full bg-[#249d8d]" />
                 RARE EARTHS
               </div>
@@ -227,7 +227,7 @@ export default function CriticalMineralsHero() {
 
             {/* Right Side Text */}
             <div className="absolute right-[-10px] top-[7%] hidden max-w-[120px] md:block">
-              <div className="mb-3 h-px w-5 bg-[#249d8d]" />
+              <div/>
               <p className="text-[9px] font-semibold uppercase leading-[1.5] tracking-[0.18em] text-[#74a39e]">
                 Circular solutions
                 <br />
@@ -238,7 +238,7 @@ export default function CriticalMineralsHero() {
             </div>
 
             <div className="absolute bottom-[10%] right-[-10px] hidden max-w-[120px] md:block">
-              <div className="mb-3 h-px w-5 bg-[#249d8d]" />
+              <div />
               <p className="text-[9px] font-semibold uppercase leading-[1.5] tracking-[0.18em] text-[#74a39e]">
                 Critical materials
                 <br />

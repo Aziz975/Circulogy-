@@ -81,39 +81,39 @@ export default function WhatDo() {
             {/* Label */}
             <div className={`mb-7 flex items-center gap-4 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}`}>
               <span className="text-[11px] font-bold tracking-[0.22em] text-[#299d8e] sm:text-[12px]">
-                WHAT WE DO
+                 WHAT WE DO
               </span>
-              <span className="h-[2px] w-[60px] bg-[#299d8e] sm:w-[62px]" />
+              <span/>
             </div>
 
             {/* Heading */}
             <h2 className="max-w-[690px] text-[42px] font-semibold leading-[0.99] tracking-[-0.045em] text-[#080c0b] sm:text-[49px] md:text-[56px] lg:text-[51px] xl:text-[57px]">
               
-              <span className="block overflow-hidden">
+              <span className="block ">
                 <span className={`block transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-[110%] opacity-0"}`} style={{ transitionDelay: "100ms" }}>
-                  Turning end-of-life
+                Turning end-of-life
                 </span>
               </span>
 
-              <span className="block overflow-hidden">
+              <span className="block ">
                 <span className={`block transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-[110%] opacity-0"}`} style={{ transitionDelay: "180ms" }}>
                   materials into the
                 </span>
               </span>
 
-              <span className="block overflow-hidden">
+              <span className="block ">
                 <span className={`block text-[#299d8e] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-[110%] opacity-0"}`} style={{ transitionDelay: "260ms" }}>
                   building blocks of
                 </span>
               </span>
 
-              <span className="block overflow-hidden">
+              <span className="block ">
                 <span className={`block text-[#299d8e] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-[110%] opacity-0"}`} style={{ transitionDelay: "340ms" }}>
                   India's clean energy
                 </span>
               </span>
 
-              <span className="block overflow-hidden">
+              <span className="block ">
                 <span className={`block text-[#299d8e] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-[110%] opacity-0"}`} style={{ transitionDelay: "420ms" }}>
                   economy.
                 </span>
@@ -126,48 +126,32 @@ export default function WhatDo() {
               
               <p className="text-[14px] leading-[1.75] text-[#63716e] sm:text-[15px] sm:leading-[1.7] md:text-[16px]">
                 Every spent lithium-ion battery contains the critical minerals
-                India imports at enormous cost — Lithium, Cobalt, Nickel,
+                India imports at enormous cost  Lithium, Cobalt, Nickel,
                 Graphite, Manganese. Every discarded electronic device and
-                decommissioned motor holds rare earth elements — Neodymium,
-                Dysprosium, Praseodymium — that power EV drivetrains, wind
+                decommissioned motor holds rare earth elements  Neodymium,
+                Dysprosium, Praseodymium  that power EV drivetrains, wind
                 turbines and defence systems. India imports nearly all of both.
               </p>
 
               <p className="mt-5 text-[14px] leading-[1.75] text-[#63716e] sm:text-[15px] sm:leading-[1.7] md:text-[16px]">
                 Circulogy has built the infrastructure and the technology to
-                recover both — from the same feedstock streams, using a single
+                recover both  from the same feedstock streams, using a single
                 proprietary hydrometallurgical process. We are not a
                 conventional recycler. We are a{" "}
                 <strong className="font-semibold text-[#253a36]">
                   critical mineral and rare earth refinery
                 </strong>{" "}
-                — purpose-built for India's energy transition, aligned with the
+                 purpose-built for India's energy transition, aligned with the
                 National Critical Mineral Mission.
               </p>
 
             </div>
 
-            {/* Quote */}
-            <div className={`relative mt-7 overflow-hidden rounded-[18px] border border-[#d9e9e4] bg-white px-6 py-6 shadow-[0_12px_35px_rgba(7,63,61,0.06)] transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-7 sm:py-6 ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`} style={{ transitionDelay: "650ms" }}>
-              
-              <div className="absolute bottom-0 left-0 top-0 w-[5px] bg-[#39a994]" />
-
-              <p className="text-[14px] italic leading-[1.65] text-[#384844] sm:text-[15px] md:text-[16px]">
-                “India cannot build its clean energy future on imported
-                critical minerals. The answer is already in circulation —
-                we just need the technology and the will to recover it.”
-              </p>
-
-              <p className="mt-4 text-[10px] font-bold tracking-[0.17em] text-[#3aa08f] sm:text-[11px]">
-                SAEEM RIZVI · FOUNDER & CEO, CIRCULOGY
-              </p>
-
-            </div>
           </div>
 
 
           {/* ================= RIGHT CARDS ================= */}
-          <div className="relative">
+          <div className="relative top-[8%]">
             
             {/* Cards Grid */}
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
@@ -220,7 +204,7 @@ export default function WhatDo() {
 
       {/* Bottom Right Tag */}
       <div className={`absolute bottom-8 right-[5vw] hidden items-center gap-4 transition-all duration-1000 ease-out lg:flex ${visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}`} style={{ transitionDelay: "900ms" }}>
-        <span className="h-[1px] w-[45px] bg-[#5bb7aa]" />
+        <span/>
         <span className="text-[10px] font-bold tracking-[0.22em] text-[#8dc8be]">
           RECOVER · REFINE · REBUILD
         </span>

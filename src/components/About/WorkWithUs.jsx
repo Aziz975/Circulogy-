@@ -120,7 +120,7 @@ useEffect(() => {
         <div ref={leftRef} className="max-w-[690px]">
   {/* Section Label */}
   <div className={`mb-8 flex items-center gap-3 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}`}>
-    <span className="h-[2px] w-[34px] bg-[#2db8a4]" />
+    <span />
     <span className="text-[11px] font-bold tracking-[0.2em] text-[#31b7a4] sm:text-[12px]">
       WORK WITH US
     </span>
@@ -145,7 +145,7 @@ useEffect(() => {
   <p className={`mt-8 max-w-[650px] text-[15px] leading-[1.65] text-[#bdc8c5] transition-all duration-1000 delay-200 ease-[cubic-bezier(0.22,1,0.36,1)] sm:text-[17px] sm:leading-[1.65] ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}>
     Whether you are an investor, an industrial buyer of critical
     minerals or rare earths, an EPR-obligated producer, or a policy
-    partner — Circulogy is building the infrastructure India needs.
+    partner Circulogy is building the infrastructure India needs.
   </p>
 
   {/* Buttons */}
@@ -162,35 +162,8 @@ useEffect(() => {
 </div>
 
 
-          {/* ================= RIGHT CONTACT CARD ================= */}
-          <div className="relative">
-            
-            {/* Outer Glow */}
-            <div className="absolute -inset-4 rounded-[30px] bg-[#17a996]/[0.03] blur-2xl" />
-
-            <div className="relative overflow-hidden rounded-[24px] border border-white/[0.15] bg-[#101917]/95 px-7 py-7 shadow-[0_25px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:px-9 sm:py-8 lg:px-9 lg:py-8">
-              
-              {/* Card Heading */}
-              <h2 className="text-[13px] font-bold tracking-[0.19em] text-[#2bb5a2] sm:text-[14px]">
-                CONNECT WITH CIRCULOGY
-              </h2>
-
-              {/* Contact Items */}
-              <div className="mt-5">
-                {contactItems.map((item) => (
-                  <ContactItem key={item.label} {...item} />
-                ))}
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
       </div>
-
-      {/* Optional bottom decorative grid fade */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[100px] bg-gradient-to-t from-[#020b09] to-transparent" />
+      </div>
 
     </section>
   );

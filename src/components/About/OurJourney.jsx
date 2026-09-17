@@ -58,12 +58,12 @@ export default function OurJourney() {
         <div className="grid items-end gap-8 lg:grid-cols-[57%_43%] xl:grid-cols-[58%_42%]">
 
           {/* Left */}
-          <div>
-            <div className="mb-7 inline-flex items-center rounded-full bg-[#e4f7f3] px-6 py-3 text-[15px] font-medium text-[#087b76] sm:px-7 sm:text-[16px]">
+          <div className="relative -translate-y-[42%]">
+            <div className="relative top-[-50%]  mb-7  inline-flex items-center rounded-full bg-[#f5fbf9] px-6 py-3 text-[15px] font-medium text-[#087b76] sm:px-7 sm:text-[16px]">
               Our Journey
             </div>
 
-            <h2 className="max-w-[850px] text-[46px] font-semibold leading-[0.98] tracking-[-0.055em] text-[#080b0b] sm:text-[56px] md:text-[64px] lg:text-[62px] xl:text-[72px]">
+            <h2 className="  max-w-[850px] text-[46px] font-semibold leading-[0.98] tracking-[-0.055em] text-[#080b0b] sm:text-[56px] md:text-[64px] lg:text-[62px] xl:text-[72px]">
               From vision to <span className="text-[#087d78]">refinery.</span>
             </h2>
           </div>
