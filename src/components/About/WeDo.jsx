@@ -28,7 +28,7 @@ const cards = [
   },
 ];
 
-export default function WhatWeDo() {
+export default function WhatDo() {
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
 

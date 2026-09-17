@@ -177,9 +177,14 @@ export default function CriticalMineralsHero() {
                 <div className="absolute inset-[28px] rounded-full border border-[#a6ddd6]/60" />
 
                 {/* Circulogy Style Logo */}
-                <div className="relative flex items-center justify-center">
-                  <img src="" alt="ciculogy logo" />
-                </div>
+                <div className="relative flex items-center justify-center w-48 h-48">
+  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 blur-2xl opacity-60 animate-spin-slow"></div>
+  <img
+    src="images/LOOP.png"
+    alt="circulogy logo"
+    className="relative animate-glow"
+  />
+</div>
 
               </div>
 
