@@ -8,6 +8,7 @@ import WhatWeDo from '../About/WhatWedo.jsx';
 
 
 
+
 function About() {
   return (
     <>
@@ -17,8 +18,9 @@ function About() {
      <CriticalMineralsHero></CriticalMineralsHero>
 
       {/* part2  */}
+   
+   <WhatWeDo></WhatWeDo>
 
-    <WhatWeDo></WhatWeDo>
 
     {/* part 3 */}
 
