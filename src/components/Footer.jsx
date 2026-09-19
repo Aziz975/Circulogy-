@@ -99,6 +99,9 @@ const SocialIcon = ({ type }) => {
   return null;
 };
 
+
+
+
 const Footer = () => {
   return (
     <footer className="relative w-full overflow-hidden bg-[#061313] font-[Inter,sans-serif] text-white">

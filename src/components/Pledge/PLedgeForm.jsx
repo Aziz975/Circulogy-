@@ -1,9 +1,41 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function PledgeForm() {
-  return (
-    <section className="w-full bg-[#f5faf7] px-6 py-16 md:px-12 lg:px-20">
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(false);
+
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              setVisible(true);
+            });
+          });
+        } else {
+          setVisible(false);
+        }
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className={`w-full bg-[#f5faf7] px-6 py-16 md:px-12 lg:px-20 ${visible ? "animate-[fadeUp_0.9s_ease-out_forwards]" : "opacity-0"}`}
+    >
       <div className="mx-auto grid max-w-[1700px] overflow-hidden rounded-2xl bg-[#071211] lg:grid-cols-2">
 
         {/* LEFT */}
@@ -66,9 +98,9 @@ export default function PledgeForm() {
               className="mb-7 h-12 rounded-md border border-[#34403e] bg-[#181e1d] px-4 text-sm text-white outline-none placeholder:text-gray-600 focus:border-[#35a98f]"
             />
 
-            <button  animate-bounce
+            <button
               type="submit"
-              className="animate-bounce  rounded-full bg-[#35a98f] py-3 text-sm font-bold text-white transition hover:bg-[#258c75]"
+              className="animate-bounce rounded-full bg-[#35a98f] py-3 text-sm font-bold text-white transition hover:bg-[#258c75]"
             >
               I Pledge Now
             </button>
@@ -78,7 +110,6 @@ export default function PledgeForm() {
         </div>
 
       </div>
-
     </section>
   );
 }

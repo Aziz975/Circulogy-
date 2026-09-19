@@ -61,30 +61,55 @@ export default function PledgeHero() {
   Sustainability Pledge
 </p>
 
-<h1
-  className="
-    text-[48px] font-bold leading-[0.99] tracking-[-2.5px] text-[#071313]
-    sm:text-[58px]
-    lg:text-[61px]
-    xl:text-[64px]
-    opacity-0
-    animate-[fadeUp_0.9s_ease-out_0.25s_forwards]
-  "
->
-  Sign the
+<h1 className="text-[48px] font-bold leading-[0.99] tracking-[-2.5px] text-[#071313] sm:text-[58px] lg:text-[61px] xl:text-[64px]">
+  {"Sign the".split("").map((letter, index) => (
+    <span key={index} className="letter-reveal" style={{ animationDelay: `${index * 0.05}s` }}>
+      {letter === " " ? "\u00A0" : letter}
+    </span>
+  ))}
+
   <br />
-  sustainability
+
+  {"sustainability".split("").map((letter, index) => (
+    <span key={index} className="letter-reveal" style={{ animationDelay: `${0.45 + index * 0.045}s` }}>
+      {letter}
+    </span>
+  ))}
+
   <br />
-  pledge
+
+  {"pledge".split("").map((letter, index) => (
+    <span key={index} className="letter-reveal" style={{ animationDelay: `${1.1 + index * 0.06}s` }}>
+      {letter}
+    </span>
+  ))}
+
   <br />
 
   <span className="text-[#36a88f]">
-    at India
+    {"at India".split("").map((letter, index) => (
+      <span key={index} className="letter-reveal" style={{ animationDelay: `${1.55 + index * 0.05}s` }}>
+        {letter === " " ? "\u00A0" : letter}
+      </span>
+    ))}
+
     <br />
-    Mobile Congress
+
+    {"Mobile Congress".split("").map((letter, index) => (
+      <span key={index} className="letter-reveal" style={{ animationDelay: `${2.05 + index * 0.045}s` }}>
+        {letter === " " ? "\u00A0" : letter}
+      </span>
+    ))}
+
     <br />
-    2025
+
+    {"2025".split("").map((letter, index) => (
+      <span key={index} className="letter-reveal" style={{ animationDelay: `${2.7 + index * 0.08}s` }}>
+        {letter}
+      </span>
+    ))}
   </span>
+
 </h1>
 
 <p

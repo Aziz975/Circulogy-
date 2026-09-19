@@ -1,9 +1,15 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 /* =========================
    GLOBAL
 ========================= */
+*{
+   font-family: 'Poppins', sans-serif;
+}
 
 body {
   margin: 0;
@@ -113,4 +119,67 @@ body {
 }
 .animate-flicker {
   animation: flicker 3s infinite;
+}
+
+
+
+@keyframes footerSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(500px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(70px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes letterReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(120%) rotate(8deg);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(-8%) rotate(-2deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.letter-reveal {
+  display: inline-block;
+  opacity: 0;
+  animation: letterReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform-origin: center bottom;
+  will-change: transform, opacity;
 }

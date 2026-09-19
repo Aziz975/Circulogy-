@@ -1,10 +1,21 @@
-import React from 'react'
+
+import ImportDependency from '../Technology/ImportDependency';
+import PartnerSection from '../Technology/PartnerSection';
+import TechnologyHero from '../Technology/TechnologyHero';
+import WhatWeRecover from '../Technology/WhatWeRecover';
 
 const Technology = () => {
   return (
-    <div>
-      technology
-    </div>
+    <>
+   <TechnologyHero></TechnologyHero>
+   <ImportDependency></ImportDependency>
+   <WhatWeRecover></WhatWeRecover>
+   <PartnerSection></PartnerSection>
+
+
+    </>
+
+
   )
 }
 
