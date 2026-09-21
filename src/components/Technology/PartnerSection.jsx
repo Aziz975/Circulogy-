@@ -5,6 +5,8 @@ export default function PartnerSection() {
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
 
+  
+
   /* ================= INTERSECTION ANIMATION ================= */
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -70,21 +72,44 @@ export default function PartnerSection() {
 
           {/* HEADING */}
           <h1 className="max-w-[530px] text-[45px] font-bold leading-[0.93] tracking-[-0.055em] text-[#f7f9f8] sm:text-[53px] md:text-[59px] lg:text-[57px] xl:text-[60px]">
-            Partner with
-            <br />
-            India's
-            <br />
-            <span className="text-[#19cdb5]">
-              critical mineral
-            </span>
-            <br />
-            and
-            <br />
-            <span className="text-[#19cdb5]">
-              rare earth refinery.
-            </span>
-          </h1>
+  {"Partner with".split("").map((letter, index) => (
+    <span key={`partner-${index}`} className="letter-reveal" style={{ animationDelay: `${index * 0.035}s` }}>
+      {letter === " " ? "\u00A0" : letter}
+    </span>
+  ))}
+  <br />
 
+  {"India's".split("").map((letter, index) => (
+    <span key={`india-${index}`} className="letter-reveal" style={{ animationDelay: `${(index + 13) * 0.035}s` }}>
+      {letter}
+    </span>
+  ))}
+  <br />
+
+  <span className="text-[#19cdb5]">
+    {"critical mineral".split("").map((letter, index) => (
+      <span key={`critical-${index}`} className="letter-reveal" style={{ animationDelay: `${(index + 20) * 0.035}s` }}>
+        {letter === " " ? "\u00A0" : letter}
+      </span>
+    ))}
+  </span>
+  <br />
+
+  {"and".split("").map((letter, index) => (
+    <span key={`and-${index}`} className="letter-reveal" style={{ animationDelay: `${(index + 37) * 0.035}s` }}>
+      {letter}
+    </span>
+  ))}
+  <br />
+
+  <span className="text-[#19cdb5]">
+    {"rare earth refinery.".split("").map((letter, index) => (
+      <span key={`rare-${index}`} className="letter-reveal" style={{ animationDelay: `${(index + 41) * 0.035}s` }}>
+        {letter === " " ? "\u00A0" : letter}
+      </span>
+    ))}
+  </span>
+</h1>
           {/* DESCRIPTION */}
           <p className="mt-6 max-w-[465px] text-[14px] font-normal leading-[1.45] tracking-[-0.01em] text-[#d0d9d7] sm:text-[15px] md:mt-7">
             Whether you are an industrial buyer of critical minerals

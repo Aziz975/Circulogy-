@@ -8,15 +8,15 @@ const dependencyCards = [
     stats: [
       {
         value: "~100%",
-        text: "of India's Lithium and Cobalt is imported — directly from geopolitically sensitive sources in Australia, Chile and the DRC",
+        text: "of India's Lithium and Cobalt is imported",
       },
       {
         value: "$300B+",
-        text: "India's projected EV market by 2030 — entirely dependent on imported battery-grade critical minerals with no domestic primary supply",
+        text: "India's projected EV market by 2030 ",
       },
       {
         value: "10M+ T",
-        text: "e-waste generated in India annually — containing recoverable critical minerals currently lost to landfill or informal processing",
+        text: "e-waste generated in India annually by 2030",
       },
     ],
   },
@@ -27,15 +27,15 @@ const dependencyCards = [
     stats: [
       {
         value: "95%",
-        text: "of global REE magnet processing is controlled by China — a single geopolitical failure point for India's EV, wind and defence supply chains",
+        text: "of global REE magnet processing is controlled by China.",
       },
       {
         value: "30x",
-        text: "growth in REE demand projected by 2040 as India scales EV production, wind energy and advanced manufacturing — with no domestic alternative",
+        text: "growth in REE demand projected by 2040.",
       },
       {
         value: "Zero",
-        text: "commercial REE recycling operations in India today — despite thousands of tonnes of NdFeB magnet-bearing e-waste entering the waste stream annually",
+        text: "commercial REE recycling operations in India today.",
       },
     ],
   },
