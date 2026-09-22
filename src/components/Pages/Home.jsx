@@ -196,28 +196,26 @@
 // export default HeroCarousel;
 
 
+import CirculogyModel from "../Home/CirculogyModel";
+import CriticalMinerals from "../Home/CriticalMinerals";
+import FinalCTA from "../Home/FinalCTA";
 import Hero from "../Home/Hero";
-import Stats from '../Home/Stats';
-import Services from '../Home/Services';
-import About from '../Home/About';
-import WhyChooseUs from "../Home/WhyChooseUs";
-import Projects from "../Home/Projects";
-import Process from "../Home/Process";
-import Testimonials from "../Home/Testimonials";
-import CTA from "../Home/CTA";
+import MiningCompare from "../Home/MiningCompare";
+import PartnerSection from "../Home/PartnerSection";
+import WhatWeRecover from "../Home/WhatWeRecover";
+
 
 const Home = () => {
   return (
     <>
     <Hero></Hero>
-    <Stats></Stats>
-    <Services></Services>
-    <About></About>
-    <WhyChooseUs></WhyChooseUs>
-    <Projects></Projects>
-    <Process></Process>
-    <Testimonials></Testimonials>
-    <CTA></CTA>
+    <PartnerSection></PartnerSection> 
+    <MiningCompare></MiningCompare>
+    <CriticalMinerals></CriticalMinerals>
+    <WhatWeRecover></WhatWeRecover>
+    <CirculogyModel></CirculogyModel>
+    <FinalCTA></FinalCTA>
+    
    
     </>
   )

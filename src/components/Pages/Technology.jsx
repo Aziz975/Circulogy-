@@ -12,8 +12,7 @@ const Technology = () => {
    <TechnologyHero></TechnologyHero>
    <ImportDependency></ImportDependency>
    <WhatWeRecover></WhatWeRecover>
-   <ImageGrid></ImageGrid>
-  <ElementGrid></ElementGrid>
+   <ElementGrid></ElementGrid>
 
 
 

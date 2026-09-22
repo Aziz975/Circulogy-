@@ -183,3 +183,189 @@ body {
   transform-origin: center bottom;
   will-change: transform, opacity;
 }
+
+
+
+
+
+@keyframes mineralFlip {
+  0% {
+    opacity: 0;
+    transform: rotateY(90deg) scale(0.94);
+  }
+
+  45% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+  }
+}
+
+.animate-mineral-flip {
+  animation: mineralFlip 1s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+
+
+
+
+
+/* =========================================
+   INITIAL CONTAINER REVEAL
+========================================= */
+
+.compare-container-hidden {
+  opacity: 0;
+  transform: translateY(70px) scale(0.96);
+  filter: blur(8px);
+}
+
+.compare-container-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+  transition:
+    opacity 1000ms ease,
+    transform 1100ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1000ms ease;
+}
+
+
+/* =========================================
+   LEFT IMAGE ENTRANCE
+========================================= */
+
+.mining-image-hidden-left {
+  opacity: 0;
+  transform: translateX(-10%);
+}
+
+.mining-image-visible {
+  opacity: 1;
+  transform: translateX(0);
+  transition:
+    opacity 1000ms ease 150ms,
+    transform 1200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* =========================================
+   RIGHT IMAGE SLIDE REVEAL
+========================================= */
+
+.mining-right-hidden {
+  clip-path: inset(0 0 0 100%);
+}
+
+.mining-right-reveal {
+  clip-path: inset(0 0 0 0);
+  transition:
+    clip-path 1400ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+
+/* =========================================
+   IMAGE CINEMATIC ZOOM
+========================================= */
+
+.mining-image-zoom {
+  transform: scale(1.12);
+}
+
+.mining-image-visible .mining-image-zoom,
+.mining-right-reveal .mining-image-zoom {
+  animation: cinematicZoom 1800ms
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+}
+
+@keyframes cinematicZoom {
+  0% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* =========================================
+   ICON ANIMATION
+========================================= */
+
+.mining-icon-animation {
+  animation: miningIconReveal 900ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes miningIconReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) rotate(-15deg) scale(0.7);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(-4px) rotate(4deg) scale(1.05);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+
+/* =========================================
+   LIGHT SWEEP
+========================================= */
+
+.light-sweep {
+  left: -150px;
+  animation: lightSweep 1800ms
+    cubic-bezier(0.22, 1, 0.36, 1)
+    500ms forwards;
+}
+
+@keyframes lightSweep {
+  0% {
+    left: -150px;
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 110%;
+    opacity: 0;
+  }
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .compare-container-hidden,
+  .compare-container-visible,
+  .mining-image-hidden-left,
+  .mining-image-visible,
+  .mining-right-hidden,
+  .mining-right-reveal,
+  .mining-icon-animation,
+  .light-sweep {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    clip-path: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+}
