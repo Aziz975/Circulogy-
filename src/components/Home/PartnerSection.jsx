@@ -87,7 +87,7 @@ export default function PartnerSection() {
 
             {/* Label */}
             <p
-              className={`mb-6 text-[12px] font-semibold tracking-[0.08em] text-[#159f91] sm:text-[13px] ${
+              className={`mb-6  text-[13px] font-extrabold tracking-[0.08em] text-[#159f91] sm:text-[13px] ${
                 isVisible ? "animate-fade-up" : "opacity-0"
               }`}
               style={{
@@ -227,7 +227,7 @@ export default function PartnerSection() {
                   {partners.map((partner, index) => (
                     <div
                       key={`first-${partner.number}`}
-                      className={`group relative flex min-h-[300px] flex-col px-0 py-7 sm:min-h-[320px] sm:px-5 lg:min-h-[325px] lg:px-5 xl:px-6 ${
+                      className={`group  text-[25px] font-extrabold relative flex min-h-[300px] flex-col px-0 py-7 sm:min-h-[320px] sm:px-5 lg:min-h-[325px] lg:px-5 xl:px-6 ${
                         index !== 0
                           ? "border-t border-[#c6e4de] md:border-l md:border-t-0"
                           : ""
