@@ -15,7 +15,7 @@ export default function FinalCTA() {
     <section
       id="contact"
       onMouseEnter={handleMouseEnter}
-      className="relative min-h-[430px] overflow-hidden bg-[#020505] px-5 py-20 text-white sm:min-h-[500px] sm:px-8 lg:px-10 xl:px-12"
+      className="relative min-h-[680px] overflow-hidden bg-[#020505] px-5 py-20 text-white sm:min-h-[500px] sm:px-8 lg:px-10 xl:px-12"
     >
       {/* Background Video */}
       <video
@@ -43,25 +43,23 @@ export default function FinalCTA() {
       {/* Content */}
       <div className="relative z-10 mx-auto flex min-h-[350px] max-w-[1000px] flex-col items-center justify-center text-center">
 
-        <p className="mb-5 text-[9px] uppercase tracking-[0.25em] text-[#19cdb5]">
-          Circulogy
-        </p>
+      
 
         <h2 className="text-[42px] font-light tracking-[-0.04em] sm:text-[60px] lg:text-[72px]">
           Built Above Ground.
         </h2>
 
-        <p className="mt-4 max-w-[550px] text-[11px] leading-5 text-white/55">
+        <p className="text-[15px] font-medium mt-4 max-w-[550px] text-[11px] leading-5 text-white/55">
           Enabling resilient, sustainable and secure critical mineral supply
           chains through circularity.
         </p>
 
         <a
           href="#contact"
-          className="mt-7 flex items-center gap-3 rounded-full bg-[#19cdb5] px-6 py-3 text-[9px] font-medium text-[#061715]"
+          className="mt-7 flex items-center gap-3 rounded-full bg-[#19cdb5] px-6 py-3 text-[15px] font-medium text-[white]"
         >
           Partner With Us
-          <ArrowRight size={13} />
+          <ArrowRight size={18} />
         </a>
       </div>
     </section>

@@ -38,9 +38,18 @@ const minerals = [
   },
 ];
 
-function MineralLabel({ mineral }) {
+function MineralLabel({ mineral, isVisible, delay }) {
   return (
-    <div className={`absolute z-30 ${mineral.position}`}>
+    <div
+      className={`absolute z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        isVisible
+          ? "translate-y-0 opacity-100"
+          : "translate-y-[45px] opacity-0"
+      } ${mineral.position}`}
+      style={{
+        transitionDelay: `${delay}ms`,
+      }}
+    >
       <div className="relative">
         {/* Connector */}
         <div
@@ -56,6 +65,7 @@ function MineralLabel({ mineral }) {
 
 export default function CriticalMinerals() {
   const sectionRef = useRef(null);
+
   const [isVisible, setIsVisible] = useState(false);
 
   /* =====================================================
@@ -74,11 +84,14 @@ export default function CriticalMinerals() {
       ([entry]) => {
         const visible = entry.isIntersecting;
 
-        /* ENTER */
+        /* =========================
+           ENTER VIEWPORT
+        ========================= */
+
         if (visible && !wasVisible) {
           wasVisible = true;
 
-          // Reset animation
+          // Reset
           setIsVisible(false);
 
           // Restart animation
@@ -89,7 +102,10 @@ export default function CriticalMinerals() {
           });
         }
 
-        /* LEAVE */
+        /* =========================
+           LEAVE VIEWPORT
+        ========================= */
+
         if (!visible && wasVisible) {
           wasVisible = false;
           setIsVisible(false);
@@ -111,10 +127,15 @@ export default function CriticalMinerals() {
       className="relative min-h-[650px] w-full overflow-hidden bg-[#faf9f6] px-5 py-12 sm:min-h-[700px] sm:px-8 sm:py-14 md:min-h-[760px] md:px-10 lg:min-h-[680px] lg:px-12 lg:py-16 xl:min-h-[700px] xl:px-[4%]"
     >
       {/* =====================================================
-          BACKGROUND
+          CLEAN BACKGROUND
+          NO RADIAL SHADOW / NO GLOW
       ====================================================== */}
 
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_35%,rgba(255,255,255,0.95),transparent_45%)]" />
+      <div className="absolute inset-0 bg-[#faf9f6]" />
+
+      {/* =====================================================
+          MAIN CONTAINER
+      ====================================================== */}
 
       <div className="relative mx-auto min-h-[590px] w-full max-w-[1600px]">
 
@@ -122,79 +143,129 @@ export default function CriticalMinerals() {
             LEFT CONTENT
         ====================================================== */}
 
-        <div
-          className={`relative z-40 flex w-full max-w-[520px] flex-col justify-center pt-8 sm:max-w-[570px] sm:pt-10 md:max-w-[620px] lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 lg:pt-0 xl:max-w-[650px] ${
-            isVisible ? "critical-reveal" : "critical-hidden"
-          }`}
-        >
-          {/* Eyebrow */}
-<div ref={sectionRef}>
-  <p className="mb-4 text-[13px] font-extrabold tracking-[0.08em] text-[#079e99] sm:mb-5 sm:text-[15px] md:text-[16px]">
-    THE NEED OF TOMORROW
-  </p>
+        <div className="relative z-40 flex w-full max-w-[520px] flex-col justify-center pt-8 sm:max-w-[570px] sm:pt-10 md:max-w-[620px] lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 lg:pt-0 xl:max-w-[650px]">
 
-  <h1 className="font-[800] text-[43px] leading-[0.94] tracking-[-0.045em] text-[#050707] sm:text-[50px] md:text-[58px] lg:text-[55px] xl:text-[60px]">
-    
-    {"Tomorrow’s".split("").map((letter, index) => (
-      <span
-        key={`tomorrow-${index}`}
-        className={`letter-reveal ${isVisible ? "letter-reveal-visible" : ""}`}
-        style={{ transitionDelay: `${index * 45}ms` }}
-      >
-        {letter}
-      </span>
-    ))}
+          {/* =================================================
+              EYEBROW
+          ================================================= */}
 
-    <br />
+          <p
+            className={`mb-4 text-[13px] font-extrabold tracking-[0.08em] text-[#079e99] transition-all duration-[750ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:mb-5 sm:text-[15px] md:text-[16px] ${
+              isVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-[50px] opacity-0"
+            }`}
+          >
+            THE NEED OF TOMORROW
+          </p>
 
-    {"Economy".split("").map((letter, index) => (
-      <span
-        key={`economy-${index}`}
-        className={`letter-reveal ${isVisible ? "letter-reveal-visible" : ""}`}
-        style={{ transitionDelay: `${500 + index * 45}ms` }}
-      >
-        {letter}
-      </span>
-    ))}
+          {/* =================================================
+              MAIN HEADING
+          ================================================= */}
 
-    <br />
+          <h1 className="font-[800] text-[40px] leading-[0.94] tracking-[-0.045em] text-[#050707] sm:text-[50px] md:text-[58px] lg:text-[55px] xl:text-[60px]">
 
-    {"Needs More".split("").map((letter, index) => (
-      <span
-        key={`needs-${index}`}
-        className={`letter-reveal ${isVisible ? "letter-reveal-visible" : ""}`}
-        style={{ transitionDelay: `${850 + index * 45}ms` }}
-      >
-        {letter === " " ? "\u00A0" : letter}
-      </span>
-    ))}
+            {/* Tomorrow's */}
 
-    <br />
+            <span className="inline-block">
+              {"Tomorrow’s".split("").map((letter, index) => (
+                <span
+                  key={`tomorrow-${index}`}
+                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    isVisible
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-[100%] opacity-0"
+                  }`}
+                  style={{
+                    transitionDelay: `${100 + index * 45}ms`,
+                  }}
+                >
+                  {letter}
+                </span>
+              ))}
+            </span>
 
-    <span className="text-[#0a9f99]">
-      {"Critical Minerals".split("").map((letter, index) => (
-        <span
-          key={`critical-${index}`}
-          className={`letter-reveal ${
-            isVisible ? "letter-reveal-visible" : ""
-          }`}
-          style={{ transitionDelay: `${1350 + index * 45}ms` }}
-        >
-          {letter === " " ? "\u00A0" : letter}
-        </span>
-      ))}
-    </span>
+            <br />
 
-  </h1>
-</div>
+            {/* Economy */}
 
-          {/* Turquoise line */}
+            <span className="inline-block">
+              {"Economy".split("").map((letter, index) => (
+                <span
+                  key={`economy-${index}`}
+                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    isVisible
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-[100%] opacity-0"
+                  }`}
+                  style={{
+                    transitionDelay: `${600 + index * 45}ms`,
+                  }}
+                >
+                  {letter}
+                </span>
+              ))}
+            </span>
 
-          <div className="my-6 h-[3px] w-[98px] bg-[#0aa9a2] sm:my-7 md:my-8" />
+            <br />
 
-          {/* Description */}
+            {/* Needs More */}
 
-          <p className="max-w-[470px] text-[15px] font-medium leading-[1.42] tracking-[-0.01em] text-[#282c2b] sm:text-[16px] md:text-[17px] lg:text-[16px] xl:text-[17px]">
+            <span className="inline-block">
+              {"Needs More".split("").map((letter, index) => (
+                <span
+                  key={`needs-${index}`}
+                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    isVisible
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-[100%] opacity-0"
+                  }`}
+                  style={{
+                    transitionDelay: `${1000 + index * 45}ms`,
+                  }}
+                >
+                  {letter === " " ? "\u00A0" : letter}
+                </span>
+              ))}
+            </span>
+
+            <br />
+
+            {/* Critical Minerals */}
+
+            <span className="text-[#0a9f99]">
+              {"Critical Minerals".split("").map((letter, index) => (
+                <span
+                  key={`critical-${index}`}
+                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    isVisible
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-[100%] opacity-0"
+                  }`}
+                  style={{
+                    transitionDelay: `${1450 + index * 45}ms`,
+                  }}
+                >
+                  {letter === " " ? "\u00A0" : letter}
+                </span>
+              ))}
+            </span>
+          </h1>
+
+          {/* =================================================
+              DESCRIPTION
+          ================================================= */}
+
+          <p
+            className={`mt-6 max-w-[470px] text-[15px] font-medium leading-[1.42] tracking-[-0.01em] text-[#394542] transition-all duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:text-[16px] md:text-[17px] lg:text-[16px] xl:text-[17px] ${
+              isVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-[70px] opacity-0"
+            }`}
+            style={{
+              transitionDelay: "2100ms",
+            }}
+          >
             The demand for lithium, cobalt, nickel, copper,
             <br className="hidden sm:block" />
             and rare earth elements is accelerating.
@@ -212,13 +283,21 @@ export default function CriticalMinerals() {
         ====================================================== */}
 
         <div
-          className={`relative mt-10 h-[440px] w-full sm:h-[500px] md:h-[570px] lg:absolute lg:right-[-5%] lg:top-1/2 lg:mt-0 lg:h-[650px] lg:w-[67%] lg:-translate-y-1/2 xl:right-[-3%] xl:h-[680px] xl:w-[90%] ${
-            isVisible ? "critical-image-reveal" : "critical-image-hidden"
+          className={`relative mt-10 h-[440px] w-full transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:h-[500px] md:h-[570px] lg:absolute lg:right-[-5%] lg:top-1/2 lg:mt-0 lg:h-[650px] lg:w-[67%] lg:-translate-y-1/2 xl:right-[-3%] xl:h-[680px] xl:w-[90%] ${
+            isVisible
+              ? "translate-y-0 opacity-100"
+              : "translate-y-[120px] opacity-0"
           }`}
+          style={{
+            transitionDelay: "300ms",
+          }}
         >
-          <div className="absolute inset-0 overflow-hidden">
 
-            {/* Image */}
+          {/* =================================================
+              IMAGE
+          ================================================= */}
+
+          <div className="absolute inset-0 overflow-hidden">
 
             <img
               src="images/minerals_image.png"
@@ -226,28 +305,17 @@ export default function CriticalMinerals() {
               className="h-full w-full object-cover object-center"
             />
 
-            {/* Subtle overlay */}
-
-            <div className="absolute inset-0 bg-black/[0.025]" />
-
             {/* =================================================
                 MINERAL LABELS
-            ================================================== */}
+            ================================================= */}
 
             {minerals.map((mineral, index) => (
-              <div
+              <MineralLabel
                 key={mineral.symbol}
-                className={
-                  isVisible
-                    ? "critical-label-reveal"
-                    : "critical-label-hidden"
-                }
-                style={{
-                  animationDelay: `${600 + index * 100}ms`,
-                }}
-              >
-                <MineralLabel mineral={mineral} />
-              </div>
+                mineral={mineral}
+                isVisible={isVisible}
+                delay={800 + index * 130}
+              />
             ))}
 
           </div>

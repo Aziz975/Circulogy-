@@ -107,18 +107,14 @@ export default function WhatWeRecover() {
 
           {/* Eyebrow */}
           <p
-            className={`mb-4 text-[9px] uppercase tracking-[0.25em] text-[#087d78] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-[35px] opacity-0"
-            }`}
+            className="mb-4 text-[13px] font-extrabold tracking-[0.08em] text-[#079e99] sm:mb-5 sm:text-[15px] md:text-[16px]"
           >
             What We Recover
           </p>
 
           {/* Heading */}
        <h2
-  className="max-w-[650px] text-[36px] font-light leading-[1] tracking-[-0.04em] sm:text-[48px]"
+  className="max-w-[650px] font-[800] text-[40px] leading-[1] tracking-[-0.04em] sm:text-[48px]"
 >
   {"Critical Minerals For The".split("").map((letter, index) => (
     <span
@@ -153,7 +149,7 @@ export default function WhatWeRecover() {
 
           {/* Description */}
           <p
-            className={`mt-4 max-w-[500px] text-[11px] leading-5 text-[#061715]/50 transition-all duration-[800ms] delay-[220ms] ease-out ${
+            className={`mt-4 max-w-[500px] text-[15px] font-medium   text-[#282c2b] leading-5  transition-all duration-[800ms] delay-[220ms] ease-out ${
               isVisible
                 ? "translate-y-0 opacity-100"
                 : "translate-y-[35px] opacity-0"
@@ -171,7 +167,7 @@ export default function WhatWeRecover() {
           {minerals.map((mineral, index) => (
             <div
               key={mineral.name}
-              className={`group relative min-h-[300px] w-full ${
+              className={`group relative min-h-[500px] w-full ${
                 isVisible ? "animate-mineral-flip" : ""
               }`}
               style={{
@@ -212,7 +208,7 @@ export default function WhatWeRecover() {
                     transitionDelay: `${500 + index * 120}ms`,
                   }}
                 >
-                  <span className="rounded-full bg-[#19cdb5] px-4 py-2 text-[8px] font-medium text-[#061715] transition-all duration-300 group-hover:px-5">
+                  <span className="rounded-full bg-[#19cdb5] px-4 py-3 text-[15px] font-medium text-[white] transition-all duration-300 group-hover:px-5">
                     {mineral.name}
                     <span className="ml-2">→</span>
                   </span>

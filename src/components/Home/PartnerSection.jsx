@@ -146,7 +146,7 @@ export default function PartnerSection() {
               animationDelay: "250ms",
             }}
           >
-            <p className="max-w-[500px] text-[15px] leading-[1.55] text-[#394542] sm:text-[16px] md:text-[17px]">
+            <p className="max-w-[580px] text-[15px] leading-[1.55] text-[#394542] sm:text-[16px] md:text-[17px]">
               We collaborate with forward-thinking organizations,
               industry leaders, and innovation partners to close loops,
               unlock value, and create lasting impact across the
