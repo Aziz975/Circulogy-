@@ -1,6 +1,5 @@
 
 import ElementGrid from '../Technology/ElementGrid';
-import ImageGrid from '../Technology/ElementGrid';
 import ImportDependency from '../Technology/ImportDependency';
 import PartnerSection from '../Technology/PartnerSection';
 import TechnologyHero from '../Technology/TechnologyHero';
@@ -13,7 +12,7 @@ const Technology = () => {
    <ImportDependency></ImportDependency>
    <WhatWeRecover></WhatWeRecover>
    <ElementGrid></ElementGrid>
-
+   <PartnerSection></PartnerSection>
 
 
     </>

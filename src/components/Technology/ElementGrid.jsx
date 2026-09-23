@@ -10,7 +10,7 @@ const targetElements = {
     source: "FROM LI-ION BATTERY BLACK MASS",
     stream: "Critical Minerals",
     color: "critical",
-    image: "images/lithium-stone.png",
+    image: "images/lithium2.jpeg",
   },
   C: {
     symbol: "C",
@@ -54,7 +54,7 @@ const targetElements = {
     source: "FROM LI-ION BATTERY BLACK MASS",
     stream: "Critical Minerals",
     color: "critical",
-    image: "",
+    image: "images/nickel2.jpeg",
   },
   Pr: {
     symbol: "Pr",
@@ -378,7 +378,7 @@ export default function ElementGrid() {
                 </div>
 
                 {/* Periodic table */}
-                <div className="grid grid-cols-15 gap-[4px]">
+                <div className="grid grid-cols-15 ml-[5px] gap-[4px]">
 
                   {elements.map((element) => {
                     const target = targetElements[element.symbol];

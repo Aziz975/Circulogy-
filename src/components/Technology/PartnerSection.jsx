@@ -1,45 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { ArrowRight, Mail, MapPin } from "lucide-react";
 
 export default function PartnerSection() {
-  const sectionRef = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  
-
-  /* ================= INTERSECTION ANIMATION ================= */
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(false);
-
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              setVisible(true);
-            });
-          });
-        } else {
-          setVisible(false);
-        }
-      },
-      {
-        threshold: 0.15,
-      }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative max-w-[1600px] overflow-hidden bg-[#031614] px-5 py-14 sm:px-8 sm:py-16 md:px-10 md:py-20 lg:min-h-[568px] lg:px-6 lg:py-12 xl:px-8"
-    >
+    <section className="relative max-w-[1600px] overflow-hidden bg-[#031614] px-5 py-14 sm:px-8 sm:py-16 md:px-10 md:py-20 lg:min-h-[568px] lg:px-6 lg:py-12 xl:px-8">
 
       {/* ================= GRID BACKGROUND ================= */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.55]">
@@ -55,13 +19,7 @@ export default function PartnerSection() {
         {/* LEFT CONTENT */}
         {/* ================================================= */}
 
-        <div
-          className={`relative z-10 ${
-            visible
-              ? "animate-[fadeUp_0.9s_ease-out_forwards]"
-              : "opacity-0"
-          }`}
-        >
+        <div className="relative z-10">
 
           {/* TOP LABEL */}
           <div className="mb-6 flex items-center gap-3 sm:mb-7">
@@ -72,44 +30,25 @@ export default function PartnerSection() {
 
           {/* HEADING */}
           <h1 className="max-w-[530px] text-[45px] font-bold leading-[0.93] tracking-[-0.055em] text-[#f7f9f8] sm:text-[53px] md:text-[59px] lg:text-[57px] xl:text-[60px]">
-  {"Partner with".split("").map((letter, index) => (
-    <span key={`partner-${index}`} className="letter-reveal" style={{ animationDelay: `${index * 0.035}s` }}>
-      {letter === " " ? "\u00A0" : letter}
-    </span>
-  ))}
-  <br />
+            Partner with
+            <br />
 
-  {"India's".split("").map((letter, index) => (
-    <span key={`india-${index}`} className="letter-reveal" style={{ animationDelay: `${(index + 13) * 0.035}s` }}>
-      {letter}
-    </span>
-  ))}
-  <br />
+            India's
+            <br />
 
-  <span className="text-[#19cdb5]">
-    {"critical mineral".split("").map((letter, index) => (
-      <span key={`critical-${index}`} className="letter-reveal" style={{ animationDelay: `${(index + 20) * 0.035}s` }}>
-        {letter === " " ? "\u00A0" : letter}
-      </span>
-    ))}
-  </span>
-  <br />
+            <span className="text-[#19cdb5]">
+              critical mineral
+            </span>
+            <br />
 
-  {"and".split("").map((letter, index) => (
-    <span key={`and-${index}`} className="letter-reveal" style={{ animationDelay: `${(index + 37) * 0.035}s` }}>
-      {letter}
-    </span>
-  ))}
-  <br />
+            and
+            <br />
 
-  <span className="text-[#19cdb5]">
-    {"rare earth refinery.".split("").map((letter, index) => (
-      <span key={`rare-${index}`} className="letter-reveal" style={{ animationDelay: `${(index + 41) * 0.035}s` }}>
-        {letter === " " ? "\u00A0" : letter}
-      </span>
-    ))}
-  </span>
-</h1>
+            <span className="text-[#19cdb5]">
+              rare earth refinery.
+            </span>
+          </h1>
+
           {/* DESCRIPTION */}
           <p className="mt-6 max-w-[465px] text-[14px] font-normal leading-[1.45] tracking-[-0.01em] text-[#d0d9d7] sm:text-[15px] md:mt-7">
             Whether you are an industrial buyer of critical minerals
@@ -121,17 +60,16 @@ export default function PartnerSection() {
           {/* BUTTONS */}
           <div className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row sm:items-center">
 
-            <button className="group flex h-[47px] w-full items-center justify-center gap-2 rounded-full bg-[#19cdb5] px-7 text-[13px] font-semibold text-[#06221f] shadow-[0_0_25px_rgba(25,205,181,0.12)] transition-all duration-300 hover:bg-[#27dec6] hover:shadow-[0_0_30px_rgba(25,205,181,0.25)] sm:w-auto">
+            <button className="group flex h-[47px] w-full items-center justify-center gap-2 rounded-full bg-[#19cdb5] px-7 text-[13px] font-semibold text-[#06221f] shadow-[0_0_25px_rgba(25,205,181,0.12)] sm:w-auto">
               <span>Get in Touch</span>
 
               <ArrowRight
                 size={16}
                 strokeWidth={2}
-                className="transition-transform duration-300 group-hover:translate-x-1"
               />
             </button>
 
-            <button className="flex h-[47px] w-full items-center justify-center rounded-full border border-[#64716f] bg-[#293332]/80 px-7 text-[13px] font-semibold text-[#f3f5f4] transition-all duration-300 hover:border-[#19cdb5] hover:bg-[#35413f] sm:w-auto">
+            <button className="flex h-[47px] w-full items-center justify-center rounded-full border border-[#64716f] bg-[#293332]/80 px-7 text-[13px] font-semibold text-[#f3f5f4] sm:w-auto">
               About Circulogy
             </button>
 
@@ -142,13 +80,7 @@ export default function PartnerSection() {
         {/* RIGHT CARD */}
         {/* ================================================= */}
 
-        <div
-          className={`relative z-10 w-full ${
-            visible
-              ? "animate-[fadeUp_0.9s_ease-out_0.25s_forwards]"
-              : "opacity-0"
-          }`}
-        >
+        <div className="relative z-10 w-full">
 
           <div className="relative overflow-hidden rounded-[22px] border border-[#29413e] bg-[#0b1e1b]/95 px-7 py-8 shadow-[0_20px_60px_rgba(0,0,0,0.18)] sm:px-8 sm:py-9 md:px-9 md:py-9 lg:min-h-[428px] lg:px-[30px] lg:py-[31px]">
 
