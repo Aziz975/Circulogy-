@@ -7,6 +7,7 @@ const minerals = [
     number: "3",
     mass: "6.941",
     bg: "bg-[#e7e1d5]",
+    glow: "rgba(231,225,213,0.85)",
     description: "Essential for rechargeable batteries and energy storage.",
   },
   {
@@ -15,6 +16,7 @@ const minerals = [
     number: "28",
     mass: "58.693",
     bg: "bg-[#0b8880]",
+    glow: "rgba(11,136,128,0.75)",
     description: "Used in high-performance batteries and advanced alloys.",
   },
   {
@@ -23,6 +25,7 @@ const minerals = [
     number: "27",
     mass: "58.933",
     bg: "bg-[#1d2423]",
+    glow: "rgba(29,36,35,0.85)",
     description: "Critical for battery cathodes and energy technologies.",
   },
   {
@@ -31,6 +34,7 @@ const minerals = [
     number: "29",
     mass: "63.546",
     bg: "bg-[#b84b0c]",
+    glow: "rgba(184,75,12,0.8)",
     description:
       "Important for electrical systems, mobility, and electronics.",
   },
@@ -40,15 +44,17 @@ const minerals = [
     number: "",
     mass: "",
     bg: "bg-[#242b2a]",
+    glow: "rgba(36,43,42,0.85)",
     description:
       "Strategic elements used in magnets, electronics, and defence.",
   },
   {
     name: "Future Minerals",
-    img: "/images/futureminerals2.jpeg",
+    img: "/images/future-minerals.jpeg",
     number: "",
     mass: "",
     bg: "bg-[#151b1a]",
+    glow: "rgba(21,27,26,0.9)",
     description:
       "Emerging resources supporting India's future technologies.",
   },
@@ -95,208 +101,129 @@ export default function WhatWeRecover() {
     >
       <div className="mx-auto max-w-[1400px]">
 
-        {/* HEADER */}
+        {/* ================= HEADER ================= */}
+
         <div className="mb-10">
-          <p className="mb-4 text-[9px] uppercase tracking-[0.25em] text-[#087d78]">
+
+          {/* Eyebrow */}
+          <p
+            className={`mb-4 text-[9px] uppercase tracking-[0.25em] text-[#087d78] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              isVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-[35px] opacity-0"
+            }`}
+          >
             What We Recover
           </p>
 
-          <h2 className="max-w-[650px] text-[36px] font-light leading-[1] tracking-[-0.04em] sm:text-[48px]">
-            Critical Minerals For The
-            <br />
-            Industries Of Tomorrow
-          </h2>
+          {/* Heading */}
+       <h2
+  className="max-w-[650px] text-[36px] font-light leading-[1] tracking-[-0.04em] sm:text-[48px]"
+>
+  {"Critical Minerals For The".split("").map((letter, index) => (
+    <span
+      key={`line1-${index}`}
+      className={`horizontal-letter ${
+        isVisible ? "horizontal-letter-visible" : ""
+      }`}
+      style={{
+        transitionDelay: `${index * 35}ms`,
+      }}
+    >
+      {letter === " " ? "\u00A0" : letter}
+    </span>
+  ))}
 
-          <p className="mt-4 max-w-[500px] text-[11px] leading-5 text-[#061715]/50">
+  <br />
+
+  {"Industries Of Tomorrow".split("").map((letter, index) => (
+    <span
+      key={`line2-${index}`}
+      className={`horizontal-letter ${
+        isVisible ? "horizontal-letter-visible" : ""
+      }`}
+      style={{
+        transitionDelay: `${900 + index * 35}ms`,
+      }}
+    >
+      {letter === " " ? "\u00A0" : letter}
+    </span>
+  ))}
+</h2>
+
+          {/* Description */}
+          <p
+            className={`mt-4 max-w-[500px] text-[11px] leading-5 text-[#061715]/50 transition-all duration-[800ms] delay-[220ms] ease-out ${
+              isVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-[35px] opacity-0"
+            }`}
+          >
             Recovering strategic resources essential for energy, mobility,
             electronics, and advanced manufacturing.
           </p>
         </div>
 
-        {/* CARDS */}
+        {/* ================= CARDS ================= */}
+
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
-          {/* ================= LITHIUM ================= */}
-          <div
-            className={`relative min-h-[300px] w-full ${
-              isVisible ? "animate-mineral-flip" : ""
-            }`}
-            style={{
-              animationDelay: "0ms",
-              animationFillMode: "both",
-            }}
-          >
-            <div className="relative h-full min-h-[300px] overflow-hidden rounded-[16px] bg-[#e7e1d5]">
-              <img
-                src={minerals[0].img}
-                alt={minerals[0].name}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+          {minerals.map((mineral, index) => (
+            <div
+              key={mineral.name}
+              className={`group relative min-h-[300px] w-full ${
+                isVisible ? "animate-mineral-flip" : ""
+              }`}
+              style={{
+                animationDelay: `${index * 180}ms`,
+                animationFillMode: "both",
+              }}
+            >
+              {/* GLOW */}
+              <div
+                className="pointer-events-none absolute -inset-[5px] rounded-[20px] opacity-0 blur-[16px] transition-all duration-500 group-hover:opacity-70"
+                style={{
+                  backgroundColor: mineral.glow,
+                }}
               />
 
-              <div className="absolute inset-0 bg-black/10" />
+              {/* CARD */}
+              <div
+                className={`relative h-full min-h-[300px] overflow-hidden rounded-[16px] ${mineral.bg} transition-all duration-500 ease-out group-hover:-translate-y-[4px]`}
+              >
+                {/* IMAGE */}
+                <img
+                  src={mineral.img}
+                  alt={mineral.name}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
 
-            
-              <div className="absolute bottom-4 left-4">
-                <span className="rounded-full bg-[#19cdb5] px-4 py-2 text-[8px] font-medium text-[#061715]">
-                  Lithium
-                  <span className="ml-2">→</span>
-                </span>
+                {/* OVERLAY */}
+                <div className="absolute inset-0 bg-black/10 transition-all duration-500 group-hover:bg-black/[0.02]" />
+
+                {/* LABEL */}
+                <div
+                  className={`absolute bottom-4 left-4 transition-all duration-700 ${
+                    isVisible
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-[20px] opacity-0"
+                  }`}
+                  style={{
+                    transitionDelay: `${500 + index * 120}ms`,
+                  }}
+                >
+                  <span className="rounded-full bg-[#19cdb5] px-4 py-2 text-[8px] font-medium text-[#061715] transition-all duration-300 group-hover:px-5">
+                    {mineral.name}
+                    <span className="ml-2">→</span>
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-
-
-          {/* ================= NICKEL ================= */}
-          <div
-            className={`relative min-h-[300px] w-full ${
-              isVisible ? "animate-mineral-flip" : ""
-            }`}
-            style={{
-              animationDelay: "180ms",
-              animationFillMode: "both",
-            }}
-          >
-            <div className="relative h-full min-h-[300px] overflow-hidden rounded-[16px] bg-[#0b8880]">
-              <img
-                src={minerals[1].img}
-                alt={minerals[1].name}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-              />
-
-              <div className="absolute inset-0 bg-black/10" />
-
-             
-
-              <div className="absolute bottom-4 left-4">
-                <span className="rounded-full bg-[#19cdb5] px-4 py-2 text-[8px] font-medium text-[#061715]">
-                  Nickel
-                  <span className="ml-2">→</span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-
-          {/* ================= COBALT ================= */}
-          <div
-            className={`relative min-h-[300px] w-full ${
-              isVisible ? "animate-mineral-flip" : ""
-            }`}
-            style={{
-              animationDelay: "360ms",
-              animationFillMode: "both",
-            }}
-          >
-            <div className="relative h-full min-h-[300px] overflow-hidden rounded-[16px] bg-[#1d2423]">
-              <img
-                src={minerals[2].img}
-                alt={minerals[2].name}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-              />
-
-              <div className="absolute inset-0 bg-black/10" />
-
-              
-              <div className="absolute bottom-4 left-4">
-                <span className="rounded-full bg-[#19cdb5] px-4 py-2 text-[8px] font-medium text-[#061715]">
-                  Cobalt
-                  <span className="ml-2">→</span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-
-          {/* ================= COPPER ================= */}
-          <div
-            className={`relative min-h-[300px] w-full ${
-              isVisible ? "animate-mineral-flip" : ""
-            }`}
-            style={{
-              animationDelay: "540ms",
-              animationFillMode: "both",
-            }}
-          >
-            <div className="relative h-full min-h-[300px] overflow-hidden rounded-[16px] bg-[#b84b0c]">
-              <img
-                src={minerals[3].img}
-                alt={minerals[3].name}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-              />
-
-              <div className="absolute inset-0 bg-black/10" />
-
-             
-              <div className="absolute bottom-4 left-4">
-                <span className="rounded-full bg-[#19cdb5] px-4 py-2 text-[8px] font-medium text-[#061715]">
-                  Copper
-                  <span className="ml-2">→</span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-
-          {/* ================= RARE EARTH ================= */}
-          <div
-            className={`relative min-h-[300px] w-full ${
-              isVisible ? "animate-mineral-flip" : ""
-            }`}
-            style={{
-              animationDelay: "720ms",
-              animationFillMode: "both",
-            }}
-          >
-            <div className="relative h-full min-h-[300px] overflow-hidden rounded-[16px] bg-[#242b2a]">
-              <img
-                src={minerals[4].img}
-                alt={minerals[4].name}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-              />
-
-       
-
-
-              <div className="absolute bottom-4 left-4">
-                <span className="rounded-full bg-[#19cdb5] px-4 py-2 text-[8px] font-medium text-[#061715]">
-                  Rare Earth Elements
-                  <span className="ml-2">→</span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-
-          {/* ================= FUTURE MINERALS ================= */}
-          <div
-            className={`relative min-h-[300px] w-full ${
-              isVisible ? "animate-mineral-flip" : ""
-            }`}
-            style={{
-              animationDelay: "900ms",
-              animationFillMode: "both",
-            }}
-          >
-            <div className="relative h-full min-h-[300px] overflow-hidden rounded-[16px] bg-[#151b1a]">
-              <img
-                src={minerals[5].img}
-                alt={minerals[5].name}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-              />
-
-             
-
-              <div className="absolute bottom-4 left-4">
-                <span className="rounded-full bg-[#19cdb5] px-4 py-2 text-[8px] font-medium text-[#061715]">
-                  Future Minerals
-                  <span className="ml-2">→</span>
-                </span>
-              </div>
-            </div>
-          </div>
+          ))}
 
         </div>
       </div>
+      
     </section>
   );
 }

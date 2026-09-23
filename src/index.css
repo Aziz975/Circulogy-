@@ -369,3 +369,382 @@ body {
     opacity: 1 !important;
   }
 }
+
+
+
+
+
+
+
+.partner-marquee {
+  animation: partnerMarquee 20s linear infinite;
+  will-change: transform;
+}
+
+.partner-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes partnerMarquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+
+
+
+
+/* 
+// fade up animation on hom page */
+
+
+
+
+/* =========================================
+   HERO FADE UP ANIMATION
+========================================= */
+
+.hero-section .hero-badge,
+.hero-section .hero-heading-line,
+.hero-section .hero-subtitle,
+.hero-section .hero-description,
+.hero-section .hero-buttons,
+.hero-section .hero-trusted,
+.hero-section .hero-orbit-container,
+.hero-section .hero-mineral,
+.hero-section .hero-center-icon,
+.hero-section .hero-particle {
+  opacity: 0;
+}
+
+
+/* =========================================
+   INITIAL POSITIONS
+========================================= */
+
+.hero-section .hero-badge {
+  transform: translateY(35px);
+}
+
+.hero-section .hero-heading-line {
+  transform: translateY(55px);
+}
+
+.hero-section .hero-subtitle {
+  transform: translateY(35px);
+}
+
+.hero-section .hero-description {
+  transform: translateY(35px);
+}
+
+.hero-section .hero-buttons {
+  transform: translateY(35px);
+}
+
+.hero-section .hero-trusted {
+  transform: translateY(35px);
+}
+
+.hero-section .hero-orbit-container {
+  transform: translateY(45px);
+}
+
+.hero-section .hero-mineral {
+  transform: translateY(45px);
+}
+
+.hero-section .hero-center-icon {
+  transform: translate(-50%, -50%) translateY(30px);
+}
+
+.hero-section .hero-particle {
+  transform: translateY(25px);
+}
+
+
+/* =========================================
+   FADE UP
+========================================= */
+
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(45px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+.hero-section .animate-in {
+  animation-name: heroFadeUp;
+  animation-duration: 0.9s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: forwards;
+}
+
+
+/* =========================================
+   STAGGER
+========================================= */
+
+.hero-section .hero-badge.animate-in {
+  animation-delay: 0.05s;
+}
+
+.hero-section .hero-heading-line.animate-in {
+  animation-delay: 0.15s;
+}
+
+.hero-section .hero-heading-second.animate-in {
+  animation-delay: 0.28s;
+}
+
+.hero-section .hero-subtitle.animate-in {
+  animation-delay: 0.40s;
+}
+
+.hero-section .hero-description.animate-in {
+  animation-delay: 0.52s;
+}
+
+.hero-section .hero-buttons.animate-in {
+  animation-delay: 0.64s;
+}
+
+.hero-section .hero-trusted.animate-in {
+  animation-delay: 0.76s;
+}
+
+.hero-section .hero-orbit-container.animate-in {
+  animation-delay: 0.15s;
+}
+
+.hero-section .hero-mineral-nickel.animate-in {
+  animation-delay: 0.35s;
+}
+
+.hero-section .hero-mineral-lithium.animate-in {
+  animation-delay: 0.50s;
+}
+
+.hero-section .hero-mineral-graphite.animate-in {
+  animation-delay: 0.65s;
+}
+
+.hero-section .hero-center-icon.animate-in {
+  animation-delay: 0.75s;
+}
+
+.hero-section .hero-particle-1.animate-in {
+  animation-delay: 0.80s;
+}
+
+.hero-section .hero-particle-2.animate-in {
+  animation-delay: 0.90s;
+}
+
+.hero-section .hero-particle-3.animate-in {
+  animation-delay: 1s;
+}
+
+.hero-section .hero-particle-4.animate-in {
+  animation-delay: 1.1s;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .hero-section .hero-heading-line {
+    transform: translateY(40px);
+  }
+
+  .hero-section .hero-orbit-container {
+    transform: translateY(35px);
+  }
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-section *,
+  .hero-section .animate-in {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+
+
+
+/* =====================================================
+   CRITICAL MINERALS - BOTTOM REVEAL
+===================================================== */
+
+.critical-hidden {
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+.critical-reveal {
+  animation: criticalBottomReveal 1000ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+
+/* =====================================================
+   IMAGE REVEAL
+===================================================== */
+
+.critical-image-hidden {
+  opacity: 0;
+  transform: translateY(120px);
+}
+
+.critical-image-reveal {
+  animation: criticalImageReveal 1200ms
+    cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
+}
+
+
+/* =====================================================
+   MINERAL LABEL REVEAL
+===================================================== */
+
+.critical-label-hidden {
+  opacity: 0;
+  transform: translateY(45px);
+}
+
+.critical-label-reveal {
+  opacity: 0;
+  animation: criticalLabelReveal 700ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+
+/* =====================================================
+   TEXT
+===================================================== */
+
+@keyframes criticalBottomReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(-6px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+@keyframes criticalImageReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(120px);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =====================================================
+   LABELS
+===================================================== */
+
+@keyframes criticalLabelReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(-50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(50);
+  }
+}
+
+
+
+.letter-reveal {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(110%) rotate(6deg);
+  filter: blur(6px);
+
+  transition:
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 500ms ease,
+    filter 600ms ease;
+}
+
+.letter-reveal-visible {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+  filter: blur(0);
+}
+
+
+
+
+.horizontal-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+
+  transition:
+    opacity 500ms ease,
+    transform 750ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.horizontal-letter-visible {
+  opacity: 1;
+  transform: scaleX(1);
+}

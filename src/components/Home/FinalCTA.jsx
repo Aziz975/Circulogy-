@@ -1,31 +1,46 @@
-import React from "react";
+import React, { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 
 export default function FinalCTA() {
+  const videoRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => {});
+    }
+  };
+
   return (
     <section
       id="contact"
+      onMouseEnter={handleMouseEnter}
       className="relative min-h-[430px] overflow-hidden bg-[#020505] px-5 py-20 text-white sm:min-h-[500px] sm:px-8 lg:px-10 xl:px-12"
     >
-
-      {/* Image placeholder */}
-      <img
-        src=""
-        alt=""
+      {/* Background Video */}
+      <video
+        ref={videoRef}
+        src="/images/video.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
         className="absolute inset-0 h-full w-full object-cover"
       />
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/55" />
+      <div className="pointer-events-none absolute inset-0 bg-black/55" />
 
       {/* Decorative particles */}
-      <div className="absolute inset-0 opacity-50">
+      <div className="pointer-events-none absolute inset-0 opacity-50">
         <span className="absolute left-[10%] top-[20%] h-2 w-2 rotate-45 bg-white/60" />
         <span className="absolute left-[25%] top-[65%] h-3 w-3 rotate-45 bg-white/30" />
         <span className="absolute right-[20%] top-[30%] h-2 w-2 rotate-45 bg-white/50" />
         <span className="absolute right-[35%] bottom-[20%] h-3 w-3 rotate-45 bg-white/20" />
       </div>
 
+      {/* Content */}
       <div className="relative z-10 mx-auto flex min-h-[350px] max-w-[1000px] flex-col items-center justify-center text-center">
 
         <p className="mb-5 text-[9px] uppercase tracking-[0.25em] text-[#19cdb5]">

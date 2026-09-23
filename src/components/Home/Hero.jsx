@@ -1,363 +1,1762 @@
-import React from "react";
-import { ArrowRight, Infinity } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
-export default function Hero() {
+/**
+ * CirculogyHero
+ * Single self-contained React component.
+ *
+ * Features:
+ * - Animated starfield
+ * - Scroll-based orbit speed
+ * - Horizontal stretch letter reveal
+ * - Animation restarts whenever hero enters viewport
+ */
+export default function CirculogyHero() {
+  const canvasRef = useRef(null);
+  const heroRef = useRef(null);
+
+  const [scrollSpeed, setScrollSpeed] = useState(1);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // =========================================
+  // HERO LETTER REVEAL
+  // =========================================
+  useEffect(() => {
+    const section = heroRef.current;
+
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Reset first
+          setIsVisible(false);
+
+          // Restart animation
+          requestAnimationFrame(() => {
+            setIsVisible(true);
+          });
+        } else {
+          // Reset when leaving viewport
+          setIsVisible(false);
+        }
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  // =========================================
+  // SCROLL-BASED ORBIT SPEED
+  // =========================================
+  useEffect(() => {
+    let ticking = false;
+
+    const updateScrollSpeed = () => {
+      const scrollY = window.scrollY;
+
+      const speed = Math.min(
+        1 + (scrollY / 3000) * 2,
+        3
+      );
+
+      setScrollSpeed(speed);
+
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollSpeed);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    updateScrollSpeed();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  // =========================================
+  // STARFIELD BACKGROUND
+  // =========================================
+  useEffect(() => {
+    const canvas = canvasRef.current;
+
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+
+    let w;
+    let h;
+    let stars;
+    let rafId;
+
+    function resize() {
+      w = canvas.width = canvas.offsetWidth;
+      h = canvas.height = canvas.offsetHeight;
+
+      stars = Array.from(
+        {
+          length: Math.floor((w * h) / 9000),
+        },
+        () => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.3 + 0.2,
+          a: Math.random() * 0.6 + 0.2,
+          tw: Math.random() * 0.02 + 0.005,
+          dir: Math.random() > 0.5 ? 1 : -1,
+        })
+      );
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+
+      for (const s of stars) {
+        s.a += s.tw * s.dir;
+
+        if (s.a > 0.9 || s.a < 0.15) {
+          s.dir *= -1;
+        }
+
+        ctx.beginPath();
+
+        ctx.arc(
+          s.x,
+          s.y,
+          s.r,
+          0,
+          Math.PI * 2
+        );
+
+        ctx.fillStyle = `rgba(200,255,240,${s.a})`;
+
+        ctx.fill();
+      }
+
+      rafId = requestAnimationFrame(draw);
+    }
+
+    const ro = new ResizeObserver(resize);
+
+    ro.observe(canvas);
+
+    resize();
+    draw();
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      ro.disconnect();
+    };
+  }, []);
+
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-[#050d0f] text-white">
+    <div
+      ref={heroRef}
+      className="circulogy-hero"
+    >
+      {/* =========================================
+          STARFIELD
+      ========================================= */}
+      <canvas
+        ref={canvasRef}
+        className="ch-stars"
+      />
 
-      {/* ================= BACKGROUND ================= */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* =========================================
+          HERO
+      ========================================= */}
+      <section className="ch-hero">
 
-        {/* Main green glow */}
-        <div className="absolute -right-[8%] top-[5%] h-[700px] w-[700px] rounded-full bg-[#0b514d]/20 blur-[130px]" />
+        {/* =========================================
+            LEFT CONTENT
+        ========================================= */}
+        <div className="ch-left">
 
-        <div className="absolute bottom-[-20%] right-[-10%] h-[500px] w-[600px] rounded-full bg-[#0b7770]/15 blur-[120px]" />
+          {/* BADGE */}
+          <div
+            className={`ch-badge reveal-content ${
+              isVisible
+                ? "reveal-content-visible"
+                : ""
+            }`}
+            style={{
+              transitionDelay: "0ms",
+            }}
+          >
+            <span className="ch-dot" />
 
-        {/* Background grid */}
-        <div
-          className="absolute inset-0 opacity-[0.12]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(87,130,128,0.16) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(87,130,128,0.16) 1px, transparent 1px)
-            `,
-            backgroundSize: "85px 85px",
-          }}
-        />
+            Circular Critical Minerals
+          </div>
 
-        {/* Large subtle texture */}
-        <div className="absolute inset-0 opacity-[0.22] [background-image:radial-gradient(circle_at_60%_45%,rgba(115,150,147,0.18)_0,transparent_35%),radial-gradient(circle_at_75%_55%,rgba(50,90,88,0.2)_0,transparent_28%)]" />
+          {/* =========================================
+              HEADING
+          ========================================= */}
+          <h1 className="ch-h1">
 
-      </div>
-
-
-      {/* ================= CONTENT ================= */}
-      <div className="relative z-10 mx-auto min-h-screen max-w-[1800px] px-6 py-10 sm:px-10 md:px-12 lg:px-16 xl:px-[6%]">
-
-        <div className="grid min-h-[calc(100vh-80px)] items-center lg:grid-cols-[52%_48%]">
-
-          {/* =====================================================
-              LEFT SIDE
-          ====================================================== */}
-          <div className="relative z-20 max-w-[800px] pt-8 lg:pt-0">
-
-            {/* Badge */}
-            <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-[#273638] bg-[#071012]/80 px-5 py-2.5 backdrop-blur-md">
-
-              <span className="h-[7px] w-[7px] rounded-full bg-[#1bc8b5] shadow-[0_0_10px_rgba(27,200,181,0.8)]" />
-
-              <span className="text-[10px] font-medium tracking-[0.2em] text-[#c2cbca] sm:text-[11px]">
-                CIRCULAR CRITICAL MINERALS
-              </span>
-
-            </div>
-
-
-            {/* ================= HEADING ================= */}
-            <h1 className="max-w-[800px] text-[52px] font-medium leading-[0.96] tracking-[-0.055em] sm:text-[65px] md:text-[74px] lg:text-[70px] xl:text-[86px] 2xl:text-[94px]">
-
-              <span className="text-[#f2f3f2]">
-                Building the{" "}
-              </span>
-
-              <span className="text-[#16b5a5]">
-                Mine
-              </span>
-
-              <br />
-
-              <span className="text-[#16b5a5]">
-                Above Ground
-              </span>
-
-            </h1>
-
-
-            {/* ================= SUBTITLE ================= */}
-            <p className="mt-8 text-[18px] font-normal tracking-[-0.015em] text-[#e0e6e5] sm:text-[20px] md:text-[22px]">
-              Recovering critical minerals. Securing tomorrow.
-            </p>
-
-
-            {/* ================= DESCRIPTION ================= */}
-            <p className="mt-5 max-w-[650px] text-[14px] leading-[1.75] text-[#929d9b] sm:text-[15px] md:text-[16px]">
-
-              The critical minerals powering tomorrow’s economy already exist in
-              the products we use today. Circulogy closes the loop — recovering
-              high-value materials from end-of-life electronics and batteries to
-              build a resilient, circular supply chain.
-
-            </p>
-
-
-            {/* ================= BUTTONS ================= */}
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-
-              <button className="group flex h-[64px] items-center justify-between rounded-full bg-[#20b8a7] px-7 text-[14px] font-medium text-white transition-all duration-300 hover:bg-[#27c9b6] hover:shadow-[0_0_35px_rgba(32,184,167,0.2)] sm:w-[310px]">
-
-                <span>
-                  Explore Urban Mining
+            {/* Building the Mine */}
+            {"Building the Mine".split("").map(
+              (letter, index) => (
+                <span
+                  key={`building-${index}`}
+                  className={`horizontal-letter ${
+                    isVisible
+                      ? "horizontal-letter-visible"
+                      : ""
+                  }`}
+                  style={{
+                    transitionDelay: `${
+                      index * 40
+                    }ms`,
+                  }}
+                >
+                  {letter === " "
+                    ? "\u00A0"
+                    : letter}
                 </span>
+              )
+            )}
 
-                <ArrowRight
-                  size={20}
-                  strokeWidth={1.8}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
+            {/* Above Ground */}
+            <span className="ch-grad">
+
+              {"Above Ground".split("").map(
+                (letter, index) => (
+                  <span
+                    key={`above-${index}`}
+                    className={`horizontal-letter ${
+                      isVisible
+                        ? "horizontal-letter-visible"
+                        : ""
+                    }`}
+                    style={{
+                      transitionDelay: `${
+                        750 + index * 40
+                      }ms`,
+                    }}
+                  >
+                    {letter === " "
+                      ? "\u00A0"
+                      : letter}
+                  </span>
+                )
+              )}
+
+            </span>
+
+          </h1>
+
+          {/* =========================================
+              SUBTITLE
+          ========================================= */}
+          <p
+            className={`ch-sub reveal-content ${
+              isVisible
+                ? "reveal-content-visible"
+                : ""
+            }`}
+            style={{
+              transitionDelay: "1350ms",
+            }}
+          >
+            Recovering critical minerals.
+            Securing tomorrow.
+          </p>
+
+          {/* =========================================
+              DESCRIPTION
+          ========================================= */}
+          <p
+            className={`ch-desc reveal-content ${
+              isVisible
+                ? "reveal-content-visible"
+                : ""
+            }`}
+            style={{
+              transitionDelay: "1500ms",
+            }}
+          >
+            The critical minerals powering
+            tomorrow&apos;s economy already exist
+            in the products we use today.
+            Circulogy closes the loop — recovering
+            high-value materials from end-of-life
+            electronics and batteries to build a
+            resilient, circular supply chain.
+          </p>
+
+          {/* =========================================
+              BUTTONS
+          ========================================= */}
+          <div
+            className={`ch-cta-row reveal-content ${
+              isVisible
+                ? "reveal-content-visible"
+                : ""
+            }`}
+            style={{
+              transitionDelay: "1650ms",
+            }}
+          >
+
+            <a
+              href="#"
+              className="ch-btn ch-btn-primary"
+            >
+              Explore Urban Mining
+
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line
+                  x1="5"
+                  y1="12"
+                  x2="19"
+                  y2="12"
                 />
 
-              </button>
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
 
-
-              <button className="h-[64px] rounded-full border border-[#29393a] bg-[#061012]/50 px-10 text-[14px] font-medium text-[#d7dfdd] transition-all duration-300 hover:border-[#20b8a7] hover:text-[#20b8a7]">
-
-                Talk to Us
-
-              </button>
-
-            </div>
-
-
-            {/* ================= TRUSTED ================= */}
-            <div className="mt-16 flex items-center gap-4">
-
-              <div className="flex -space-x-2">
-
-                {/* Avatar 1 */}
-                <div className="h-8 w-8 overflow-hidden rounded-full border-2 border-[#071011] bg-[#596663]">
-                  <img
-                    src=""
-                    alt=""
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-
-                {/* Avatar 2 */}
-                <div className="h-8 w-8 overflow-hidden rounded-full border-2 border-[#071011] bg-[#747e7a]">
-                  <img
-                    src=""
-                    alt=""
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-
-                {/* Avatar 3 */}
-                <div className="h-8 w-8 overflow-hidden rounded-full border-2 border-[#071011] bg-[#85877d]">
-                  <img
-                    src=""
-                    alt=""
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-
-                {/* Avatar 4 */}
-                <div className="h-8 w-8 overflow-hidden rounded-full border-2 border-[#071011] bg-[#a49780]">
-                  <img
-                    src=""
-                    alt=""
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-
-              </div>
-
-              <p className="text-[12px] text-[#7e8a88] sm:text-[13px]">
-                Trusted by leading OEMs, recyclers, and innovators
-              </p>
-
-              <span className="hidden h-[7px] w-[7px] rounded-full bg-[#19cdb5] shadow-[0_0_8px_#19cdb5] sm:block" />
-
-            </div>
+            <a
+              href="#"
+              className="ch-btn ch-btn-ghost"
+            >
+              Talk to Us
+            </a>
 
           </div>
 
+          {/* =========================================
+              TRUST
+          ========================================= */}
+          <div
+            className={`ch-trust reveal-content ${
+              isVisible
+                ? "reveal-content-visible"
+                : ""
+            }`}
+            style={{
+              transitionDelay: "1800ms",
+            }}
+          >
 
-          {/* =====================================================
-              RIGHT SIDE
-          ====================================================== */}
-          <div className="relative mx-auto h-[520px] w-full max-w-[700px] sm:h-[600px] md:h-[650px] lg:h-[680px]">
+            <div className="ch-avatars">
 
-            {/* Background glow */}
-            <div className="absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#087d78]/10 blur-[90px]" />
-
-
-            {/* ================= OUTER ORBITS ================= */}
-
-            <div className="absolute left-1/2 top-1/2 h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#7c9996]/20 sm:h-[570px] sm:w-[570px]" />
-
-            <div className="absolute left-1/2 top-1/2 h-[380px] w-[380px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#7c9996]/20 sm:h-[470px] sm:w-[470px]" />
-
-            <div className="absolute left-1/2 top-1/2 h-[280px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#7c9996]/20 sm:h-[360px] sm:w-[360px]" />
-
-
-            {/* Diagonal orbit */}
-            <div className="absolute left-1/2 top-1/2 h-[650px] w-[230px] -translate-x-1/2 -translate-y-1/2 rotate-[48deg] rounded-[50%] border border-[#79918f]/15" />
-
-
-            {/* =================================================
-                NICKEL
-            ================================================== */}
-
-            <div className="absolute right-[9%] top-[7%] flex flex-col items-center">
-
-              <div className="relative h-[145px] w-[145px] overflow-hidden rounded-full border border-[#3bcfc1]/30 bg-[#1a7772] shadow-[0_0_35px_rgba(25,205,181,0.12)] sm:h-[180px] sm:w-[180px]">
-
-                {/* IMAGE — LEAVE SRC EMPTY */}
-                <img
-                  src=""
-                  alt=""
-                  className="h-full w-full object-cover"
-                />
-
-                {/* fallback texture */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.15),transparent_30%),radial-gradient(circle,rgba(15,70,68,0.2),transparent_60%)]" />
-
-
-                {/* Element box */}
-                <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-md border border-[#102e2d]/80 px-4 py-2 text-[#09201f]">
-
-                  <span className="text-[9px]">
-                    28
-                  </span>
-
-                  <span className="text-[32px] font-light leading-none">
-                    Ni
-                  </span>
-
-                  <span className="text-[9px]">
-                    58.693
-                  </span>
-
-                </div>
-
-              </div>
-
-              <span className="mt-2 text-[14px] text-[#d5dcda]">
-                Nickel
-              </span>
+              <span className="ch-a1" />
+              <span className="ch-a2" />
+              <span className="ch-a3" />
+              <span className="ch-a4" />
 
             </div>
 
+            <p>
+              Trusted by leading OEMs, recyclers,
+              and innovators
 
-            {/* =================================================
-                LITHIUM
-            ================================================== */}
+              <span className="ch-pulse" />
+            </p>
 
-            <div className="absolute bottom-[14%] left-[6%] flex flex-col items-center">
+          </div>
 
-              <div className="relative h-[165px] w-[165px] overflow-hidden rounded-full border border-[#d5dad7]/20 bg-[#d0d0cb] shadow-[0_0_35px_rgba(255,255,255,0.04)] sm:h-[215px] sm:w-[215px]">
+        </div>
 
-                {/* IMAGE — LEAVE SRC EMPTY */}
-                <img
-                  src=""
-                  alt=""
-                  className="h-full w-full object-cover"
-                />
+        {/* =========================================
+            RIGHT ORBIT
+        ========================================= */}
+        <div
+          className={`ch-right reveal-orbit ${
+            isVisible
+              ? "reveal-orbit-visible"
+              : ""
+          }`}
+          style={{
+            transitionDelay: "500ms",
+          }}
+        >
 
-                {/* fallback texture */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.6),transparent_30%),radial-gradient(circle,rgba(120,120,115,0.08),transparent_70%)]" />
+          <OrbitStage
+            scrollSpeed={scrollSpeed}
+          />
 
+        </div>
 
-                {/* Element box */}
-                <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-md border border-[#4d5250]/70 bg-white/5 px-5 py-3 text-[#3e4341]">
+      </section>
 
-                  <span className="text-[10px]">
-                    3
-                  </span>
-
-                  <span className="text-[40px] font-light leading-none">
-                    Li
-                  </span>
-
-                  <span className="text-[10px]">
-                    6.941
-                  </span>
-
-                </div>
-
-              </div>
-
-              <span className="mt-3 text-[14px] text-[#d5dcda]">
-                Lithium
-              </span>
-
-            </div>
+      <style>{CSS}</style>
+    </div>
+  );
+}
 
 
-            {/* =================================================
-                GRAPHITE
-            ================================================== */}
+/* =============================================
+   ORBIT STAGE
+============================================= */
 
-            <div className="absolute bottom-[14%] right-[6%] flex flex-col items-center">
+function OrbitStage({ scrollSpeed }) {
+  return (
+    <div
+      className="ch-orbit-stage"
+      style={{
+        "--scroll-speed": scrollSpeed,
+      }}
+    >
 
-              <div className="relative h-[145px] w-[145px] overflow-hidden rounded-full border border-[#798482]/20 bg-[#3e4444] sm:h-[180px] sm:w-[180px]">
+      {/* ORBIT LINES */}
+      <svg
+        className="ch-orbit-svg"
+        viewBox="0 0 100 100"
+      >
 
-                {/* IMAGE — LEAVE SRC EMPTY */}
-                <img
-                  src=""
-                  alt=""
-                  className="h-full w-full object-cover"
-                />
+        <ellipse
+          cx="50"
+          cy="50"
+          rx="41"
+          ry="25.4"
+          transform="rotate(-18 50 50)"
+        />
 
-                {/* fallback texture */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_25%,rgba(255,255,255,0.1),transparent_25%),radial-gradient(circle,rgba(0,0,0,0.3),transparent_70%)]" />
+        <ellipse
+          cx="50"
+          cy="50"
+          rx="38"
+          ry="22"
+          transform="rotate(12 50 50)"
+        />
+
+        <ellipse
+          cx="50"
+          cy="50"
+          rx="40"
+          ry="28"
+          transform="rotate(-6 50 50)"
+        />
+
+      </svg>
+
+      {/* CENTER */}
+      <div className="ch-center-core">
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          strokeWidth="2"
+          strokeLinecap="round"
+        >
+
+          <path d="M6 12c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4zM14 12c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z" />
+
+        </svg>
+
+      </div>
+
+      {/* NICKEL */}
+      <Planet
+        orbitClass="ch-orbit1"
+        ballClass="ch-ni"
+        src="images/nickel2.jpeg"
+        label=""
+        scrollSpeed={scrollSpeed}
+      />
+
+      {/* LITHIUM */}
+      <Planet
+        orbitClass="ch-orbit2"
+        ballClass="ch-li"
+        src="images/lithium2.jpeg"
+        label=""
+        scrollSpeed={scrollSpeed}
+      />
+
+      {/* COPPER */}
+      <Planet
+        orbitClass="ch-orbit3"
+        ballClass="ch-cu"
+        src="images/copper2.jpeg"
+        label=""
+        scrollSpeed={scrollSpeed}
+      />
+
+    </div>
+  );
+}
 
 
-                {/* Element box */}
-                <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-md border border-[#171d1d]/70 px-5 py-3 text-[#111817]">
+/* =============================================
+   PLANET
+============================================= */
 
-                  <span className="text-[9px]">
-                    6
-                  </span>
+function Planet({
+  orbitClass,
+  ballClass,
+  src,
+  label,
+  scrollSpeed,
+}) {
+  return (
+    <div
+      className={`${orbitClass} ch-path`}
+      style={{
+        "--scroll-speed": scrollSpeed,
+      }}
+    >
 
-                  <span className="text-[37px] font-light leading-none">
-                    C
-                  </span>
+      <div className="ch-spin">
 
-                  <span className="text-[9px]">
-                    12.011
-                  </span>
+        <div className="ch-pos">
 
-                </div>
+          <div className="ch-counter">
 
-              </div>
-
-              <span className="mt-2 text-[14px] text-[#d5dcda]">
-                Graphite
-              </span>
-
-            </div>
-
-
-            {/* =================================================
-                CENTER CIRCULAR ICON
-            ================================================== */}
-
-            <div className="absolute left-1/2 top-[48%] flex h-[88px] w-[88px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#1ebcae]/40 bg-[#061b1b]/80 shadow-[0_0_30px_rgba(25,205,181,0.1)] backdrop-blur-sm sm:h-[108px] sm:w-[108px]">
-
-              <Infinity
-                className="text-[#5ce0d1]"
-                size={58}
-                strokeWidth={1.4}
+            <div
+              className={`ch-planet ${ballClass}`}
+            >
+              <img
+                className="ch-planet-img"
+                src={src}
+                alt={label}
               />
-
             </div>
 
-
-            {/* ================= ORBIT DOTS ================= */}
-
-            <span className="absolute left-[20%] top-[36%] h-[7px] w-[7px] rounded-full bg-[#19cdb5] shadow-[0_0_10px_#19cdb5]" />
-
-            <span className="absolute right-[24%] top-[38%] h-[7px] w-[7px] rounded-full bg-[#19cdb5] shadow-[0_0_10px_#19cdb5]" />
-
-            <span className="absolute bottom-[24%] left-[49%] h-[6px] w-[6px] rounded-full bg-[#19cdb5] shadow-[0_0_8px_#19cdb5]" />
-
-            <span className="absolute bottom-[5%] right-[1%] h-[5px] w-[5px] rounded-full bg-[#19cdb5]" />
+            <div className="ch-label">
+              {label}
+            </div>
 
           </div>
 
         </div>
 
       </div>
-    </section>
+
+    </div>
   );
 }
+
+
+/* =============================================
+   CSS
+============================================= */
+
+const CSS = `
+
+.circulogy-hero{
+
+  --bg:#04120f;
+  --teal:#2fd9b8;
+  --text:#eef6f3;
+  --muted:#a9c4bd;
+
+  position:relative;
+
+  background:
+    radial-gradient(
+      ellipse at 78% 40%,
+      #0a2b25 0%,
+      var(--bg) 55%
+    ),
+    var(--bg);
+
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  color:var(--text);
+
+  overflow:hidden;
+
+  min-height:100vh;
+
+  padding-top:
+    env(
+      safe-area-inset-top,
+      0px
+    );
+
+  padding-bottom:
+    env(
+      safe-area-inset-bottom,
+      0px
+    );
+}
+
+.circulogy-hero *{
+  box-sizing:border-box;
+}
+
+
+/* =============================================
+   LETTER REVEAL
+============================================= */
+
+.horizontal-letter{
+
+  display:inline-block;
+
+  opacity:0;
+
+  transform:
+    scaleX(0);
+
+  transform-origin:
+    left center;
+
+  transition:
+    opacity 500ms ease,
+    transform 750ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+
+}
+
+
+.horizontal-letter-visible{
+
+  opacity:1;
+
+  transform:
+    scaleX(1);
+
+}
+
+
+/* =============================================
+   CONTENT REVEAL
+============================================= */
+
+.reveal-content{
+
+  opacity:0;
+
+  transform:
+    scaleX(0);
+
+  transform-origin:
+    left center;
+
+  transition:
+    opacity 700ms ease,
+    transform 900ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+
+}
+
+
+.reveal-content-visible{
+
+  opacity:1;
+
+  transform:
+    scaleX(1);
+
+}
+
+
+/* =============================================
+   ORBIT REVEAL
+============================================= */
+
+.reveal-orbit{
+
+  opacity:0;
+
+  transform:
+    translateX(80px)
+    scale(.92);
+
+  transition:
+    opacity 1000ms ease,
+    transform 1200ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+
+}
+
+
+.reveal-orbit-visible{
+
+  opacity:1;
+
+  transform:
+    translateX(0)
+    scale(1);
+
+}
+
+
+/* =============================================
+   STARFIELD
+============================================= */
+
+.ch-stars{
+
+  position:absolute;
+
+  inset:0;
+
+  z-index:0;
+
+  pointer-events:none;
+
+  width:100%;
+  height:100%;
+
+}
+
+
+/* =============================================
+   HERO GRID
+============================================= */
+
+.ch-hero{
+
+  position:relative;
+
+  z-index:1;
+
+  max-width:1400px;
+
+  margin:0 auto;
+
+  min-height:100vh;
+
+  display:grid;
+
+  grid-template-columns:
+    1.05fr 1fr;
+
+  align-items:center;
+
+  gap:2rem;
+
+  padding:
+    4rem 4vw;
+
+}
+
+
+/* =============================================
+   MOBILE
+============================================= */
+
+@media (max-width:920px){
+
+  .ch-hero{
+
+    grid-template-columns:1fr;
+
+    padding:
+      3rem 6vw;
+
+  }
+
+}
+
+
+/* =============================================
+   BADGE
+============================================= */
+
+.ch-badge{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:.55rem;
+
+  border:
+    1px solid
+    rgba(47,217,184,.35);
+
+  border-radius:999px;
+
+  padding:
+    .5rem 1rem;
+
+  font-size:.72rem;
+
+  letter-spacing:.14em;
+
+  color:var(--teal);
+
+  background:
+    rgba(47,217,184,.05);
+
+  margin-bottom:2rem;
+
+}
+
+
+.ch-dot{
+
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:var(--teal);
+
+  box-shadow:
+    0 0 10px
+    var(--teal);
+
+}
+
+
+/* =============================================
+   HEADING
+============================================= */
+
+.ch-h1{
+
+  font-size:
+    clamp(
+      2.4rem,
+      5vw,
+      4.2rem
+    );
+
+  line-height:1.02;
+
+  font-weight:700;
+
+  margin:
+    0 0 1.6rem 0;
+
+  letter-spacing:
+    -0.02em;
+
+}
+
+
+.ch-grad{
+
+  display:block;
+
+  background:
+    linear-gradient(
+      90deg,
+      #2fd9b8,
+      #7fe9d3
+    );
+
+  -webkit-background-clip:text;
+
+  background-clip:text;
+
+  color:transparent;
+
+}
+
+
+/* =============================================
+   TEXT
+============================================= */
+
+.ch-sub{
+
+  font-size:1.3rem;
+
+  font-weight:500;
+
+  margin:
+    0 0 1rem 0;
+
+}
+
+
+.ch-desc{
+
+  max-width:46ch;
+
+  color:var(--muted);
+
+  line-height:1.65;
+
+  font-size:1.02rem;
+
+  margin:
+    0 0 2.4rem 0;
+
+}
+
+
+/* =============================================
+   BUTTONS
+============================================= */
+
+.ch-cta-row{
+
+  display:flex;
+
+  gap:.9rem;
+
+  flex-wrap:wrap;
+
+  margin-bottom:3.2rem;
+
+}
+
+
+.ch-btn{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:.6rem;
+
+  padding:
+    .95rem 1.6rem;
+
+  border-radius:999px;
+
+  font-weight:600;
+
+  font-size:.98rem;
+
+  text-decoration:none;
+
+  cursor:pointer;
+
+  border:
+    1px solid transparent;
+
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease;
+
+}
+
+
+.ch-btn:hover{
+
+  transform:
+    translateY(-2px);
+
+}
+
+
+.ch-btn-primary{
+
+  background:
+    linear-gradient(
+      90deg,
+      #2fd9b8,
+      #25c2a4
+    );
+
+  color:#04120f;
+
+  box-shadow:
+    0 10px 30px -10px
+    rgba(47,217,184,.55);
+
+}
+
+
+.ch-btn-primary:hover{
+
+  box-shadow:
+    0 14px 34px -8px
+    rgba(47,217,184,.7);
+
+}
+
+
+.ch-btn-primary svg{
+
+  transition:
+    transform .15s ease;
+
+}
+
+
+.ch-btn-primary:hover svg{
+
+  transform:
+    translateX(3px);
+
+}
+
+
+.ch-btn-ghost{
+
+  background:transparent;
+
+  color:var(--text);
+
+  border-color:
+    rgba(255,255,255,.18);
+
+}
+
+
+.ch-btn-ghost:hover{
+
+  border-color:
+    rgba(255,255,255,.4);
+
+}
+
+
+/* =============================================
+   TRUST
+============================================= */
+
+.ch-trust{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:1rem;
+
+}
+
+
+.ch-avatars{
+
+  display:flex;
+
+}
+
+
+.ch-avatars span{
+
+  width:34px;
+  height:34px;
+
+  border-radius:50%;
+
+  border:
+    2px solid
+    var(--bg);
+
+  margin-left:-10px;
+
+}
+
+
+.ch-avatars span:first-child{
+
+  margin-left:0;
+
+}
+
+
+.ch-a1{
+
+  background:#5a6b68;
+
+}
+
+
+.ch-a2{
+
+  background:#6f7a76;
+
+}
+
+
+.ch-a3{
+
+  background:#8b8f86;
+
+}
+
+
+.ch-a4{
+
+  background:#c9b98a;
+
+}
+
+
+.ch-trust p{
+
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:.9rem;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:.5rem;
+
+}
+
+
+.ch-pulse{
+
+  width:6px;
+  height:6px;
+
+  border-radius:50%;
+
+  background:var(--teal);
+
+  box-shadow:
+    0 0 8px
+    var(--teal);
+
+  animation:
+    ch-pulse 2s
+    ease-in-out
+    infinite;
+
+}
+
+
+@keyframes ch-pulse{
+
+  0%,100%{
+    opacity:1;
+  }
+
+  50%{
+    opacity:.3;
+  }
+
+}
+
+
+/* =============================================
+   ORBIT STAGE
+============================================= */
+
+.ch-orbit-stage{
+
+  position:relative;
+
+  width:100%;
+
+  aspect-ratio:1/1;
+
+  max-width:640px;
+
+  margin:0 auto;
+
+}
+
+
+/* =============================================
+   ORBIT LINES
+============================================= */
+
+.ch-orbit-svg{
+
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+}
+
+
+.ch-orbit-svg ellipse{
+
+  fill:none;
+
+  stroke:
+    rgba(47,217,184,.35);
+
+  stroke-width:1;
+
+}
+
+
+/* =============================================
+   CENTER CORE
+============================================= */
+
+.ch-center-core{
+
+  position:absolute;
+
+  top:50%;
+  left:50%;
+
+  width:15%;
+  height:15%;
+
+  transform:
+    translate(-50%,-50%);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle at 40% 35%,
+      #0d3b34,
+      #04120f 70%
+    );
+
+  border:
+    1px solid
+    rgba(47,217,184,.5);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  box-shadow:
+    0 0 40px
+    rgba(47,217,184,.25),
+
+    inset 0 0 20px
+    rgba(47,217,184,.15);
+
+  z-index:5;
+
+}
+
+
+.ch-center-core svg{
+
+  width:34%;
+
+  stroke:
+    var(--teal);
+
+}
+
+
+/* =============================================
+   ORBIT PATH
+============================================= */
+
+.ch-path{
+
+  position:absolute;
+
+  inset:0;
+
+}
+
+
+.ch-spin{
+
+  position:absolute;
+
+  inset:0;
+
+  transform-origin:
+    50% 50%;
+
+}
+
+
+.ch-pos{
+
+  position:absolute;
+
+  top:50%;
+  left:50%;
+
+}
+
+
+.ch-counter{
+
+  position:absolute;
+
+  top:50%;
+  left:50%;
+
+}
+
+
+/* =============================================
+   PLANET
+============================================= */
+
+.ch-planet{
+
+  position:relative;
+
+  transform:
+    translate(-50%,-50%);
+
+  border-radius:50%;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 32% 28%,
+      #1c433c,
+      #0a201b 100%
+    );
+
+  border:
+    1px solid
+    rgba(47,217,184,.25);
+
+  box-shadow:
+    0 0 30px -4px
+    rgba(47,217,184,.35),
+
+    0 8px 24px
+    rgba(0,0,0,.5);
+
+}
+
+
+.ch-planet-img{
+
+  display:block;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  border-radius:50%;
+
+}
+
+
+.ch-label{
+
+  position:absolute;
+
+  top:100%;
+  left:50%;
+
+  transform:
+    translate(-50%,10px);
+
+  font-size:.85rem;
+
+  color:var(--muted);
+
+  white-space:nowrap;
+
+}
+
+
+/* =============================================
+   ORBIT 1 - NICKEL
+============================================= */
+
+.ch-orbit1.ch-path{
+
+  transform:
+    rotate(-18deg)
+    scaleY(.62);
+
+}
+
+
+.ch-orbit1 .ch-spin{
+
+  animation:
+    ch-spin 16s
+    linear
+    infinite;
+
+  animation-duration:
+    calc(
+      16s /
+      var(--scroll-speed, 1)
+    );
+
+}
+
+
+.ch-orbit1 .ch-pos{
+
+  transform:
+    translate(41%,0);
+
+}
+
+
+.ch-orbit1 .ch-counter{
+
+  animation:
+    ch-counterspin 16s
+    linear
+    infinite;
+
+  animation-duration:
+    calc(
+      16s /
+      var(--scroll-speed, 1)
+    );
+
+  transform:
+    scaleY(1.61)
+    rotate(18deg);
+
+}
+
+
+.ch-ni{
+
+  width:
+    min(30vw,150px);
+
+  height:
+    min(30vw,150px);
+
+}
+
+
+/* =============================================
+   ORBIT 2 - LITHIUM
+============================================= */
+
+.ch-orbit2.ch-path{
+
+  transform:
+    rotate(12deg)
+    scaleY(.58);
+
+}
+
+
+.ch-orbit2 .ch-spin{
+
+  animation:
+    ch-spin 22s
+    linear
+    infinite reverse;
+
+  animation-duration:
+    calc(
+      22s /
+      var(--scroll-speed, 1)
+    );
+
+}
+
+
+.ch-orbit2 .ch-pos{
+
+  transform:
+    translate(-38%,4%);
+
+}
+
+
+.ch-orbit2 .ch-counter{
+
+  animation:
+    ch-counterspin2 22s
+    linear
+    infinite;
+
+  animation-duration:
+    calc(
+      22s /
+      var(--scroll-speed, 1)
+    );
+
+  transform:
+    scaleY(1.72)
+    rotate(-12deg);
+
+}
+
+
+.ch-li{
+
+  width:
+    min(27vw,132px);
+
+  height:
+    min(27vw,132px);
+
+}
+
+
+/* =============================================
+   ORBIT 3 - COPPER
+============================================= */
+
+.ch-orbit3.ch-path{
+
+  transform:
+    rotate(-6deg)
+    scaleY(.7);
+
+}
+
+
+.ch-orbit3 .ch-spin{
+
+  animation:
+    ch-spin 28s
+    linear
+    infinite;
+
+  animation-duration:
+    calc(
+      28s /
+      var(--scroll-speed, 1)
+    );
+
+}
+
+
+.ch-orbit3 .ch-pos{
+
+  transform:
+    translate(40%,10%);
+
+}
+
+
+.ch-orbit3 .ch-counter{
+
+  animation:
+    ch-counterspin3 28s
+    linear
+    infinite;
+
+  animation-duration:
+    calc(
+      28s /
+      var(--scroll-speed, 1)
+    );
+
+  transform:
+    scaleY(1.43)
+    rotate(6deg);
+
+}
+
+
+.ch-cu{
+
+  width:
+    min(29vw,142px);
+
+  height:
+    min(29vw,142px);
+
+}
+
+
+/* =============================================
+   ROTATION
+============================================= */
+
+@keyframes ch-spin{
+
+  from{
+    transform:rotate(0deg);
+  }
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+
+
+@keyframes ch-counterspin{
+
+  from{
+
+    transform:
+      scaleY(1.61)
+      rotate(18deg)
+      rotate(0deg);
+
+  }
+
+  to{
+
+    transform:
+      scaleY(1.61)
+      rotate(18deg)
+      rotate(-360deg);
+
+  }
+
+}
+
+
+@keyframes ch-counterspin2{
+
+  from{
+
+    transform:
+      scaleY(1.72)
+      rotate(-12deg)
+      rotate(0deg);
+
+  }
+
+  to{
+
+    transform:
+      scaleY(1.72)
+      rotate(-12deg)
+      rotate(360deg);
+
+  }
+
+}
+
+
+@keyframes ch-counterspin3{
+
+  from{
+
+    transform:
+      scaleY(1.43)
+      rotate(6deg)
+      rotate(0deg);
+
+  }
+
+  to{
+
+    transform:
+      scaleY(1.43)
+      rotate(6deg)
+      rotate(-360deg);
+
+  }
+
+}
+
+
+/* =============================================
+   REDUCED MOTION
+============================================= */
+
+@media (prefers-reduced-motion: reduce){
+
+  .ch-spin,
+  .ch-counter,
+  .ch-pulse,
+  .horizontal-letter,
+  .reveal-content,
+  .reveal-orbit{
+
+    animation:none !important;
+
+    transition:none !important;
+
+    opacity:1 !important;
+
+    transform:none !important;
+
+  }
+
+}
+
+
+/* =============================================
+   MOBILE ORBIT
+============================================= */
+
+@media (max-width:920px){
+
+  .ch-orbit-stage{
+
+    max-width:560px;
+
+  }
+
+}
+
+
+@media (max-width:600px){
+
+  .ch-orbit-stage{
+
+    max-width:430px;
+
+  }
+
+  .ch-h1{
+
+    font-size:
+      clamp(
+        2.3rem,
+        12vw,
+        3.5rem
+      );
+
+  }
+
+  .ch-sub{
+
+    font-size:1.1rem;
+
+  }
+
+  .ch-desc{
+
+    font-size:.95rem;
+
+  }
+
+  .ch-trust{
+
+    align-items:flex-start;
+
+  }
+
+  .ch-trust p{
+
+    font-size:.78rem;
+
+  }
+
+}
+
+`;
