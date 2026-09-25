@@ -99,8 +99,7 @@ export default function PartnerSection() {
 
             {/* Heading */}
          <h2
-  className="max-w-[1000px] text-[48px] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071614] sm:text-[58px] md:text-[68px] lg:text-[70px] xl:text-[76px]"
->
+ className="max-w-[1000px] text-[36px] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071614] sm:text-[42px] md:text-[48px] lg:text-[52px] xl:text-[56px]">
   {"Stronger Together.".split("").map((letter, index) => (
     <span
       key={`stronger-${index}`}
@@ -146,7 +145,7 @@ export default function PartnerSection() {
               animationDelay: "250ms",
             }}
           >
-            <p className="max-w-[580px] text-[15px] leading-[1.55] text-[#394542] sm:text-[16px] md:text-[17px]">
+            <p className="max-w-[580px] text-[15px] font-medium leading-[1.55] text-[#394542] sm:text-[16px] md:text-[17px]">
               We collaborate with forward-thinking organizations,
               industry leaders, and innovation partners to close loops,
               unlock value, and create lasting impact across the

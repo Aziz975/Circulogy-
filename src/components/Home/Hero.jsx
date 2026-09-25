@@ -192,7 +192,7 @@ export default function Hero() {
               }`}
             >
               The critical minerals powering tomorrow’s economy already exist
-              in the products we use today. Circulogy closes the loop —
+              in the products we use today. Circulogy closes the loop 
               recovering high-value materials from end-of-life electronics
               and batteries to build a resilient, circular supply chain.
             </p>

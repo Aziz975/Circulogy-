@@ -52,13 +52,8 @@ function MineralLabel({ mineral, isVisible, delay }) {
     >
       <div className="relative">
         {/* Connector */}
-        <div
-          className={`absolute h-[1.5px] origin-left bg-white ${mineral.line}`}
-        />
-
-        {/* Connector dot */}
-        <span className="absolute left-1/2 top-[calc(100%+16px)] h-[7px] w-[7px] -translate-x-1/2 rounded-full bg-white sm:top-[calc(100%+19px)]" />
-      </div>
+        
+ </div>
     </div>
   );
 }
@@ -122,28 +117,28 @@ export default function CriticalMinerals() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-[650px] w-full overflow-hidden bg-[#faf9f6] px-5 py-12 sm:min-h-[700px] sm:px-8 sm:py-14 md:min-h-[760px] md:px-10 lg:min-h-[680px] lg:px-12 lg:py-16 xl:min-h-[700px] xl:px-[4%]"
-    >
+   <section
+  ref={sectionRef}
+  className="relative min-h-[600px] w-full overflow-hidden bg-[#faf9f6] px-5 pt-12 pb-0 sm:min-h-[650px] sm:px-8 sm:pt-14 sm:pb-0 md:min-h-[700px] md:px-10 md:pt-14 md:pb-0 lg:min-h-[650px] lg:px-12 lg:pt-14 lg:pb-0 xl:min-h-[670px] xl:px-[4%] xl:pb-0"
+>
       {/* =====================================================
           CLEAN BACKGROUND
           NO RADIAL SHADOW / NO GLOW
       ====================================================== */}
 
-      <div className="absolute inset-0 bg-[#faf9f6]" />
+      <div className="absolute max-w-[500px] inset-0 bg-[#faf9f6]"    />
 
       {/* =====================================================
           MAIN CONTAINER
       ====================================================== */}
 
-      <div className="relative mx-auto min-h-[590px] w-full max-w-[1600px]">
+      <div className="relative mx-auto min-h-[450px] w-full max-w-[1600px]">
 
         {/* =====================================================
             LEFT CONTENT
         ====================================================== */}
 
-        <div className="relative z-40 flex w-full max-w-[520px] flex-col justify-center pt-8 sm:max-w-[570px] sm:pt-10 md:max-w-[620px] lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 lg:pt-0 xl:max-w-[650px]">
+        <div className="relative z-40 flex w-full max-w-[500px] flex-col justify-center pt-8 sm:max-w-[570px] sm:pt-10 md:max-w-[620px] lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 lg:pt-0 xl:max-w-[650px]">
 
           {/* =================================================
               EYEBROW
@@ -300,9 +295,9 @@ export default function CriticalMinerals() {
           <div className="absolute inset-0 overflow-hidden">
 
             <img
-              src="images/minerals_image.png"
+              src="images/critical-minerals2.jpeg"
               alt="Critical minerals"
-              className="h-full w-full object-cover object-center"
+              className="relative top-[10%] left-[34%] w-[70%] object-cover object-center"
             />
 
             {/* =================================================

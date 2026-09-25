@@ -94,11 +94,11 @@ export default function WhatWeRecover() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="minerals"
-      className="bg-[#f7f7f5] px-5 py-16 text-[#061715] sm:px-8 sm:py-20 lg:px-10 xl:px-12"
-    >
+   <section
+  ref={sectionRef}
+  id="minerals"
+  className="bg-[#f7f7f5] px-5 pt-2  text-[#061715] sm:px-8 sm:pt-4 sm:pb-5 lg:px-10 xl:px-12"
+>
       <div className="mx-auto max-w-[1400px]">
 
         {/* ================= HEADER ================= */}
@@ -162,7 +162,7 @@ export default function WhatWeRecover() {
 
         {/* ================= CARDS ================= */}
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid h-auto min-h-[300px] w-full max-w-[1600px] grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
 
           {minerals.map((mineral, index) => (
             <div
