@@ -41,19 +41,18 @@ const minerals = [
 function MineralLabel({ mineral, isVisible, delay }) {
   return (
     <div
-      className={`absolute z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-        isVisible
+      className={`absolute z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
           ? "translate-y-0 opacity-100"
           : "translate-y-[45px] opacity-0"
-      } ${mineral.position}`}
+        } ${mineral.position}`}
       style={{
         transitionDelay: `${delay}ms`,
       }}
     >
       <div className="relative">
         {/* Connector */}
-        
- </div>
+
+      </div>
     </div>
   );
 }
@@ -117,16 +116,16 @@ export default function CriticalMinerals() {
   }, []);
 
   return (
-   <section
-  ref={sectionRef}
-  className="relative min-h-[600px] w-full overflow-hidden bg-[#faf9f6] px-5 pt-12 pb-0 sm:min-h-[650px] sm:px-8 sm:pt-14 sm:pb-0 md:min-h-[700px] md:px-10 md:pt-14 md:pb-0 lg:min-h-[650px] lg:px-12 lg:pt-14 lg:pb-0 xl:min-h-[670px] xl:px-[4%] xl:pb-0"
->
+    <section
+      ref={sectionRef}
+      className="relative min-h-[600px] w-full overflow-hidden bg-[#faf9f6] px-5 pt-12 pb-0 sm:min-h-[650px] sm:px-8 sm:pt-14 sm:pb-0 md:min-h-[700px] md:px-10 md:pt-14 md:pb-0 lg:min-h-[650px] lg:px-12 lg:pt-14 lg:pb-0 xl:min-h-[670px] xl:px-[4%] xl:pb-0"
+    >
       {/* =====================================================
           CLEAN BACKGROUND
           NO RADIAL SHADOW / NO GLOW
       ====================================================== */}
 
-      <div className="absolute max-w-[500px] inset-0 bg-[#faf9f6]"    />
+      <div className="absolute max-w-[500px] inset-0 bg-[#faf9f6]" />
 
       {/* =====================================================
           MAIN CONTAINER
@@ -145,11 +144,10 @@ export default function CriticalMinerals() {
           ================================================= */}
 
           <p
-            className={`mb-4 text-[13px] font-extrabold tracking-[0.08em] text-[#079e99] transition-all duration-[750ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:mb-5 sm:text-[15px] md:text-[16px] ${
-              isVisible
+            className={`mb-4 text-[13px] font-extrabold tracking-[0.08em] text-[#079e99] transition-all duration-[750ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:mb-5 sm:text-[15px] md:text-[16px] ${isVisible
                 ? "translate-y-0 opacity-100"
                 : "translate-y-[50px] opacity-0"
-            }`}
+              }`}
           >
             THE NEED OF TOMORROW
           </p>
@@ -166,11 +164,10 @@ export default function CriticalMinerals() {
               {"Tomorrow’s".split("").map((letter, index) => (
                 <span
                   key={`tomorrow-${index}`}
-                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    isVisible
+                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
                       ? "translate-y-0 opacity-100"
                       : "translate-y-[100%] opacity-0"
-                  }`}
+                    }`}
                   style={{
                     transitionDelay: `${100 + index * 45}ms`,
                   }}
@@ -188,11 +185,10 @@ export default function CriticalMinerals() {
               {"Economy".split("").map((letter, index) => (
                 <span
                   key={`economy-${index}`}
-                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    isVisible
+                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
                       ? "translate-y-0 opacity-100"
                       : "translate-y-[100%] opacity-0"
-                  }`}
+                    }`}
                   style={{
                     transitionDelay: `${600 + index * 45}ms`,
                   }}
@@ -210,11 +206,10 @@ export default function CriticalMinerals() {
               {"Needs More".split("").map((letter, index) => (
                 <span
                   key={`needs-${index}`}
-                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    isVisible
+                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
                       ? "translate-y-0 opacity-100"
                       : "translate-y-[100%] opacity-0"
-                  }`}
+                    }`}
                   style={{
                     transitionDelay: `${1000 + index * 45}ms`,
                   }}
@@ -232,11 +227,10 @@ export default function CriticalMinerals() {
               {"Critical Minerals".split("").map((letter, index) => (
                 <span
                   key={`critical-${index}`}
-                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    isVisible
+                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
                       ? "translate-y-0 opacity-100"
                       : "translate-y-[100%] opacity-0"
-                  }`}
+                    }`}
                   style={{
                     transitionDelay: `${1450 + index * 45}ms`,
                   }}
@@ -252,11 +246,10 @@ export default function CriticalMinerals() {
           ================================================= */}
 
           <p
-            className={`mt-6 max-w-[470px] text-[15px] font-medium leading-[1.42] tracking-[-0.01em] text-[#394542] transition-all duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:text-[16px] md:text-[17px] lg:text-[16px] xl:text-[17px] ${
-              isVisible
+            className={`mt-6 max-w-[470px] text-[15px] font-medium leading-[1.42] tracking-[-0.01em] text-[#394542] transition-all duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:text-[16px] md:text-[17px] lg:text-[16px] xl:text-[17px] ${isVisible
                 ? "translate-y-0 opacity-100"
                 : "translate-y-[70px] opacity-0"
-            }`}
+              }`}
             style={{
               transitionDelay: "2100ms",
             }}
@@ -278,11 +271,10 @@ export default function CriticalMinerals() {
         ====================================================== */}
 
         <div
-          className={`relative mt-10 h-[440px] w-full transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:h-[500px] md:h-[570px] lg:absolute lg:right-[-5%] lg:top-1/2 lg:mt-0 lg:h-[650px] lg:w-[67%] lg:-translate-y-1/2 xl:right-[-3%] xl:h-[680px] xl:w-[90%] ${
-            isVisible
+          className={`relative mt-10 h-[440px] w-full transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:h-[500px] md:h-[570px] lg:absolute lg:right-[-5%] lg:top-1/2 lg:mt-0 lg:h-[650px] lg:w-[67%] lg:-translate-y-1/2 xl:right-[-3%] xl:h-[680px] xl:w-[90%] ${isVisible
               ? "translate-y-0 opacity-100"
               : "translate-y-[120px] opacity-0"
-          }`}
+            }`}
           style={{
             transitionDelay: "300ms",
           }}
@@ -291,14 +283,112 @@ export default function CriticalMinerals() {
           {/* =================================================
               IMAGE
           ================================================= */}
+          <div className="relative top-[10%] w-[70%] ml-[34%]">
 
-          <div className="absolute inset-0 overflow-hidden">
-
+            {/* Image */}
             <img
-              src="images/critical-minerals2.jpeg"
+              src="/images/critical-minerals2.jpeg"
               alt="Critical minerals"
-              className="relative top-[10%] left-[34%] w-[70%] object-cover object-center"
+              className="w-full object-cover object-center"
             />
+
+            {/* LITHIUM */}
+            <div className="absolute left-[30%] top-[15%] flex items-center gap-1 rounded-[8px] border border-[#e5e5e5] bg-white px-2 py-1 shadow-md animate-[float_5s_ease-in-out_infinite]">
+
+              <span className="text-[26px] font-bold leading-none text-[#249d8d]">
+                Li
+              </span>
+
+              <span className="text-[20px] font-normal text-black">
+                —
+              </span>
+
+              <span className="text-[17px] font-semibold text-[#1b2927]">
+                Lithium
+              </span>
+
+            </div>
+
+
+            {/* COBALT */}
+            <div className="absolute left-[70%] top-[15%] flex items-center gap-2 rounded-[10px] border border-[#e5e5e5] bg-white px-2 py-1 shadow-md animate-[float_5s_ease-in-out_infinite]">
+
+              <span className="text-[26px] font-bold leading-none text-[#249d8d]">
+                Co
+              </span>
+
+              <span className="text-[20px] font-normal text-black">
+                —
+              </span>
+
+              <span className="text-[17px] font-semibold text-[#1b2927]">
+                Cobalt
+              </span>
+
+            </div>
+
+
+
+
+            {/* NICKEL */}
+
+            <div className="absolute right-[5%] top-[40%] flex items-center gap-2 rounded-[10px] border border-[#e5e5e5] bg-white px-2 py-1 shadow-md animate-[float_5s_ease-in-out_infinite]">
+
+              <span className="text-[26px] font-bold leading-none text-[#249d8d]">
+                Ni
+              </span>
+
+              <span className="text-[20px] font-normal text-black">
+                —
+              </span>
+
+              <span className="text-[17px] font-semibold text-[#1b2927]">
+                Nickel
+              </span>
+
+            </div>
+
+
+
+            {/* GRAPHITE */}
+
+            <div className="absolute right-[10%] bottom-[25%] flex items-center gap-2 rounded-[10px] border border-[#e5e5e5] bg-white px-2 py-1 shadow-md animate-[float_5s_ease-in-out_infinite]">
+
+              <span className="text-[26px] font-bold leading-none text-[#249d8d]">
+                Co
+              </span>
+
+              <span className="text-[20px] font-normal text-black">
+                —
+              </span>
+
+              <span className="text-[17px] font-semibold text-[#1b2927]">
+                Copper
+              </span>
+
+            </div>
+
+
+
+            {/* RARE EARTHS */}
+
+            <div className="absolute left-[5%] bottom-[40%] flex items-center gap-2 rounded-[10px] border border-[#e5e5e5] bg-white px-2 py-1 shadow-md animate-[float_5s_ease-in-out_infinite]">
+
+              <span className="text-[26px] font-bold leading-none text-[#249d8d]">
+                REE
+              </span>
+
+              <span className="text-[20px] font-normal text-black">
+                —
+              </span>
+
+              <span className="text-[17px] font-semibold text-[#1b2927]">
+                Rare Earth <br /> Elements
+              </span>
+
+            </div>
+
+
 
             {/* =================================================
                 MINERAL LABELS
