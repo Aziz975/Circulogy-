@@ -1,65 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const minerals = [
-  {
-    symbol: "Li",
-    name: "Lithium",
-    position:
-      "left-[24%] top-[13%] sm:left-[23%] md:left-[23%] lg:left-[22%]",
-    line: "w-[32px] -rotate-[35deg] -left-[25px] top-[30px]",
-  },
-  {
-    symbol: "Co",
-    name: "Cobalt",
-    position:
-      "right-[7%] top-[14%] sm:right-[8%] md:right-[7%]",
-    line: "w-[28px] rotate-[130deg] -left-[20px] top-[31px]",
-  },
-  {
-    symbol: "Ni",
-    name: "Nickel",
-    position:
-      "right-[1%] top-[42%] sm:right-[1%] md:right-[1%]",
-    line: "w-[28px] rotate-[145deg] -left-[19px] top-[29px]",
-  },
-  {
-    symbol: "REE",
-    name: "Rare Earth Elements",
-    position:
-      "left-[15%] bottom-[34%] sm:left-[15%] md:left-[14%]",
-    line: "w-[30px] rotate-[35deg] right-[-25px] top-[29px]",
-  },
-  {
-    symbol: "Cu",
-    name: "Copper",
-    position:
-      "right-[7%] bottom-[23%] sm:right-[8%] md:right-[7%]",
-    line: "w-[30px] rotate-[145deg] -left-[21px] top-[28px]",
-  },
-];
-
-function MineralLabel({ mineral, isVisible, delay }) {
-  return (
-    <div
-      className={`absolute z-30 transition-all duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
-          ? "translate-y-0 opacity-100"
-          : "translate-y-[45px] opacity-0"
-        } ${mineral.position}`}
-      style={{
-        transitionDelay: `${delay}ms`,
-      }}
-    >
-      <div className="relative">
-        {/* Connector */}
-
-      </div>
-    </div>
-  );
-}
-
 export default function CriticalMinerals() {
   const sectionRef = useRef(null);
-
   const [isVisible, setIsVisible] = useState(false);
 
   /* =====================================================
@@ -78,27 +20,17 @@ export default function CriticalMinerals() {
       ([entry]) => {
         const visible = entry.isIntersecting;
 
-        /* =========================
-           ENTER VIEWPORT
-        ========================= */
-
         if (visible && !wasVisible) {
           wasVisible = true;
 
-          // Reset
           setIsVisible(false);
 
-          // Restart animation
           requestAnimationFrame(() => {
             requestAnimationFrame(() => {
               setIsVisible(true);
             });
           });
         }
-
-        /* =========================
-           LEAVE VIEWPORT
-        ========================= */
 
         if (!visible && wasVisible) {
           wasVisible = false;
@@ -118,36 +50,26 @@ export default function CriticalMinerals() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[600px] w-full overflow-hidden bg-[#faf9f6] px-5 pt-12 pb-0 sm:min-h-[650px] sm:px-8 sm:pt-14 sm:pb-0 md:min-h-[700px] md:px-10 md:pt-14 md:pb-0 lg:min-h-[650px] lg:px-12 lg:pt-14 lg:pb-0 xl:min-h-[670px] xl:px-[4%] xl:pb-0"
+      className="relative w-full overflow-hidden bg-[#faf9f6] px-5 py-14 sm:px-8 sm:py-16 md:px-10 md:py-20 lg:min-h-[680px] lg:px-12 lg:py-0 xl:px-[4%]"
     >
-      {/* =====================================================
-          CLEAN BACKGROUND
-          NO RADIAL SHADOW / NO GLOW
-      ====================================================== */}
-
-      <div className="absolute max-w-[500px] inset-0 bg-[#faf9f6]" />
-
       {/* =====================================================
           MAIN CONTAINER
       ====================================================== */}
 
-      <div className="relative mx-auto min-h-[450px] w-full max-w-[1600px]">
-
+      <div className="relative mx-auto flex w-full max-w-[1600px] flex-col lg:min-h-[680px] lg:flex-row lg:items-center">
         {/* =====================================================
             LEFT CONTENT
         ====================================================== */}
 
-        <div className="relative z-40 flex w-full max-w-[500px] flex-col justify-center pt-8 sm:max-w-[570px] sm:pt-10 md:max-w-[620px] lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 lg:pt-0 xl:max-w-[650px]">
-
-          {/* =================================================
-              EYEBROW
-          ================================================= */}
+        <div className="relative z-40 w-full max-w-[650px] lg:w-[46%] lg:max-w-[650px]">
+          {/* EYEBROW */}
 
           <p
-            className={`mb-4 text-[13px] font-extrabold tracking-[0.08em] text-[#079e99] transition-all duration-[750ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:mb-5 sm:text-[15px] md:text-[16px] ${isVisible
+            className={`mb-4 text-[11px] font-extrabold tracking-[0.08em] text-[#079e99] transition-all duration-[750ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:mb-5 sm:text-[13px] md:text-[14px] lg:text-[15px] ${
+              isVisible
                 ? "translate-y-0 opacity-100"
                 : "translate-y-[50px] opacity-0"
-              }`}
+            }`}
           >
             THE NEED OF TOMORROW
           </p>
@@ -156,18 +78,18 @@ export default function CriticalMinerals() {
               MAIN HEADING
           ================================================= */}
 
-          <h1 className="font-[800] text-[40px] leading-[0.94] tracking-[-0.045em] text-[#050707] sm:text-[50px] md:text-[58px] lg:text-[55px] xl:text-[60px]">
-
+          <h1 className="overflow-hidden text-[40px] font-[800] leading-[0.94] tracking-[-0.045em] text-[#050707] sm:text-[48px] md:text-[56px] lg:text-[54px] xl:text-[60px] 2xl:text-[64px]">
             {/* Tomorrow's */}
 
             <span className="inline-block">
               {"Tomorrow’s".split("").map((letter, index) => (
                 <span
                   key={`tomorrow-${index}`}
-                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
+                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    isVisible
                       ? "translate-y-0 opacity-100"
                       : "translate-y-[100%] opacity-0"
-                    }`}
+                  }`}
                   style={{
                     transitionDelay: `${100 + index * 45}ms`,
                   }}
@@ -185,10 +107,11 @@ export default function CriticalMinerals() {
               {"Economy".split("").map((letter, index) => (
                 <span
                   key={`economy-${index}`}
-                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
+                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    isVisible
                       ? "translate-y-0 opacity-100"
                       : "translate-y-[100%] opacity-0"
-                    }`}
+                  }`}
                   style={{
                     transitionDelay: `${600 + index * 45}ms`,
                   }}
@@ -206,10 +129,11 @@ export default function CriticalMinerals() {
               {"Needs More".split("").map((letter, index) => (
                 <span
                   key={`needs-${index}`}
-                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
+                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    isVisible
                       ? "translate-y-0 opacity-100"
                       : "translate-y-[100%] opacity-0"
-                    }`}
+                  }`}
                   style={{
                     transitionDelay: `${1000 + index * 45}ms`,
                   }}
@@ -227,10 +151,11 @@ export default function CriticalMinerals() {
               {"Critical Minerals".split("").map((letter, index) => (
                 <span
                   key={`critical-${index}`}
-                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
+                  className={`inline-block transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    isVisible
                       ? "translate-y-0 opacity-100"
                       : "translate-y-[100%] opacity-0"
-                    }`}
+                  }`}
                   style={{
                     transitionDelay: `${1450 + index * 45}ms`,
                   }}
@@ -246,10 +171,11 @@ export default function CriticalMinerals() {
           ================================================= */}
 
           <p
-            className={`mt-6 max-w-[470px] text-[15px] font-medium leading-[1.42] tracking-[-0.01em] text-[#394542] transition-all duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:text-[16px] md:text-[17px] lg:text-[16px] xl:text-[17px] ${isVisible
+            className={`mt-6 max-w-[470px] text-[14px] font-medium leading-[1.5] tracking-[-0.01em] text-[#394542] transition-all duration-[850ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[17px] ${
+              isVisible
                 ? "translate-y-0 opacity-100"
                 : "translate-y-[70px] opacity-0"
-              }`}
+            }`}
             style={{
               transitionDelay: "2100ms",
             }}
@@ -267,142 +193,121 @@ export default function CriticalMinerals() {
         </div>
 
         {/* =====================================================
-            RIGHT IMAGE
+            RIGHT IMAGE AREA
         ====================================================== */}
 
         <div
-          className={`relative mt-10 h-[440px] w-full transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:h-[500px] md:h-[570px] lg:absolute lg:right-[-5%] lg:top-1/2 lg:mt-0 lg:h-[650px] lg:w-[67%] lg:-translate-y-1/2 xl:right-[-3%] xl:h-[680px] xl:w-[90%] ${isVisible
+          className={`relative mt-12 flex w-full justify-center transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:mt-14 md:mt-16 lg:absolute lg:right-[-3%] lg:mt-0 lg:h-[650px] lg:w-[62%] xl:right-[-2%] xl:w-[64%] 2xl:right-[-4%] 2xl:w-[66%] ${
+            isVisible
               ? "translate-y-0 opacity-100"
               : "translate-y-[120px] opacity-0"
-            }`}
+          }`}
           style={{
             transitionDelay: "300ms",
           }}
         >
+          {/* IMAGE WRAPPER */}
 
-          {/* =================================================
-              IMAGE
-          ================================================= */}
-          <div className="relative top-[10%] w-[70%] ml-[34%]">
+          <div className="relative w-full max-w-[680px] lg:max-w-none">
+            {/* IMAGE */}
 
-            {/* Image */}
             <img
               src="/images/critical-minerals2.jpeg"
               alt="Critical minerals"
-              className="w-full object-cover object-center"
+              className="block h-auto w-full object-contain"
             />
 
-            {/* LITHIUM */}
-            <div className="absolute left-[30%] top-[15%] flex items-center gap-1 rounded-[8px] border border-[#e5e5e5] bg-white px-2 py-1 shadow-md animate-[float_5s_ease-in-out_infinite]">
+            {/* =================================================
+                LITHIUM
+            ================================================== */}
 
-              <span className="text-[26px] font-bold leading-none text-[#249d8d]">
+            <div className="absolute left-[25%] top-[14%] flex items-center gap-1 rounded-[7px] border border-[#e5e5e5] bg-white px-1.5 py-1 shadow-md sm:left-[27%] sm:px-2 sm:py-1 md:rounded-[8px] lg:left-[28%]">
+              <span className="text-[15px] font-bold leading-none text-[#249d8d] sm:text-[20px] md:text-[23px] lg:text-[26px]">
                 Li
               </span>
 
-              <span className="text-[20px] font-normal text-black">
+              <span className="text-[12px] font-normal text-black sm:text-[15px] md:text-[18px] lg:text-[20px]">
                 —
               </span>
 
-              <span className="text-[17px] font-semibold text-[#1b2927]">
+              <span className="text-[10px] font-semibold text-[#1b2927] sm:text-[13px] md:text-[15px] lg:text-[17px]">
                 Lithium
               </span>
-
             </div>
 
+            {/* =================================================
+                COBALT
+            ================================================== */}
 
-            {/* COBALT */}
-            <div className="absolute left-[70%] top-[15%] flex items-center gap-2 rounded-[10px] border border-[#e5e5e5] bg-white px-2 py-1 shadow-md animate-[float_5s_ease-in-out_infinite]">
-
-              <span className="text-[26px] font-bold leading-none text-[#249d8d]">
+            <div className="absolute left-[66%] top-[14%] flex items-center gap-1 rounded-[7px] border border-[#e5e5e5] bg-white px-1.5 py-1 shadow-md sm:left-[68%] sm:gap-2 sm:px-2 md:rounded-[8px] lg:left-[70%]">
+              <span className="text-[15px] font-bold leading-none text-[#249d8d] sm:text-[20px] md:text-[23px] lg:text-[26px]">
                 Co
               </span>
 
-              <span className="text-[20px] font-normal text-black">
+              <span className="text-[12px] font-normal text-black sm:text-[15px] md:text-[18px] lg:text-[20px]">
                 —
               </span>
 
-              <span className="text-[17px] font-semibold text-[#1b2927]">
+              <span className="text-[10px] font-semibold text-[#1b2927] sm:text-[13px] md:text-[15px] lg:text-[17px]">
                 Cobalt
               </span>
-
             </div>
 
+            {/* =================================================
+                NICKEL
+            ================================================== */}
 
-
-
-            {/* NICKEL */}
-
-            <div className="absolute right-[5%] top-[40%] flex items-center gap-2 rounded-[10px] border border-[#e5e5e5] bg-white px-2 py-1 shadow-md animate-[float_5s_ease-in-out_infinite]">
-
-              <span className="text-[26px] font-bold leading-none text-[#249d8d]">
+            <div className="absolute right-[3%] top-[39%] flex items-center gap-1 rounded-[7px] border border-[#e5e5e5] bg-white px-1.5 py-1 shadow-md sm:right-[4%] sm:gap-2 sm:px-2 md:rounded-[8px] lg:right-[5%]">
+              <span className="text-[15px] font-bold leading-none text-[#249d8d] sm:text-[20px] md:text-[23px] lg:text-[26px]">
                 Ni
               </span>
 
-              <span className="text-[20px] font-normal text-black">
+              <span className="text-[12px] font-normal text-black sm:text-[15px] md:text-[18px] lg:text-[20px]">
                 —
               </span>
 
-              <span className="text-[17px] font-semibold text-[#1b2927]">
+              <span className="text-[10px] font-semibold text-[#1b2927] sm:text-[13px] md:text-[15px] lg:text-[17px]">
                 Nickel
               </span>
-
             </div>
 
+            {/* =================================================
+                COPPER
+            ================================================== */}
 
-
-            {/* GRAPHITE */}
-
-            <div className="absolute right-[10%] bottom-[25%] flex items-center gap-2 rounded-[10px] border border-[#e5e5e5] bg-white px-2 py-1 shadow-md animate-[float_5s_ease-in-out_infinite]">
-
-              <span className="text-[26px] font-bold leading-none text-[#249d8d]">
+            <div className="absolute right-[8%] bottom-[22%] flex items-center gap-1 rounded-[7px] border border-[#e5e5e5] bg-white px-1.5 py-1 shadow-md sm:right-[9%] sm:gap-2 sm:px-2 md:rounded-[8px] lg:right-[10%]">
+              <span className="text-[15px] font-bold leading-none text-[#249d8d] sm:text-[20px] md:text-[23px] lg:text-[26px]">
                 Cu
               </span>
 
-              <span className="text-[20px] font-normal text-black">
+              <span className="text-[12px] font-normal text-black sm:text-[15px] md:text-[18px] lg:text-[20px]">
                 —
               </span>
 
-              <span className="text-[17px] font-semibold text-[#1b2927]">
+              <span className="text-[10px] font-semibold text-[#1b2927] sm:text-[13px] md:text-[15px] lg:text-[17px]">
                 Copper
               </span>
-
             </div>
 
+            {/* =================================================
+                RARE EARTH
+            ================================================== */}
 
-
-            {/* RARE EARTHS */}
-
-            <div className="absolute left-[5%] bottom-[40%] flex items-center gap-2 rounded-[10px] border border-[#e5e5e5] bg-white px-2 py-1 shadow-md animate-[float_5s_ease-in-out_infinite]">
-
-              <span className="text-[26px] font-bold leading-none text-[#249d8d]">
+            <div className="absolute left-[3%] bottom-[36%] flex items-center gap-1 rounded-[7px] border border-[#e5e5e5] bg-white px-1.5 py-1 shadow-md sm:left-[4%] sm:gap-2 sm:px-2 md:rounded-[8px] lg:left-[5%]">
+              <span className="text-[15px] font-bold leading-none text-[#249d8d] sm:text-[20px] md:text-[23px] lg:text-[26px]">
                 REE
               </span>
 
-              <span className="text-[20px] font-normal text-black">
+              <span className="text-[12px] font-normal text-black sm:text-[15px] md:text-[18px] lg:text-[20px]">
                 —
               </span>
 
-              <span className="text-[17px] font-semibold text-[#1b2927]">
-                Rare Earth <br /> Elements
+              <span className="text-[9px] font-semibold leading-[1.1] text-[#1b2927] sm:text-[11px] md:text-[13px] lg:text-[15px]">
+                Rare Earth
+                <br />
+                Elements
               </span>
-
             </div>
-
-
-
-            {/* =================================================
-                MINERAL LABELS
-            ================================================= */}
-
-            {minerals.map((mineral, index) => (
-              <MineralLabel
-                key={mineral.symbol}
-                mineral={mineral}
-                isVisible={isVisible}
-                delay={800 + index * 130}
-              />
-            ))}
-
           </div>
         </div>
       </div>
