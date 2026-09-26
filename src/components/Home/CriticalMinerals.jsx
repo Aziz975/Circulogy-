@@ -355,7 +355,7 @@ export default function CriticalMinerals() {
             <div className="absolute right-[10%] bottom-[25%] flex items-center gap-2 rounded-[10px] border border-[#e5e5e5] bg-white px-2 py-1 shadow-md animate-[float_5s_ease-in-out_infinite]">
 
               <span className="text-[26px] font-bold leading-none text-[#249d8d]">
-                Co
+                Cu
               </span>
 
               <span className="text-[20px] font-normal text-black">
