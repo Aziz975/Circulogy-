@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 function NavLinks() {
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Services", path: "/services", dropdown: true },
+    // { name: "Services", path: "/services", dropdown: true },
     { name: "Technology", path: "/technology", dropdown: true },
-    { name: "Resources", path: "/resources", dropdown: true },
+    // { name: "Resources", path: "/resources", dropdown: true },
     { name: "Pledge", path: "/pledge" },
-    { name: "Career", path: "/career" },
+    // { name: "Career", path: "/career" },
     { name: "About Us", path: "/about" },
   ];
 

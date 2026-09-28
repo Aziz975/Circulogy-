@@ -11,20 +11,23 @@ import Career from "./components/Pages/Career";
 import About from "./components/Pages/About.jsx";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar/Navbar";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 
 function App() {
   return (
     <>
       <Navbar />
+       <ScrollToTop />
+
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services />} />
+        {/* <Route path="/services" element={<Services />} /> */}
         <Route path="/technology" element={<Technology />} />
-        <Route path="/resources" element={<Resources />} />
+        {/* <Route path="/resources" element={<Resources />} /> */}
         <Route path="/pledge" element={<Pledge />} />
-        <Route path="/career" element={<Career />} />
+        {/* <Route path="/career" element={<Career />} /> */}
         <Route path="/about" element={<About />} />
       </Routes>
 

@@ -1,65 +1,56 @@
 import React from "react";
 
-const solutions = [
-  "For OEMs",
-  "For Importers",
-  "For Brand Owners",
-  "For Recyclers",
-  "For Refurbishers",
-  "EPR Compliance",
-  "Circular Economy",
-];
 
 const quickLinks = [
-  "Home",
-  "Services",
-  "Technology",
-  "Resources",
-  "Pledge",
-  "Career",
-  "Contact Us",
+  { name: "Home", path: "/" },
+  { name: "Services", path: "/services" },
+  { name: "Technology", path: "/technology" },
+  { name: "Resources", path: "/resources" },
+  { name: "Pledge", path: "/pledge" },
+  { name: "Career", path: "/career" },
+  { name: "Contact Us", path: "" },
 ];
-
 const company = [
-  "About Us",
-  "Our Impact",
-  "Investor Relations",
-  "News & Press",
-  "Blog",
-  "Events",
-  "Partnerships",
+  { name: "About Us", path: "/about" },
+  { name: "Our Impact", path: "/impact" },
+  { name: "Investor Relations", path: "/investor-relations" },
+  { name: "News & Press", path: "/news-press" },
+  { name: "Blog", path: "/blog" },
+  { name: "Events", path: "/events" },
+  { name: "Partnerships", path: "/partnerships" },
 ];
 
 const policies = [
-  "Privacy Policy",
-  "Terms & Conditions",
-  "Cookies",
-  "Disclaimer",
-  "Accessibility",
+  { name: "Privacy Policy", id: "privacy" },
+  { name: "Terms & Conditions", id: "terms" },
+  { name: "Cookies", id: "cookies" },
+  { name: "Disclaimer", id: "disclaimer" },
+  { name: "Accessibility", id: "accessibility" },
 ];
 
-const FooterColumn = ({ title, links }) => {
+import { Link } from "react-router-dom";
+
+function FooterColumn({ title, links }) {
   return (
     <div>
-      <h3 className="text-[13px] font-semibold tracking-[0.22em] text-white">{title}</h3>
+      <h3 className="mb-5 text-[12px] font-bold uppercase tracking-[0.08em] text-white">
+        {title}
+      </h3>
 
-      <div className="mt-3 mb-7 h-[2px] w-[27px] bg-[#20d8b1]"></div>
-
-      <ul className="space-y-[17px]">
+      <div className="flex flex-col gap-3">
         {links.map((link) => (
-          <li key={link}>
-            <a href="#" className="group flex items-center gap-3 text-[15px] leading-[20px] text-[#b8c1c1] transition-all duration-300 hover:text-white">
-              <svg className="h-[17px] w-[17px] shrink-0 text-[#19d5b0] transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="m9 18 6-6-6-6" />
-              </svg>
-              <span>{link}</span>
-            </a>
-          </li>
+          <Link
+            key={link.name}
+            to={link.path}
+            className="text-[14px] text-white/70 transition-colors duration-300 hover:text-[#19cdb5]"
+          >
+            {link.name}
+          </Link>
         ))}
-      </ul>
+      </div>
     </div>
   );
-};
+}
 
 const SocialIcon = ({ type }) => {
   if (type === "linkedin") {
@@ -228,6 +219,14 @@ const Footer = () => {
             {/* Email */}
             <a href="mailto:info@circulogy.com" className="mt-[30px] flex items-center gap-4 text-[14px] text-[#bfc8c7] transition-colors duration-300 hover:text-white">
 
+              <svg viewBox="0 0 24 24" className="h-[35px] w-[40px] text-[#20d8b1]" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" strokeLinecap="round" strokeLinejoin="round"/><circle cx="12" cy="10" r="2.5"/></svg>
+
+              <span>307, Tower B, ATS Bouquet, Sector 132, Noida, 201304</span>
+            </a>
+
+            {/* Email */}
+            <a href="mailto:info@circulogy.com" className="mt-[30px] flex items-center gap-4 text-[14px] text-[#bfc8c7] transition-colors duration-300 hover:text-white">
+
               <svg viewBox="0 0 24 24" className="h-[21px] w-[21px] text-[#20d8b1]" fill="none" stroke="currentColor" strokeWidth="1.7">
                 <rect x="3" y="5" width="18" height="14" rx="1.5"></rect>
                 <path d="m4 7 8 6 8-6"></path>
@@ -243,7 +242,7 @@ const Footer = () => {
                 <path d="M6.5 3.5 9 3l2.5 5-2.3 1.8a14.7 14.7 0 0 0 5.5 5.5l1.8-2.3 5 2.5-.5 2.5a3 3 0 0 1-3.3 2.4C10.3 19.4 4.6 13.7 3.6 6.8A3 3 0 0 1 6.5 3.5Z"></path>
               </svg>
 
-              <span>+91 00000 00000</span>
+              <span>+9186509 07362</span>
             </a>
 
             {/* Social Icons */}
@@ -269,7 +268,7 @@ const Footer = () => {
           </div>
 
           {/* Columns */}
-          <FooterColumn title="SOLUTIONS" links={solutions} />
+
 
           <FooterColumn title="QUICK LINKS" links={quickLinks} />
 
@@ -283,7 +282,7 @@ const Footer = () => {
         <div className="mt-[63px] flex flex-col items-start justify-between gap-5 border-t border-[#63706f]/60 pt-[32px] sm:flex-row sm:items-center">
 
           <p className="text-[12px] leading-[18px] text-[#9ba7a5]">
-            © 2024 Circulogy. All rights reserved.
+            © 2026 Circulogy. All rights reserved.
           </p>
 
           <p className="text-[9px] font-semibold uppercase tracking-[0.35em] text-[#a6b0ae]">

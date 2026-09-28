@@ -53,6 +53,108 @@ export default function CriticalMinerals() {
       className="relative w-full overflow-hidden bg-[#faf9f6] px-5 py-14 sm:px-8 sm:py-16 md:px-10 md:py-20 lg:min-h-[680px] lg:px-12 lg:py-0 xl:px-[4%]"
     >
       {/* =====================================================
+          FLOATING LABEL ANIMATION
+      ====================================================== */}
+
+      <style>
+        {`
+          @keyframes mineralFloat1 {
+            0%,
+            100% {
+              transform: translateY(0px);
+            }
+
+            50% {
+              transform: translateY(-8px);
+            }
+          }
+
+          @keyframes mineralFloat2 {
+            0%,
+            100% {
+              transform: translateY(0px);
+            }
+
+            50% {
+              transform: translateY(-10px);
+            }
+          }
+
+          @keyframes mineralFloat3 {
+            0%,
+            100% {
+              transform: translateY(0px);
+            }
+
+            50% {
+              transform: translateY(-7px);
+            }
+          }
+
+          @keyframes mineralFloat4 {
+            0%,
+            100% {
+              transform: translateY(0px);
+            }
+
+            50% {
+              transform: translateY(-9px);
+            }
+          }
+
+          @keyframes mineralFloat5 {
+            0%,
+            100% {
+              transform: translateY(0px);
+            }
+
+            50% {
+              transform: translateY(-8px);
+            }
+          }
+
+          .mineral-float-1 {
+            animation: mineralFloat1 3.8s ease-in-out infinite;
+            will-change: transform;
+          }
+
+          .mineral-float-2 {
+            animation: mineralFloat2 4.3s ease-in-out infinite;
+            animation-delay: -1.2s;
+            will-change: transform;
+          }
+
+          .mineral-float-3 {
+            animation: mineralFloat3 3.6s ease-in-out infinite;
+            animation-delay: -2s;
+            will-change: transform;
+          }
+
+          .mineral-float-4 {
+            animation: mineralFloat4 4.1s ease-in-out infinite;
+            animation-delay: -0.8s;
+            will-change: transform;
+          }
+
+          .mineral-float-5 {
+            animation: mineralFloat5 3.9s ease-in-out infinite;
+            animation-delay: -1.7s;
+            will-change: transform;
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .mineral-float-1,
+            .mineral-float-2,
+            .mineral-float-3,
+            .mineral-float-4,
+            .mineral-float-5 {
+              animation: none;
+            }
+          }
+        `}
+      </style>
+
+      {/* =====================================================
           MAIN CONTAINER
       ====================================================== */}
 
@@ -221,7 +323,11 @@ export default function CriticalMinerals() {
                 LITHIUM
             ================================================== */}
 
-            <div className="absolute left-[25%] top-[14%] flex items-center gap-1 rounded-[7px] border border-[#e5e5e5] bg-white px-1.5 py-1 shadow-md sm:left-[27%] sm:px-2 sm:py-1 md:rounded-[8px] lg:left-[28%]">
+            <div
+              className={`mineral-float-1 absolute left-[25%] top-[14%] flex items-center gap-1 rounded-[7px] border border-[#e5e5e5] bg-white px-1.5 py-1 shadow-md sm:left-[27%] sm:px-2 sm:py-1 md:rounded-[8px] lg:left-[28%] ${
+                isVisible ? "opacity-100" : "opacity-0"
+              }`}
+            >
               <span className="text-[15px] font-bold leading-none text-[#249d8d] sm:text-[20px] md:text-[23px] lg:text-[26px]">
                 Li
               </span>
@@ -239,7 +345,11 @@ export default function CriticalMinerals() {
                 COBALT
             ================================================== */}
 
-            <div className="absolute left-[66%] top-[14%] flex items-center gap-1 rounded-[7px] border border-[#e5e5e5] bg-white px-1.5 py-1 shadow-md sm:left-[68%] sm:gap-2 sm:px-2 md:rounded-[8px] lg:left-[70%]">
+            <div
+              className={`mineral-float-2 absolute left-[66%] top-[14%] flex items-center gap-1 rounded-[7px] border border-[#e5e5e5] bg-white px-1.5 py-1 shadow-md sm:left-[68%] sm:gap-2 sm:px-2 md:rounded-[8px] lg:left-[70%] ${
+                isVisible ? "opacity-100" : "opacity-0"
+              }`}
+            >
               <span className="text-[15px] font-bold leading-none text-[#249d8d] sm:text-[20px] md:text-[23px] lg:text-[26px]">
                 Co
               </span>
@@ -257,7 +367,11 @@ export default function CriticalMinerals() {
                 NICKEL
             ================================================== */}
 
-            <div className="absolute right-[3%] top-[39%] flex items-center gap-1 rounded-[7px] border border-[#e5e5e5] bg-white px-1.5 py-1 shadow-md sm:right-[4%] sm:gap-2 sm:px-2 md:rounded-[8px] lg:right-[5%]">
+            <div
+              className={`mineral-float-3 absolute right-[3%] top-[39%] flex items-center gap-1 rounded-[7px] border border-[#e5e5e5] bg-white px-1.5 py-1 shadow-md sm:right-[4%] sm:gap-2 sm:px-2 md:rounded-[8px] lg:right-[5%] ${
+                isVisible ? "opacity-100" : "opacity-0"
+              }`}
+            >
               <span className="text-[15px] font-bold leading-none text-[#249d8d] sm:text-[20px] md:text-[23px] lg:text-[26px]">
                 Ni
               </span>
@@ -275,7 +389,11 @@ export default function CriticalMinerals() {
                 COPPER
             ================================================== */}
 
-            <div className="absolute right-[8%] bottom-[22%] flex items-center gap-1 rounded-[7px] border border-[#e5e5e5] bg-white px-1.5 py-1 shadow-md sm:right-[9%] sm:gap-2 sm:px-2 md:rounded-[8px] lg:right-[10%]">
+            <div
+              className={`mineral-float-4 absolute right-[8%] bottom-[22%] flex items-center gap-1 rounded-[7px] border border-[#e5e5e5] bg-white px-1.5 py-1 shadow-md sm:right-[9%] sm:gap-2 sm:px-2 md:rounded-[8px] lg:right-[10%] ${
+                isVisible ? "opacity-100" : "opacity-0"
+              }`}
+            >
               <span className="text-[15px] font-bold leading-none text-[#249d8d] sm:text-[20px] md:text-[23px] lg:text-[26px]">
                 Cu
               </span>
@@ -293,7 +411,11 @@ export default function CriticalMinerals() {
                 RARE EARTH
             ================================================== */}
 
-            <div className="absolute left-[3%] bottom-[36%] flex items-center gap-1 rounded-[7px] border border-[#e5e5e5] bg-white px-1.5 py-1 shadow-md sm:left-[4%] sm:gap-2 sm:px-2 md:rounded-[8px] lg:left-[5%]">
+            <div
+              className={`mineral-float-5 absolute left-[3%] bottom-[36%] flex items-center gap-1 rounded-[7px] border border-[#e5e5e5] bg-white px-1.5 py-1 shadow-md sm:left-[4%] sm:gap-2 sm:px-2 md:rounded-[8px] lg:left-[5%] ${
+                isVisible ? "opacity-100" : "opacity-0"
+              }`}
+            >
               <span className="text-[15px] font-bold leading-none text-[#249d8d] sm:text-[20px] md:text-[23px] lg:text-[26px]">
                 REE
               </span>
