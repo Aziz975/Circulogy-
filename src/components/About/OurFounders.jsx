@@ -13,11 +13,7 @@ const founders = [
     src: "/images/abhishek-tiwari.jpeg",
   },
 
-    {
-    name: "Abhishek Tiwari",
-    role: "Co-Founder & COO",
-    src: "/images/abhishek-tiwari.jpeg",
-  },
+   
 ];
 
 function FounderCard({ name, role, src }) {

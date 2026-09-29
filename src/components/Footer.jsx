@@ -3,12 +3,12 @@ import React from "react";
 
 const quickLinks = [
   { name: "Home", path: "/" },
-  { name: "Services", path: "/services" },
+  // { name: "Services", path: "/services" },
   { name: "Technology", path: "/technology" },
-  { name: "Resources", path: "/resources" },
+  // { name: "Resources", path: "/resources" },
   { name: "Pledge", path: "/pledge" },
-  { name: "Career", path: "/career" },
-  { name: "Contact Us", path: "" },
+  // { name: "Career", path: "/career" },
+  // { name: "Contact Us", path: "" },
 ];
 const company = [
   { name: "About Us", path: "/about" },
@@ -179,32 +179,24 @@ const Footer = () => {
         <section className="mt-[68px] grid grid-cols-1 gap-[50px] md:grid-cols-3 lg:grid-cols-[1.18fr_1fr_1fr_1fr_1fr] lg:gap-[52px]">
 
           {/* Brand */}
-          <div className="border-b border-[#49605f]/50 pb-[45px] md:border-b-0 md:border-r md:pr-[42px] lg:pb-0">
+          <div className="relative left-[10%] border-b border-[#49605f]/50 pb-[45px] md:border-b-0 md:border-r md:pr-[42px] lg:pb-0">
 
-            {/* Logo */}
-            <a href="#" className="inline-flex items-center gap-[13px]">
+            <img
+              src="/images/companylogo.png"
+              alt="Circulogy"
+              className="
 
-              <div className="relative h-[30px] w-[55px]">
+              relative left-[-10%]
+      h-[32px]
+      w-auto
+      object-contain
 
-                <svg viewBox="0 0 56 30" className="h-[30px] w-[55px]" fill="none">
-                  <path d="M27 15C27 21.1 22.1 26 16 26S5 21.1 5 15 9.9 4 16 4s11 4.9 11 11Z" stroke="white" strokeWidth="3.5" />
-                  <path d="M29 15c0-6.1 4.9-11 11-11s11 4.9 11 11-4.9 11-11 11S29 21.1 29 15Z" stroke="white" strokeWidth="3.5" />
-                </svg>
-
-              </div>
-
-              <div className="flex items-start">
-
-                <span className="text-[27px] font-semibold leading-none tracking-[-0.055em]">
-                  Circulogy
-                </span>
-
-                <span className="ml-[3px] mt-[-2px] text-[7px]">
-                  TM
-                </span>
-
-              </div>
-            </a>
+      sm:h-[36px]
+      md:h-[40px]
+      lg:h-[45px]
+      xl:h-[50px]
+    "
+            />
 
             {/* Tagline */}
             <p className="mt-2 text-[13px] font-medium uppercase tracking-[0.13em] text-[#c7cfce]">
@@ -219,7 +211,7 @@ const Footer = () => {
             {/* Email */}
             <a href="mailto:info@circulogy.com" className="mt-[30px] flex items-center gap-4 text-[14px] text-[#bfc8c7] transition-colors duration-300 hover:text-white">
 
-              <svg viewBox="0 0 24 24" className="h-[35px] w-[40px] text-[#20d8b1]" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" strokeLinecap="round" strokeLinejoin="round"/><circle cx="12" cy="10" r="2.5"/></svg>
+              <svg viewBox="0 0 24 24" className="h-[35px] w-[40px] text-[#20d8b1]" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" strokeLinecap="round" strokeLinejoin="round" /><circle cx="12" cy="10" r="2.5" /></svg>
 
               <span>307, Tower B, ATS Bouquet, Sector 132, Noida, 201304</span>
             </a>
@@ -248,7 +240,7 @@ const Footer = () => {
             {/* Social Icons */}
             <div className="mt-7 flex gap-[14px]">
 
-              <a href="#" aria-label="LinkedIn" className="flex h-[45px] w-[45px] items-center justify-center rounded-full border border-[#435352] text-[#e5e9e8] transition-all duration-300 hover:border-[#20d8b1] hover:text-[#20d8b1]">
+              <a href="https://www.linkedin.com/company/circulogy/posts/?feedView=all" aria-label="LinkedIn" className="flex h-[45px] w-[45px] items-center justify-center rounded-full border border-[#435352] text-[#e5e9e8] transition-all duration-300 hover:border-[#20d8b1] hover:text-[#20d8b1]">
                 <SocialIcon type="linkedin" />
               </a>
 
@@ -260,7 +252,7 @@ const Footer = () => {
                 <SocialIcon type="youtube" />
               </a>
 
-              <a href="#" aria-label="Instagram" className="flex h-[45px] w-[45px] items-center justify-center rounded-full border border-[#435352] text-[#e5e9e8] transition-all duration-300 hover:border-[#20d8b1] hover:text-[#20d8b1]">
+              <a href="https://www.instagram.com/circulogy?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" aria-label="Instagram" className="flex h-[45px] w-[45px] items-center justify-center rounded-full border border-[#435352] text-[#e5e9e8] transition-all duration-300 hover:border-[#20d8b1] hover:text-[#20d8b1]">
                 <SocialIcon type="instagram" />
               </a>
 

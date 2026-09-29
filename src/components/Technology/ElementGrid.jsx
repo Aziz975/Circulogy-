@@ -21,7 +21,7 @@ const targetElements = {
     source: "FROM LI-ION BATTERY BLACK MASS",
     stream: "Critical Minerals",
     color: "critical",
-    image: "",
+    image: "images/corbon.png",
   },
   Mn: {
     symbol: "Mn",
@@ -32,7 +32,7 @@ const targetElements = {
     source: "FROM LI-ION BATTERY BLACK MASS",
     stream: "Critical Minerals",
     color: "critical",
-    image: "",
+    image: "/images/mn.png",
   },
   Co: {
     symbol: "Co",
@@ -43,7 +43,7 @@ const targetElements = {
     source: "FROM LI-ION BATTERY BLACK MASS",
     stream: "Critical Minerals",
     color: "critical",
-    image: "",
+    image: "/images/co.png",
   },
   Ni: {
     symbol: "Ni",
@@ -54,7 +54,7 @@ const targetElements = {
     source: "FROM LI-ION BATTERY BLACK MASS",
     stream: "Critical Minerals",
     color: "critical",
-    image: "images/nickel2.jpeg",
+    image: "/images/nickel2.jpeg",
   },
   Pr: {
     symbol: "Pr",
@@ -65,7 +65,7 @@ const targetElements = {
     source: "FROM NdFeB MAGNETS",
     stream: "Rare Earth Elements",
     color: "rare",
-    image: "",
+    image: "/images/pr.png",
   },
   Nd: {
     symbol: "Nd",
@@ -76,7 +76,7 @@ const targetElements = {
     source: "FROM NdFeB MAGNETS",
     stream: "Rare Earth Elements",
     color: "rare",
-    image: "",
+    image: "/images/nd.png",
   },
   Sm: {
     symbol: "Sm",
@@ -87,7 +87,7 @@ const targetElements = {
     source: "FROM NdFeB MAGNETS",
     stream: "Rare Earth Elements",
     color: "rare",
-    image: "",
+    image: "/images/pr.png",
   },
   Tb: {
     symbol: "Tb",
@@ -98,7 +98,7 @@ const targetElements = {
     source: "FROM NdFeB MAGNETS",
     stream: "Rare Earth Elements",
     color: "rare",
-    image: "",
+    image: "images/tb.png",
   },
   Dy: {
     symbol: "Dy",
@@ -109,7 +109,7 @@ const targetElements = {
     source: "FROM NdFeB MAGNETS",
     stream: "Rare Earth Elements",
     color: "rare",
-    image: "",
+    image: "images/dy.png",
   },
 };
 
