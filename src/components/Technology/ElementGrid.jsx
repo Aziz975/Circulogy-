@@ -87,7 +87,7 @@ const targetElements = {
     source: "FROM NdFeB MAGNETS",
     stream: "Rare Earth Elements",
     color: "rare",
-    image: "/images/pr.png",
+    image: "/images/sm.png",
   },
   Tb: {
     symbol: "Tb",
