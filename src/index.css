@@ -745,12 +745,13 @@ body {
 }
 
 
-/* ================================
-   3D MINERAL CARD FLIP
-================================ */
+/* =========================================================
+   MINERAL CARD 3D FLIP
+========================================================= */
 
 .mineral-card {
   perspective: 1200px;
+  -webkit-perspective: 1200px;
 }
 
 .mineral-card-inner {
@@ -760,6 +761,7 @@ body {
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
   transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .mineral-card:hover .mineral-card-inner {
@@ -779,4 +781,19 @@ body {
 .mineral-card-back {
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
+}
+
+/* Keep the flip smooth */
+.mineral-card-face {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+/* Prevent mobile browsers from creating weird
+   touch/hover behavior */
+@media (hover: hover) and (pointer: fine) {
+  .mineral-card:hover .mineral-card-inner {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+  }
 }
