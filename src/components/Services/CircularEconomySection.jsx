@@ -260,7 +260,7 @@ const CircularEconomySection = () => {
                         }}
                     >
 
-                        <p className="relative mb-15 w-full font-normal leading-[1.45] tracking-[-0.01em] text-[#d0d9d7] text-[15px] sm:text-[15px] md:text-[15px] lg:text-[15px] xl:text-[15px] 2xl:text-[15px]">
+                        <p className="relative mb-15 w-full font-normal leading-[1.45] tracking-[-0.01em] text-[#aeb9b8] text-[15px] sm:text-[15px] md:text-[15px] lg:text-[15px] xl:text-[15px] 2xl:text-[15px]">
 
                             From EPR registration and verified credit procurement
                             to zero waste events and carbon strategy Circulogy

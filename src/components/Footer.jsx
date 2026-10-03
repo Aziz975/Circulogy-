@@ -3,7 +3,7 @@ import React from "react";
 
 const quickLinks = [
   { name: "Home", path: "/" },
-  // { name: "Services", path: "/services" },
+  { name: "Services", path: "/services" },
   { name: "Technology", path: "/technology" },
   // { name: "Resources", path: "/resources" },
   { name: "Pledge", path: "/pledge" },

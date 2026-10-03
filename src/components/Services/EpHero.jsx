@@ -306,7 +306,7 @@ const EpHero = () => {
             }}
             className="max-w-[440px] text-[12px]
               font-normal leading-[1.65] tracking-[0.05px]
-              text-[#e0efeb]/90
+             text-[#aeb9b8]
               sm:text-[13px] sm:leading-[1.7]
               md:text-[14px]"
           >
