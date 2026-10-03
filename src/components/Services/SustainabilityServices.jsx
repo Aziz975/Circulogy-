@@ -169,7 +169,7 @@ const ServiceColumn = ({ services }) => {
                 stiffness: 350,
                 damping: 18,
               }}
-              className="text-[13px] sm:text-[14px] font-medium leading-[18px] tracking-[0.02em] text-[#36aaa0]"
+              className="text-[15px] sm:text-[15px] font-medium leading-[18px] tracking-[0.02em] text-[#36aaa0]"
             >
               {service.number}
             </motion.span>
@@ -212,7 +212,7 @@ const ServiceColumn = ({ services }) => {
                 duration: 0.3,
                 ease: "easeOut",
               }}
-              className="text-[13px] sm:text-[14px] font-bold leading-[1.35] tracking-[-0.015em] text-[#202522]"
+              className="text-[12px] sm:text-[14px] font-bold leading-[1.35] tracking-[-0.015em] text-[#202522]"
             >
               {service.title}
             </motion.h3>
@@ -246,7 +246,7 @@ const ServiceColumn = ({ services }) => {
                   delay: index * 0.12 + 0.15,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="mt-[9px] max-w-[370px] text-[11px] sm:text-[11.5px] font-normal leading-[1.65] tracking-[0.005em] text-[#78817c]"
+                className="mt-[9px] max-w-[370px] text-[11px] sm:text-[13px] font-normal leading-[1.65] tracking-[0.005em] text-[#78817c]"
               >
                 {service.description}
               </motion.p>

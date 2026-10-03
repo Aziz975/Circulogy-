@@ -108,7 +108,7 @@ function ServiceItem({ number, title, description, index = 0 }) {
       {/* Number + line */}
       <div className="flex shrink-0 items-start gap-[5px]">
         <motion.span
-          className="text-[11px] font-medium leading-[15px] text-[#36aaa0] transition-all duration-300 group-hover:scale-110 group-hover:text-[#168f85] sm:text-[12px]"
+          className="text-[15px] font-medium leading-[15px] text-[#36aaa0] transition-all duration-300 group-hover:scale-110 group-hover:text-[#168f85] sm:text-[15px]"
           initial={
             shouldReduceMotion
               ? { opacity: 1 }
@@ -165,7 +165,8 @@ function ServiceItem({ number, title, description, index = 0 }) {
         </motion.h3>
 
         <motion.p
-          className="mt-[8px] max-w-[340px] text-[10px] font-normal leading-[1.55] text-[#78817c] transition-colors duration-300 group-hover:text-[#596661] sm:text-[10.5px]"
+  className="mt-[10px] max-w-[520px] text-[10px] font-normal leading-[1.65] text-[#78817c] transition-colors duration-300 group-hover:text-[#596661] sm:text-[13px]"
+
           initial={
             shouldReduceMotion
               ? { opacity: 1, y: 0 }
@@ -245,7 +246,7 @@ function ComplianceCard() {
       />
 
       <motion.p
-        className="relative z-10 text-[7px] font-extrabold uppercase tracking-[1.3px] text-[#286c67] transition-transform duration-300 group-hover:translate-x-1"
+        className="relative z-10 text-[12px] font-extrabold uppercase tracking-[1.3px] text-[#286c67] transition-transform duration-300 group-hover:translate-x-1"
         initial={
           shouldReduceMotion
             ? { opacity: 1, x: 0 }
@@ -281,7 +282,7 @@ function ComplianceCard() {
       </motion.h3>
 
       <motion.p
-        className="relative z-10 mt-[10px] text-[9px] font-normal text-[#73817b]"
+        className="relative z-10 mt-[10px] text-[13px] font-normal text-[#73817b]"
         initial={
           shouldReduceMotion
             ? { opacity: 1 }
@@ -473,7 +474,7 @@ function StatCard({
 
       {/* Label */}
       <motion.p
-        className="relative z-10 text-[7px] font-bold uppercase tracking-[1.3px] text-[#a7d7cf] transition-transform duration-300 group-hover:translate-x-1 sm:text-[8px]"
+        className="relative z-10 text-[10px] font-bold uppercase tracking-[1.3px] text-[#a7d7cf] transition-transform duration-300 group-hover:translate-x-1 sm:text-[12px]"
         initial={
           shouldReduceMotion
             ? { opacity: 1 }
@@ -492,7 +493,7 @@ function StatCard({
       {/* Value */}
       <div className="relative z-10 mt-[15px] flex items-baseline text-white">
         <motion.span
-          className="text-[36px] font-normal leading-none tracking-[-1.5px] transition-transform duration-300 group-hover:-translate-y-1 sm:text-[40px] lg:text-[42px]"
+          className="text-[40px] font-normal leading-none tracking-[-1.5px] transition-transform duration-300 group-hover:-translate-y-1 sm:text-[40px] lg:text-[42px]"
           initial={
             shouldReduceMotion
               ? { opacity: 1, y: 0 }
@@ -546,7 +547,7 @@ function StatCard({
 
       {/* Description */}
       <motion.p
-        className="relative z-10 mt-[14px] max-w-[145px] text-[10px] font-normal leading-[1.6] text-[#d4e8e3] transition-colors duration-300 group-hover:text-white sm:text-[10.5px]"
+        className="relative z-10 mt-[15px] max-w-[145px] text-[14px] font-normal leading-[1.6] text-[#d4e8e3] transition-colors duration-300 group-hover:text-white sm:text-[14px]"
         initial={
           shouldReduceMotion
             ? { opacity: 1, y: 0 }
@@ -645,14 +646,14 @@ export default function EprServices() {
           </motion.div>
 
           {/* Service grid */}
-          <div className="grid grid-cols-1 gap-x-8 md:grid-cols-2 md:gap-x-9 lg:gap-x-[35px]">
+       <div className="grid grid-cols-1 gap-x-8 text-lg md:grid-cols-2 md:gap-x-9 md:text-xl lg:gap-x-[35px] lg:text-2xl">
             {/* Left column */}
             <div className="flex flex-col ">
               {leftServices.map((service, index) => (
                 <div
                   key={service.number}
                   className={ 
-                    index < 2
+                    index < 2 
                       ? "border-b border-[#e5e8e2]"
                       : ""
                   }

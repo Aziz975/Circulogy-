@@ -142,7 +142,7 @@ const CircularEconomySection = () => {
                                     },
                                 },
                             }}
-                            className="font-medium leading-[0.98] tracking-[-0.045em] text-white text-[32px] sm:text-[40px] sm:tracking-[-0.05em] md:text-[46px] lg:text-[50px] xl:text-[56px] 2xl:text-[60px]"
+                            className="text-[40px] font-medium leading-[0.98] tracking-[-0.045em] text-white text-[32px]sm:text-[65px] md:text-[74px] lg:text-[70px] xl:text-[80px] 2xl:text-[60px]"
                         >
 
                             {/* The full circular */}
@@ -260,7 +260,7 @@ const CircularEconomySection = () => {
                         }}
                     >
 
-                        <p className="relative mb-15 w-full font-normal leading-[1.45] tracking-[-0.01em] text-white text-[15px] sm:text-[15px] md:text-[15px] lg:text-[15px] xl:text-[15px] 2xl:text-[15px]">
+                        <p className="relative mb-15 w-full font-normal leading-[1.45] tracking-[-0.01em] text-[#d0d9d7] text-[15px] sm:text-[15px] md:text-[15px] lg:text-[15px] xl:text-[15px] 2xl:text-[15px]">
 
                             From EPR registration and verified credit procurement
                             to zero waste events and carbon strategy Circulogy
@@ -436,7 +436,7 @@ const CircularEconomySection = () => {
                         <motion.img
                             src="/images/critical-mineral-rock.png"
                             alt="Critical mineral rock"
-                            className="relative z-10 h-full w-auto max-w-none object-contain cursor-pointer"
+                            className="relative z-10 h-full w-[120%] max-w-none object-contain cursor-pointer"
                             animate={
                                 shouldReduceMotion
                                     ? {}
@@ -477,7 +477,7 @@ const CircularEconomySection = () => {
                     ================================================= */}
 
                     <motion.div
-                        className="group absolute right-[12%] top-[13%] z-[10000] flex w-[125px] cursor-pointer flex-col rounded-[8px] border border-transparent bg-[#f8fcfa] px-2.5 py-2 shadow-[0_7px_20px_rgba(0,50,43,0.08)] sm:right-[6%] sm:top-[15%] sm:w-[145px] sm:px-3 sm:py-2.5 md:right-[23%] md:top-[18%] md:w-[170px] md:px-4 md:py-3.5 lg:w-[195px] lg:px-4.5 lg:py-4 xl:w-[220px] xl:px-5 xl:py-4.5 2xl:w-[240px] 2xl:px-5.5 2xl:py-5"
+                        className="group absolute right-[12%] top-[13%] z-[10000] flex w-[125px] cursor-pointer flex-col rounded-[8px] border border-transparent bg-[#f8fcfa] px-2.5 py-2 shadow-[0_7px_20px_rgba(0,50,43,0.08)] sm:right-[6%] sm:top-[15%] sm:w-[145px] sm:px-3 sm:py-2.5 md:right-[10%] md:top-[18%] md:w-[170px] md:px-4 md:py-3.5 lg:w-[195px] lg:px-4.5 lg:py-4 xl:w-[220px] xl:px-5 xl:py-4.5 2xl:w-[240px] 2xl:px-5.5 2xl:py-5"
                         initial={
                             shouldReduceMotion
                                 ? { opacity: 1, x: 0, y: 0 }
@@ -553,7 +553,7 @@ const CircularEconomySection = () => {
                     ================================================= */}
 
                     <motion.div
-                        className="group absolute right-[15%] top-[43%] flex w-[125px] cursor-pointer flex-col rounded-[8px] border border-transparent bg-[#06241f] px-2.5 py-2 shadow-[0_8px_20px_rgba(0,30,25,0.12)] sm:right-[6%] sm:top-[44%] sm:w-[145px] sm:px-3 sm:py-2.5 md:right-[23%] md:top-[36%] md:w-[170px] md:px-4 md:py-3.5 lg:w-[195px] lg:px-4.5 lg:py-4 xl:w-[220px] xl:px-5 xl:py-4.5 2xl:w-[240px] 2xl:px-5.5 2xl:py-5"
+                        className="group absolute right-[12%] top-[13%] z-[10000] flex w-[125px] cursor-pointer flex-col rounded-[8px] border border-transparent bg-[#06241f] px-2.5 py-2 shadow-[0_8px_20px_rgba(0,30,25,0.12)]  sm:right-[6%] sm:top-[15%] sm:w-[145px] sm:px-3 sm:py-2.5 md:right-[10%] md:top-[36%] md:w-[170px] md:px-4 md:py-3.5 lg:w-[195px] lg:px-4.5 lg:py-4 xl:w-[220px] xl:px-5 xl:py-4.5 2xl:w-[240px] 2xl:px-5.5 2xl:py-5"
                         initial={
                             shouldReduceMotion
                                 ? { opacity: 1, x: 0, y: 0 }
