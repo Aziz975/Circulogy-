@@ -164,7 +164,9 @@ const Decarbonisation = () => {
               delay: 0.3,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="mb-5 text-[36px] font-bold leading-[1.04] tracking-[-1.5px] text-[#101716] sm:text-[46px] sm:tracking-[-2px] md:text-[52px] lg:text-[54px] xl:text-[58px]"
+
+           
+            className="mb-5 text-[42px] font-bold leading-[1.04] tracking-[-1.5px] text-[#101716] sm:text-[58px] sm:tracking-[-2px] md:text-[52px] lg:text-[54px] xl:text-[72px]"
           >
             Decarbonisation
             <br />

@@ -135,7 +135,7 @@ const CircularEconomySection = () => {
                                     },
                                 },
                             }}
-                            className="pl-[10px] text-[34px] font-medium leading-[0.96] tracking-[-0.045em] text-white sm:text-[45px] md:text-[52px] lg:text-[62px] xl:text-[76px] 2xl:text-[84px]"
+                            className="pl-[10px] text-[34px] font-medium leading-[0.96] tracking-[-0.045em] text-white sm:text-[45px] md:text-[52px] lg:text-[60px] xl:text-[74px] 2xl:text-[80px]"
                         >
                             {/* The full circular */}
                             {"The full circular".split("").map((letter, index) => (
