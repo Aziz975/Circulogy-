@@ -263,10 +263,12 @@ const EpHero = () => {
               delay: 0.45,
               ease: [0.22, 1, 0.36, 1],
             }}
+
+            
             className="mb-5 text-[42px] font-bold
               leading-[0.98] tracking-[-2px] text-white
-              sm:text-[54px] sm:tracking-[-2.5px]
-              md:text-[62px] lg:text-[68px]"
+              sm:text-[58px] sm:tracking-[-2.5px]
+              md:text-[72px] lg:text-[68px] xl:text-[90px]  2xl:text-[80px]"
           >
             EPR &amp;
             <br />
@@ -304,16 +306,16 @@ const EpHero = () => {
               delay: 0.75,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="max-w-[440px] text-[12px]
+            className="max-w-[440px] text-[18px]
               font-normal leading-[1.65] tracking-[0.05px]
              text-[#aeb9b8]
-              sm:text-[13px] sm:leading-[1.7]
-              md:text-[14px]"
+              sm:text-[18px] sm:leading-[1.7]
+              md:text-[18px]"
           >
             End-to-end compliance for every regulated waste
             category. From registration and takeback to
             verified credits, reporting and regulatory
-            advisory — all managed through EPRSense™.
+            advisory  all managed through EPRSense™.
           </motion.p>
 
           {/* CTA */}
@@ -356,12 +358,12 @@ const EpHero = () => {
             }
             className="group mt-6 inline-flex min-h-[38px]
               items-center justify-center gap-2 rounded-full
-              bg-[#f4faf7] px-5 py-2 text-[9px]
+              bg-[#f4faf7] px-5 py-2 text-[12px]
               font-bold uppercase tracking-[1px]
               text-[#00504e] transition-all duration-300
               hover:bg-[#8ccfc5]
               hover:shadow-[0_0_25px_rgba(140,207,197,0.25)]
-              sm:mt-7 sm:min-h-[42px] sm:px-6 sm:text-[10px]"
+              sm:mt-7 sm:min-h-[42px] sm:px-6 sm:text-[12px]"
           >
             TRACEABLE · AUDIT-READY
 

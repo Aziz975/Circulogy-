@@ -169,7 +169,7 @@ const ServiceColumn = ({ services }) => {
                 stiffness: 350,
                 damping: 18,
               }}
-              className="text-[15px] sm:text-[15px] font-medium leading-[18px] tracking-[0.02em] text-[#36aaa0]"
+              className="text-[20px] sm:text-[20px] font-medium leading-[18px] tracking-[0.02em] text-[#36aaa0]"
             >
               {service.number}
             </motion.span>
@@ -212,7 +212,7 @@ const ServiceColumn = ({ services }) => {
                 duration: 0.3,
                 ease: "easeOut",
               }}
-              className="text-[12px] sm:text-[14px] font-bold leading-[1.35] tracking-[-0.015em] text-[#202522]"
+              className="relative mt-[-5px] text-[20px] sm:text-[20px] font-bold leading-[1.35] tracking-[-0.015em] text-[#202522]"
             >
               {service.title}
             </motion.h3>
@@ -246,7 +246,7 @@ const ServiceColumn = ({ services }) => {
                   delay: index * 0.12 + 0.15,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="mt-[9px] max-w-[370px] text-[11px] sm:text-[13px] font-normal leading-[1.65] tracking-[0.005em] text-[#78817c]"
+                className="mt-[9px] max-w-[370px] text-[15px] sm:text-[15px] font-normal leading-[1.65] tracking-[0.005em] text-[#78817c]"
               >
                 {service.description}
               </motion.p>
@@ -319,7 +319,7 @@ export default function SustainabilityServices() {
         duration: 0.8,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="w-full bg-[#e0f2ed] px-4 py-5 sm:px-6 sm:py-7 lg:px-[26px] lg:py-0"
+      className="w-full bg-[#e0f2ed] py-5  sm:py-7  lg:py-0"
     >
 
       <motion.div
@@ -347,7 +347,7 @@ export default function SustainabilityServices() {
           delay: 0.1,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className="mx-auto w-full max-w-[1360px] overflow-hidden rounded-t-[22px] bg-[#f8f8f4] px-5 py-7 shadow-[0_12px_35px_rgba(39,100,84,0.12)] sm:px-7 sm:py-8 md:px-9 md:py-9 lg:px-[23px] lg:pt-[35px] lg:pb-[18px]"
+        className="mx-auto w-full max-w-full overflow-hidden rounded-t-[22px] bg-[#f8f8f4] px-5 py-7 shadow-[0_12px_35px_rgba(39,100,84,0.12)] sm:px-7 sm:py-8 md:px-9 md:py-9 lg:px-[60px] lg:pt-[35px] lg:pb-[18px]"
       >
 
         {/* =================================================

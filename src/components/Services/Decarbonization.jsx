@@ -200,7 +200,7 @@ const Decarbonisation = () => {
               delay: 0.45,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="max-w-[490px] text-[15px] font-normal leading-[1.75] tracking-[0.05px] text-[#aeb9b8] sm:text-[13px] md:text-[14px]"
+            className="max-w-[490px] text-[18px] font-normal leading-[1.75] tracking-[0.05px] text-[#aeb9b8] sm:text-[18px] md:text-[18px]"
           >
             From zero waste events and behaviour change programs to carbon 
             strategy and circular economy advisory, making sustainability 

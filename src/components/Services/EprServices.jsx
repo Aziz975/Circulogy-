@@ -12,13 +12,13 @@ const leftServices = [
     number: "02",
     title: "EPR Certificate Procurement",
     description:
-      "Verified EPR credits sourced from CPCB-registered recyclers and transferred directly to your CPCB account — traceable, pan-India.",
+      "Verified EPR credits sourced from CPCB-registered recyclers and transferred directly to your CPCB account  traceable, pan-India.",
   },
   {
     number: "03",
     title: "Material Takeback & Reverse Logistics",
     description:
-      "EPR-linked collection from dealer, retail and enterprise networks — from first-mile pickup to documented delivery at processing facilities, under a verifiable chain of custody.",
+      "EPR-linked collection from dealer, retail and enterprise networks  from first-mile pickup to documented delivery at processing facilities, under a verifiable chain of custody.",
   },
 ];
 
@@ -27,13 +27,13 @@ const rightServices = [
     number: "04",
     title: "Data Management & Regulatory Reporting",
     description:
-      "Real-time compliance dashboards, credit inventory tracking and annual return filing — managed through EPRSense™. Every deadline met, every filing accurate.",
+      "Real-time compliance dashboards, credit inventory tracking and annual return filing  managed through EPRSense™. Every deadline met, every filing accurate.",
   },
   {
     number: "05",
     title: "Regulatory Advisory",
     description:
-      "Continuous monitoring of CPCB notifications, MoEFCC rule changes and amended targets — translated into actionable compliance steps before they become obligations.",
+      "Continuous monitoring of CPCB notifications, MoEFCC rule changes and amended targets  translated into actionable compliance steps before they become obligations.",
   },
 ];
 
@@ -108,7 +108,7 @@ function ServiceItem({ number, title, description, index = 0 }) {
       {/* Number + line */}
       <div className="flex shrink-0 items-start gap-[5px]">
         <motion.span
-          className="text-[15px] font-medium leading-[15px] text-[#36aaa0] transition-all duration-300 group-hover:scale-110 group-hover:text-[#168f85] sm:text-[15px]"
+          className="text-[20px] font-medium leading-[15px] text-[#36aaa0] transition-all duration-300 group-hover:scale-110 group-hover:text-[#168f85] sm:text-[20px]"
           initial={
             shouldReduceMotion
               ? { opacity: 1 }
@@ -145,9 +145,9 @@ function ServiceItem({ number, title, description, index = 0 }) {
       </div>
 
       {/* Content */}
-      <div className="min-w-0 flex-1">
+      <div className="relative top-[-7px] min-w-0 flex-1 ">
         <motion.h3
-          className="text-[12px] font-bold leading-[1.4] tracking-[-0.15px] text-[#171d1b] transition-colors duration-300 group-hover:text-[#126e68] sm:text-[13px]"
+          className="text-[12px] font-bold leading-[1.4] tracking-[-0.15px] text-[#171d1b] transition-colors duration-300 group-hover:text-[#126e68] sm:text-[20px]"
           initial={
             shouldReduceMotion
               ? { opacity: 1, y: 0 }
@@ -165,7 +165,7 @@ function ServiceItem({ number, title, description, index = 0 }) {
         </motion.h3>
 
         <motion.p
-  className="mt-[10px] max-w-[520px] text-[10px] font-normal leading-[1.65] text-[#78817c] transition-colors duration-300 group-hover:text-[#596661] sm:text-[13px]"
+  className="mt-[10px] max-w-[520px] text-[10px] font-normal leading-[1.65] text-[#78817c] transition-colors duration-300 group-hover:text-[#596661] sm:text-[15px]"
 
           initial={
             shouldReduceMotion
@@ -580,7 +580,7 @@ export default function EprServices() {
 
   return (
     <motion.section
-      className="w-full overflow-hidden bg-[#00504c] px-4 pb-5 pt-0 sm:px-6 sm:pb-6 lg:px-[3.2%]"
+      className="w-full overflow-hidden bg-[#00504c] pb-5 pt-0  sm:pb-6"
       initial={
         shouldReduceMotion
           ? { opacity: 1 }
@@ -598,10 +598,10 @@ export default function EprServices() {
         ease: "easeOut",
       }}
     >
-      <div className="mx-auto max-w-[1360px]">
+      <div className="mx-auto max-w-full">
         {/* Main service panel */}
         <motion.div
-          className="rounded-b-none rounded-t-[18px] bg-[#f8f8f4] px-5 pb-6 pt-8 sm:rounded-t-[22px] sm:px-7 sm:pb-7 sm:pt-9 lg:px-[24px] lg:pb-[30px] lg:pt-[39px]"
+          className="rounded-b-none rounded-t-[18px] bg-[#f8f8f4] px-5 pb-6 pt-8 sm:rounded-t-[22px] sm:px-7 sm:pb-7 sm:pt-9 lg:px-[60px] lg:pb-[30px] lg:pt-[39px]"
           initial={
             shouldReduceMotion
               ? { opacity: 1, y: 0 }

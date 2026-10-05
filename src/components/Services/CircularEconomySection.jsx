@@ -125,7 +125,7 @@ const CircularEconomySection = () => {
 
 
                     {/* Heading */}
-                    <div className="relative mt-15 z-10 w-full max-w-[700px]">
+                    <div className="relative mt-2 z-10 w-full max-w-[700px]">
 
                         <motion.h1
                             initial="hidden"
@@ -142,8 +142,7 @@ const CircularEconomySection = () => {
                                     },
                                 },
                             }}
-                            className="text-[40px] font-medium leading-[0.98] tracking-[-0.045em] text-white text-[32px]sm:text-[65px] md:text-[74px] lg:text-[70px] xl:text-[80px] 2xl:text-[60px]"
-                        >
+                        className="text-[32px] pl-[10px] font-medium leading-[0.96] tracking-[-0.045em] text-white sm:text-[45px] md:text-[46px] lg:text-[56px] xl:text-[70px] 2xl:text-[80px]">
 
                             {/* The full circular */}
                             {"The full circular".split("").map((letter, index) => (
@@ -260,7 +259,7 @@ const CircularEconomySection = () => {
                         }}
                     >
 
-                        <p className="relative mb-15 w-full font-normal leading-[1.45] tracking-[-0.01em] text-[#aeb9b8] text-[15px] sm:text-[15px] md:text-[15px] lg:text-[15px] xl:text-[15px] 2xl:text-[15px]">
+                        <p className="relative ml-5 mb-15 w-full font-normal leading-[1.45] tracking-[-0.01em] text-[#aeb9b8] text-[28px] sm:text-[18px] md:text-[18px] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">
 
                             From EPR registration and verified credit procurement
                             to zero waste events and carbon strategy Circulogy
