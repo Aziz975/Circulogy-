@@ -6,9 +6,7 @@ import {
     useTransform,
 } from "motion/react";
 
-
 const CircularEconomySection = () => {
-
     const shouldReduceMotion = useReducedMotion();
 
     /* =====================================================
@@ -29,7 +27,6 @@ const CircularEconomySection = () => {
         ["#ffffff", "#f4f8f5", "#061d19"]
     );
 
-
     /* =====================================================
        LETTER REVEAL
     ===================================================== */
@@ -45,7 +42,6 @@ const CircularEconomySection = () => {
         },
     };
 
-
     return (
         <motion.section
             ref={sectionRef}
@@ -54,7 +50,6 @@ const CircularEconomySection = () => {
             }}
             className="w-full px-3 py-4 sm:px-5 sm:py-5 md:px-7 lg:px-10 lg:py-6"
         >
-
             <motion.div
                 className="relative mx-auto flex min-h-[700px] w-full max-w-[1400px] flex-col overflow-hidden rounded-[18px] border border-[#dce9e4] bg-[#eaf7f3] shadow-[0_15px_40px_rgba(0,40,32,0.12)] sm:min-h-[760px] md:min-h-[620px] md:flex-row md:rounded-[20px] lg:min-h-[565px]"
                 initial={
@@ -75,8 +70,6 @@ const CircularEconomySection = () => {
                     ease: [0.22, 1, 0.36, 1],
                 }}
             >
-
-
                 {/* =====================================================
                     LEFT DARK PANEL
                 ===================================================== */}
@@ -101,7 +94,6 @@ const CircularEconomySection = () => {
                         ease: [0.22, 1, 0.36, 1],
                     }}
                 >
-
                     {/* Subtle glow */}
                     <motion.div
                         className="pointer-events-none absolute -right-[130px] top-[20px] h-[280px] w-[280px] rounded-full bg-[#0d5a50]/20 blur-[70px] sm:-right-[140px] sm:top-[10px] sm:h-[340px] sm:w-[340px] sm:blur-[80px] md:-right-[120px] md:h-[380px] md:w-[380px] lg:h-[420px] lg:w-[420px] xl:h-[450px] xl:w-[450px]"
@@ -123,10 +115,11 @@ const CircularEconomySection = () => {
                         }}
                     />
 
+                    {/* =================================================
+                        HEADING
+                    ================================================= */}
 
-                    {/* Heading */}
-                    <div className="relative mt-2 z-10 w-full max-w-[700px]">
-
+                    <div className="relative z-10 mt-2 w-full max-w-[700px]">
                         <motion.h1
                             initial="hidden"
                             whileInView="visible"
@@ -142,8 +135,8 @@ const CircularEconomySection = () => {
                                     },
                                 },
                             }}
-                        className="text-[32px] pl-[10px] font-medium leading-[0.96] tracking-[-0.045em] text-white sm:text-[45px] md:text-[46px] lg:text-[56px] xl:text-[70px] 2xl:text-[80px]">
-
+                            className="pl-[10px] text-[34px] font-medium leading-[0.96] tracking-[-0.045em] text-white sm:text-[45px] md:text-[52px] lg:text-[62px] xl:text-[76px] 2xl:text-[84px]"
+                        >
                             {/* The full circular */}
                             {"The full circular".split("").map((letter, index) => (
                                 <motion.span
@@ -230,15 +223,15 @@ const CircularEconomySection = () => {
                                     {letter}
                                 </motion.span>
                             ))}
-
                         </motion.h1>
-
                     </div>
 
+                    {/* =================================================
+                        BOTTOM PARAGRAPH
+                    ================================================= */}
 
-                    {/* Bottom paragraph */}
                     <motion.div
-                        className="relative z-10 mt-10 w-full max-w-[520px] sm:mt-12 md:mt-8 lg:mt-10"
+                        className="relative z-10 mt-7 w-full max-w-[520px] sm:mt-10 md:mt-8 lg:mt-10"
                         initial={
                             shouldReduceMotion
                                 ? { opacity: 1, y: 0 }
@@ -258,21 +251,15 @@ const CircularEconomySection = () => {
                             ease: [0.22, 1, 0.36, 1],
                         }}
                     >
-
-                        <p className="relative ml-5 mb-15 w-full font-normal leading-[1.45] tracking-[-0.01em] text-[#aeb9b8] text-[28px] sm:text-[18px] md:text-[18px] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">
-
+                        <p className="relative ml-3 mb-10 w-full pr-4 text-[15px] font-normal leading-[1.5] tracking-[-0.01em] text-[#aeb9b8] sm:ml-5 sm:mb-12 sm:pr-2 sm:text-[17px] md:text-[18px] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">
                             From EPR registration and verified credit procurement
                             to zero waste events and carbon strategy Circulogy
                             delivers the complete circular economy service stack
                             for producers, brand owners and organisations
                             navigating India's sustainability transition.
-
                         </p>
-
                     </motion.div>
-
                 </motion.div>
-
 
                 {/* =====================================================
                     RIGHT LIGHT PANEL
@@ -299,8 +286,6 @@ const CircularEconomySection = () => {
                         ease: [0.22, 1, 0.36, 1],
                     }}
                 >
-
-
                     {/* =================================================
                         DECORATIVE CIRCLES
                     ================================================= */}
@@ -370,23 +355,20 @@ const CircularEconomySection = () => {
                         }}
                     />
 
-
                     {/* =================================================
                         MINERAL IMAGE
                     ================================================= */}
 
                     <div className="group absolute left-[-8%] top-[4%] z-[9999] h-[95%] w-auto sm:left-[-5%] sm:h-[96%] md:left-[-17%] md:top-[5%] md:h-[94%] lg:left-[-15%] lg:h-[95%] xl:left-[-14%] xl:h-[96%]">
-
-                        {/* Main continuous glow */}
                         <motion.div
                             className="pointer-events-none absolute inset-[-10%] rounded-full bg-[#43c5b3]/30 blur-[55px]"
                             animate={
                                 shouldReduceMotion
                                     ? {}
                                     : {
-                                        opacity: [0.25, 0.65, 0.25],
-                                        scale: [0.92, 1.08, 0.92],
-                                    }
+                                          opacity: [0.25, 0.65, 0.25],
+                                          scale: [0.92, 1.08, 0.92],
+                                      }
                             }
                             transition={{
                                 duration: 3.5,
@@ -395,7 +377,6 @@ const CircularEconomySection = () => {
                             }}
                         />
 
-                        {/* Hover glow */}
                         <motion.div
                             className="pointer-events-none absolute inset-[-18%] rounded-full bg-[#43c5b3]/40 blur-[65px]"
                             initial={{
@@ -412,16 +393,15 @@ const CircularEconomySection = () => {
                             }}
                         />
 
-                        {/* Inner glow */}
                         <motion.div
                             className="pointer-events-none absolute inset-[-4%] rounded-full bg-[#65e6d2]/25 blur-[30px]"
                             animate={
                                 shouldReduceMotion
                                     ? {}
                                     : {
-                                        opacity: [0.2, 0.55, 0.2],
-                                        scale: [0.96, 1.04, 0.96],
-                                    }
+                                          opacity: [0.2, 0.55, 0.2],
+                                          scale: [0.96, 1.04, 0.96],
+                                      }
                             }
                             transition={{
                                 duration: 2.5,
@@ -431,26 +411,25 @@ const CircularEconomySection = () => {
                             }}
                         />
 
-                        {/* Mineral image */}
                         <motion.img
                             src="/images/critical-mineral-rock.png"
                             alt="Critical mineral rock"
-                            className="relative z-10 h-full w-[120%] max-w-none object-contain cursor-pointer"
+                            className="relative z-10 h-full w-[120%] max-w-none cursor-pointer object-contain"
                             animate={
                                 shouldReduceMotion
                                     ? {}
                                     : {
-                                        y: [0, -5, 0],
-                                    }
+                                          y: [0, -5, 0],
+                                      }
                             }
                             whileHover={
                                 shouldReduceMotion
                                     ? {}
                                     : {
-                                        scale: 1.06,
-                                        filter:
-                                            "drop-shadow(0 0 25px rgba(67,197,179,0.45))",
-                                    }
+                                          scale: 1.06,
+                                          filter:
+                                              "drop-shadow(0 0 25px rgba(67,197,179,0.45))",
+                                      }
                             }
                             transition={{
                                 y: {
@@ -467,16 +446,14 @@ const CircularEconomySection = () => {
                                 },
                             }}
                         />
-
                     </div>
-
 
                     {/* =================================================
                         SERVICE CARD 01
                     ================================================= */}
 
                     <motion.div
-                        className="group absolute right-[12%] top-[13%] z-[10000] flex w-[125px] cursor-pointer flex-col rounded-[8px] border border-transparent bg-[#f8fcfa] px-2.5 py-2 shadow-[0_7px_20px_rgba(0,50,43,0.08)] sm:right-[6%] sm:top-[15%] sm:w-[145px] sm:px-3 sm:py-2.5 md:right-[10%] md:top-[18%] md:w-[170px] md:px-4 md:py-3.5 lg:w-[195px] lg:px-4.5 lg:py-4 xl:w-[220px] xl:px-5 xl:py-4.5 2xl:w-[240px] 2xl:px-5.5 2xl:py-5"
+                        className="group absolute right-[12%] top-[13%] z-[10000] flex w-[125px] cursor-pointer flex-col rounded-[8px] border border-transparent bg-[#f8fcfa] px-2.5 py-2 shadow-[0_7px_20px_rgba(0,50,43,0.08)] sm:right-[6%] sm:top-[15%] sm:w-[145px] sm:px-3 sm:py-2.5 md:right-[10%] md:top-[18%] md:w-[170px] md:px-4 md:py-3.5 lg:w-[195px] lg:px-4 lg:py-4 xl:w-[220px] xl:px-5 xl:py-4 2xl:w-[240px] 2xl:px-5 2xl:py-5"
                         initial={
                             shouldReduceMotion
                                 ? { opacity: 1, x: 0, y: 0 }
@@ -504,8 +481,6 @@ const CircularEconomySection = () => {
                             delay: 0.55,
                         }}
                     >
-
-                        {/* Hover glow */}
                         <motion.div
                             className="pointer-events-none absolute inset-0 rounded-[8px] bg-[#43c5b3]/10 opacity-0 blur-xl"
                             whileHover={{
@@ -517,7 +492,6 @@ const CircularEconomySection = () => {
                         />
 
                         <div className="relative z-10 flex items-center justify-between">
-
                             <span className="font-['Inter',Arial,sans-serif] text-[5px] font-[700] uppercase tracking-[0.7px] text-[#6ca99e] sm:text-[6px] md:text-[7px] lg:text-[8px] xl:text-[8.5px] 2xl:text-[9px]">
                                 01 • SERVICE CLUSTER
                             </span>
@@ -537,22 +511,19 @@ const CircularEconomySection = () => {
                             >
                                 ↗
                             </motion.span>
-
                         </div>
 
                         <p className="relative z-10 mt-1 font-['Inter',Arial,sans-serif] text-[9px] font-[700] leading-[1.25] text-[#193a35] sm:text-[10px] md:text-[12px] lg:mt-2 lg:text-[14px] xl:text-[15px] 2xl:text-[16px]">
-                            EPR & Compliance
+                            EPR &amp; Compliance
                         </p>
-
                     </motion.div>
-
 
                     {/* =================================================
                         SERVICE CARD 02
                     ================================================= */}
 
                     <motion.div
-                        className="group absolute right-[12%] top-[13%] z-[10000] flex w-[125px] cursor-pointer flex-col rounded-[8px] border border-transparent bg-[#06241f] px-2.5 py-2 shadow-[0_8px_20px_rgba(0,30,25,0.12)]  sm:right-[6%] sm:top-[15%] sm:w-[145px] sm:px-3 sm:py-2.5 md:right-[10%] md:top-[36%] md:w-[170px] md:px-4 md:py-3.5 lg:w-[195px] lg:px-4.5 lg:py-4 xl:w-[220px] xl:px-5 xl:py-4.5 2xl:w-[240px] 2xl:px-5.5 2xl:py-5"
+                      className="group absolute right-[12%] top-[50%] z-[10000] flex w-[125px] cursor-pointer flex-col rounded-[8px] border border-transparent bg-[#06241f] px-2.5 py-2 shadow-[0_8px_20px_rgba(0,30,25,0.12)] sm:right-[8%] sm:top-[20%] sm:w-[140px] sm:px-3 sm:py-2.5 md:right-[100%] md:top-[28%] md:w-[165px] md:px-3.5 md:py-3 lg:right-[10%] lg:top-[40%] lg:w-[190px] lg:px-4 lg:py-3.5 xl:right-[9%] xl:top-[32%] xl:w-[215px] xl:px-5 xl:py-4 2xl:right-[10%] 2xl:top-[34%] 2xl:w-[235px] 2xl:px-5 2xl:py-5"
                         initial={
                             shouldReduceMotion
                                 ? { opacity: 1, x: 0, y: 0 }
@@ -580,8 +551,6 @@ const CircularEconomySection = () => {
                             delay: 0.7,
                         }}
                     >
-
-                        {/* Hover glow */}
                         <motion.div
                             className="pointer-events-none absolute inset-0 rounded-[8px] bg-[#43c5b3]/15 opacity-0 blur-xl"
                             whileHover={{
@@ -593,7 +562,6 @@ const CircularEconomySection = () => {
                         />
 
                         <div className="relative z-10 flex items-center justify-between">
-
                             <span className="font-['Inter',Arial,sans-serif] text-[5px] font-[700] uppercase tracking-[0.7px] text-[#54bcae] sm:text-[6px] md:text-[7px] lg:text-[8px] xl:text-[8.5px] 2xl:text-[9px]">
                                 02 • SERVICE CLUSTER
                             </span>
@@ -613,17 +581,14 @@ const CircularEconomySection = () => {
                             >
                                 ↗
                             </motion.span>
-
                         </div>
 
                         <p className="relative z-10 mt-1 font-['Inter',Arial,sans-serif] text-[9px] font-[700] leading-[1.25] text-white sm:text-[10px] md:text-[12px] lg:mt-2 lg:text-[14px] xl:text-[15px] 2xl:text-[16px]">
-                            Decarbonisation &
+                            Decarbonisation &amp;
                             <br />
                             Sustainability
                         </p>
-
                     </motion.div>
-
 
                     {/* =================================================
                         VERTICAL TEXT
@@ -649,17 +614,12 @@ const CircularEconomySection = () => {
                             delay: 0.85,
                         }}
                     >
-
                         <span className="font-['Inter',Arial,sans-serif] text-[4px] font-[700] uppercase tracking-[1.5px] text-[#78a9a1] sm:text-[5px] sm:tracking-[2px]">
                             CIRCULAR ECONOMY • COMPLIANCE • SUSTAINABILITY
                         </span>
-
                     </motion.div>
-
                 </motion.div>
-
             </motion.div>
-
         </motion.section>
     );
 };
