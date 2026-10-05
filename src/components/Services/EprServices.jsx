@@ -147,7 +147,7 @@ function ServiceItem({ number, title, description, index = 0 }) {
       {/* Content */}
       <div className="relative top-[-7px] min-w-0 flex-1 ">
         <motion.h3
-          className="text-[12px] font-bold leading-[1.4] tracking-[-0.15px] text-[#171d1b] transition-colors duration-300 group-hover:text-[#126e68] sm:text-[20px]"
+          className="text-[20px] font-bold leading-[1.4] tracking-[-0.15px] text-[#171d1b] transition-colors duration-300 group-hover:text-[#126e68] sm:text-[20px]"
           initial={
             shouldReduceMotion
               ? { opacity: 1, y: 0 }
@@ -165,7 +165,7 @@ function ServiceItem({ number, title, description, index = 0 }) {
         </motion.h3>
 
         <motion.p
-  className="mt-[10px] max-w-[520px] text-[10px] font-normal leading-[1.65] text-[#78817c] transition-colors duration-300 group-hover:text-[#596661] sm:text-[15px]"
+  className="mt-[10px] max-w-[520px] text-[15px] font-normal leading-[1.65] text-[#78817c] transition-colors duration-300 group-hover:text-[#596661] sm:text-[15px]"
 
           initial={
             shouldReduceMotion
