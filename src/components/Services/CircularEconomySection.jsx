@@ -51,7 +51,7 @@ const CircularEconomySection = () => {
             className="w-full px-3 py-4 sm:px-5 sm:py-5 md:px-7 lg:px-10 lg:py-6"
         >
             <motion.div
-                className="relative mx-auto flex min-h-[700px] w-full max-w-[1400px] flex-col overflow-hidden rounded-[18px] border border-[#dce9e4] bg-[#eaf7f3] shadow-[0_15px_40px_rgba(0,40,32,0.12)] sm:min-h-[760px] md:min-h-[620px] md:flex-row md:rounded-[20px] lg:min-h-[565px]"
+                className="relative mx-auto flex min-h-[700px] w-full max-w-[1450px] flex-col overflow-hidden rounded-[18px] border border-[#dce9e4] bg-[#eaf7f3] shadow-[0_15px_40px_rgba(0,40,32,0.12)] sm:min-h-[760px] md:min-h-[620px] md:flex-row md:rounded-[20px] lg:min-h-[565px]"
                 initial={
                     shouldReduceMotion
                         ? { opacity: 1, y: 0 }

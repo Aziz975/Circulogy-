@@ -422,7 +422,7 @@ export default function SustainabilityServices() {
             SERVICES
         ================================================= */}
 
-        <div className="grid grid-cols-1 gap-x-8 md:grid-cols-2 md:gap-x-9 lg:gap-x-[37px]">
+        <div className="grid grid-cols-1 gap-x-15 md:grid-cols-2 md:gap-x-50 lg:gap-x-[50px]">
 
           <ServiceColumn services={leftServices} />
 

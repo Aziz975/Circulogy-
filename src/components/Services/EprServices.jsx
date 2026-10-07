@@ -646,7 +646,7 @@ export default function EprServices() {
           </motion.div>
 
           {/* Service grid */}
-       <div className="grid grid-cols-1 gap-x-8 text-lg md:grid-cols-2 md:gap-x-9 md:text-xl lg:gap-x-[35px] lg:text-2xl">
+       <div className="grid grid-cols-1 gap-x-16 text-lg md:grid-cols-2 md:gap-x-20 md:text-xl lg:gap-x-[75px] lg:text-2xl">
             {/* Left column */}
             <div className="flex flex-col ">
               {leftServices.map((service, index) => (

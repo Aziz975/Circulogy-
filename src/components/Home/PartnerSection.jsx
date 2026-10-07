@@ -1,390 +1,391 @@
-import React, { useEffect, useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import React, { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "motion/react";
 
 const partners = [
-  {
-    number: "01",
-    name: "ESSCI",
-    image: "images/essci.png",
-  },
-  {
-    number: "02",
-    name: "TECHNO ELECTRIC",
-    image: "images/techno_electric.png",
-  },
-  {
-    number: "03",
-    name: "WERFTEN",
-    image: "images/werfen.png",
-  },
-  {
-    number: "04",
-    name: "LIFE",
-    image: "images/life.png",
-  },
-  {
-    number: "05",
-    name: "BSG",
-    image: "images/bsg.png",
-  },
+  { id: 1, name: "Partner 1", image: "/images/partner1.png" },
+  { id: 2, name: "Partner 2", image: "/images/partner2.png" },
+  { id: 3, name: "Partner 3", image: "/images/partner3.png" },
+  { id: 4, name: "Partner 4", image: "/images/partner4.png" },
+  { id: 5, name: "Partner 5", image: "/images/partner5.png" },
+  { id: 6, name: "Partner 6", image: "/images/partner6.png" },
+  { id: 7, name: "Partner 7", image: "/images/partner7.png" },
+  { id: 8, name: "Partner 8", image: "/images/partner8.png" },
+  { id: 9, name: "Partner 9", image: "/images/partner9.png" },
+  { id: 10, name: "Partner 10", image: "/images/partner10.png" },
+  { id: 11, name: "Partner 11", image: "/images/partner11.png" },
+  { id: 12, name: "Partner 12", image: "/images/partner12.png" },
 ];
 
-export default function PartnerSection() {
-  const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+const PartnersSection = () => {
+  const [activeIndex, setActiveIndex] = useState(4);
 
-  useEffect(() => {
-    const section = sectionRef.current;
+  const total = partners.length;
 
-    if (!section) return;
+  const normalizeIndex = (index) => {
+    return (index + total) % total;
+  };
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(false);
+  const nextSlide = () => {
+    setActiveIndex((current) => normalizeIndex(current + 1));
+  };
 
-          requestAnimationFrame(() => {
-            setIsVisible(true);
-          });
-        } else {
-          setIsVisible(false);
-        }
-      },
-      {
-        threshold: 0.15,
-      }
-    );
+  const previousSlide = () => {
+    setActiveIndex((current) => normalizeIndex(current - 1));
+  };
 
-    observer.observe(section);
+  const goToSlide = (index) => {
+    setActiveIndex(index);
+  };
 
-    return () => observer.disconnect();
-  }, []);
+  const getRelativePosition = (index) => {
+    let position = index - activeIndex;
+
+    if (position > total / 2) {
+      position -= total;
+    }
+
+    if (position < -total / 2) {
+      position += total;
+    }
+
+    return position;
+  };
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative w-full overflow-hidden bg-[#f8f8f3] px-5 pt-5 pb-8 text-[#061715] sm:px-8 sm:pt-6 sm:pb-10 md:px-10 md:pt-8 md:pb-12 lg:px-16 lg:pt-10 lg:pb-14 xl:px-[4%]"
-    >
-      {/* =====================================================
-          SOFT BACKGROUND GLOW
-      ====================================================== */}
+    <section className="w-full overflow-hidden bg-[#f7f6f2] px-4 py-10 sm:px-6 sm:py-12 md:px-8 md:py-14 lg:px-12 lg:py-16 xl:px-16">
+      <div className="mx-auto w-full max-w-[1500px]">
 
-      <div className="pointer-events-none absolute -left-40 top-3 h-[500px] w-[500px] rounded-full bg-[#8ce4d8]/20 blur-[110px]" />
+        {/* HEADING */}
 
-      <div className="pointer-events-none absolute right-[-180px] top-[35%] h-[500px] w-[500px] rounded-full bg-[#dceee9]/60 blur-[100px]" />
+        <div className="max-w-[780px]">
+          <h2 className="text-[38px] font-medium leading-[0.98] tracking-[-0.045em] text-[#111111] sm:text-[46px] md:text-[54px] lg:text-[58px] xl:text-[60px]">
+            Stronger Together.
+          </h2>
 
-      <div className="relative mx-auto max-w-[1740px]">
+          <h2 className="mt-1 text-[38px] font-medium leading-[0.98] tracking-[-0.045em] text-[#249d94] sm:text-[46px] md:text-[54px] lg:text-[58px] xl:text-[60px]">
+            Building the Circular Future.
+          </h2>
 
-        {/* =====================================================
-            TOP CONTENT
-        ====================================================== */}
-
-        <div className="grid items-start gap-10 lg:grid-cols-[1.45fr_0.7fr] lg:gap-20 xl:grid-cols-[1.55fr_0.7fr]">
-
-          {/* LEFT */}
-
-          <div>
-
-            {/* Label */}
-            <p
-              className={`mb-6  text-[13px] font-extrabold tracking-[0.08em] text-[#159f91] sm:text-[13px] ${
-                isVisible ? "animate-fade-up" : "opacity-0"
-              }`}
-              style={{
-                animationDelay: "0ms",
-              }}
-            >
-              OUR PARTNERS
-            </p>
-
-            {/* Heading */}
-         <h2
- className="max-w-[1000px] text-[36px] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071614] sm:text-[42px] md:text-[48px] lg:text-[52px] xl:text-[56px]">
-  {"Stronger Together.".split("").map((letter, index) => (
-    <span
-      key={`stronger-${index}`}
-      className={`horizontal-letter ${
-        isVisible ? "horizontal-letter-visible" : ""
-      }`}
-      style={{
-        transitionDelay: `${120 + index * 45}ms`,
-      }}
-    >
-      {letter === " " ? "\u00A0" : letter}
-    </span>
-  ))}
-
-  <br />
-
-<span className="text-[#159f91] whitespace-nowrap">
-  {"Building the Circular Future.".split("").map((letter, index) => (
-    <span
-      key={`future-${index}`}
-      className={`horizontal-letter ${
-        isVisible ? "horizontal-letter-visible" : ""
-      }`}
-      style={{
-        transitionDelay: `${950 + index * 45}ms`,
-      }}
-    >
-      {letter === " " ? "\u00A0" : letter}
-    </span>
-  ))}
-</span>
-</h2>
-
-          </div>
-
-          {/* RIGHT */}
-
-          <div
-            className={`pt-1 lg:pt-9 ${
-              isVisible ? "animate-fade-up" : "opacity-0"
-            }`}
-            style={{
-              animationDelay: "250ms",
-            }}
-          >
-            <p className="max-w-[580px] text-[15px] font-medium leading-[1.55] text-[#394542] sm:text-[16px] md:text-[17px]">
-              We collaborate with forward-thinking organizations,
-              industry leaders, and innovation partners to close loops,
-              unlock value, and create lasting impact across the
-              circular economy.
-            </p>
-          </div>
-
+          <p className="mt-6 max-w-[650px] text-[14px] font-normal leading-[1.6] tracking-[-0.01em] text-[#777773] sm:mt-7 sm:text-[15px] md:mt-8 md:text-[16px] lg:text-[17px]">
+            We collaborate with forward-thinking organizations, industry leaders, and innovation partners to close loops, unlock value, and create lasting impact across the circular economy.
+          </p>
         </div>
 
-        {/* =====================================================
-            PARTNER CARD
-        ====================================================== */}
+        {/* CAROUSEL */}
 
-        <div
-          className={`relative mt-14 overflow-hidden rounded-[30px] border border-[#dcebe7] bg-[#eef9f6]/90 sm:mt-16 md:mt-20 lg:mt-14 ${
-            isVisible ? "animate-fade-up" : "opacity-0"
+        <div className="relative mt-12 w-full sm:mt-14 md:mt-16 lg:mt-[70px]">
+
+          <div className="relative h-[230px] w-full overflow-visible sm:h-[260px] md:h-[285px] lg:h-[330px] xl:h-[350px]">
+
+            {/* LEFT ARROW */}
+
+            <button type="button" onClick={previousSlide} aria-label="Previous partner" className="absolute left-0 top-1/2 z-[100] flex h-[44px] w-[44px] -translate-y-1/2 items-center justify-center rounded-full bg-[#696969] text-white shadow-[0_8px_20px_rgba(0,0,0,0.10)] transition-all duration-300 hover:scale-105 hover:bg-[#555555] active:scale-95 sm:h-[48px] sm:w-[48px] md:h-[50px] md:w-[50px]">
+              <ChevronLeft className="h-[22px] w-[22px] sm:h-[24px] sm:w-[24px]" strokeWidth={1.8} />
+            </button>
+
+            {/* RIGHT ARROW */}
+
+            <button type="button" onClick={nextSlide} aria-label="Next partner" className="absolute right-0 top-1/2 z-[100] flex h-[44px] w-[44px] -translate-y-1/2 items-center justify-center rounded-full bg-[#c6c6c3] text-white shadow-[0_8px_20px_rgba(0,0,0,0.06)] transition-all duration-300 hover:scale-105 hover:bg-[#aeadab] active:scale-95 sm:h-[48px] sm:w-[48px] md:h-[50px] md:w-[50px]">
+              <ChevronRight className="h-[22px] w-[22px] sm:h-[24px] sm:w-[24px]" strokeWidth={1.8} />
+            </button>
+
+            {/* =====================================================
+                DESKTOP
+                5 CIRCLES
+            ====================================================== */}
+
+          <div className="absolute inset-0 hidden items-center justify-center lg:flex">
+  {partners.map((partner, index) => {
+    const position = getRelativePosition(index);
+
+    if (Math.abs(position) > 2) {
+      return null;
+    }
+
+    const isCenter = position === 0;
+
+    let translateX = 0;
+    let zIndex = 10;
+    let opacity = 0.65;
+    let scale = 1;
+
+    if (position === -2) {
+      translateX = -390;
+      zIndex = 10;
+      opacity = 0.55;
+      scale = 0.94;
+    }
+
+    if (position === -1) {
+      translateX = -195;
+      zIndex = 20;
+      opacity = 0.78;
+      scale = 0.97;
+    }
+
+    if (position === 0) {
+      translateX = 0;
+      zIndex = 50;
+      opacity = 1;
+      scale = 1;
+    }
+
+    if (position === 1) {
+      translateX = 195;
+      zIndex = 20;
+      opacity = 0.78;
+      scale = 0.97;
+    }
+
+    if (position === 2) {
+      translateX = 390;
+      zIndex = 10;
+      opacity = 0.55;
+      scale = 0.94;
+    }
+
+    return (
+      <button
+        key={partner.id}
+        type="button"
+        onClick={() => goToSlide(index)}
+        aria-label={`Select ${partner.name}`}
+        className="group absolute left-1/2 top-1/2 outline-none"
+        style={{
+          transform: `translate(-50%, -50%) translateX(${translateX}px) scale(${scale})`,
+          zIndex,
+          opacity,
+          transition: "transform 650ms cubic-bezier(0.22,1,0.36,1), opacity 500ms ease",
+        }}
+      >
+        <div className={`relative flex items-center justify-center overflow-hidden rounded-full bg-white transition-all duration-400 ease-out ${isCenter ? "h-[200px] w-[200px] border-[2px] border-[#83d2ca] shadow-[0_18px_45px_rgba(36,157,148,0.16)] xl:h-[205px] xl:w-[205px]" : "h-[145px] w-[145px] border-[2px] border-[#d8ebe8] xl:h-[150px] xl:w-[150px]"} group-hover:border-[#69c9c0] group-hover:shadow-[0_0_0_5px_rgba(36,157,148,0.06),0_0_35px_rgba(36,157,148,0.28),0_18px_45px_rgba(36,157,148,0.16)]`}>
+          
+          {isCenter && (
+            <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(46,174,163,0.10)_0%,rgba(46,174,163,0.03)_45%,transparent_72%)] transition-all duration-500 group-hover:bg-[radial-gradient(circle,rgba(46,174,163,0.18)_0%,rgba(46,174,163,0.06)_48%,transparent_75%)]" />
+          )}
+
+          <img
+            src={partner.image}
+            alt={partner.name}
+            draggable="false"
+            className={`relative z-10 object-contain transition-transform duration-500 ease-out group-hover:scale-[1.04] ${isCenter ? "h-[72%] w-[72%]" : "h-[64%] w-[64%]"}`}
+          />
+
+        </div>
+      </button>
+    );
+  })}
+</div>
+            {/* =====================================================
+                TABLET
+                3 CIRCLES
+            ====================================================== */}
+
+            <div className="absolute inset-0 hidden items-center justify-center sm:flex lg:hidden">
+              {partners.map((partner, index) => {
+                const position = getRelativePosition(index);
+
+                if (Math.abs(position) > 1) {
+                  return null;
+                }
+
+                const isCenter = position === 0;
+
+                let translateX = 0;
+                let zIndex = 10;
+                let opacity = 0.65;
+                let scale = 1;
+
+                if (position === -1) {
+                  translateX = -170;
+                  zIndex = 20;
+                  opacity = 0.75;
+                  scale = 0.95;
+                }
+
+                if (position === 0) {
+                  translateX = 0;
+                  zIndex = 50;
+                  opacity = 1;
+                  scale = 1;
+                }
+
+                if (position === 1) {
+                  translateX = 170;
+                  zIndex = 20;
+                  opacity = 0.75;
+                  scale = 0.95;
+                }
+
+                return (
+                  <button key={partner.id} type="button" onClick={() => goToSlide(index)} aria-label={`Select ${partner.name}`} className="absolute left-1/2 top-1/2 outline-none" style={{ transform: `translate(-50%, -50%) translateX(${translateX}px) scale(${scale})`, zIndex, opacity, transition: "transform 650ms cubic-bezier(0.22,1,0.36,1), opacity 500ms ease" }}>
+                    <div className={`relative flex items-center justify-center overflow-hidden rounded-full bg-white ${isCenter ? "h-[185px] w-[185px] border-[2px] border-[#83d2ca] shadow-[0_15px_40px_rgba(36,157,148,0.15)]" : "h-[140px] w-[140px] border-[2px] border-[#d8ebe8]"}`}>
+
+                      {isCenter && <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(46,174,163,0.10)_0%,rgba(46,174,163,0.03)_45%,transparent_72%)]" />}
+
+                      <img src={partner.image} alt={partner.name} draggable="false" className="h-[65%] w-[65%] object-contain" />
+
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* =====================================================
+                MOBILE
+                3 CIRCLES
+            ====================================================== */}
+
+          <div className="absolute inset-0 flex items-center justify-center sm:hidden">
+  {partners.map((partner, index) => {
+    const position = getRelativePosition(index);
+
+    if (Math.abs(position) > 1) {
+      return null;
+    }
+
+    const isCenter = position === 0;
+
+    let translateX = 0;
+    let zIndex = 10;
+    let opacity = 0.60;
+    let scale = 0.9;
+
+    if (position === -1) {
+      translateX = -140;
+      zIndex = 20;
+      opacity = 0.70;
+      scale = 0.92;
+    }
+
+    if (position === 0) {
+      translateX = 0;
+      zIndex = 50;
+      opacity = 1;
+      scale = 1;
+    }
+
+    if (position === 1) {
+      translateX = 140;
+      zIndex = 20;
+      opacity = 0.70;
+      scale = 0.92;
+    }
+
+    return (
+      <motion.button
+        key={partner.id}
+        type="button"
+        onClick={() => goToSlide(index)}
+        aria-label={`Select ${partner.name}`}
+        className="absolute left-1/2 top-1/2 outline-none"
+        initial={false}
+        animate={{
+          x: translateX,
+          scale,
+          opacity,
+        }}
+        whileHover={{
+          scale: isCenter ? 1.06 : 1.02,
+          y: -5,
+          opacity: 1,
+        }}
+        whileTap={{
+          scale: isCenter ? 1.02 : 0.98,
+        }}
+        transition={{
+          x: {
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1],
+          },
+          scale: {
+            duration: 0.35,
+            ease: [0.22, 1, 0.36, 1],
+          },
+          opacity: {
+            duration: 0.35,
+            ease: "easeOut",
+          },
+          y: {
+            duration: 0.3,
+            ease: [0.22, 1, 0.36, 1],
+          },
+        }}
+        style={{
+          translateX: "-50%",
+          translateY: "-50%",
+          zIndex,
+        }}
+      >
+        <motion.div
+          className={`relative flex items-center justify-center overflow-hidden rounded-full bg-white ${
+            isCenter
+              ? "h-[150px] w-[150px] border-[2px] border-[#83d2ca]"
+              : "h-[100px] w-[100px] border-[2px] border-[#d8ebe8]"
           }`}
-          style={{
-            animationDelay: "380ms",
+          animate={{
+            boxShadow: isCenter
+              ? "0 14px 35px rgba(36,157,148,0.15)"
+              : "0 8px 22px rgba(36,157,148,0.04)",
+          }}
+          whileHover={{
+            borderColor: "#63c8be",
+            boxShadow: isCenter
+              ? "0 0 0 5px rgba(36,157,148,0.08), 0 0 45px rgba(36,157,148,0.30), 0 16px 40px rgba(36,157,148,0.18)"
+              : "0 0 0 4px rgba(36,157,148,0.07), 0 0 30px rgba(36,157,148,0.24), 0 12px 30px rgba(36,157,148,0.12)",
+          }}
+          transition={{
+            duration: 0.35,
+            ease: "easeOut",
           }}
         >
-
-          {/* Card glow */}
-
-          <div className="pointer-events-none absolute -left-20 top-[-100px] h-[400px] w-[600px] rounded-full bg-[#9ce8df]/25 blur-[90px]" />
-
-          <div className="pointer-events-none absolute bottom-[-180px] right-[-100px] h-[350px] w-[700px] rounded-[50%] bg-[#ffffff]/70 blur-[45px]" />
-
-          <div className="relative z-10 px-6 py-7 sm:px-8 sm:py-9 md:px-10 lg:px-8 xl:px-5">
-
-            {/* =================================================
-                CARD HEADER
-            ================================================== */}
-
-            <div className="flex flex-col gap-4 border-b border-[#d5e5e1] pb-15 sm:flex-row sm:items-center sm:justify-between">
-
-              <h3
-                className={`text-[23px] font-semibold tracking-[-0.02em] text-[#071715] sm:text-[25px] md:text-[27px] ${
-                  isVisible ? "animate-fade-up" : "opacity-0"
-                }`}
-                style={{
-                  animationDelay: "500ms",
-                }}
-              >
-                Partners across technology, skills and sustainability.
-              </h3>
-
-              <span
-                className={`text-[10px] font-medium tracking-[0.2em] text-[#71817e] ${
-                  isVisible ? "animate-fade-up" : "opacity-0"
-                }`}
-                style={{
-                  animationDelay: "600ms",
-                }}
-              >
-                ONE SHARED NETWORK
-              </span>
-
-            </div>
-
-            {/* =================================================
-                PARTNER GRID
-            ================================================== */}
-
-            <div
-              className={`relative w-full overflow-hidden ${
-                isVisible ? "animate-fade-up" : "opacity-0"
-              }`}
-              style={{
-                animationDelay: "700ms",
+          {isCenter && (
+            <motion.div
+              className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(46,174,163,0.10)_0%,rgba(46,174,163,0.03)_45%,transparent_72%)]"
+              whileHover={{
+                opacity: 1,
+                scale: 1.08,
               }}
-            >
-              <div className="partner-marquee flex w-max">
+              transition={{
+                duration: 0.4,
+                ease: "easeOut",
+              }}
+            />
+          )}
 
-                {/* FIRST SET */}
-
-                <div className="grid w-[100vw] grid-cols-1 md:grid-cols-2 lg:grid-cols-5">
-                  {partners.map((partner, index) => (
-                    <div
-                      key={`first-${partner.number}`}
-                      className={`group  text-[25px] font-extrabold relative flex min-h-[300px] flex-col px-0 py-7 sm:min-h-[320px] sm:px-5 lg:min-h-[325px] lg:px-5 xl:px-6 ${
-                        index !== 0
-                          ? "border-t border-[#c6e4de] md:border-l md:border-t-0"
-                          : ""
-                      }`}
-                    >
-                      {/* Number */}
-
-                      <span
-                        className={`text-[10px] font-semibold tracking-[0.2em] text-[#149f91] ${
-                          isVisible ? "animate-fade-up" : "opacity-0"
-                        }`}
-                        style={{
-                          animationDelay: `${750 + index * 80}ms`,
-                        }}
-                      >
-                        {partner.number}
-                      </span>
-
-                      {/* Logo */}
-
-                      <div className="flex flex-1 items-center justify-center py-10">
-                        <div className="flex h-[145px] w-full max-w-[230px] items-center justify-center">
-                          <img
-                            src={partner.image}
-                            alt={partner.name}
-                            className={`max-h-[125px] max-w-[210px] object-contain transition-transform duration-300 group-hover:scale-[1.04] ${
-                              isVisible
-                                ? "animate-fade-up"
-                                : "opacity-0"
-                            }`}
-                            style={{
-                              animationDelay: `${820 + index * 80}ms`,
-                            }}
-                          />
-                        </div>
-                      </div>
-
-                      {/* Partner name */}
-
-                      <p
-                        className={`text-[11px] font-semibold tracking-[0.18em] text-[#17211f] ${
-                          isVisible ? "animate-fade-up" : "opacity-0"
-                        }`}
-                        style={{
-                          animationDelay: `${900 + index * 80}ms`,
-                        }}
-                      >
-                        {partner.name}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* SECOND SET */}
-
-                <div className="grid w-[100vw] grid-cols-1 md:grid-cols-2 lg:grid-cols-5">
-                  {partners.map((partner, index) => (
-                    <div
-                      key={`second-${partner.number}`}
-                      className={`group relative flex min-h-[300px] flex-col px-0 py-7 sm:min-h-[320px] sm:px-5 lg:min-h-[325px] lg:px-5 xl:px-6 ${
-                        index !== 0
-                          ? "border-t border-[#c6e4de] md:border-l md:border-t-0"
-                          : ""
-                      }`}
-                    >
-                      <span className="text-[10px] font-semibold tracking-[0.2em] text-[#149f91]">
-                        {partner.number}
-                      </span>
-
-                      <div className="flex flex-1 items-center justify-center py-10">
-                        <div className="flex h-[145px] w-full max-w-[230px] items-center justify-center">
-                          <img
-                            src={partner.image}
-                            alt={partner.name}
-                            className="max-h-[125px] max-w-[210px] object-contain transition-transform duration-300 group-hover:scale-[1.04]"
-                          />
-                        </div>
-                      </div>
-
-                      <p className="text-[11px] font-semibold tracking-[0.18em] text-[#17211f]">
-                        {partner.name}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-              </div>
-            </div>
-
-            {/* =================================================
-                BOTTOM LINE
-            ================================================== */}
-
-            <div className="flex flex-col gap-5 border-t border-[#d5e5e1] pt-7 sm:flex-row sm:items-center sm:justify-between">
-
-              <div
-                className={`flex items-center gap-8 ${
-                  isVisible ? "animate-fade-up" : "opacity-0"
-                }`}
-                style={{
-                  animationDelay: "1100ms",
-                }}
-              >
-                <span className="text-[13px] font-semibold text-[#14201e]">
-                  Five partners.
-                </span>
-
-                <span className="text-[13px] font-semibold text-[#159f91]">
-                  One circular ambition.
-                </span>
-              </div>
-
-              {/* Arrow button */}
-
-              <button
-                aria-label="View partners"
-                className={`group flex h-11 w-11 items-center justify-center self-end rounded-full bg-[#07100f] text-white transition-all duration-300 hover:scale-105 hover:bg-[#159f91] sm:self-auto ${
-                  isVisible ? "animate-fade-up" : "opacity-0"
-                }`}
-                style={{
-                  animationDelay: "1200ms",
-                }}
-              >
-                <ArrowRight
-                  size={18}
-                  strokeWidth={1.8}
-                  className="transition-transform duration-300 group-hover:translate-x-0.5"
-                />
-              </button>
-
-            </div>
-
+          <motion.img
+            src={partner.image}
+            alt={partner.name}
+            draggable="false"
+            className="relative z-10 h-[65%] w-[65%] object-contain"
+            whileHover={{
+              scale: 1.06,
+            }}
+            transition={{
+              duration: 0.4,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          />
+        </motion.div>
+      </motion.button>
+    );
+  })}
+</div>
           </div>
+
+          {/* DOTS */}
+
+          <div className="mt-3 flex items-center justify-center gap-[7px] sm:mt-4">
+            {partners.map((partner, index) => (
+              <button key={partner.id} type="button" onClick={() => goToSlide(index)} aria-label={`Go to ${partner.name}`} className={`h-[7px] rounded-full transition-all duration-300 ${index === activeIndex ? "w-[24px] bg-[#249d8d]" : "w-[7px] bg-[#d3d3d0]"}`} />
+            ))}
+          </div>
+
         </div>
-
       </div>
-
-      {/* =====================================================
-          ANIMATION
-      ====================================================== */}
-
-      <style>{`
-        @keyframes fadeUpPartner {
-          0% {
-            opacity: 0;
-            transform: translateY(70px);
-          }
-
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fade-up {
-          animation: fadeUpPartner 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-      `}</style>
     </section>
   );
-}
+};
+
+export default PartnersSection;

@@ -8,7 +8,7 @@ function NavLinks() {
     { name: "Technology", path: "/technology", dropdown: true },
     // { name: "Resources", path: "/resources", dropdown: true },
     { name: "Pledge", path: "/pledge" },
-    // { name: "Career", path: "/career" },
+    { name: "Career", path: "/career" },
     { name: "About Us", path: "/about" },
   ];
 

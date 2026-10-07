@@ -1,31 +1,26 @@
 import React from 'react'
-import CareerHero from '../Career/CareerHero'
-import CareerValues from '../Career/CareerValues'
+import CareersHero from '../Career/CareersHero'
+import WhyCirculogy from '../Career/WhyCirculogy'
 import OpenPositions from '../Career/OpenPositions'
-import CareerApplication from '../Career/CareerApplications'
-import LifeAtCirculogy from '../Career/LifeAtCirculogy'
+import CareerApplication from '../Career/CareerApplication'
 
 const Career = () => {
   return (
    <>
    {/* part 1 */}
 
-   <CareerHero></CareerHero>
+   <CareersHero></CareersHero>
 
    {/* part 2 */}
-    <CareerValues></CareerValues>
+    <WhyCirculogy></WhyCirculogy>
 
     {/* part 3 */}
-
     <OpenPositions></OpenPositions>
 {/* 
     part 4 */}
-
     <CareerApplication></CareerApplication>
-
-    {/* part 5 */}
-
-    <LifeAtCirculogy></LifeAtCirculogy>
+  
+  
    </>
   )
 }

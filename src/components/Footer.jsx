@@ -184,19 +184,7 @@ const Footer = () => {
             <img
               src="/images/companylogo.png"
               alt="Circulogy"
-              className="
-
-              relative left-[-10%]
-      h-[32px]
-      w-auto
-      object-contain
-
-      sm:h-[36px]
-      md:h-[40px]
-      lg:h-[45px]
-      xl:h-[50px]
-    "
-            />
+              className="relative left-[-10%] h-[32px] w-auto object-contain sm:h-[36px md:h-[40px lg:h-[45px xl:h-[50px]" />
 
             {/* Tagline */}
             <p className="mt-2 text-[13px] font-medium uppercase tracking-[0.13em] text-[#c7cfce]">
