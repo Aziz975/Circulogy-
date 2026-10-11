@@ -45,10 +45,10 @@ export default function PledgeType() {
   return (
     <section
       ref={sectionRef}
-      className={`min-h-screen bg-[#f7fbf9] px-6 pt-16 md:px-10 lg:px-12 ${visible ? "animate-[fadeUp_0.9s_ease-out_forwards]" : "opacity-0"}`}
+      className={`min-h-screen  mx-auto bg-[#f7fbf9] px-10 pt-16 md:px-10 lg:px-25 ${visible ? "animate-[fadeUp_0.9s_ease-out_forwards]" : "opacity-0"}`}
     >
       <div>
-        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#46a994]">
+        <p className="mb-2 text-[13px] font-extrabold uppercase tracking-[0.25em] text-[#079e99]">
           Pledge Type
         </p>
 
@@ -74,7 +74,7 @@ export default function PledgeType() {
           </div>
         </div>
 
-        <p className="mt-8 max-w-6xl text-sm leading-6 text-gray-600">
+        <p className="mt-8 max-w-6xl text-[18px] leading-6 text-gray-600">
           I / We pledge to act for a sustainable future by adopting practices
           that protect our planet, uplift our communities, and promote
           long-term responsibility.
@@ -100,7 +100,7 @@ export default function PledgeType() {
 
               {openIndex === index && (
                 <div className="pb-8 pr-8">
-                  <div className="space-y-3 text-sm leading-5 text-gray-600">
+                  <div className="space-y-3 text-[15px] leading-5 text-gray-600">
                     {item.content.map((text) => (
                       <p key={text}>{text}</p>
                     ))}

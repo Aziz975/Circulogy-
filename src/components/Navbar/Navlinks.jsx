@@ -6,7 +6,7 @@ function NavLinks() {
     { name: "Home", path: "/" },
     { name: "Services", path: "/services", dropdown: true },
     { name: "Technology", path: "/technology", dropdown: true },
-    // { name: "Resources", path: "/resources", dropdown: true },
+    { name: "Blog", path: "/blog", dropdown: true },
     { name: "Pledge", path: "/pledge" },
     { name: "Career", path: "/career" },
     { name: "About Us", path: "/about" },

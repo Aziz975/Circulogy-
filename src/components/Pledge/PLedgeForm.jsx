@@ -41,7 +41,7 @@ export default function PledgeForm() {
         {/* LEFT */}
         <div className="flex flex-col justify-center p-8 md:p-12 lg:p-16">
 
-          <p className="mb-6 text-xs font-bold uppercase tracking-[3px] text-[#35a98f]">
+          <p className="mb-6 text-[13px] font-extrabold uppercase tracking-[3px]  text-[#079e99]">
             Signature
           </p>
 
@@ -55,7 +55,7 @@ export default function PledgeForm() {
             all share.”
           </h2>
 
-          <p className="mt-8 max-w-lg text-sm leading-6 text-gray-400">
+          <p className="mt-8 max-w-lg text-[16px] leading-6 text-gray-400">
             I hereby pledge to follow the sustainability practices outlined
             above and commit to acting responsibly for a greener,
             circular future.
@@ -68,39 +68,39 @@ export default function PledgeForm() {
 
           <form className="flex flex-col">
 
-            <label className="mb-2 text-xs font-semibold uppercase tracking-[2px] text-white">
+            <label className="mb-2 text-[15px] font-bold uppercase tracking-[2px] text-white">
               Name
             </label>
 
             <input
               type="text"
               placeholder="Enter your name"
-              className="mb-6 h-12 rounded-md border border-[#34403e] bg-[#181e1d] px-4 text-sm text-white outline-none placeholder:text-gray-600 focus:border-[#35a98f]"
+              className="mb-6 h-12 rounded-md border border-[#34403e] bg-[#181e1d] px-4 text-[15px] text-white outline-none font-bold placeholder:text-gray-600 focus:border-[#35a98f]"
             />
 
-            <label className="mb-2 text-xs font-semibold uppercase tracking-[2px] text-white">
+            <label className="mb-2 text-[15px] font-semibold uppercase tracking-[2px] text-white">
               Email
             </label>
 
             <input
               type="email"
               placeholder="Enter your email"
-              className="mb-6 h-12 rounded-md border border-[#34403e] bg-[#181e1d] px-4 text-sm text-white outline-none placeholder:text-gray-600 focus:border-[#35a98f]"
+              className="mb-6 h-12 rounded-md border border-[#34403e] bg-[#181e1d] px-4 text-[15px] font-bold text-white outline-none placeholder:text-gray-600 focus:border-[#35a98f]"
             />
 
-            <label className="mb-2 text-xs font-semibold uppercase tracking-[2px] text-white">
+            <label className="mb-2 text-[15px] font-semibold uppercase tracking-[2px] text-white">
               Signature
             </label>
 
             <input
               type="text"
               placeholder="Type your signature"
-              className="mb-7 h-12 rounded-md border border-[#34403e] bg-[#181e1d] px-4 text-sm text-white outline-none placeholder:text-gray-600 focus:border-[#35a98f]"
+              className="mb-7 h-12 rounded-md border border-[#34403e] bg-[#181e1d] px-4 font-bold text-[15px] text-white outline-none placeholder:text-gray-600 focus:border-[#35a98f]"
             />
 
             <button
               type="submit"
-              className="animate-bounce rounded-full bg-[#35a98f] py-3 text-sm font-bold text-white transition hover:bg-[#258c75]"
+              className="animate-bounce rounded-full bg-[#35a98f] py-3 text-[17px] font-bold text-white transition hover:bg-[#258c75]"
             >
               I Pledge Now
             </button>

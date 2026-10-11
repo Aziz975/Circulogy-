@@ -42,7 +42,7 @@ body {
 }
 
 .animate-earth-spin {
-  animation: earthSpin 12s linear infinite;
+  animation: earthSpin 20s linear infinite;
   transform-origin: center center;
   will-change: transform;
 }

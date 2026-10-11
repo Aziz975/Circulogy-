@@ -5,28 +5,28 @@ export default function PledgeHero() {
   const [isVisible, setIsVisible] = useState(false);
   const imageRef = useRef(null);
 
- useEffect(() => {
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      setIsVisible(entry.isIntersecting);
-    },
-    {
-      threshold: 0.2,
-    }
-  );
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.2,
+      }
+    );
 
-  const currentImage = imageRef.current;
+    const currentImage = imageRef.current;
 
-  if (currentImage) {
-    observer.observe(currentImage);
-  }
-
-  return () => {
     if (currentImage) {
-      observer.unobserve(currentImage);
+      observer.observe(currentImage);
     }
-  };
-}, []);
+
+    return () => {
+      if (currentImage) {
+        observer.unobserve(currentImage);
+      }
+    };
+  }, []);
 
 
 
@@ -50,93 +50,93 @@ export default function PledgeHero() {
         {/* LEFT CONTENT */}
         <div className="relative z-30">
 
-<p
-  className="
+          <p
+            className="
     mb-5
-    text-[11px] font-bold uppercase tracking-[3px] text-[#329c86]
+    text-[13px] font-extrabold uppercase tracking-[3px] text-[#079e99]
     opacity-0
     animate-[fadeUp_0.7s_ease-out_0.1s_forwards]
   "
->
-  Sustainability Pledge
-</p>
+          >
+            Sustainability Pledge
+          </p>
 
-<h1 className="text-[48px] font-bold leading-[0.99] tracking-[-2.5px] text-[#071313] sm:text-[58px] lg:text-[61px] xl:text-[64px]">
-  {"Sign the".split("").map((letter, index) => (
-    <span key={index} className="letter-reveal" style={{ animationDelay: `${index * 0.05}s` }}>
-      {letter === " " ? "\u00A0" : letter}
-    </span>
-  ))}
+          <h1 className="text-[48px] font-bold leading-[0.99] tracking-[-2.5px] text-[#071313] sm:text-[58px] lg:text-[61px] xl:text-[64px]">
+            {"Sign the".split("").map((letter, index) => (
+              <span key={index} className="letter-reveal" style={{ animationDelay: `${index * 0.05}s` }}>
+                {letter === " " ? "\u00A0" : letter}
+              </span>
+            ))}
 
-  <br />
+            <br />
 
-  {"sustainability".split("").map((letter, index) => (
-    <span key={index} className="letter-reveal" style={{ animationDelay: `${0.45 + index * 0.045}s` }}>
-      {letter}
-    </span>
-  ))}
+            {"sustainability".split("").map((letter, index) => (
+              <span key={index} className="letter-reveal" style={{ animationDelay: `${0.45 + index * 0.045}s` }}>
+                {letter}
+              </span>
+            ))}
 
-  <br />
+            <br />
 
-  {"pledge".split("").map((letter, index) => (
-    <span key={index} className="letter-reveal" style={{ animationDelay: `${1.1 + index * 0.06}s` }}>
-      {letter}
-    </span>
-  ))}
+            {"pledge".split("").map((letter, index) => (
+              <span key={index} className="letter-reveal" style={{ animationDelay: `${1.1 + index * 0.06}s` }}>
+                {letter}
+              </span>
+            ))}
 
-  <br />
+            <br />
 
-  <span className="text-[#36a88f]">
-    {"at India".split("").map((letter, index) => (
-      <span key={index} className="letter-reveal" style={{ animationDelay: `${1.55 + index * 0.05}s` }}>
-        {letter === " " ? "\u00A0" : letter}
-      </span>
-    ))}
+            <span className="text-[#36a88f]">
+              {"at India".split("").map((letter, index) => (
+                <span key={index} className="letter-reveal" style={{ animationDelay: `${1.55 + index * 0.05}s` }}>
+                  {letter === " " ? "\u00A0" : letter}
+                </span>
+              ))}
 
-    <br />
+              <br />
 
-    {"Mobile Congress".split("").map((letter, index) => (
-      <span key={index} className="letter-reveal" style={{ animationDelay: `${2.05 + index * 0.045}s` }}>
-        {letter === " " ? "\u00A0" : letter}
-      </span>
-    ))}
+              {"Mobile Congress".split("").map((letter, index) => (
+                <span key={index} className="letter-reveal" style={{ animationDelay: `${2.05 + index * 0.045}s` }}>
+                  {letter === " " ? "\u00A0" : letter}
+                </span>
+              ))}
 
-    <br />
+              <br />
 
-    {"2025".split("").map((letter, index) => (
-      <span key={index} className="letter-reveal" style={{ animationDelay: `${2.7 + index * 0.08}s` }}>
-        {letter}
-      </span>
-    ))}
-  </span>
+              {"2025".split("").map((letter, index) => (
+                <span key={index} className="letter-reveal" style={{ animationDelay: `${2.7 + index * 0.08}s` }}>
+                  {letter}
+                </span>
+              ))}
+            </span>
 
-</h1>
+          </h1>
 
-<p
-  className="
+          <p
+            className="
     mt-7 max-w-[470px]
-    text-[14px] leading-[1.55] text-[#687876]
+    text-[18px] leading-[1.55] text-[#687876]
     opacity-0
     animate-[fadeUp_0.8s_ease-out_0.5s_forwards]
   "
->
-  “I / We pledge to act for a sustainable future by adopting
-  practices that protect our planet, uplift our communities, and
-  promote long-term responsibility.”
-</p>
+          >
+            “I / We pledge to act for a sustainable future by adopting
+            practices that protect our planet, uplift our communities, and
+            promote long-term responsibility.”
+          </p>
           {/* BUTTON + COUNT */}
           <div className="mt-9 flex items-center">
 
-            <button className="flex h-[38px] animate-bounce items-center gap-4 rounded-full bg-[#35aa91] px-6 text-[11px] font-bold text-white transition duration-300 hover:bg-[#278d78]">
+            <button className="flex h-[44px] animate-bounce items-center gap-4 rounded-full bg-[#35aa91] px-6 text-[14px] font-bold text-white transition duration-300 hover:bg-[#278d78]">
               I Pledge Now
-              <span className="text-[15px]">→</span>
+              <span className="text-[22px] font-bold ">→</span>
             </button>
 
             <div className="mx-5 h-[34px] w-px bg-[#a9d1c7]" />
 
             <div className="flex items-center gap-2">
 
-              <span className="text-[10px] text-[#71817e]">
+              <span className="text-[14px] font-bold text-[#71817e]">
                 Total Pledges Submitted:
               </span>
 
@@ -149,10 +149,12 @@ export default function PledgeHero() {
         </div>
 
         {/* RIGHT EARTH AREA */}
-        <div className="relative flex h-[620px] items-center justify-center">
+        <div className={`relative flex h-[620px] items-center justify-center ${isVisible ? "animate-earth-spin" : ""
+          }`} >
 
           {/* SOFT GREEN GLOW */}
-          <div className="absolute left-1/2 top-1/2 h-[570px] w-[570px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d9eee7] opacity-50 blur-[50px]" />
+          <div className={`absolute left-1/2 top-1/2 h-[570px] w-[570px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d9eee7] opacity-50 blur-[50px] ${isVisible ? "animate-earth-spin" : ""
+          } `} />
 
           {/* OUTER RING */}
           <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#62bdaa] opacity-70" />
@@ -164,65 +166,36 @@ export default function PledgeHero() {
           <div className="absolute left-1/2 top-1/2 h-[385px] w-[385px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#72c5b2] opacity-60" />
 
           {/* TOP LEFT BALL */}
-          <span className="absolute left-[calc(50%-156px)] top-[calc(50%-251px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
+          <span className="absolute left-[calc(50%-156px)] top-[calc(58%-251px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
 
           {/* TOP RIGHT BALL */}
-          <span className="absolute left-[calc(50%+145px)] top-[calc(50%-270px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
+          <span className="absolute left-[calc(50%+145px)] top-[calc(61%-270px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
 
           {/* LEFT CENTER BALL */}
-          <span className="absolute left-[calc(50%-255px)] top-[calc(50%-30px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
+          <span className="absolute left-[calc(50%-255px)] top-[calc(55%-30px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
 
           {/* RIGHT CENTER BALL */}
-          <span className="absolute left-[calc(50%+215px)] top-[calc(50%-20px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
+          <span className="absolute left-[calc(54%+215px)] top-[calc(55%-20px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
 
           {/* BOTTOM LEFT BALL */}
-          <span className="absolute left-[calc(50%-190px)] top-[calc(50%+195px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
+          <span className="absolute left-[calc(54%-190px)] top-[calc(50%+195px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
 
           {/* BOTTOM RIGHT BALL */}
-          <span className="absolute left-[calc(50%+180px)] top-[calc(50%+195px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
+          <span className="absolute left-[calc(50%+180px)] top-[calc(45%+195px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
 
           {/* EARTH */}
           <div className="relative z-20 flex h-[500px] w-[440px] items-center justify-center [perspective:1000px]">
-{/* EARTH */}
-{/* EARTH */}
-<div className="relative z-20 flex h-[500px] w-[440px] items-center justify-center">
-  <img
-    ref={imageRef}
-    src="/pledge-earth.png"
-    alt="Sustainable Earth"
-    className={`h-full w-full object-contain origin-center drop-shadow-[0_15px_110px_rgba(35,115,95,0.50)] ${
-      isVisible ? "animate-earth-spin" : ""
-    }`}
-  />
-</div>
 
-          </div>
+            {/* EARTH */}
+            <div className="relative z-20 flex h-[600px] w-[600px] items-center justify-center">
+              <img
+                ref={imageRef}
+                src="/images/earth.png"
+                alt="Sustainable Earth"
+                className={`relative top-[15px] h-full  w-full object-contain origin-center drop-shadow-[0_15px_110px_rgba(35,115,95,0.50)] `}
+              />
+            </div>
 
-          {/* PEOPLE IN SYNC */}
-          <div className="absolute right-[20px] top-[95px] z-40">
-            <p className="text-[8px] font-bold uppercase leading-[1.4] tracking-[3px] text-[#6c8580]">
-              People
-              <br />
-              In Sync
-            </p>
-          </div>
-
-          {/* RESOURCES REIMAGINED */}
-          <div className="absolute left-[20px] top-[235px] z-40">
-            <p className="text-[8px] font-bold uppercase leading-[1.4] tracking-[3px] text-[#6c8580]">
-              Resources
-              <br />
-              Reimagined
-            </p>
-          </div>
-
-          {/* CLEANER TOMORROW */}
-          <div className="absolute bottom-[90px] right-[10px] z-40">
-            <p className="text-[8px] font-bold uppercase leading-[1.4] tracking-[3px] text-[#6c8580]">
-              A Cleaner
-              <br />
-              Tomorrow
-            </p>
           </div>
 
         </div>
