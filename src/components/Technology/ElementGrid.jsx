@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+
+/* =========================================================
+   MATERIAL DATA
+========================================================= */
 
 const targetElements = {
   Li: {
@@ -10,7 +15,7 @@ const targetElements = {
     source: "FROM LI-ION BATTERY BLACK MASS",
     stream: "Critical Minerals",
     color: "critical",
-    image: "images/lithium2.jpeg",
+    image: "images/lithium2.png",
   },
   C: {
     symbol: "C",
@@ -54,7 +59,7 @@ const targetElements = {
     source: "FROM LI-ION BATTERY BLACK MASS",
     stream: "Critical Minerals",
     color: "critical",
-    image: "/images/nickel2.jpeg",
+    image: "/images/nickel2.png",
   },
   Pr: {
     symbol: "Pr",
@@ -112,6 +117,10 @@ const targetElements = {
     image: "images/dy.png",
   },
 };
+
+/* =========================================================
+   PERIODIC TABLE DATA
+========================================================= */
 
 const elements = [
   { symbol: "H", name: "Hydrogen", number: 1, row: 1, col: 1 },
@@ -208,33 +217,206 @@ const elements = [
   { symbol: "Lv", name: "Livermorium", number: 116, row: 7, col: 17 },
   { symbol: "Ts", name: "Tennessine", number: 117, row: 7, col: 18 },
   { symbol: "Og", name: "Oganesson", number: 118, row: 7, col: 18 },
-
-
-
-
-  
 ];
+
+const lanthanides = [
+  ["La", 57],
+  ["Ce", 58],
+  ["Pr", 59],
+  ["Nd", 60],
+  ["Pm", 61],
+  ["Sm", 62],
+  ["Eu", 63],
+  ["Gd", 64],
+  ["Tb", 65],
+  ["Dy", 66],
+  ["Ho", 67],
+  ["Er", 68],
+  ["Tm", 69],
+  ["Yb", 70],
+  ["Lu", 71],
+];
+
+const actinides = [
+  ["Ac", 89],
+  ["Th", 90],
+  ["Pa", 91],
+  ["U", 92],
+  ["Np", 93],
+  ["Pu", 94],
+  ["Am", 95],
+  ["Cm", 96],
+  ["Bk", 97],
+  ["Cf", 98],
+  ["Es", 99],
+  ["Fm", 100],
+  ["Md", 101],
+  ["No", 102],
+  ["Lr", 103],
+];
+
+/* =========================================================
+   ANIMATION VARIANTS
+========================================================= */
+
+const revealUp = {
+  hidden: {
+    opacity: 0,
+    y: 24,
+    filter: "blur(5px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.75,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const headingReveal = {
+  hidden: {
+    opacity: 0,
+    y: 35,
+    filter: "blur(7px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.9,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const featuredCardReveal = {
+  hidden: {
+    opacity: 0,
+    x: -25,
+    y: 20,
+    scale: 0.985,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.9,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const tableReveal = {
+  hidden: {
+    opacity: 0,
+    x: 25,
+    y: 18,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    transition: {
+      duration: 0.85,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const tileContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.008,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const tileReveal = {
+  hidden: {
+    opacity: 0,
+    y: 8,
+    scale: 0.92,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.35,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const materialContent = {
+  initial: {
+    opacity: 0,
+    y: 12,
+    filter: "blur(4px)",
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -8,
+    filter: "blur(3px)",
+    transition: {
+      duration: 0.2,
+      ease: "easeIn",
+    },
+  },
+};
+
+/* =========================================================
+   MAIN COMPONENT
+========================================================= */
 
 export default function ElementGrid() {
   const [selected, setSelected] = useState(targetElements.Li);
 
+  const selectElement = (symbol) => {
+    const target = targetElements[symbol];
+
+    if (target) {
+      setSelected(target);
+    }
+  };
+
   return (
     <section className="w-full overflow-hidden bg-[#f4f6f0] px-1 py-12 sm:px-8 sm:py-16 md:px-10 lg:px-5 xl:px-8">
-
       <div className="mx-auto max-w-[1550px]">
-
         {/* ================= TOP HEADING ================= */}
-        <div className="mb-8 max-w-[1000px] md:mb-10 lg:mb-12">
-
-          <div className="mb-5 flex items-center gap-3">
-            
-
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
+          className="mb-8 max-w-[1000px] md:mb-10 lg:mb-12"
+        >
+          <motion.div variants={revealUp} className="mb-5 flex items-center gap-3">
             <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#23776d] sm:text-[11px]">
               What We Recover
             </span>
-          </div>
+          </motion.div>
 
-          <h1 className="text-[40px] font-light leading-[0.98] tracking-[-0.055em] text-[#101615] sm:text-[50px] md:text-[58px] lg:text-[64px] xl:text-[68px]">
+          <motion.h1
+            variants={headingReveal}
+            className="text-[40px] font-light leading-[0.98] tracking-[-0.055em] text-[#101615] sm:text-[50px] md:text-[58px] lg:text-[64px] xl:text-[68px]"
+          >
             The{" "}
             <span className="font-semibold text-[#08766d]">
               rare earth elements
@@ -244,20 +426,27 @@ export default function ElementGrid() {
               critical materials
             </span>{" "}
             we collect and process
-          </h1>
+          </motion.h1>
 
-          <p className="mt-4 max-w-[850px] text-[12px] leading-relaxed text-[#7b817e] sm:text-[13px]">
+          <motion.p
+            variants={revealUp}
+            className="mt-4 max-w-[850px] text-[12px] leading-relaxed text-[#7b817e] sm:text-[13px]"
+          >
             Ten strategic materials recovered from two feedstocks through one
             integrated hydromet platform.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* ================= MAIN CONTENT ================= */}
         <div className="grid grid-cols-1 gap-8 xl:grid-cols-[575px_minmax(0,1fr)] xl:gap-6">
-
           {/* ================= LEFT MATERIAL CARD ================= */}
-          <div className="relative h-[600px] overflow-hidden rounded-[28px] bg-[#032b27] sm:h-[680px] md:h-[720px] xl:h-[590px]">
-
+          <motion.div
+            variants={featuredCardReveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.15 }}
+            className="relative h-[600px] overflow-hidden rounded-[28px] bg-[#032b27] sm:h-[680px] md:h-[720px] xl:h-[590px]"
+          >
             {/* Background grid */}
             <div className="pointer-events-none absolute inset-0 opacity-20">
               <div
@@ -271,85 +460,117 @@ export default function ElementGrid() {
             </div>
 
             {/* Top label */}
-            <div className="absolute left-8 top-7 z-10 sm:left-10 sm:top-9">
+            <motion.div
+              variants={revealUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
+              className="absolute left-8 top-7 z-10 sm:left-10 sm:top-9"
+            >
               <p className="text-[9px] font-bold uppercase tracking-[0.24em] text-[#65bdb0]">
                 Featured Material
               </p>
-            </div>
+            </motion.div>
 
-            {/* Image */}
-            <div className="absolute left-1/2 top-[35px] flex h-[310px] w-[90%] -translate-x-1/2 items-center justify-center sm:top-[45px] sm:h-[370px] md:h-[400px] xl:top-[30px] xl:h-[310px]">
-
-              <img
-                src={selected.image}
-                alt={selected.name}
-                className="h-full w-full object-contain"
-              />
-
-              {/* Placeholder when src is empty */}
-              {!selected.image && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="mx-auto mb-3 h-24 w-24 rounded-full border border-[#277a70]/40"></div>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-[#4c8981]">
-                      Image Placeholder
-                    </p>
-                  </div>
-                </div>
-              )}
-
+            {/* Selected Material Image */}
+            <div className="absolute left-1/2 top-[25px] flex h-[310px] w-[80%] -translate-x-1/2 items-center justify-center sm:top-[45px] sm:h-[370px] md:h-[400px] xl:top-[-20px] xl:h-[390px]">
+              <AnimatePresence mode="wait">
+                {selected.image ? (
+                  <motion.img
+                    key={selected.symbol}
+                    src={selected.image}
+                    alt={selected.name}
+                    initial={{ opacity: 0, scale: 0.93, y: 12, filter: "blur(5px)" }}
+                    animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, scale: 1.02, filter: "blur(3px)" }}
+                    transition={{
+                      duration: 0.55,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="h-full w-full object-contain"
+                  />
+                ) : (
+                  <motion.div
+                    key={selected.symbol}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <div className="text-center">
+                      <div className="mx-auto mb-3 h-24 w-24 rounded-full border border-[#277a70]/40" />
+                      <p className="text-[10px] uppercase tracking-[0.2em] text-[#4c8981]">
+                        Image Placeholder
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* Bottom details */}
             <div className="absolute bottom-7 left-8 right-8 sm:bottom-9 sm:left-10 sm:right-10">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selected.symbol}
+                  variants={materialContent}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                >
+                  <h2 className="text-[42px] font-medium leading-none tracking-[-0.04em] text-white sm:text-[52px]">
+                    {selected.name}
+                  </h2>
 
-              <h2 className="text-[42px] font-medium leading-none tracking-[-0.04em] text-white sm:text-[52px]">
-                {selected.name}
-              </h2>
+                  <div className="mt-4 inline-flex rounded-full border border-[#278c7e] bg-[#0a4b44] px-3 py-1.5">
+                    <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-[#70c7ba]">
+                      {selected.category}
+                    </span>
+                  </div>
 
-              <div className="mt-4 inline-flex rounded-full border border-[#278c7e] bg-[#0a4b44] px-3 py-1.5">
-                <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-[#70c7ba]">
-                  {selected.category}
-                </span>
-              </div>
+                  <div className="mt-7 grid grid-cols-[100px_1fr] border-t border-[#1b4b46] pt-5">
+                    <div className="border-r border-[#1b4b46]">
+                      <p className="text-[8px] font-medium uppercase tracking-[0.18em] text-[#6da39b]">
+                        Atomic Number
+                      </p>
 
-              <div className="mt-7 grid grid-cols-[100px_1fr] border-t border-[#1b4b46] pt-5">
+                      <p className="mt-2 text-[28px] font-medium leading-none text-white">
+                        {selected.atomicNumber}
+                      </p>
+                    </div>
 
-                <div className="border-r border-[#1b4b46]">
-                  <p className="text-[8px] font-medium uppercase tracking-[0.18em] text-[#6da39b]">
-                    Atomic Number
+                    <div className="pl-6">
+                      <p className="text-[8px] font-medium uppercase tracking-[0.18em] text-[#6da39b]">
+                        Recovered As
+                      </p>
+
+                      <p className="mt-2 text-[15px] font-medium text-white sm:text-[17px]">
+                        {selected.recoveredAs}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="mt-5 text-[8px] font-semibold uppercase tracking-[0.2em] text-[#63b6aa]">
+                    {selected.source}
                   </p>
-
-                  <p className="mt-2 text-[28px] font-medium leading-none text-white">
-                    {selected.atomicNumber}
-                  </p>
-                </div>
-
-                <div className="pl-6">
-                  <p className="text-[8px] font-medium uppercase tracking-[0.18em] text-[#6da39b]">
-                    Recovered As
-                  </p>
-
-                  <p className="mt-2 text-[15px] font-medium text-white sm:text-[17px]">
-                    {selected.recoveredAs}
-                  </p>
-                </div>
-
-              </div>
-
-              <p className="mt-5 text-[8px] font-semibold uppercase tracking-[0.2em] text-[#63b6aa]">
-                {selected.source}
-              </p>
-
+                </motion.div>
+              </AnimatePresence>
             </div>
-          </div>
+          </motion.div>
 
           {/* ================= RIGHT PERIODIC TABLE ================= */}
-          <div className="min-w-0">
-
+          <motion.div
+            variants={tableReveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.1 }}
+            className="min-w-0"
+          >
             {/* Table heading */}
-            <div className="mb-5 flex items-center justify-between gap-5">
-
+            <motion.div
+              variants={revealUp}
+              className="mb-5 flex items-center justify-between gap-5"
+            >
               <h2 className="text-[14px] font-bold uppercase tracking-[0.12em] text-[#252b29] sm:text-[16px]">
                 Periodic Table · 118 Elements
               </h2>
@@ -357,14 +578,11 @@ export default function ElementGrid() {
               <p className="hidden text-[9px] text-[#888e8a] md:block">
                 Target materials are highlighted by output stream
               </p>
-
-            </div>
+            </motion.div>
 
             {/* Horizontal scroll wrapper */}
             <div className="overflow-x-auto pb-4">
-
               <div className="min-w-[700px]">
-
                 {/* Group numbers */}
                 <div className="mb-2 grid grid-cols-18 gap-[4px] px-1">
                   {Array.from({ length: 18 }, (_, i) => (
@@ -378,33 +596,60 @@ export default function ElementGrid() {
                 </div>
 
                 {/* Periodic table */}
-                <div className="grid grid-cols-15 ml-[5px] gap-[4px]">
-
+                <motion.div
+                  variants={tileContainer}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.05 }}
+                  className="ml-[5px] grid grid-cols-18 gap-[4px]"
+                >
                   {elements.map((element) => {
                     const target = targetElements[element.symbol];
                     const isSelected = selected.symbol === element.symbol;
 
                     return (
-                      <button
+                      <motion.button
                         key={`${element.symbol}-${element.number}`}
+                        variants={tileReveal}
+                        type="button"
                         disabled={!target}
-                        onClick={() => target && setSelected(target)}
+                        aria-label={
+                          target
+                            ? `Select ${element.name}`
+                            : `${element.name}, not a target material`
+                        }
+                        aria-pressed={target ? isSelected : undefined}
+                        onClick={() => selectElement(element.symbol)}
+                        whileHover={
+                          target
+                            ? { y: -3, scale: 1.035 }
+                            : undefined
+                        }
+                        whileTap={target ? { scale: 0.96 } : undefined}
+                        transition={{
+                          duration: 0.2,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
                         style={{
                           gridColumn: element.col,
                           gridRow: element.row,
                         }}
                         className={`
                           relative flex h-[51px] min-w-0 flex-col justify-between rounded-[7px] border p-[5px] text-left
-                          ${target
-                            ? target.color === "rare"
-                              ? "cursor-pointer border-[#074d47] bg-[#063d38] text-white hover:-translate-y-0.5 hover:bg-[#07584f]"
-                              : "cursor-pointer border-[#159b8b] bg-[#16a997] text-white hover:-translate-y-0.5 hover:bg-[#0e9687]"
-                            : "cursor-default border-[#dfe2dc] bg-[#f8f9f5] text-[#59605c]"
+                          ${
+                            target
+                              ? target.color === "rare"
+                                ? "cursor-pointer border-[#074d47] bg-[#063d38] text-white hover:bg-[#07584f]"
+                                : "cursor-pointer border-[#159b8b] bg-[#16a997] text-white hover:bg-[#0e9687]"
+                              : "cursor-default border-[#dfe2dc] bg-[#f8f9f5] text-[#59605c]"
                           }
-                          ${isSelected ? "ring-2 ring-[#19cdb5] ring-offset-2 ring-offset-[#f4f6f0]" : ""}
+                          ${
+                            isSelected
+                              ? "z-10 ring-2 ring-[#19cdb5] ring-offset-2 ring-offset-[#f4f6f0]"
+                              : ""
+                          }
                         `}
                       >
-
                         <span className="text-[6px] opacity-70">
                           {element.number}
                         </span>
@@ -416,18 +661,20 @@ export default function ElementGrid() {
                         <span className="truncate text-[5px] opacity-70">
                           {element.name}
                         </span>
-
-                      </button>
+                      </motion.button>
                     );
                   })}
-
-                </div>
+                </motion.div>
 
                 {/* ================= LANTHANIDE / ACTINIDE ================= */}
-                <div className="mt-6 grid grid-cols-[70px_1fr] gap-3">
-
+                <motion.div
+                  variants={revealUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.1 }}
+                  className="mt-6 grid grid-cols-[70px_1fr] gap-3"
+                >
                   <div className="flex flex-col justify-center gap-5">
-
                     <div>
                       <p className="text-[10px] font-medium text-[#277d73]">
                         Ln
@@ -445,87 +692,40 @@ export default function ElementGrid() {
                         Actinides
                       </p>
                     </div>
-
                   </div>
 
                   <div>
-
                     {/* Lanthanides */}
-                    <div className="grid grid-cols-15 gap-[4px]">
-
-                      {[
-                        ["La", 57],
-                        ["Ce", 58],
-                        ["Pr", 59],
-                        ["Nd", 60],
-                        ["Pm", 61],
-                        ["Sm", 62],
-                        ["Eu", 63],
-                        ["Gd", 64],
-                        ["Tb", 65],
-                        ["Dy", 66],
-                        ["Ho", 67],
-                        ["Er", 68],
-                        ["Tm", 69],
-                        ["Yb", 70],
-                        ["Lu", 71],
-                      ].map(([symbol, number]) => {
-                        const target = targetElements[symbol];
-                        const isSelected = selected.symbol === symbol;
-
-                        return (
-                          <button
-                            key={symbol}
-                            disabled={!target}
-                            onClick={() => target && setSelected(target)}
-                            className={`
-                              h-[51px] rounded-[7px] border p-[5px] text-left
-                              ${target
-                                ? "cursor-pointer border-[#074d47] bg-[#063d38] text-white hover:bg-[#07584f]"
-                                : "cursor-default border-[#dfe2dc] bg-[#f8f9f5] text-[#59605c]"
-                              }
-                              ${isSelected ? "ring-2 ring-[#19cdb5] ring-offset-2 ring-offset-[#f4f6f0]" : ""}
-                            `}
-                          >
-                            <span className="block text-[6px] opacity-70">
-                              {number}
-                            </span>
-
-                            <span className="block text-[15px] font-semibold">
-                              {symbol}
-                            </span>
-
-                            <span className="block truncate text-[5px] opacity-70">
-                              {symbol}
-                            </span>
-                          </button>
-                        );
-                      })}
-
-                    </div>
+                    <motion.div
+                      variants={tileContainer}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: false, amount: 0.1 }}
+                      className="grid grid-cols-15 gap-[4px]"
+                    >
+                      {lanthanides.map(([symbol, number]) => (
+                        <PeriodicTile
+                          key={symbol}
+                          symbol={symbol}
+                          number={number}
+                          selected={selected}
+                          onSelect={selectElement}
+                        />
+                      ))}
+                    </motion.div>
 
                     {/* Actinides */}
-                    <div className="mt-[4px] grid grid-cols-15 gap-[4px]">
-
-                      {[
-                        ["Ac", 89],
-                        ["Th", 90],
-                        ["Pa", 91],
-                        ["U", 92],
-                        ["Np", 93],
-                        ["Pu", 94],
-                        ["Am", 95],
-                        ["Cm", 96],
-                        ["Bk", 97],
-                        ["Cf", 98],
-                        ["Es", 99],
-                        ["Fm", 100],
-                        ["Md", 101],
-                        ["No", 102],
-                        ["Lr", 103],
-                      ].map(([symbol, number]) => (
-                        <div
+                    <motion.div
+                      variants={tileContainer}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: false, amount: 0.1 }}
+                      className="mt-[4px] grid grid-cols-15 gap-[4px]"
+                    >
+                      {actinides.map(([symbol, number]) => (
+                        <motion.div
                           key={symbol}
+                          variants={tileReveal}
                           className="h-[51px] rounded-[7px] border border-[#dfe2dc] bg-[#f8f9f5] p-[5px] text-left text-[#59605c]"
                         >
                           <span className="block text-[6px] opacity-70">
@@ -539,48 +739,92 @@ export default function ElementGrid() {
                           <span className="block truncate text-[5px] opacity-70">
                             {symbol}
                           </span>
-                        </div>
+                        </motion.div>
                       ))}
-
-                    </div>
-
+                    </motion.div>
                   </div>
-                </div>
-
+                </motion.div>
               </div>
             </div>
 
             {/* ================= LEGEND ================= */}
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-5 border-t border-[#dfe2dc] pt-5">
-
+            <motion.div
+              variants={revealUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
+              className="mt-4 flex flex-wrap items-center justify-between gap-5 border-t border-[#dfe2dc] pt-5"
+            >
               <div className="flex flex-wrap gap-6">
-
                 <div className="flex items-center gap-2">
-                  <span className="h-3 w-3 rounded-[3px] bg-[#16a997]"></span>
+                  <span className="h-3 w-3 rounded-[3px] bg-[#16a997]" />
                   <span className="text-[9px] font-medium text-[#6c746f]">
                     Critical minerals
                   </span>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className="h-3 w-3 rounded-[3px] bg-[#063d38]"></span>
+                  <span className="h-3 w-3 rounded-[3px] bg-[#063d38]" />
                   <span className="text-[9px] font-medium text-[#6c746f]">
                     Rare earth elements
                   </span>
                 </div>
-
               </div>
 
               <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#31877c]">
                 10 Target Elements · 2 Output Streams
               </p>
-
-            </div>
-
-          </div>
-
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
+  );
+}
+
+/* =========================================================
+   LANTHANIDE / TARGET ELEMENT TILE
+========================================================= */
+
+function PeriodicTile({ symbol, number, selected, onSelect }) {
+  const target = targetElements[symbol];
+  const isSelected = selected.symbol === symbol;
+
+  return (
+    <motion.button
+      type="button"
+      variants={tileReveal}
+      disabled={!target}
+      aria-label={
+        target
+          ? `Select ${target.name}`
+          : `${symbol}, not a target material`
+      }
+      aria-pressed={target ? isSelected : undefined}
+      onClick={() => onSelect(symbol)}
+      whileHover={target ? { y: -3, scale: 1.035 } : undefined}
+      whileTap={target ? { scale: 0.96 } : undefined}
+      className={`
+        h-[51px] rounded-[7px] border p-[5px] text-left
+        ${
+          target
+            ? "cursor-pointer border-[#074d47] bg-[#063d38] text-white hover:bg-[#07584f]"
+            : "cursor-default border-[#dfe2dc] bg-[#f8f9f5] text-[#59605c]"
+        }
+        ${
+          isSelected
+            ? "relative z-10 ring-2 ring-[#19cdb5] ring-offset-2 ring-offset-[#f4f6f0]"
+            : ""
+        }
+      `}
+    >
+      <span className="block text-[6px] opacity-70">{number}</span>
+
+      <span className="block text-[15px] font-semibold">{symbol}</span>
+
+      <span className="block truncate text-[5px] opacity-70">
+        {target ? target.name : symbol}
+      </span>
+    </motion.button>
   );
 }

@@ -149,7 +149,7 @@ export default function PledgeHero() {
         </div>
 
         {/* RIGHT EARTH AREA */}
-        <div className={`relative flex h-[620px] items-center justify-center ${isVisible ? "animate-earth-spin" : ""
+        <div className={`relative left-[80px]  flex h-[780px] w-[780px] items-center justify-center ${isVisible ? "animate-earth-spin" : ""
           }`} >
 
           {/* SOFT GREEN GLOW */}

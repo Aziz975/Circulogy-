@@ -13,6 +13,12 @@ const founders = [
     src: "/images/abhishek-tiwari.jpeg",
   },
 
+  {
+    name: "Abhishek Tiwari",
+    role: "Co-Founder & COO",
+    src: "/images/azeem-sir.jpeg",
+  },
+
    
 ];
 
