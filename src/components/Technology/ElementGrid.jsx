@@ -15,7 +15,7 @@ const targetElements = {
     source: "FROM LI-ION BATTERY BLACK MASS",
     stream: "Critical Minerals",
     color: "critical",
-    image: "images/lithium2.png",
+    image: "images/lithium1.png",
   },
   C: {
     symbol: "C",
@@ -26,7 +26,7 @@ const targetElements = {
     source: "FROM LI-ION BATTERY BLACK MASS",
     stream: "Critical Minerals",
     color: "critical",
-    image: "images/corbon.png",
+    image: "images/graphite1.png",
   },
   Mn: {
     symbol: "Mn",
@@ -37,7 +37,7 @@ const targetElements = {
     source: "FROM LI-ION BATTERY BLACK MASS",
     stream: "Critical Minerals",
     color: "critical",
-    image: "/images/mn.png",
+    image: "/images/mn1.png",
   },
   Co: {
     symbol: "Co",
@@ -48,7 +48,7 @@ const targetElements = {
     source: "FROM LI-ION BATTERY BLACK MASS",
     stream: "Critical Minerals",
     color: "critical",
-    image: "/images/co.png",
+    image: "/images/cobalt1.png",
   },
   Ni: {
     symbol: "Ni",
@@ -59,7 +59,7 @@ const targetElements = {
     source: "FROM LI-ION BATTERY BLACK MASS",
     stream: "Critical Minerals",
     color: "critical",
-    image: "/images/nickel2.png",
+    image: "/images/nickel1.png",
   },
   Pr: {
     symbol: "Pr",
@@ -70,7 +70,7 @@ const targetElements = {
     source: "FROM NdFeB MAGNETS",
     stream: "Rare Earth Elements",
     color: "rare",
-    image: "/images/pr.png",
+    image: "/images/pd1.png",
   },
   Nd: {
     symbol: "Nd",
@@ -81,7 +81,7 @@ const targetElements = {
     source: "FROM NdFeB MAGNETS",
     stream: "Rare Earth Elements",
     color: "rare",
-    image: "/images/nd.png",
+    image: "/images/nd1.png",
   },
   Sm: {
     symbol: "Sm",
@@ -92,7 +92,7 @@ const targetElements = {
     source: "FROM NdFeB MAGNETS",
     stream: "Rare Earth Elements",
     color: "rare",
-    image: "/images/sm.png",
+    image: "/images/sm1.png",
   },
   Tb: {
     symbol: "Tb",
@@ -103,7 +103,7 @@ const targetElements = {
     source: "FROM NdFeB MAGNETS",
     stream: "Rare Earth Elements",
     color: "rare",
-    image: "images/tb.png",
+    image: "images/tb1.png",
   },
   Dy: {
     symbol: "Dy",
@@ -114,7 +114,7 @@ const targetElements = {
     source: "FROM NdFeB MAGNETS",
     stream: "Rare Earth Elements",
     color: "rare",
-    image: "images/dy.png",
+    image: "images/dy1.png",
   },
 };
 
