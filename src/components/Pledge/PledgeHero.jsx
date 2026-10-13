@@ -6,6 +6,10 @@ export default function PledgeHero() {
   const imageRef = useRef(null);
 
   useEffect(() => {
+    const currentImage = imageRef.current;
+
+    if (!currentImage) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
@@ -15,24 +19,13 @@ export default function PledgeHero() {
       }
     );
 
-    const currentImage = imageRef.current;
+    observer.observe(currentImage);
 
-    if (currentImage) {
-      observer.observe(currentImage);
-    }
-
-    return () => {
-      if (currentImage) {
-        observer.unobserve(currentImage);
-      }
-    };
+    return () => observer.disconnect();
   }, []);
 
-
-
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#f4faf7] px-6 py-16 md:px-10 lg:px-12">
-
+    <section className="relative isolate overflow-hidden bg-[#f4faf7] px-5 py-12 sm:px-8 sm:py-14 lg:px-12 lg:py-12 xl:py-14">
       {/* BACKGROUND GRID */}
       <div
         className="pointer-events-none absolute inset-0 opacity-50"
@@ -45,25 +38,21 @@ export default function PledgeHero() {
         }}
       />
 
-      <div className="relative z-10 mx-auto grid min-h-[650px] max-w-[1450px] items-center lg:grid-cols-[46%_54%]">
-
+      {/* MAIN CONTAINER */}
+      <div className="relative z-10 mx-auto grid w-full max-w-[1380px] items-center gap-8 sm:gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-2 xl:gap-6">
         {/* LEFT CONTENT */}
-        <div className="relative z-30">
-
-          <p
-            className="
-    mb-5
-    text-[13px] font-extrabold uppercase tracking-[3px] text-[#079e99]
-    opacity-0
-    animate-[fadeUp_0.7s_ease-out_0.1s_forwards]
-  "
-          >
+        <div className="relative z-30 order-1 min-w-0 py-2 lg:py-0">
+          <p className="mb-4 animate-[fadeUp_0.7s_ease-out_0.1s_forwards] text-[11px] font-extrabold uppercase tracking-[2.5px] text-[#079e99] opacity-0 sm:mb-5 sm:text-[13px] sm:tracking-[3px]">
             Sustainability Pledge
           </p>
 
-          <h1 className="text-[48px] font-bold leading-[0.99] tracking-[-2.5px] text-[#071313] sm:text-[58px] lg:text-[61px] xl:text-[64px]">
+          <h1 className="text-[clamp(37px,7vw,52px)] font-bold leading-[1.02] tracking-[-1.8px] text-[#071313] sm:text-[58px] sm:tracking-[-2.5px] lg:text-[clamp(44px,4.1vw,61px)] xl:text-[64px]">
             {"Sign the".split("").map((letter, index) => (
-              <span key={index} className="letter-reveal" style={{ animationDelay: `${index * 0.05}s` }}>
+              <span
+                key={`sign-${index}`}
+                className="letter-reveal"
+                style={{ animationDelay: `${index * 0.05}s` }}
+              >
                 {letter === " " ? "\u00A0" : letter}
               </span>
             ))}
@@ -71,7 +60,11 @@ export default function PledgeHero() {
             <br />
 
             {"sustainability".split("").map((letter, index) => (
-              <span key={index} className="letter-reveal" style={{ animationDelay: `${0.45 + index * 0.045}s` }}>
+              <span
+                key={`sustainability-${index}`}
+                className="letter-reveal"
+                style={{ animationDelay: `${0.45 + index * 0.045}s` }}
+              >
                 {letter}
               </span>
             ))}
@@ -79,7 +72,11 @@ export default function PledgeHero() {
             <br />
 
             {"pledge".split("").map((letter, index) => (
-              <span key={index} className="letter-reveal" style={{ animationDelay: `${1.1 + index * 0.06}s` }}>
+              <span
+                key={`pledge-${index}`}
+                className="letter-reveal"
+                style={{ animationDelay: `${1.1 + index * 0.06}s` }}
+              >
                 {letter}
               </span>
             ))}
@@ -88,7 +85,11 @@ export default function PledgeHero() {
 
             <span className="text-[#36a88f]">
               {"at India".split("").map((letter, index) => (
-                <span key={index} className="letter-reveal" style={{ animationDelay: `${1.55 + index * 0.05}s` }}>
+                <span
+                  key={`india-${index}`}
+                  className="letter-reveal"
+                  style={{ animationDelay: `${1.55 + index * 0.05}s` }}
+                >
                   {letter === " " ? "\u00A0" : letter}
                 </span>
               ))}
@@ -96,7 +97,11 @@ export default function PledgeHero() {
               <br />
 
               {"Mobile Congress".split("").map((letter, index) => (
-                <span key={index} className="letter-reveal" style={{ animationDelay: `${2.05 + index * 0.045}s` }}>
+                <span
+                  key={`mobile-${index}`}
+                  className="letter-reveal"
+                  style={{ animationDelay: `${2.05 + index * 0.045}s` }}
+                >
                   {letter === " " ? "\u00A0" : letter}
                 </span>
               ))}
@@ -104,100 +109,95 @@ export default function PledgeHero() {
               <br />
 
               {"2025".split("").map((letter, index) => (
-                <span key={index} className="letter-reveal" style={{ animationDelay: `${2.7 + index * 0.08}s` }}>
+                <span
+                  key={`year-${index}`}
+                  className="letter-reveal"
+                  style={{ animationDelay: `${2.7 + index * 0.08}s` }}
+                >
                   {letter}
                 </span>
               ))}
             </span>
-
           </h1>
 
-          <p
-            className="
-    mt-7 max-w-[470px]
-    text-[18px] leading-[1.55] text-[#687876]
-    opacity-0
-    animate-[fadeUp_0.8s_ease-out_0.5s_forwards]
-  "
-          >
+          {/* PLEDGE DESCRIPTION */}
+          <p className="mt-5 max-w-[470px] animate-[fadeUp_0.8s_ease-out_0.5s_forwards] text-[15px] leading-[1.65] text-[#687876] opacity-0 sm:mt-6 sm:text-[17px] lg:text-[16px] xl:text-[18px]">
             “I / We pledge to act for a sustainable future by adopting
             practices that protect our planet, uplift our communities, and
             promote long-term responsibility.”
           </p>
-          {/* BUTTON + COUNT */}
-          <div className="mt-9 flex items-center">
 
-            <button className="flex h-[44px] animate-bounce items-center gap-4 rounded-full bg-[#35aa91] px-6 text-[14px] font-bold text-white transition duration-300 hover:bg-[#278d78]">
+          {/* BUTTON + COUNT */}
+          <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-4 sm:mt-8 lg:gap-x-4">
+            <button
+              type="button"
+              className="flex h-[46px] shrink-0 items-center gap-3 rounded-full bg-[#35aa91] px-5 text-[13px] font-bold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#278d78] sm:px-6 sm:text-[14px]"
+            >
               I Pledge Now
-              <span className="text-[22px] font-bold ">→</span>
+              <span className="text-[21px] font-bold">→</span>
             </button>
 
-            <div className="mx-5 h-[34px] w-px bg-[#a9d1c7]" />
+            <div className="hidden h-[34px] w-px bg-[#a9d1c7] sm:block" />
 
-            <div className="flex items-center gap-2">
-
-              <span className="text-[14px] font-bold text-[#71817e]">
+            <div className="flex min-w-0 items-center gap-2">
+              <span className="text-[12px] font-semibold leading-5 text-[#71817e] sm:text-[13px] lg:text-[12px] xl:text-[14px]">
                 Total Pledges Submitted:
               </span>
 
-              <span className="text-[22px] font-bold text-[#071313]">
+              <span className="whitespace-nowrap text-[20px] font-bold text-[#071313] sm:text-[22px]">
                 <CountUp end={10147} duration={800} />
               </span>
-
             </div>
           </div>
         </div>
 
         {/* RIGHT EARTH AREA */}
-        <div className={`relative left-[80px]  flex h-[780px] w-[780px] items-center justify-center ${isVisible ? "animate-earth-spin" : ""
-          }`} >
+        <div className="relative order-2 mx-auto flex aspect-square w-full max-w-[430px] items-center justify-center sm:max-w-[500px] lg:max-w-none lg:translate-x-[3%]">
+          {/* RESPONSIVE EARTH ORBIT */}
+          <div
+            className={`relative flex aspect-square w-full items-center justify-center ${
+              isVisible ? "animate-earth-spin" : ""
+            }`}
+          >
+            {/* SOFT GREEN GLOW */}
+            <div
+              className={`absolute left-1/2 top-1/2 aspect-square w-[76%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d9eee7] opacity-60 blur-[35px] sm:blur-[50px] ${
+                isVisible ? "animate-earth-spin" : ""
+              }`}
+            />
 
-          {/* SOFT GREEN GLOW */}
-          <div className={`absolute left-1/2 top-1/2 h-[570px] w-[570px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d9eee7] opacity-50 blur-[50px] ${isVisible ? "animate-earth-spin" : ""
-          } `} />
+            {/* OUTER RING */}
+            <div className="absolute left-1/2 top-1/2 aspect-square w-[84%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#62bdaa] opacity-70" />
 
-          {/* OUTER RING */}
-          <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#62bdaa] opacity-70" />
+            {/* MIDDLE RING */}
+            <div className="absolute left-1/2 top-1/2 aspect-square w-[74%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#62bdaa] opacity-70" />
 
-          {/* MIDDLE RING */}
-          <div className="absolute left-1/2 top-1/2 h-[440px] w-[440px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#62bdaa] opacity-70" />
+            {/* INNER RING */}
+            <div className="absolute left-1/2 top-1/2 aspect-square w-[64%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#72c5b2] opacity-60" />
 
-          {/* INNER RING */}
-          <div className="absolute left-1/2 top-1/2 h-[385px] w-[385px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#72c5b2] opacity-60" />
+            {/* ORBIT DOTS */}
+          
+        <span className="absolute left-[27%] top-[13%] z-30 h-2 w-2 rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)] sm:h-[9px] sm:w-[9px]" />
 
-          {/* TOP LEFT BALL */}
-          <span className="absolute left-[calc(50%-156px)] top-[calc(58%-251px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
+        <span className="absolute left-[72%] top-[14%] z-30 h-2 w-2 rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)] sm:h-[9px] sm:w-[9px]" />
 
-          {/* TOP RIGHT BALL */}
-          <span className="absolute left-[calc(50%+145px)] top-[calc(61%-270px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
+        <span className="absolute left-[7%] top-[49%] z-30 h-2 w-2 rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)] sm:h-[9px] sm:w-[9px]" />
 
-          {/* LEFT CENTER BALL */}
-          <span className="absolute left-[calc(50%-255px)] top-[calc(55%-30px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
+        <span className="absolute right-[8%] top-[48%] z-30 h-2 w-2 rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)] sm:h-[9px] sm:w-[9px]" />
 
-          {/* RIGHT CENTER BALL */}
-          <span className="absolute left-[calc(54%+215px)] top-[calc(55%-20px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
+        <span className="absolute bottom-[14%] left-[27%] z-30 h-2 w-2 rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)] sm:h-[9px] sm:w-[9px]" />
 
-          {/* BOTTOM LEFT BALL */}
-          <span className="absolute left-[calc(54%-190px)] top-[calc(50%+195px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
-
-          {/* BOTTOM RIGHT BALL */}
-          <span className="absolute left-[calc(50%+180px)] top-[calc(45%+195px)] z-30 h-[9px] w-[9px] rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)]" />
-
-          {/* EARTH */}
-          <div className="relative z-20 flex h-[500px] w-[440px] items-center justify-center [perspective:1000px]">
-
-            {/* EARTH */}
-            <div className="relative z-20 flex h-[600px] w-[600px] items-center justify-center">
+        <span className="absolute bottom-[16%] right-[24%] z-30 h-2 w-2 rounded-full bg-[#299d84] shadow-[0_0_8px_rgba(41,157,132,0.35)] sm:h-[9px] sm:w-[9px]" />
+            {/* EARTH IMAGE */}
+            <div className="relative z-20 flex aspect-square w-[88%] items-center justify-center">
               <img
                 ref={imageRef}
                 src="/images/earth.png"
                 alt="Sustainable Earth"
-                className={`relative top-[15px] h-full  w-full object-contain origin-center drop-shadow-[0_15px_110px_rgba(35,115,95,0.50)] `}
+                className="relative top-[20px] left-[10px] right-[px] h-full w-full object-contain drop-shadow-[0_15px_65px_rgba(35,115,95,0.35)]"
               />
             </div>
-
           </div>
-
         </div>
       </div>
     </section>
