@@ -5,9 +5,9 @@ const quickLinks = [
   { name: "Home", path: "/" },
   { name: "Services", path: "/services" },
   { name: "Technology", path: "/technology" },
-  // { name: "Resources", path: "/resources" },
+  { name: "Blog", path: "/blog" },
   { name: "Pledge", path: "/pledge" },
-  // { name: "Career", path: "/career" },
+  { name: "Career", path: "/career" },
   // { name: "Contact Us", path: "" },
 ];
 const company = [

@@ -204,22 +204,22 @@ export default function CriticalMineralsHero() {
               {/* Labels */}
               <div className="absolute left-[23%] top-[15%] rounded-full border border-[#d1ebe7] bg-white/90 px-4 py-2 text-[10px] font-black tracking-wider text-[#1b2927] shadow-lg backdrop-blur-md md:text-xs animate-[float_5s_ease-in-out_infinite]">
                 <span className="mr-2 inline-block h-2 w-2 rounded-full bg-[#249d8d]" />
-                LITHIUM
+               NICKEL
               </div>
 
               <div className="absolute  right-[-9%] top-[43%] rounded-full border border-[#d1ebe7] bg-white/90 px-4 py-2 text-[10px] font-black tracking-wider text-[#1b2927] shadow-lg backdrop-blur-md md:text-xs animate-[float_5s_ease-in-out_infinite]">
                 <span className="mr-2 inline-block h-2 w-2 rounded-full bg-[#249d8d]" />
-                NICKEL
+               GRAPHITE
               </div>
 
               <div className="absolute right-[23%] bottom-[8%] rounded-full border border-[#d1ebe7] bg-white/90 px-4 py-2 text-[10px] font-black tracking-wider text-[#1b2927] shadow-lg backdrop-blur-md md:text-xs animate-[float_5s_ease-in-out_infinite]">
                 <span className="mr-2 inline-block h-2 w-2 rounded-full bg-[#249d8d]" />
-                GRAPHITE
+                RARE EARTHS
               </div>
 
               <div className="absolute left-[-7%] bottom-[35%] rounded-full border border-[#d1ebe7] bg-white/90 px-4 py-2 text-[10px] font-black tracking-wider text-[#1b2927] shadow-lg backdrop-blur-md md:text-xs animate-[float_5s_ease-in-out_infinite]">
                 <span className="mr-2 inline-block h-2 w-2 rounded-full bg-[#249d8d]" />
-                RARE EARTHS
+               LITHIUM
               </div>
 
             </div>

@@ -77,8 +77,6 @@ export default function Hero() {
 
       <img
 
-
-
         src="images/HomePage1.png"
         alt=""
         className="absolute inset-0 h-full w-full object-cover"
@@ -131,7 +129,7 @@ export default function Hero() {
             {/* =====================================
                 HEADING
             ===================================== */}
-            <h1 className="max-w-[800px] text-[40px] font-medium leading-[0.96] tracking-[-0.055em] sm:text-[65px] md:text-[74px] lg:text-[70px] xl:text-[80px] 2xl:text-[60px]">
+            <h1 className="max-w-[800px] text-[40px] font-medium leading-[0.96] tracking-[-0.055em] sm:text-[68px] md:text-[79px] lg:text-[75px] xl:text-[85px] 2xl:text-[65px]">
               {/* First line */}
               <span className="block ">
                 <span className="block">

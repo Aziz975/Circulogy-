@@ -80,7 +80,7 @@ const renderLetters = (text) =>
             variants={headingText}
             initial="hidden"
             animate="visible"
-            className="max-w-[690px] text-[35px] font-bold leading-[1.02] tracking-[-0.055em] sm:text-[50px] md:text-[60px] lg:text-[clamp(50px,5.5vw,85px)]"
+            className="max-w-[690px] text-[43px] font-bold leading-[1.02] tracking-[-0.055em] sm:text-[54px] sm:text-[bold] md:text-[87px] lg:text-[clamp(50px,5.5vw,80px)]"
           >
             <span className="sr-only">Insights, Ideas & Impact</span>
 

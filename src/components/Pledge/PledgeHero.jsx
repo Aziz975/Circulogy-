@@ -46,7 +46,7 @@ export default function PledgeHero() {
             Sustainability Pledge
           </p>
 
-          <h1 className="text-[clamp(37px,7vw,52px)] font-bold leading-[1.02] tracking-[-1.8px] text-[#071313] sm:text-[58px] sm:tracking-[-2.5px] lg:text-[clamp(44px,4.1vw,61px)] xl:text-[64px]">
+          <h1 className="text-[clamp(47px,7vw,52px)] font-bold leading-[1.02] tracking-[-1.8px] text-[#071313] sm:text-[72px] sm:tracking-[-2.5px] lg:text-[clamp(68px,4.1vw,61px)] xl:text-[72px]">
             {"Sign the".split("").map((letter, index) => (
               <span
                 key={`sign-${index}`}
@@ -62,7 +62,7 @@ export default function PledgeHero() {
             {"sustainability".split("").map((letter, index) => (
               <span
                 key={`sustainability-${index}`}
-                className="letter-reveal"
+                className="letter-reveal text-[#36a88f]"
                 style={{ animationDelay: `${0.45 + index * 0.045}s` }}
               >
                 {letter}
@@ -83,41 +83,8 @@ export default function PledgeHero() {
 
             <br />
 
-            <span className="text-[#36a88f]">
-              {"at India".split("").map((letter, index) => (
-                <span
-                  key={`india-${index}`}
-                  className="letter-reveal"
-                  style={{ animationDelay: `${1.55 + index * 0.05}s` }}
-                >
-                  {letter === " " ? "\u00A0" : letter}
-                </span>
-              ))}
 
-              <br />
-
-              {"Mobile Congress".split("").map((letter, index) => (
-                <span
-                  key={`mobile-${index}`}
-                  className="letter-reveal"
-                  style={{ animationDelay: `${2.05 + index * 0.045}s` }}
-                >
-                  {letter === " " ? "\u00A0" : letter}
-                </span>
-              ))}
-
-              <br />
-
-              {"2025".split("").map((letter, index) => (
-                <span
-                  key={`year-${index}`}
-                  className="letter-reveal"
-                  style={{ animationDelay: `${2.7 + index * 0.08}s` }}
-                >
-                  {letter}
-                </span>
-              ))}
-            </span>
+             
           </h1>
 
           {/* PLEDGE DESCRIPTION */}
