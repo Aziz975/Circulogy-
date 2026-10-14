@@ -87,7 +87,7 @@ export default function WhatDo() {
             </div>
 
             {/* Heading */}
-            <h2 className="max-w-[690px] text-[42px] font-semibold leading-[0.99] tracking-[-0.045em] text-[#080c0b] sm:text-[49px] md:text-[56px] lg:text-[51px] xl:text-[57px]">
+            {/* <h2 className="max-w-[690px] text-[42px] font-semibold leading-[0.99] tracking-[-0.045em] text-[#080c0b] sm:text-[49px] md:text-[56px] lg:text-[51px] xl:text-[57px]">
               
               <span className="block ">
                 <span className={`block transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-[110%] opacity-0"}`} style={{ transitionDelay: "100ms" }}>
@@ -119,6 +119,23 @@ export default function WhatDo() {
                 </span>
               </span>
 
+            </h2> */}
+
+            
+            <h2 className="mt-8 max-w-[570px] text-[47px] font-bold leading-[1.01] tracking-[-0.05em] sm:text-[54px] md:text-[60px] lg:text-[52px] xl:text-[59px]">
+              Turning end-of-life
+              <br />
+              <span className="text-[#32a092]">
+             materials into the
+             </span>
+              <br />
+              <span className="">
+                building blocks of
+              </span>
+               <br />
+              <span className="text-[#32a092]">
+                India's clean energy  economy.
+              </span>
             </h2>
 
             {/* Description */}
