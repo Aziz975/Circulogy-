@@ -10,9 +10,9 @@ import {
 } from "lucide-react";
 
 // EmailJS configuration
-const SERVICE_ID = "service_n9t362c";
-const TEMPLATE_ID = "template_4r7d42q";
-const PUBLIC_KEY = "0jGQIMCLShcTUDnlF";
+const SERVICE_ID = "service_tpzdmlk";
+const TEMPLATE_ID = "template_nt0my2f";
+const PUBLIC_KEY = "9NI6awc5xWjV9yNER";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
