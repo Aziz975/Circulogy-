@@ -67,12 +67,7 @@ export default function CriticalMineralsHero() {
           {/* ================= LEFT CONTENT ================= */}
           <div className="relative z-20 max-w-[650px]">
 
-            {/* Eyebrow */}
-            <div className="mb-6 overflow-hidden">
-              <p className="animate-[fadeUp_.7s_ease-out_forwards] text-[10px] font-bold tracking-[0.22em] text-[#239c8b] opacity-0 md:text-xs">
-                DPIIT-RECOGNISED · DEEPTECH · NOIDA, INDIA
-              </p>
-            </div>
+           
 
             {/* Heading */}
             <h1
@@ -103,17 +98,6 @@ export default function CriticalMineralsHero() {
               </span>
 
             </h1>
-
-            {/* Description */}
-            <p className="mt-7 max-w-[590px] animate-[fadeUp_.8s_ease-out_.55s_forwards] text-[15px] leading-[1.55] text-[#4d5b59] opacity-0 md:text-[17px]">
-              Circulogy is India's critical mineral and rare earth refinery 
-              recovering battery-grade critical minerals (Lithium, Cobalt,
-              Nickel, Graphite, Manganese) and rare earth elements
-              (Neodymium, Dysprosium, Praseodymium) from end-of-life batteries,
-              e-waste and NdFeB magnets using a single proprietary
-              hydrometallurgical process. Turning what India discards into what
-              India urgently needs.
-            </p>
 
             {/* Buttons */}
             <div className="mt-8 flex flex-wrap gap-4 animate-[fadeUp_.8s_ease-out_.7s_forwards] opacity-0">

@@ -207,9 +207,7 @@ export default function WhatDo() {
       {/* Bottom Right Tag */}
       <div className={`absolute bottom-8 right-[5vw] hidden items-center gap-4 transition-all duration-1000 ease-out lg:flex ${visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}`} style={{ transitionDelay: "900ms" }}>
         <span/>
-        <span className="text-[10px] font-bold tracking-[0.22em] text-[#8dc8be]">
-          RECOVER · REFINE · REBUILD
-        </span>
+       
       </div>
 
     </section>

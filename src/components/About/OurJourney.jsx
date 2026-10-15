@@ -68,15 +68,7 @@ export default function OurJourney() {
             </h2>
           </div>
 
-          {/* Right */}
-          <div className="pb-2">
-            <p className="max-w-[590px] text-[16px] leading-[1.5] text-[#55476d] sm:text-[17px] md:text-[18px] lg:text-[18px] xl:text-[19px]">
-              Built on a single conviction: India’s critical mineral and rare
-              earth future does not lie in new mines abroad or geopolitically
-              fragile imports, but in the end-of-life batteries and electronic
-              devices already in circulation at home.
-            </p>
-          </div>
+          
 
         </div>
 

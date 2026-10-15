@@ -53,12 +53,12 @@ const PartnersSection = () => {
   };
 
   return (
-    <section className="w-full overflow-hidden bg-[#f7f6f2] px-4 py-10 sm:px-6 sm:py-12 md:px-8 md:py-14 lg:px-12 lg:py-16 xl:px-16">
+    <section className="w-full overflow-hidden bg-[#f7f6f2] px-4 py-4 sm:px-6 sm:py-12 md:px-8 md:py-14 lg:px-12 lg:py-10 xl:px-10">
       <div className="mx-auto w-full max-w-[1500px]">
 
         {/* HEADING */}
 
-        <div className="max-w-[780px]">
+        <div className="max-w-[1000px]">
           <h2 className="text-[38px] font-medium leading-[0.98] tracking-[-0.045em] text-[#111111] sm:text-[46px] md:text-[54px] lg:text-[58px] xl:text-[60px]">
             Stronger Together.
           </h2>
@@ -67,14 +67,14 @@ const PartnersSection = () => {
             Building the Circular Future.
           </h2>
 
-          <p className="mt-6 max-w-[650px] text-[14px] font-normal leading-[1.6] tracking-[-0.01em] text-[#777773] sm:mt-7 sm:text-[15px] md:mt-8 md:text-[16px] lg:text-[17px]">
+          <p className="mt-6 max-w-[780px] text-[14px] font-normal leading-[1.6] tracking-[-0.01em] text-[#777773] sm:mt-7 sm:text-[15px] md:mt-8 md:text-[16px] lg:text-[17px]">
             We collaborate with forward-thinking organizations, industry leaders, and innovation partners to close loops, unlock value, and create lasting impact across the circular economy.
           </p>
         </div>
 
         {/* CAROUSEL */}
 
-        <div className="relative mt-12 w-full sm:mt-14 md:mt-16 lg:mt-[70px]">
+        <div className="relative mt-8 w-full sm:mt-14 md:mt-16 lg:mt-[35px]">
 
           <div className="relative h-[230px] w-full overflow-visible sm:h-[260px] md:h-[285px] lg:h-[330px] xl:h-[350px]">
 

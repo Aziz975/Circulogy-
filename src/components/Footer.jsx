@@ -118,65 +118,10 @@ const Footer = () => {
       </div>
 
       {/* Container */}
-      <div className="relative z-10 mx-auto w-full max-w-[1487px] px-5 pt-[50px] pb-[40px] sm:px-8 lg:px-[52px] lg:pt-[65px]">
-
-        {/* CTA */}
-        <section className="relative flex min-h-[194px] items-center overflow-hidden rounded-[19px] border border-[#3d9d91] bg-[#071918]/90 px-6 sm:px-8 lg:px-[45px]">
-
-          {/* Decorative circles */}
-          <div className="relative mr-[65px] hidden h-[145px] w-[145px] shrink-0 items-center justify-center lg:flex">
-
-            <div className="absolute inset-0 rounded-full border border-[#1b7168]/30"></div>
-
-            <div className="absolute inset-[13px] rounded-full border border-[#1b7168]/45"></div>
-
-            <div className="absolute inset-[26px] rounded-full border border-[#26d5b4]"></div>
-
-            <div className="h-[82px] w-[82px] rounded-full border border-[#22d5b5]"></div>
-          </div>
-
-          {/* CTA Text */}
-          <div className="flex-1 py-8">
-
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.35em] text-[#b5c0bf]">
-              A CLEANER, BRIGHTER TOMORROW
-            </p>
-
-            <h2 className="text-[28px] font-medium leading-[1.2] tracking-[-0.035em] sm:text-[34px] lg:text-[42px]">
-              Be part of the <span className="text-[#65d9c2]">circular movement</span>
-            </h2>
-
-            <p className="mt-2 text-[15px] leading-[23px] text-[#aeb9b8] sm:text-[16px]">
-              Let's build a more sustainable future together.
-            </p>
-          </div>
-
-          {/* CTA Button */}
-          <div className="hidden flex-col items-end gap-[17px] lg:flex">
-
-            <a href="#" className="flex h-[60px] min-w-[292px] animate-bounce items-center justify-between rounded-full border border-[#4ebaa8] bg-[#118b79] px-[25px] text-[16px] font-medium transition-all duration-300 hover:bg-[#159c87] hover:shadow-[0_0_30px_rgba(27,216,179,0.15)]">
-              <span>Partner with Circulogy</span>
-
-              <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.7">
-                <path d="M5 19 19 5M9 5h10v10" />
-              </svg>
-            </a>
-
-            <p className="pr-1 text-[9px] font-semibold uppercase tracking-[0.38em] text-[#a8b5b3]">
-              IDEAS / PEOPLE / REAL IMPACT
-            </p>
-          </div>
-
-          {/* Mobile CTA Button */}
-          <a href="#" className="absolute bottom-5 right-5 flex h-[45px] w-[45px] items-center justify-center rounded-full border border-[#4ebaa8] bg-[#118b79] lg:hidden">
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7">
-              <path d="M5 19 19 5M9 5h10v10" />
-            </svg>
-          </a>
-        </section>
+      <div className="relative z-10 mx-auto w-full max-w-[1487px] px-5 pt-[10px] pb-[40px] sm:px-8 lg:px-[30px] lg:pt-[65px]">
 
         {/* Footer Grid */}
-        <section className="mt-[68px] grid grid-cols-1 gap-[50px] md:grid-cols-3 lg:grid-cols-[1.18fr_1fr_1fr_1fr_1fr] lg:gap-[52px]">
+        <section className="mt-[60px] grid grid-cols-1 gap-[50px] md:grid-cols-3 lg:grid-cols-[1.18fr_1fr_1fr_1fr_1fr] lg:gap-[52px]">
 
           {/* Brand */}
           <div className="relative left-[10%] border-b border-[#49605f]/50 pb-[45px] md:border-b-0 md:border-r md:pr-[42px] lg:pb-0">

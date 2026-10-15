@@ -63,8 +63,8 @@ const founders = [
   },
   {
     id: 3,
-    name: "Azeem Rizwi",
-    role: "Co-Founder and Chief Plant Officer",
+    name: "Azeem Rizvi",
+    role: "Co-Founder and CPO",
     src: "/images/azeem-sir.jpeg",
     experience: [
       {
@@ -348,13 +348,7 @@ export default function OurFounders() {
           </div>
         </div>
 
-        {/* BOTTOM LABEL */}
-        <div className="mt-16 flex items-center gap-4 pb-1 lg:mt-[35px]">
-          <span className="h-px w-8 bg-[#a9dcd4]" />
-          <span className="text-[9px] font-bold tracking-[0.24em] text-[#9ec7c2] sm:text-[10px]">
-            RECOVER · REFINE · REBUILD
-          </span>
-        </div>
+        
       </div>
 
       {/* SHARED MODAL — CONTENT CHANGES WITH SELECTED FOUNDER */}

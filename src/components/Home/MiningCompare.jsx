@@ -184,7 +184,7 @@ export default function MiningCompare() {
             </h2>
 
             <p className="mt-2 text-right text-xs text-white/65 sm:text-sm">
-              Recovering from circulation
+              Recovering from devices
             </p>
           </div>
         </div>

@@ -46,7 +46,7 @@ export default function FinalCTA() {
       
 
         <h2 className="text-[42px] font-light tracking-[-0.04em] sm:text-[60px] lg:text-[72px]">
-          Built Above Ground.
+          Act Circular Now.
         </h2>
 
         <p className="text-[15px] font-medium mt-4 max-w-[550px] text-[11px] leading-5 text-white/55">
