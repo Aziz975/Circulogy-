@@ -185,7 +185,7 @@ const CareerApplicationForm = () => {
   };
 
   return (
-    <section className="w-full bg-[#f8faf7] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+    <section className=" w-full bg-[#f8faf7] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
       <div className="mx-auto max-w-3xl">
         <div className="mb-8">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#159b95]">

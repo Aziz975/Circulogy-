@@ -1,5 +1,8 @@
-import React from "react";
 
+import React from "react";
+import { Link } from "react-router-dom";
+import { motion, useReducedMotion } from "motion/react";
+import { MapPin, Mail, Phone } from "lucide-react";
 
 const quickLinks = [
   { name: "Home", path: "/" },
@@ -8,8 +11,8 @@ const quickLinks = [
   { name: "Blog", path: "/blog" },
   { name: "Pledge", path: "/pledge" },
   { name: "Career", path: "/career" },
-  // { name: "Contact Us", path: "" },
 ];
+
 const company = [
   { name: "About Us", path: "/about" },
   { name: "Our Impact", path: "/impact" },
@@ -28,27 +31,92 @@ const policies = [
   { name: "Accessibility", id: "accessibility" },
 ];
 
-import { Link } from "react-router-dom";
+const EASE = [0.22, 1, 0.36, 1];
 
-function FooterColumn({ title, links }) {
+const revealUp = {
+  hidden: {
+    opacity: 0,
+    y: 28,
+    filter: "blur(5px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.75,
+      ease: EASE,
+    },
+  },
+};
+
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.075,
+    },
+  },
+};
+
+function FooterColumn({ title, links, reduceMotion }) {
   return (
-    <div>
-      <h3 className="mb-5 text-[12px] font-bold uppercase tracking-[0.08em] text-white">
+    <motion.div
+      variants={revealUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.12 }}
+      className="flex flex-col items-center px-4 py-9 text-center sm:px-5 sm:py-0 lg:px-6 lg:pt-[12px]"
+    >
+      <motion.h3
+        variants={revealUp}
+        className="relative mb-[27px] whitespace-nowrap text-[13px] font-semibold uppercase tracking-[0.09em] text-white sm:text-[14px] lg:text-[15px]"
+      >
         {title}
-      </h3>
+        <motion.span
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{
+            duration: reduceMotion ? 0 : 0.65,
+            delay: reduceMotion ? 0 : 0.15,
+            ease: EASE,
+          }}
+          className="absolute -bottom-[10px] left-1/2 h-[2px] w-[25px] origin-center -translate-x-1/2 bg-[#19cdb5]"
+        />
+      </motion.h3>
 
-      <div className="flex flex-col gap-3">
+      <motion.nav
+        aria-label={title}
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.08 }}
+        className="flex flex-col items-center gap-[16px]"
+      >
         {links.map((link) => (
-          <Link
+          <motion.div
             key={link.name}
-            to={link.path}
-            className="text-[14px] text-white/70 transition-colors duration-300 hover:text-[#19cdb5]"
+            variants={revealUp}
+            whileHover={
+              reduceMotion
+                ? {}
+                : {
+                    x: 4,
+                    transition: { duration: 0.2 },
+                  }
+            }
           >
-            {link.name}
-          </Link>
+            <Link
+              to={link.path || `/${link.id}`}
+              className="inline-block text-[14px] leading-[22px] text-[#c4cdcb] transition-colors duration-300 hover:text-[#19cdb5] sm:text-[15px]"
+            >
+              {link.name}
+            </Link>
+          </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.nav>
+    </motion.div>
   );
 }
 
@@ -90,132 +158,352 @@ const SocialIcon = ({ type }) => {
   return null;
 };
 
-
-
+const socialLinks = [
+  {
+    type: "linkedin",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/circulogy/posts/?feedView=all",
+    external: true,
+  },
+  {
+    type: "x",
+    label: "X",
+    href: "#",
+    external: false,
+  },
+  {
+    type: "youtube",
+    label: "YouTube",
+    href: "#",
+    external: false,
+  },
+  {
+    type: "instagram",
+    label: "Instagram",
+    href: "https://www.instagram.com/circulogy/",
+    external: true,
+  },
+];
 
 const Footer = () => {
+  const reduceMotion = useReducedMotion();
+
+  const reveal = reduceMotion
+    ? {
+        hidden: { opacity: 1, y: 0, filter: "blur(0px)" },
+        visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+      }
+    : revealUp;
+
+  const hoverLift = reduceMotion ? {} : { y: -5, scale: 1.04 };
+
   return (
-    <footer className="relative w-full overflow-hidden bg-[#061313] font-[Inter,sans-serif] text-white">
+    <footer className="relative isolate w-full overflow-hidden bg-[#031614] font-[Inter,sans-serif] text-white">
 
-      {/* Background */}
-      <div className="pointer-events-none absolute inset-0">
+      {/* Background Effects */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
 
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_48%_15%,rgba(13,87,78,0.22),transparent_48%)]"></div>
+        <motion.div
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_48%_0%,rgba(11,75,67,0.22),transparent_58%)]"
+          animate={
+            reduceMotion
+              ? {}
+              : { opacity: [0.65, 1, 0.65] }
+          }
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
 
-        <div className="absolute -right-[150px] top-[20px] h-[620px] w-[420px] rotate-[18deg] rounded-[45%] bg-[radial-gradient(ellipse_at_center,#295b57_0%,#0b2928_48%,transparent_70%)] opacity-20"></div>
+        {/* Left Decorative Rings */}
+        <motion.div
+          className="absolute -bottom-[180px] -left-[125px] h-[350px] w-[350px] rounded-full border border-[#16423e]/60 sm:-left-[100px] sm:h-[400px] sm:w-[400px]"
+          animate={
+            reduceMotion
+              ? {}
+              : {
+                  rotate: [0, 12, 0],
+                  scale: [1, 1.04, 1],
+                }
+          }
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
 
-        <div className="absolute -bottom-[190px] -left-[140px] h-[360px] w-[360px] rounded-full border border-[#16423e]/70"></div>
+        <motion.div
+          className="absolute -bottom-[145px] -left-[85px] h-[280px] w-[280px] rounded-full border border-[#16423e]/50 sm:-left-[65px] sm:h-[320px] sm:w-[320px]"
+          animate={reduceMotion ? {} : { rotate: [0, -10, 0] }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
 
-        <div className="absolute -bottom-[155px] -left-[105px] h-[290px] w-[290px] rounded-full border border-[#16423e]/60"></div>
+        <div className="absolute -bottom-[110px] -left-[45px] h-[210px] w-[210px] rounded-full border border-[#16423e]/40" />
 
-        <div className="absolute -bottom-[120px] -left-[70px] h-[220px] w-[220px] rounded-full border border-[#16423e]/50"></div>
+        {/* Right Decorative Rings */}
+        <motion.div
+          className="absolute -bottom-[190px] -right-[100px] h-[380px] w-[380px] rounded-full border border-[#16423e]/60 sm:-right-[70px] sm:h-[450px] sm:w-[450px]"
+          animate={
+            reduceMotion
+              ? {}
+              : {
+                  rotate: [0, -12, 0],
+                  scale: [1, 1.05, 1],
+                }
+          }
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
 
-        <div className="absolute -bottom-[300px] left-[48%] h-[430px] w-[600px] rounded-[50%] border border-[#123b38]/70"></div>
+        <motion.div
+          className="absolute -bottom-[150px] -right-[45px] h-[300px] w-[300px] rounded-full border border-[#16423e]/50 sm:-right-[35px] sm:h-[370px] sm:w-[370px]"
+          animate={reduceMotion ? {} : { rotate: [0, 10, 0] }}
+          transition={{
+            duration: 16,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
 
-        <div className="absolute -bottom-[275px] left-[50%] h-[370px] w-[520px] rounded-[50%] border border-[#123b38]/60"></div>
-
-        <div className="absolute left-[8%] top-[68%] h-[130px] w-[260px] opacity-20 [background-image:radial-gradient(#2b7770_1px,transparent_1px)] [background-size:9px_9px]"></div>
+        {/* Subtle Dot Pattern */}
+        <motion.div
+          className="absolute bottom-[100px] left-[8%] h-[100px] w-[280px] opacity-20 [background-image:radial-gradient(#24766b_1px,transparent_1px)] [background-size:9px_9px]"
+          animate={
+            reduceMotion
+              ? {}
+              : {
+                  y: [0, -8, 0],
+                  opacity: [0.12, 0.24, 0.12],
+                }
+          }
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
       </div>
 
-      {/* Container */}
-      <div className="relative z-10 mx-auto w-full max-w-[1487px] px-5 pt-[10px] pb-[40px] sm:px-8 lg:px-[30px] lg:pt-[15px]">
+      {/* Main Container */}
+      <div className="relative z-10 mx-auto w-full max-w-[1487px] px-5 pb-[25px] pt-[45px] sm:px-8 sm:pt-[60px] lg:px-[50px] lg:pt-[75px]">
 
         {/* Footer Grid */}
-        <section className="mt-[60px] grid grid-cols-1 gap-[50px] md:grid-cols-3 lg:grid-cols-[1.18fr_1fr_1fr_1fr_1fr] lg:gap-[52px]">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.18fr_1fr_1fr_1fr]">
 
-          {/* Brand */}
-          <div className="relative left-[10%] border-b border-[#49605f]/50 pb-[45px] md:border-b-0 md:border-r md:pr-[42px] lg:pb-0">
+          {/* Brand and Contact */}
+          <motion.div
+            variants={reveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.12 }}
+            transition={{
+              duration: reduceMotion ? 0 : 0.8,
+              ease: EASE,
+            }}
+            className="flex flex-col items-center border-[#334744]/70 px-4 pb-[38px] text-center sm:items-start sm:border-r sm:px-6 sm:pb-[40px] sm:text-left lg:pb-[12px] lg:pl-5 lg:pr-[42px]"
+          >
 
-            <img
-              src="/images/companylogo.png"
-              alt="Circulogy"
-              className="relative left-[-10%] h-[32px] w-auto object-contain sm:h-[36px md:h-[40px lg:h-[45px xl:h-[50px]" />
+            {/* Logo */}
+            <motion.div
+              variants={reveal}
+              whileHover={
+                reduceMotion
+                  ? {}
+                  : {
+                      scale: 1.035,
+                      transition: { duration: 0.25 },
+                    }
+              }
+            >
+              <Link to="/" aria-label="Circulogy home" className="inline-flex max-w-full">
+                <img
+                  src="/images/companylogo.png"
+                  alt="Circulogy"
+                  className="h-[36px] w-auto max-w-full object-contain sm:h-[40px] lg:h-[43px]"
+                />
+              </Link>
+            </motion.div>
 
-            {/* Tagline */}
-            <p className="mt-2 text-[13px] font-medium uppercase tracking-[0.13em] text-[#c7cfce]">
+            <motion.p
+              variants={reveal}
+              className="mt-[12px] text-[12px] font-medium uppercase tracking-[0.20em] text-[#d0d8d6] sm:text-[13px]"
+            >
               ACT CIRCULAR NOW
-            </p>
+            </motion.p>
 
-            {/* Description */}
-            <p className="mt-[27px] max-w-[280px] text-[15px] leading-[23px] text-[#aeb9b8]">
+            <motion.p
+              variants={reveal}
+              className="mt-[25px] max-w-[290px] text-[14px] leading-[23px] text-[#b8c3c1] sm:text-[15px]"
+            >
               A tech-enabled platform connecting and empowering every player in India's circular economy.
-            </p>
+            </motion.p>
 
-            {/* Email */}
-            <a href="mailto:info@circulogy.com" className="mt-[30px] flex items-center gap-4 text-[14px] text-[#bfc8c7] transition-colors duration-300 hover:text-white">
-
-              <svg viewBox="0 0 24 24" className="h-[35px] w-[40px] text-[#20d8b1]" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" strokeLinecap="round" strokeLinejoin="round" /><circle cx="12" cy="10" r="2.5" /></svg>
-
+            {/* Address */}
+            <motion.a
+              variants={reveal}
+              whileHover={
+                reduceMotion
+                  ? {}
+                  : {
+                      x: 3,
+                      transition: { duration: 0.2 },
+                    }
+              }
+              href="https://maps.google.com/?q=307+Tower+B+ATS+Bouquet+Sector+132+Noida+201304"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-[25px] flex w-full max-w-[310px] items-start gap-4 text-left text-[14px] leading-[22px] text-[#c0c9c8] transition-colors duration-300 hover:text-white"
+            >
+              <MapPin className="mt-[4px] h-[22px] w-[22px] shrink-0 text-[#19cdb5]" strokeWidth={1.8} />
               <span>307, Tower B, ATS Bouquet, Sector 132, Noida, 201304</span>
-            </a>
+            </motion.a>
 
             {/* Email */}
-            <a href="mailto:info@circulogy.com" className="mt-[30px] flex items-center gap-4 text-[14px] text-[#bfc8c7] transition-colors duration-300 hover:text-white">
-
-              <svg viewBox="0 0 24 24" className="h-[21px] w-[21px] text-[#20d8b1]" fill="none" stroke="currentColor" strokeWidth="1.7">
-                <rect x="3" y="5" width="18" height="14" rx="1.5"></rect>
-                <path d="m4 7 8 6 8-6"></path>
-              </svg>
-
+            <motion.a
+              variants={reveal}
+              whileHover={
+                reduceMotion
+                  ? {}
+                  : {
+                      x: 3,
+                      transition: { duration: 0.2 },
+                    }
+              }
+              href="mailto:info@circulogy.com"
+              className="mt-[22px] flex items-center gap-4 text-[14px] text-[#c0c9c8] transition-colors duration-300 hover:text-[#19cdb5]"
+            >
+              <Mail className="h-[21px] w-[21px] shrink-0 text-[#19cdb5]" strokeWidth={1.8} />
               <span>info@circulogy.com</span>
-            </a>
+            </motion.a>
 
             {/* Phone */}
-            <a href="tel:+910000000000" className="mt-4 flex items-center gap-4 text-[14px] text-[#bfc8c7] transition-colors duration-300 hover:text-white">
-
-              <svg viewBox="0 0 24 24" className="h-[21px] w-[21px] text-[#20d8b1]" fill="none" stroke="currentColor" strokeWidth="1.7">
-                <path d="M6.5 3.5 9 3l2.5 5-2.3 1.8a14.7 14.7 0 0 0 5.5 5.5l1.8-2.3 5 2.5-.5 2.5a3 3 0 0 1-3.3 2.4C10.3 19.4 4.6 13.7 3.6 6.8A3 3 0 0 1 6.5 3.5Z"></path>
-              </svg>
-
+            <motion.a
+              variants={reveal}
+              whileHover={
+                reduceMotion
+                  ? {}
+                  : {
+                      x: 3,
+                      transition: { duration: 0.2 },
+                    }
+              }
+              href="tel:+918650907362"
+              className="mt-[18px] flex items-center gap-4 text-[14px] text-[#c0c9c8] transition-colors duration-300 hover:text-[#19cdb5]"
+            >
+              <Phone className="h-[21px] w-[21px] shrink-0 text-[#19cdb5]" strokeWidth={1.8} />
               <span>+9186509 07362</span>
-            </a>
+            </motion.a>
 
-            {/* Social Icons */}
-            <div className="mt-7 flex gap-[14px]">
+            {/* Social Links */}
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
+              className="mt-[25px] flex flex-wrap justify-center gap-[12px] sm:justify-start sm:gap-[14px]"
+            >
+              {socialLinks.map((social) => (
+                <motion.a
+                  key={social.type}
+                  variants={reveal}
+                  whileHover={hoverLift}
+                  whileTap={reduceMotion ? {} : { scale: 0.94 }}
+                  href={social.href}
+                  target={social.external ? "_blank" : undefined}
+                  rel={social.external ? "noreferrer" : undefined}
+                  aria-label={social.label}
+                  className="flex h-[46px] w-[46px] items-center justify-center rounded-full border border-[#435352] text-[#e5e9e8] transition-[border-color,background-color,color] duration-300 hover:border-[#19cdb5] hover:bg-[#19cdb5]/10 hover:text-[#19cdb5]"
+                >
+                  <SocialIcon type={social.type} />
+                </motion.a>
+              ))}
+            </motion.div>
+          </motion.div>
 
-              <a href="https://www.linkedin.com/company/circulogy/posts/?feedView=all" aria-label="LinkedIn" className="flex h-[45px] w-[45px] items-center justify-center rounded-full border border-[#435352] text-[#e5e9e8] transition-all duration-300 hover:border-[#20d8b1] hover:text-[#20d8b1]">
-                <SocialIcon type="linkedin" />
-              </a>
-
-              <a href="#" aria-label="X" className="flex h-[45px] w-[45px] items-center justify-center rounded-full border border-[#435352] text-[#e5e9e8] transition-all duration-300 hover:border-[#20d8b1] hover:text-[#20d8b1]">
-                <SocialIcon type="x" />
-              </a>
-
-              <a href="#" aria-label="YouTube" className="flex h-[45px] w-[45px] items-center justify-center rounded-full border border-[#435352] text-[#e5e9e8] transition-all duration-300 hover:border-[#20d8b1] hover:text-[#20d8b1]">
-                <SocialIcon type="youtube" />
-              </a>
-
-              <a href="https://www.instagram.com/circulogy?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" aria-label="Instagram" className="flex h-[45px] w-[45px] items-center justify-center rounded-full border border-[#435352] text-[#e5e9e8] transition-all duration-300 hover:border-[#20d8b1] hover:text-[#20d8b1]">
-                <SocialIcon type="instagram" />
-              </a>
-
-            </div>
+          {/* Quick Links */}
+          <div className="border-b border-[#334744]/70 sm:border-b-0 sm:border-r sm:py-[40px] lg:py-[12px]">
+            <FooterColumn
+              title="QUICK LINKS"
+              links={quickLinks}
+              reduceMotion={reduceMotion}
+            />
           </div>
 
-          {/* Columns */}
+          {/* Company */}
+          <div className="border-b border-[#334744]/70 sm:border-b-0 lg:border-r lg:py-[12px]">
+            <FooterColumn
+              title="COMPANY"
+              links={company}
+              reduceMotion={reduceMotion}
+            />
+          </div>
 
-
-          <FooterColumn title="QUICK LINKS" links={quickLinks} />
-
-          <FooterColumn title="COMPANY" links={company} />
-
-          <FooterColumn title="POLICIES" links={policies} />
-
+          {/* Policies */}
+          <div className="sm:py-[40px] lg:py-[12px]">
+            <FooterColumn
+              title="POLICIES"
+              links={policies.map((link) => ({
+                ...link,
+                path: `/policies/${link.id}`,
+              }))}
+              reduceMotion={reduceMotion}
+            />
+          </div>
         </section>
 
-        {/* Bottom */}
-        <div className="mt-[63px] flex flex-col items-start justify-between gap-5 border-t border-[#63706f]/60 pt-[32px] sm:flex-row sm:items-center">
-
-          <p className="text-[12px] leading-[18px] text-[#9ba7a5]">
+        {/* Bottom Copyright */}
+        <motion.div
+          initial={
+            reduceMotion
+              ? false
+              : {
+                  opacity: 0,
+                  y: 20,
+                }
+          }
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{
+            duration: reduceMotion ? 0 : 0.75,
+            ease: EASE,
+          }}
+          className="mt-[28px] flex flex-col items-center justify-center gap-[13px] border-t border-[#63706f]/60 px-3 pt-[25px] text-center sm:mt-[38px] sm:pt-[27px]"
+        >
+          <p className="text-[12px] leading-[18px] text-[#aeb9b7] sm:text-[13px]">
             © 2026 Circulogy. All rights reserved.
           </p>
 
-          <p className="text-[9px] font-semibold uppercase tracking-[0.35em] text-[#a6b0ae]">
+          <motion.p
+            animate={
+              reduceMotion
+                ? {}
+                : {
+                    opacity: [0.7, 1, 0.7],
+                  }
+            }
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="text-[9px] font-semibold uppercase tracking-[0.28em] text-[#a6b0ae] sm:text-[10px] sm:tracking-[0.35em]"
+          >
             CIRCULAR TODAY. BRIGHTER TOMORROW.
-          </p>
-
-        </div>
-
+          </motion.p>
+        </motion.div>
       </div>
     </footer>
   );

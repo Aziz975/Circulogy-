@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import Blog from "./components/Pages/Blog.jsx";
+import CareerApplication from "./components/Career/CareerApplication.jsx";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/blog" element={<Blog/>} />
         <Route path="/pledge" element={<Pledge />} />
         <Route path="/career" element={<Career />} />
+        <Route path="/career1" element={<CareerApplication />} />
         <Route path="/about" element={<About />} />
       </Routes>
 

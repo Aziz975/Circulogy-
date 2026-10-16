@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { motion } from "motion/react"; // or: import { motion } from "framer-motion";
+
 
 const CareersHero = () => {
   const fileInputRef = useRef(null);
@@ -73,10 +75,9 @@ const CareersHero = () => {
               transition-all
               duration-[750ms]
               ease-[cubic-bezier(0.22,1,0.36,1)]
-              ${
-                isVisible
-                  ? "translate-y-0 rotate-0 opacity-100 blur-0"
-                  : "translate-y-[115%] rotate-[8deg] opacity-0 blur-[7px]"
+              ${isVisible
+                ? "translate-y-0 rotate-0 opacity-100 blur-0"
+                : "translate-y-[115%] rotate-[8deg] opacity-0 blur-[7px]"
               }
             `}
             style={{
@@ -119,10 +120,9 @@ const CareersHero = () => {
                 transition-all duration-[800ms]
                 ease-[cubic-bezier(0.22,1,0.36,1)]
                 sm:mb-10
-                ${
-                  isVisible
-                    ? "translate-y-0 opacity-100 blur-0"
-                    : "translate-y-8 opacity-0 blur-[5px]"
+                ${isVisible
+                  ? "translate-y-0 opacity-100 blur-0"
+                  : "translate-y-8 opacity-0 blur-[5px]"
                 }
               `}
               style={{
@@ -193,10 +193,9 @@ const CareersHero = () => {
                 ease-[cubic-bezier(0.22,1,0.36,1)]
                 sm:mt-11 sm:text-[20px]
                 md:text-[21px]
-                ${
-                  isVisible
-                    ? "translate-y-0 opacity-100 blur-0"
-                    : "translate-y-8 opacity-0 blur-[5px]"
+                ${isVisible
+                  ? "translate-y-0 opacity-100 blur-0"
+                  : "translate-y-8 opacity-0 blur-[5px]"
                 }
               `}
               style={{
@@ -222,10 +221,9 @@ const CareersHero = () => {
                 ease-[cubic-bezier(0.22,1,0.36,1)]
                 sm:mt-8 sm:text-[17px]
                 md:text-[18px]
-                ${
-                  isVisible
-                    ? "translate-y-0 opacity-100 blur-0"
-                    : "translate-y-8 opacity-0 blur-[5px]"
+                ${isVisible
+                  ? "translate-y-0 opacity-100 blur-0"
+                  : "translate-y-8 opacity-0 blur-[5px]"
                 }
               `}
               style={{
@@ -247,10 +245,9 @@ const CareersHero = () => {
                 transition-all duration-[850ms]
                 ease-[cubic-bezier(0.22,1,0.36,1)]
                 sm:mt-12 sm:gap-11
-                ${
-                  isVisible
-                    ? "translate-y-0 opacity-100 blur-0"
-                    : "translate-y-10 opacity-0 blur-[6px]"
+                ${isVisible
+                  ? "translate-y-0 opacity-100 blur-0"
+                  : "translate-y-10 opacity-0 blur-[6px]"
                 }
               `}
               style={{
@@ -417,10 +414,9 @@ const CareersHero = () => {
               md:h-[540px]
               lg:h-[570px]
               xl:h-[600px]
-              ${
-                isVisible
-                  ? "translate-x-0 opacity-100 blur-0"
-                  : "translate-x-12 opacity-0 blur-[8px]"
+              ${isVisible
+                ? "translate-x-0 opacity-100 blur-0"
+                : "translate-x-12 opacity-0 blur-[8px]"
               }
             `}
             style={{
@@ -596,10 +592,9 @@ const CareersHero = () => {
                 bg-[#299f8f]
                 transition-transform duration-700
                 sm:w-[65px]
-                ${
-                  isVisible
-                    ? "scale-x-100"
-                    : "scale-x-0"
+                ${isVisible
+                  ? "scale-x-100"
+                  : "scale-x-0"
                 }
               `}
               style={{
@@ -619,10 +614,9 @@ const CareersHero = () => {
                 bg-[#299f8f]
                 transition-transform duration-700
                 sm:w-[55px]
-                ${
-                  isVisible
-                    ? "scale-x-100"
-                    : "scale-x-0"
+                ${isVisible
+                  ? "scale-x-100"
+                  : "scale-x-0"
                 }
               `}
               style={{
@@ -653,33 +647,51 @@ const CareersHero = () => {
                 md:h-[92px]
                 md:w-[92px]
                 md:border-[9px]
-                ${
-                  isVisible
-                    ? "scale-100 rotate-0 opacity-100"
-                    : "scale-50 rotate-[-20deg] opacity-0"
+                ${isVisible
+                  ? "scale-100 rotate-0 opacity-100"
+                  : "scale-50 rotate-[-20deg] opacity-0"
                 }
               `}
               style={{
                 transitionDelay: "1050ms",
               }}
             >
-              <div
-                className="
-                  flex h-[50px] w-[50px]
-                  items-center justify-center
-                  rounded-full
-                  border border-dashed
-                  border-[#55b8aa]
-                  sm:h-[58px] sm:w-[58px]
-                  md:h-[66px] md:w-[66px]
-                "
-              >
-                <img
-                  src="/images/logo-white.png"
-                  alt=""
-                  className="h-[40px] w-[50px] object-contain"
-                />
-              </div>
+         
+<motion.div
+  initial={{ opacity: 0, scale: 0.6 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ type: "spring", stiffness: 200, damping: 15 }}
+  whileHover={{ scale: 1.1 }}
+  className="
+    relative flex h-[50px] w-[50px]
+    items-center justify-center
+    sm:h-[58px] sm:w-[58px]
+    md:h-[66px] md:w-[66px]
+  "
+>
+  {/* Soft pulsing glow behind the ring */}
+  <motion.span
+    className="absolute inset-0 rounded-full bg-[#55b8aa]/20"
+    animate={{ scale: [1, 1.25, 1], opacity: [0.5, 0, 0.5] }}
+    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+  />
+
+  {/* Rotating dashed ring */}
+  <motion.div
+    className="absolute inset-0 rounded-full border border-dashed border-[#55b8aa]"
+    animate={{ rotate: 360 }}
+    transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+  />
+
+  {/* Logo with subtle breathing effect */}
+  <motion.img
+    src="/images/logo-white.png"
+    alt=""
+    className="relative h-[40px] w-[50px] object-contain"
+    animate={{ scale: [1, 1.06, 1] }}
+    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+  />
+</motion.div>
             </div>
 
             {/* =================================================
@@ -701,10 +713,9 @@ const CareersHero = () => {
                 hover:-translate-y-1
                 hover:shadow-[0_12px_25px_rgba(20,70,65,0.14)]
                 sm:px-4 sm:py-2.5
-                ${
-                  isVisible
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-6 opacity-0"
+                ${isVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-6 opacity-0"
                 }
               `}
               style={{

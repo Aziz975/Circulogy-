@@ -1,707 +1,651 @@
-import React, { useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { motion, useInView } from "motion/react";
+
+import React, { useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+
+const positions = [
+  {
+    id: "01",
+    department: "GROWTH & PARTNERSHIPS",
+    title: "Business Development",
+    description:
+      "Build strategic relationships and new growth channels that expand Circulogy’s circular economy network.",
+    focus: ["Partnerships", "Market development", "Client relationships"],
+    link: "/career/business-development",
+  },
+  {
+    id: "02",
+    department: "BUSINESS OPERATIONS",
+    title: "Executive Assistant",
+    description:
+      "Support leadership with strategic coordination, operational planning, and seamless day-to-day execution.",
+    focus: ["Executive support", "Operations", "Strategic coordination"],
+    link: "/career/executive-assistant",
+  },
+  {
+    id: "03",
+    department: "COMMUNICATIONS",
+    title: "Public Relation",
+    description:
+      "Strengthen Circulogy’s public presence through strategic communication, storytelling, and meaningful media relationships.",
+    focus: ["Media relations", "Brand communication", "Public outreach"],
+    link: "/career/public-relations",
+  },
+  {
+    id: "04",
+    department: "STRATEGY & FINANCE",
+    title: "Equity / Capital Raising Specialist",
+    description:
+      "Help unlock growth capital and build investor relationships that accelerate circular economy innovation.",
+    focus: ["Investor relations", "Capital raising", "Financial strategy"],
+    link: "/career/capital-raising-specialist",
+  },
+  {
+    id: "05",
+    department: "CIRCULAR OPERATIONS",
+    title: "Sr. Manager / Manager – Commodity, Waste Management / Trading",
+    description:
+      "Drive sourcing, commodity trading, and waste management operations across the circular materials value chain.",
+    focus: ["Commodity trading", "Waste management", "Supply chain"],
+    link: "/career/circular-operations-manager",
+  },
+  {
+    id: "06",
+    department: "PARTNER NETWORK",
+    title: "Partner Onboarding Executive",
+    description:
+      "Build and strengthen Circulogy’s partner ecosystem by onboarding new collection, recycling, and supply chain partners.",
+    focus: ["Partner onboarding", "Network expansion", "Relationship management"],
+    link: "/career/partner-onboarding",
+  },
+];
+
+const EASE = [0.22, 1, 0.36, 1];
+
+const sectionReveal = {
+  hidden: {
+    opacity: 0,
+    y: 35,
+    filter: "blur(8px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.85,
+      ease: EASE,
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const childReveal = {
+  hidden: {
+    opacity: 0,
+    y: 22,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: EASE,
+    },
+  },
+};
 
 const OpenPositions = () => {
-  const [activeRole, setActiveRole] = useState(0);
-  const [hoveredRole, setHoveredRole] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeRole = positions[activeIndex];
+  const shouldReduceMotion = useReducedMotion();
 
-  const sectionRef = useRef(null);
+  const reveal = shouldReduceMotion
+    ? {
+        hidden: { opacity: 1, y: 0, filter: "blur(0px)" },
+        visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+      }
+    : sectionReveal;
 
-  // Animation restarts every time the section enters viewport
-  const isInView = useInView(sectionRef, {
-    amount: 0.15,
-    once: false,
-  });
+  const child = shouldReduceMotion
+    ? {
+        hidden: { opacity: 1, y: 0 },
+        visible: { opacity: 1, y: 0 },
+      }
+    : childReveal;
 
-  const positions = [
-    {
-      number: "01",
-      category: "GROWTH & PARTNERSHIPS",
-      title: "Business Development",
-    },
-    {
-      number: "02",
-      category: "BUSINESS OPERATIONS",
-      title: "Executive Assistant",
-    },
-    {
-      number: "03",
-      category: "COMMUNICATIONS",
-      title: "Public Relation",
-    },
-    {
-      number: "04",
-      category: "STRATEGY & FINANCE",
-      title: "Equity / Capital Raising Specialist",
-    },
-    {
-      number: "05",
-      category: "CIRCULAR OPERATIONS",
-      title:
-        "Sr. Manager / Manager – Commodity, Waste Management / Trading",
-    },
-    {
-      number: "06",
-      category: "PARTNER NETWORK",
-      title: "Partner Onboarding Executive",
-    },
-  ];
-
-  const handleRoleClick = (index, title) => {
-    setActiveRole(index);
-    console.log("Selected role:", title);
-  };
-
-  /*
-  ============================================================
-  PREMIUM HEADING WORD REVEAL
-  ============================================================
-  */
-
-  const renderWords = (text, className = "", startDelay = 0) => {
-    return (
-      <span className={`block ${className}`}>
-        {text.split(" ").map((word, index) => (
-          <span
-            key={`${word}-${index}`}
-            className="mr-[0.25em] inline-block overflow-hidden align-bottom"
-          >
-            <motion.span
-              className="inline-block"
-              initial={{
-                y: "115%",
-                opacity: 0,
-                rotateX: 35,
-                filter: "blur(8px)",
-              }}
-              animate={
-                isInView
-                  ? {
-                      y: "0%",
-                      opacity: 1,
-                      rotateX: 0,
-                      filter: "blur(0px)",
-                    }
-                  : {
-                      y: "115%",
-                      opacity: 0,
-                      rotateX: 35,
-                      filter: "blur(8px)",
-                    }
-              }
-              transition={{
-                duration: 0.85,
-                delay: startDelay + index * 0.13,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              style={{
-                transformOrigin: "bottom center",
-              }}
-            >
-              {word}
-            </motion.span>
-          </span>
-        ))}
-      </span>
-    );
-  };
+  const detailsTransition = shouldReduceMotion
+    ? { duration: 0 }
+    : {
+        duration: 0.38,
+        ease: EASE,
+      };
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative w-full overflow-hidden bg-[#f5faf8] px-5 py-10 sm:px-8 sm:py-12 md:px-10 md:py-14 lg:px-[4.7%] lg:py-16 xl:px-[4.7%]"
-    >
-      {/* =====================================================
-          BACKGROUND AMBIENT GLOW
-      ===================================================== */}
+    <section className="relative overflow-hidden bg-[#f2f7f6] px-5 py-[60px] text-[#10211e] sm:px-8 sm:py-[75px] md:px-[5%] lg:px-[4.5%] lg:py-[85px] xl:px-[4.55%]">
 
+      {/* Ambient background glow */}
       <motion.div
-        className="pointer-events-none absolute -left-[180px] top-[15%] h-[400px] w-[400px] rounded-full bg-[#299f8f]/10 blur-[110px]"
-        initial={{
-          opacity: 0,
-          scale: 0.7,
-        }}
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-[160px] top-[100px] h-[380px] w-[380px] rounded-full bg-[#b5e4d8]/30 blur-[100px]"
         animate={
-          isInView
-            ? {
+          shouldReduceMotion
+            ? {}
+            : {
                 x: [0, 35, 0],
-                y: [0, -25, 0],
-                opacity: [0.18, 0.4, 0.18],
-                scale: [0.9, 1.08, 0.9],
-              }
-            : {
-                opacity: 0,
-                scale: 0.7,
-              }
-        }
-        transition={{
-          duration: 8,
-          repeat: isInView ? Infinity : 0,
-          ease: "easeInOut",
-        }}
-      />
-
-      <motion.div
-        className="pointer-events-none absolute -right-[200px] bottom-0 h-[450px] w-[450px] rounded-full bg-[#58c5b4]/10 blur-[120px]"
-        initial={{
-          opacity: 0,
-          scale: 0.7,
-        }}
-        animate={
-          isInView
-            ? {
-                x: [0, -35, 0],
                 y: [0, 25, 0],
-                opacity: [0.18, 0.38, 0.18],
-                scale: [0.9, 1.08, 0.9],
-              }
-            : {
-                opacity: 0,
-                scale: 0.7,
+                scale: [1, 1.12, 1],
               }
         }
         transition={{
-          duration: 9,
-          repeat: isInView ? Infinity : 0,
+          duration: 12,
+          repeat: Infinity,
           ease: "easeInOut",
-          delay: 1,
         }}
       />
 
-      {/* =====================================================
-          SUBTLE CENTER LIGHT
-      ===================================================== */}
-
       <motion.div
-        className="pointer-events-none absolute left-1/2 top-[38%] h-[280px] w-[280px] -translate-x-1/2 rounded-full bg-[#299f8f]/[0.035] blur-[100px]"
-        initial={{ opacity: 0 }}
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-[180px] bottom-[30px] h-[360px] w-[360px] rounded-full bg-[#83c9b6]/20 blur-[110px]"
         animate={
-          isInView
-            ? {
-                opacity: [0, 0.8, 0],
-                scale: [0.7, 1, 0.7],
-              }
+          shouldReduceMotion
+            ? {}
             : {
-                opacity: 0,
+                x: [0, -30, 0],
+                y: [0, -20, 0],
               }
         }
         transition={{
-          duration: 6,
-          repeat: isInView ? Infinity : 0,
+          duration: 14,
+          repeat: Infinity,
           ease: "easeInOut",
-          delay: 1.5,
         }}
       />
 
-      {/* =====================================================
-          MAIN CONTAINER
-      ===================================================== */}
+      <div className="relative mx-auto min-h-[500px] w-full max-w-[1455px]">
 
-      <motion.div
-        className="relative mx-auto w-full max-w-[1400px]"
-        initial={{
-          opacity: 0,
-          y: 25,
-          scale: 0.985,
-        }}
-        animate={
-          isInView
-            ? {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-              }
-            : {
-                opacity: 0,
-                y: 25,
-                scale: 0.985,
-              }
-        }
-        transition={{
-          duration: 0.9,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-      >
-        {/* =====================================================
-            HEADER
-        ===================================================== */}
-
-        <div className="mb-10 flex flex-col gap-8 sm:mb-12 md:mb-14 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
-          {/* =================================================
-              LEFT HEADING
-          ================================================= */}
-
-          <div className="flex flex-col">
-            {/* EYEBROW */}
-
-            <motion.span
-              className="mb-5 text-[13px] font-extrabold tracking-[0.15em] text-[#318f84] sm:text-[13px]"
-              initial={{
-                opacity: 0,
-                x: -25,
-                filter: "blur(6px)",
-              }}
-              animate={
-                isInView
-                  ? {
-                      opacity: 1,
-                      x: 0,
-                      filter: "blur(0px)",
-                    }
-                  : {
-                      opacity: 0,
-                      x: -25,
-                      filter: "blur(6px)",
-                    }
-              }
-              transition={{
-                duration: 0.7,
-                delay: 0.1,
-                ease: [0.22, 1, 0.36, 1],
-              }}
+        {/* Section Heading */}
+        <motion.div
+          variants={reveal}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.15 }}
+          className="mb-[22px] flex flex-col justify-between gap-5 sm:mb-[27px] sm:flex-row sm:items-end"
+        >
+          <div>
+            <motion.div
+              variants={child}
+              className="mb-[17px] flex items-center gap-[12px]"
             >
-              OPEN POSITIONS
-            </motion.span>
-
-            {/* MAIN HEADING */}
-
-            <h2
-              className="max-w-[620px] text-[42px] font-bold leading-[0.98] tracking-[-0.045em] text-[#071514] sm:text-[50px] md:text-[56px] lg:text-[58px] xl:text-[60px]"
-              style={{
-                perspective: "900px",
-              }}
-            >
-              {renderWords(
-                "Find Your Place in the",
-                "",
-                0.25
-              )}
-
-              <span className="relative block">
-                {renderWords(
-                  "Circular Movement",
-                  "text-[#299f8f]",
-                  0.62
-                )}
-
-                {/* Small animated underline */}
-
-                <motion.span
-                  className="absolute bottom-[-8px] left-0 h-[3px] rounded-full bg-[#299f8f]"
-                  initial={{
-                    width: 0,
-                    opacity: 0,
-                  }}
-                  animate={
-                    isInView
-                      ? {
-                          width: "42%",
-                          opacity: 1,
-                        }
-                      : {
-                          width: 0,
-                          opacity: 0,
-                        }
-                  }
-                  transition={{
-                    duration: 0.9,
-                    delay: 1.35,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                />
-
-                <motion.span
-                  className="absolute bottom-[-8px] left-0 h-[3px] w-[8px] rounded-full bg-[#58c5b4]"
-                  initial={{
-                    x: 0,
-                    opacity: 0,
-                  }}
-                  animate={
-                    isInView
-                      ? {
-                          x: ["0%", "520%"],
-                          opacity: [0, 1, 0],
-                        }
-                      : {
-                          x: 0,
-                          opacity: 0,
-                        }
-                  }
-                  transition={{
-                    duration: 1.6,
-                    delay: 1.45,
-                    ease: "easeInOut",
-                  }}
-                />
-              </span>
-            </h2>
-          </div>
-
-          {/* =================================================
-              RIGHT HEADER
-          ================================================= */}
-
-          <motion.div
-            className="flex w-full items-center justify-between gap-6 lg:w-[43%] lg:pt-12 xl:w-[42%]"
-            initial={{
-              opacity: 0,
-              x: 45,
-              filter: "blur(7px)",
-            }}
-            animate={
-              isInView
-                ? {
-                    opacity: 1,
-                    x: 0,
-                    filter: "blur(0px)",
-                  }
-                : {
-                    opacity: 0,
-                    x: 45,
-                    filter: "blur(7px)",
-                  }
-            }
-            transition={{
-              duration: 0.85,
-              delay: 0.7,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-          >
-            <p className="max-w-[400px] text-[14px] font-normal leading-[1.6] text-[#71807d] sm:text-[15px] md:text-[16px]">
-              Explore opportunities to work with a team
-              that’s helping shape the future of India’s
-              circular economy.
-            </p>
-
-            <motion.button
-              type="button"
-              className="hidden shrink-0 items-center gap-2 rounded-full border border-[#d2e8e3] bg-[#f8fcfa] px-6 py-3 text-[12px] font-bold tracking-[0.12em] text-[#318f84] shadow-[0_5px_20px_rgba(35,120,108,0.04)] transition-colors duration-300 hover:border-[#9ccfc5] hover:bg-[#e0f2ee] sm:flex"
-              initial={{
-                opacity: 0,
-                scale: 0.8,
-                x: 20,
-              }}
-              animate={
-                isInView
-                  ? {
-                      opacity: 1,
-                      scale: 1,
-                      x: 0,
-                    }
-                  : {
-                      opacity: 0,
-                      scale: 0.8,
-                      x: 20,
-                    }
-              }
-              transition={{
-                duration: 0.65,
-                delay: 1,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              whileHover={{
-                y: -3,
-                boxShadow:
-                  "0 12px 28px rgba(41,159,143,0.14)",
-              }}
-              whileTap={{
-                scale: 0.97,
-              }}
-            >
-              <span>06 OPEN ROLES</span>
-            </motion.button>
-          </motion.div>
-        </div>
-
-        {/* =====================================================
-            POSITIONS GRID
-        ===================================================== */}
-
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-4 lg:gap-[15px]">
-          {positions.map((position, index) => {
-            const isHovered = hoveredRole === index;
-
-            return (
-              <motion.button
-                key={position.number}
-                type="button"
-                onClick={() =>
-                  handleRoleClick(
-                    index,
-                    position.title
-                  )
-                }
-                onMouseEnter={() =>
-                  setHoveredRole(index)
-                }
-                onMouseLeave={() =>
-                  setHoveredRole(null)
-                }
-                className="
-                  group
-                  relative
-                  flex
-                  min-h-[145px]
-                  w-full
-                  flex-col
-                  justify-between
-                  overflow-hidden
-                  rounded-[22px]
-                  border
-                  border-[#dbe8e5]
-                  bg-white
-                  px-6
-                  py-6
-                  text-left
-                  sm:min-h-[155px]
-                  sm:rounded-[24px]
-                  sm:px-7
-                  sm:py-7
-                  md:min-h-[145px]
-                  lg:min-h-[145px]
-                  lg:px-7
-                  lg:py-6
-                  xl:min-h-[145px]
-                "
-                initial={{
-                  opacity: 0,
-                  y: 45,
-                  scale: 0.94,
-                  rotateX: 7,
-                  filter: "blur(7px)",
-                }}
+              <motion.span
+                className="h-[10px] w-[10px] rounded-full bg-[#399f90]"
                 animate={
-                  isInView
-                    ? {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        rotateX: 0,
-                        filter: "blur(0px)",
-                      }
+                  shouldReduceMotion
+                    ? {}
                     : {
-                        opacity: 0,
-                        y: 45,
-                        scale: 0.94,
-                        rotateX: 7,
-                        filter: "blur(7px)",
+                        scale: [1, 1.22, 1],
+                        opacity: [1, 0.7, 1],
                       }
                 }
                 transition={{
-                  duration: 0.75,
-                  delay: 1.05 + index * 0.11,
-                  ease: [0.22, 1, 0.36, 1],
+                  duration: 2.4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
                 }}
-                whileHover={{
-                  y: -5,
-                  scale: 1.012,
-                }}
-                whileTap={{
-                  scale: 0.99,
-                }}
-                style={{
-                  transformPerspective: 1000,
-                }}
+              />
+
+              <span className="text-[11px] font-semibold uppercase tracking-[0.025em] text-[#318778] sm:text-[12px]">
+                Careers at Circulogy
+              </span>
+            </motion.div>
+
+            <div className="overflow-hidden">
+              <motion.h2
+                variants={child}
+                className="text-[39px] font-medium leading-[1.08] tracking-[-0.055em] text-[#0b1c18] sm:text-[48px] md:text-[54px] lg:text-[56px]"
               >
-                {/* =================================================
-                    HOVER BACKGROUND
-                ================================================= */}
+                Open positions
+              </motion.h2>
+            </div>
 
-                <motion.div
-                  className="pointer-events-none absolute inset-0 rounded-[22px]"
-                  animate={{
-                    opacity: isHovered ? 1 : 0,
-                    backgroundColor: isHovered
-                      ? "rgba(224,243,239,1)"
-                      : "rgba(224,243,239,0)",
-                  }}
-                  transition={{
-                    duration: 0.35,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                />
+            <motion.p
+              variants={child}
+              className="mt-[7px] text-[14px] leading-[1.6] text-[#83928f] sm:text-[16px]"
+            >
+              Six roles, one clear place to explore each opportunity.
+            </motion.p>
+          </div>
 
-                {/* =================================================
-                    HOVER GLOW
-                ================================================= */}
+          <motion.p
+            variants={child}
+            whileHover={
+              shouldReduceMotion
+                ? {}
+                : { x: -4, transition: { duration: 0.2 } }
+            }
+            className="pb-[5px] text-[12px] font-semibold text-[#328779] sm:text-right sm:text-[13px]"
+          >
+            Click a role to view its details
+          </motion.p>
+        </motion.div>
 
-                <motion.div
-                  className="pointer-events-none absolute -inset-[1px] rounded-[23px]"
-                  animate={{
-                    opacity: isHovered ? 1 : 0,
-                    boxShadow: isHovered
-                      ? "0 18px 45px rgba(41,159,143,0.17), 0 0 0 1px rgba(41,159,143,0.18)"
-                      : "0 0 0 rgba(41,159,143,0)",
-                  }}
-                  transition={{
-                    duration: 0.4,
-                  }}
-                />
+        {/* Main Positions Card */}
+        <motion.div
+          initial={
+            shouldReduceMotion
+              ? false
+              : {
+                  opacity: 0,
+                  y: 45,
+                  scale: 0.985,
+                }
+          }
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+          }}
+          viewport={{ once: false, amount: 0.08 }}
+          transition={{
+            duration: shouldReduceMotion ? 0 : 0.9,
+            ease: EASE,
+          }}
+          className="grid grid-cols-1 overflow-hidden rounded-[25px] border border-[#dce8e5] bg-white shadow-[0_20px_55px_rgba(30,76,65,0.07)] transition-shadow duration-500 hover:shadow-[0_25px_70px_rgba(30,76,65,0.12)] lg:min-h-[638px] lg:grid-cols-[39%_61%] lg:rounded-[30px]"
+        >
 
-                {/* =================================================
-                    SOFT INNER GLOW
-                ================================================= */}
+          {/* Left: Job List */}
+          <div className="min-w-0 px-[18px] pb-[24px] pt-[23px] sm:px-[26px] sm:pb-[30px] sm:pt-[30px] lg:px-[30px] lg:pb-[32px] lg:pl-[31px] lg:pr-[30px] lg:pt-[29px]">
 
-                <motion.div
-                  className="pointer-events-none absolute right-[-80px] top-[-100px] h-[220px] w-[220px] rounded-full bg-[#49b8a7] blur-[80px]"
-                  animate={{
-                    opacity: isHovered ? 0.14 : 0,
-                    scale: isHovered ? 1 : 0.7,
-                  }}
-                  transition={{
-                    duration: 0.5,
-                  }}
-                />
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.1 }}
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: shouldReduceMotion ? 0 : 0.07,
+                  },
+                },
+              }}
+              className="flex items-center justify-between border-b border-[#e4ece9] pb-[17px]"
+            >
+              <motion.span
+                variants={child}
+                className="text-[10px] font-semibold uppercase tracking-[0.01em] text-[#788783] sm:text-[11px]"
+              >
+                Current openings
+              </motion.span>
 
-                {/* =================================================
-                    TOP ROW
-                ================================================= */}
+              <motion.span
+                variants={child}
+                className="text-[10px] font-semibold uppercase text-[#788783] sm:text-[11px]"
+              >
+                06 roles
+              </motion.span>
+            </motion.div>
 
-                <div className="relative z-10 flex w-full items-start justify-between gap-5">
-                  <div className="flex items-center gap-8 sm:gap-9">
-                    {/* NUMBER */}
+            <div className="mt-[16px] flex flex-col">
+              {positions.map((role, index) => {
+                const isActive = activeIndex === index;
 
-                    <motion.span
-                      className="text-[11px] font-semibold tracking-[0.1em] sm:text-[19px]"
-                      animate={{
-                        color: isHovered
-                          ? "#299f8f"
-                          : "#4da79a",
-                        x: isHovered ? 2 : 0,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                      }}
-                    >
-                      {position.number}
-                    </motion.span>
-
-                    {/* CATEGORY */}
-
-                    <motion.span
-                      className="text-[10px] font-semibold tracking-[0.16em] sm:text-[12px]"
-                      animate={{
-                        color: isHovered
-                          ? "#318f84"
-                          : "#7d918d",
-                      }}
-                      transition={{
-                        duration: 0.3,
-                      }}
-                    >
-                      {position.category}
-                    </motion.span>
-                  </div>
-                </div>
-
-                {/* =================================================
-                    BOTTOM ROW
-                ================================================= */}
-
-                <div className="relative z-10 flex items-end justify-between gap-5">
-                  {/* TITLE */}
-
-                  <motion.span
-                    className="max-w-[540px] text-[21px] font-semibold leading-[1.3] tracking-[-0.015em] text-[#182522] sm:text-[19px] md:text-[20px] lg:text-[21px] xl:text-[22px]"
-                    animate={{
-                      x: isHovered ? 4 : 0,
+                return (
+                  <motion.button
+                    key={role.id}
+                    type="button"
+                    onClick={() => setActiveIndex(index)}
+                    aria-pressed={isActive}
+                    aria-label={`View ${role.title} details`}
+                    initial={
+                      shouldReduceMotion
+                        ? false
+                        : {
+                            opacity: 0,
+                            x: -24,
+                          }
+                    }
+                    whileInView={{
+                      opacity: 1,
+                      x: 0,
                     }}
+                    viewport={{ once: false, amount: 0.1 }}
                     transition={{
-                      duration: 0.35,
-                      ease: [0.22, 1, 0.36, 1],
+                      duration: shouldReduceMotion ? 0 : 0.55,
+                      delay: shouldReduceMotion ? 0 : index * 0.075,
+                      ease: EASE,
                     }}
+                    whileHover={
+                      shouldReduceMotion
+                        ? {}
+                        : {
+                            x: isActive ? 0 : 4,
+                            transition: {
+                              duration: 0.22,
+                              ease: EASE,
+                            },
+                          }
+                    }
+                    whileTap={
+                      shouldReduceMotion ? {} : { scale: 0.99 }
+                    }
+                    className={`group relative flex w-full items-center gap-[15px] rounded-[17px] px-[14px] py-[15px] text-left transition-[background-color,border-color,box-shadow] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#399f90] sm:gap-[20px] sm:px-[15px] sm:py-[17px] lg:gap-[20px] lg:px-[15px] lg:py-[16px] ${
+                      isActive
+                        ? "bg-[#e3f3ef] shadow-[0_5px_18px_rgba(36,125,105,0.06)]"
+                        : "border-b border-[#e3eae8] bg-transparent hover:bg-[#f6faf8]"
+                    }`}
                   >
-                    {position.title}
-                  </motion.span>
-
-                  {/* =================================================
-                      ARROW
-                  ================================================= */}
-
-                  <motion.span
-                    className="
-                      flex
-                      h-[47px]
-                      w-[47px]
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-full
-                      border
-                      sm:h-[49px]
-                      sm:w-[49px]
-                    "
-                    animate={{
-                      backgroundColor: isHovered
-                        ? "#148d80"
-                        : "rgba(255,255,255,0)",
-                      borderColor: isHovered
-                        ? "#148d80"
-                        : "#cfe2de",
-                      color: isHovered
-                        ? "#ffffff"
-                        : "#148d80",
-                      scale: isHovered ? 1.08 : 1,
-                    }}
-                    transition={{
-                      duration: 0.3,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                  >
-                    <motion.span
-                      animate={{
-                        x: isHovered ? 3 : 0,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                      }}
-                    >
-                      <ArrowRight
-                        size={21}
-                        strokeWidth={2.5}
+                    {/* Animated Active Indicator */}
+                    {isActive && (
+                      <motion.span
+                        layoutId="active-position-indicator"
+                        className="absolute bottom-[17px] left-0 top-[17px] w-[4px] rounded-full bg-[#399f90]"
+                        transition={{
+                          type: "spring",
+                          stiffness: 350,
+                          damping: 30,
+                        }}
                       />
-                    </motion.span>
-                  </motion.span>
-                </div>
+                    )}
 
-                {/* =================================================
-                    BOTTOM TEAL ACCENT
-                ================================================= */}
+                    {!isActive && (
+                      <span className="absolute bottom-[17px] left-0 top-[17px] w-[4px] rounded-full bg-transparent transition-colors duration-300 group-hover:bg-[#b5ded4]" />
+                    )}
 
+                    {/* Number */}
+                    <span
+                      className={`ml-[1px] min-w-[29px] text-[13px] font-semibold tabular-nums transition-colors duration-300 sm:min-w-[30px] ${
+                        isActive
+                          ? "text-[#338b7e]"
+                          : "text-[#378d80]"
+                      }`}
+                    >
+                      {role.id}
+                    </span>
+
+                    {/* Job Information */}
+                    <span className="min-w-0 flex-1">
+                      <span className="mb-[4px] block text-[9px] font-semibold uppercase leading-[1.3] tracking-[0.01em] text-[#879590] sm:text-[10px]">
+                        {role.department}
+                      </span>
+
+                      <span className="block text-[14px] font-semibold leading-[1.3] tracking-[-0.025em] text-[#192823] sm:text-[16px] lg:text-[16px]">
+                        {role.title}
+                      </span>
+                    </span>
+
+                    {/* Animated Selected Arrow */}
+                    <AnimatePresence initial={false}>
+                      {isActive && (
+                        <motion.span
+                          key="selected-arrow"
+                          initial={
+                            shouldReduceMotion
+                              ? false
+                              : {
+                                  opacity: 0,
+                                  scale: 0.7,
+                                  x: -8,
+                                }
+                          }
+                          animate={{
+                            opacity: 1,
+                            scale: 1,
+                            x: 0,
+                          }}
+                          exit={{
+                            opacity: 0,
+                            scale: 0.7,
+                            x: -8,
+                          }}
+                          transition={detailsTransition}
+                          className="flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-full border border-[#c9e1db] bg-white text-[#399c8d]"
+                        >
+                          <ArrowRight size={17} strokeWidth={1.6} />
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </motion.button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right: Selected Position Details */}
+          <div className="relative isolate flex min-h-[500px] flex-col overflow-hidden rounded-t-[22px] bg-[#091d18] px-[25px] py-[27px] text-white sm:min-h-[550px] sm:px-[38px] sm:py-[34px] md:min-h-[550px] lg:min-h-[638px] lg:rounded-l-[30px] lg:rounded-tr-[30px] lg:px-[52px] lg:py-[42px] xl:px-[68px] xl:py-[44px]">
+
+            {/* Technical Grid Background */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 -z-10 opacity-80 [background-image:linear-gradient(rgba(75,125,109,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(75,125,109,0.12)_1px,transparent_1px)] [background-size:58px_58px] sm:[background-size:59px_59px]"
+            />
+
+            {/* Soft Inner Glow */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_40%_45%,transparent_0%,rgba(5,25,20,0.14)_65%,rgba(5,25,20,0.3)_100%)]"
+            />
+
+            {/* Animated Teal Light */}
+            <motion.div
+              aria-hidden="true"
+              className="pointer-events-none absolute -right-[120px] top-[80px] -z-10 h-[300px] w-[300px] rounded-full bg-[#168a70]/15 blur-[85px]"
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      x: [0, -35, 0],
+                      y: [0, 25, 0],
+                      opacity: [0.45, 0.8, 0.45],
+                    }
+              }
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+
+            {/* Top Bar */}
+            <div className="flex items-center justify-between gap-4 border-b border-[#355047]/40 pb-[15px]">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.025em] text-[#83c8b9] sm:text-[11px]">
+                {activeRole.department}
+              </span>
+
+              <span className="shrink-0 text-[10px] font-medium tabular-nums text-[#7b9189] sm:text-[11px]">
+                {activeRole.id} / 06
+              </span>
+            </div>
+
+            {/* Large Background Number */}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={`number-${activeRole.id}`}
+                aria-hidden="true"
+                initial={
+                  shouldReduceMotion
+                    ? false
+                    : {
+                        opacity: 0,
+                        y: 15,
+                        filter: "blur(8px)",
+                      }
+                }
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  filter: "blur(0px)",
+                }}
+                exit={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        opacity: 0,
+                        y: -10,
+                        filter: "blur(5px)",
+                      }
+                }
+                transition={detailsTransition}
+                className="pointer-events-none absolute right-[8%] top-[105px] -z-10 select-none text-[125px] font-medium leading-none tracking-[-0.02em] text-[#102f27] sm:right-[8%] sm:top-[105px] sm:text-[155px] lg:right-[8%] lg:top-[118px] lg:text-[155px] xl:text-[160px]"
+              >
+                {activeRole.id}
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Selected Role Details */}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={`details-${activeRole.id}`}
+                initial={
+                  shouldReduceMotion
+                    ? false
+                    : {
+                        opacity: 0,
+                        y: 18,
+                        filter: "blur(6px)",
+                      }
+                }
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  filter: "blur(0px)",
+                }}
+                exit={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        opacity: 0,
+                        y: -12,
+                        filter: "blur(4px)",
+                      }
+                }
+                transition={detailsTransition}
+                className="relative z-10 mt-[37px] sm:mt-[40px] lg:mt-[41px]"
+              >
+                <p className="mb-[17px] text-[9px] font-medium uppercase tracking-[0.02em] text-[#82958d] sm:text-[10px]">
+                  Career opportunity
+                </p>
+
+                <h3 className="max-w-[500px] text-[30px] font-semibold leading-[1.12] tracking-[-0.055em] text-[#f4f8f6] sm:text-[35px] md:text-[42px] lg:text-[35px] xl:text-[45px]">
+                  {activeRole.title}
+                </h3>
+
+                <p className="mt-[21px] max-w-[500px] text-[14px] leading-[1.55] text-[#b4c2bc] sm:text-[16px] sm:leading-[1.5]">
+                  {activeRole.description}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Role Focus and CTA */}
+            <div className="relative z-10 mt-auto pt-[43px] sm:pt-[55px] lg:pt-[65px]">
+              <p className="mb-[25px] text-[9px] font-medium uppercase tracking-[0.02em] text-[#758a81] sm:text-[10px]">
+                Role focus
+              </p>
+
+              <AnimatePresence mode="wait" initial={false}>
                 <motion.div
-                  className="absolute bottom-0 left-0 h-[3px] w-full origin-left bg-[#299f8f]"
-                  initial={{
-                    scaleX: 0,
-                  }}
+                  key={`focus-${activeRole.id}`}
+                  initial={
+                    shouldReduceMotion
+                      ? false
+                      : {
+                          opacity: 0,
+                          y: 12,
+                        }
+                  }
                   animate={{
-                    scaleX: isHovered ? 1 : 0,
+                    opacity: 1,
+                    y: 0,
                   }}
+                  exit={
+                    shouldReduceMotion
+                      ? {}
+                      : {
+                          opacity: 0,
+                          y: -8,
+                        }
+                  }
                   transition={{
-                    duration: 0.5,
-                    ease: [0.22, 1, 0.36, 1],
+                    ...detailsTransition,
+                    delay: shouldReduceMotion ? 0 : 0.06,
                   }}
-                />
+                  className="grid grid-cols-1 gap-[16px] sm:grid-cols-3 sm:gap-[15px] lg:gap-[16px]"
+                >
+                  {activeRole.focus.map((item, index) => (
+                    <motion.div
+                      key={item}
+                      initial={
+                        shouldReduceMotion
+                          ? false
+                          : {
+                              opacity: 0,
+                              x: -8,
+                            }
+                      }
+                      animate={{
+                        opacity: 1,
+                        x: 0,
+                      }}
+                      transition={{
+                        duration: shouldReduceMotion ? 0 : 0.4,
+                        delay: shouldReduceMotion
+                          ? 0
+                          : 0.08 + index * 0.09,
+                        ease: EASE,
+                      }}
+                      className="flex min-w-0 items-center gap-[12px]"
+                    >
+                      <span className="h-[25px] w-[6px] shrink-0 rounded-full bg-[#39a594]" />
 
-                {/* =================================================
-                    SMALL HOVER LIGHT
-                ================================================= */}
+                      <span className="text-[13px] font-medium leading-[1.35] text-[#d0dcd6] sm:text-[13px] lg:text-[14px]">
+                        {item}
+                      </span>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
 
-                <motion.div
-                  className="pointer-events-none absolute bottom-[-45px] left-[30%] h-[90px] w-[40%] rounded-full bg-[#299f8f]/10 blur-[35px]"
-                  animate={{
-                    opacity: isHovered ? 1 : 0,
-                    scale: isHovered ? 1 : 0.5,
-                  }}
+              {/* View Opening Button */}
+              <motion.a
+                href={activeRole.link}
+                whileHover={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        scale: 1.025,
+                        transition: {
+                          duration: 0.22,
+                          ease: EASE,
+                        },
+                      }
+                }
+                whileTap={
+                  shouldReduceMotion ? {} : { scale: 0.975 }
+                }
+                className="mt-[39px] inline-flex min-h-[48px] items-center gap-[18px] rounded-full bg-[#f3f8f5] py-[6px] pl-[20px] pr-[7px] text-[13px] font-semibold text-[#14251f] transition-colors duration-300 hover:bg-[#dff4ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#399f90] sm:mt-[47px] sm:pl-[22px]"
+              >
+                <span>View opening</span>
+
+                <motion.span
+                  whileHover={
+                    shouldReduceMotion
+                      ? {}
+                      : {
+                          rotate: 45,
+                        }
+                  }
                   transition={{
-                    duration: 0.4,
+                    duration: 0.25,
+                    ease: EASE,
                   }}
-                />
-              </motion.button>
-            );
-          })}
-        </div>
-      </motion.div>
+                  className="flex h-[35px] w-[35px] items-center justify-center rounded-full bg-[#399f90] text-white"
+                >
+                  <ArrowUpRight size={18} strokeWidth={1.8} />
+                </motion.span>
+              </motion.a>
+            </div>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 };

@@ -1,27 +1,12 @@
 import React from "react";
 import { Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function ContactButton() {
   return (
     <button
       type="button"
-      className="
-        flex
-        h-[42px]
-        w-full
-        max-w-[160px]
-        items-center
-        justify-center
-        gap-2
-        rounded-full
-        bg-white
-        px-2
-        text-[13px]
-        font-semibold
-        text-black
-        transition-transform
-        duration-200
-        hover:scale-105
+      className=" flex h-[42px] w-full max-w-[160px] items-center justify-center gap-2 rounded-full  bg-white px-2 text-[13px] font-semibold  text-black transition-transform duration-200 hover:scale-105
 
         sm:h-[44px]
         sm:max-w-[175px]
@@ -66,7 +51,10 @@ function ContactButton() {
       </span>
 
       <span className="whitespace-nowrap">
-        Contact Us
+        <Link to="/career1">
+         Contact Us
+        </Link>
+       
       </span>
     </button>
   );
