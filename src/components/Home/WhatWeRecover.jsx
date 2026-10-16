@@ -6,7 +6,7 @@ const minerals = [
     img: "/images/lithium2.jpeg",
     number: "3",
     mass: "6.941",
-    bg: "bg-[#e7e1d5]",
+    bg: "bg-[#080D10]",
     glow: "rgba(231,225,213,0.85)",
     description:
       "Essential for rechargeable batteries and energy storage.",

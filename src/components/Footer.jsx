@@ -118,7 +118,7 @@ const Footer = () => {
       </div>
 
       {/* Container */}
-      <div className="relative z-10 mx-auto w-full max-w-[1487px] px-5 pt-[10px] pb-[40px] sm:px-8 lg:px-[30px] lg:pt-[65px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1487px] px-5 pt-[10px] pb-[40px] sm:px-8 lg:px-[30px] lg:pt-[15px]">
 
         {/* Footer Grid */}
         <section className="mt-[60px] grid grid-cols-1 gap-[50px] md:grid-cols-3 lg:grid-cols-[1.18fr_1fr_1fr_1fr_1fr] lg:gap-[52px]">
