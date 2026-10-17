@@ -177,26 +177,9 @@ const OpenPositions = () => {
               variants={child}
               className="mb-[17px] flex items-center gap-[12px]"
             >
-              <motion.span
-                className="h-[10px] w-[10px] rounded-full bg-[#399f90]"
-                animate={
-                  shouldReduceMotion
-                    ? {}
-                    : {
-                        scale: [1, 1.22, 1],
-                        opacity: [1, 0.7, 1],
-                      }
-                }
-                transition={{
-                  duration: 2.4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
+            
 
-              <span className="text-[11px] font-semibold uppercase tracking-[0.025em] text-[#318778] sm:text-[12px]">
-                Careers at Circulogy
-              </span>
+             
             </motion.div>
 
             <div className="overflow-hidden">

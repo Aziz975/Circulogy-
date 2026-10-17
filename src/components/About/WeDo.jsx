@@ -145,8 +145,7 @@ export default function WhatDo() {
               <span className="text-[11px] font-bold tracking-[0.22em] text-[#299d8e] sm:text-[12px]">
                 WHAT WE DO
               </span>
-              <span className="h-px w-12 origin-left bg-[#299d8e]/50" />
-              <span className="h-1.5 w-1.5 rounded-full bg-[#299d8e]" />
+             
             </motion.div>
 
             {/* Letter-by-letter heading */}

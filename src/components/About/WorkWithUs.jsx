@@ -127,7 +127,7 @@ export default function WorkWithUs() {
           <div ref={leftRef} className="max-w-[690px]">
             {/* Section Label */}
             <div className={`mb-8 flex items-center gap-3 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}>
-              <span className={`h-[2px] bg-[#31b7a4] transition-all duration-700 ${visible ? "w-8" : "w-0"}`} />
+              
               <span className="text-[11px] font-bold tracking-[0.2em] text-[#31b7a4] sm:text-[12px]">WORK WITH US</span>
             </div>
 

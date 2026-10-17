@@ -129,19 +129,9 @@ const CareersHero = () => {
                 transitionDelay: "100ms",
               }}
             >
-              <div className="flex h-[22px] w-[36px] items-center justify-center rounded-full bg-[#dcefea]">
-                <div className="flex h-[22px] w-[36px] items-center justify-center rounded-full bg-[#dcefea]">
-                  <img
-                    src="/images/Circulogy-logo.png"
-                    alt="Circulogy"
-                    className="h-[15px] w-[25px] object-contain"
-                  />
-                </div>
-              </div>
+             
 
-              <span className="text-[13px] font-extrabold tracking-[0.14em] text-[#318f84] sm:text-[13px]">
-                CAREERS AT CIRCULOGY
-              </span>
+            
             </div>
 
             {/* =================================================
@@ -694,40 +684,6 @@ const CareersHero = () => {
 </motion.div>
             </div>
 
-            {/* =================================================
-                WORK WITH PURPOSE
-            ================================================= */}
-            <div
-              className={`
-                absolute bottom-[5%] right-[6%]
-                z-[80]
-                flex items-center gap-2
-                rounded-full
-                border border-[#d8e9e5]
-                bg-white
-                px-3 py-2
-                shadow-[0_6px_18px_rgba(20,70,65,0.08)]
-                transition-all
-                duration-[800ms]
-                ease-[cubic-bezier(0.22,1,0.36,1)]
-                hover:-translate-y-1
-                hover:shadow-[0_12px_25px_rgba(20,70,65,0.14)]
-                sm:px-4 sm:py-2.5
-                ${isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-6 opacity-0"
-                }
-              `}
-              style={{
-                transitionDelay: "1250ms",
-              }}
-            >
-              <span className="h-[6px] w-[6px] rounded-full bg-[#299f8f] transition-transform duration-300 hover:scale-125" />
-
-              <span className="text-[10px] font-bold tracking-[0.18em] text-[#42615d] sm:text-[10px] md:text-[10px]">
-                WORK WITH PURPOSE
-              </span>
-            </div>
 
           </div>
         </div>

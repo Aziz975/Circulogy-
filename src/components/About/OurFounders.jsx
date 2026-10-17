@@ -435,8 +435,7 @@ export default function OurFounders() {
               <span className="text-[11px] font-bold tracking-[0.25em] text-[#409e93] sm:text-[12px]">
                 OUR FOUNDERS
               </span>
-              <span className="h-px w-10 origin-left bg-[#409e93]/50" />
-              <span className="h-1.5 w-1.5 rounded-full bg-[#35a293]" />
+             
             </motion.div>
 
             {/* Letter-by-letter main heading */}

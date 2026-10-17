@@ -351,7 +351,7 @@ export default function CriticalMinerals() {
               }`}
             >
               <span className="text-[15px] font-bold leading-none text-[#249d8d] sm:text-[20px] md:text-[23px] lg:text-[26px]">
-                Co
+               Ni
               </span>
 
               <span className="text-[12px] font-normal text-black sm:text-[15px] md:text-[18px] lg:text-[20px]">
@@ -359,7 +359,7 @@ export default function CriticalMinerals() {
               </span>
 
               <span className="text-[10px] font-semibold text-[#1b2927] sm:text-[13px] md:text-[15px] lg:text-[17px]">
-                Cobalt
+                Nickel
               </span>
             </div>
 
@@ -373,15 +373,15 @@ export default function CriticalMinerals() {
               }`}
             >
               <span className="text-[15px] font-bold leading-none text-[#249d8d] sm:text-[20px] md:text-[23px] lg:text-[26px]">
-                Ni
+                Co
               </span>
 
               <span className="text-[12px] font-normal text-black sm:text-[15px] md:text-[18px] lg:text-[20px]">
                 —
               </span>
 
-              <span className="text-[10px] font-semibold text-[#1b2927] sm:text-[13px] md:text-[15px] lg:text-[17px]">
-                Nickel
+              <span className="text-[px] font-semibold text-[#1b2927] sm:text-[13px] md:text-[15px] lg:text-[17px]">
+                Cobalt
               </span>
             </div>
 
