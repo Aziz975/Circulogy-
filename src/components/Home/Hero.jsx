@@ -200,39 +200,7 @@ const Hero = () => {
             }}
             className="relative z-20 w-full max-w-[800px] pt-8 lg:pt-0"
           >
-            {/* Badge */}
-            <motion.div
-              variants={revealVariants}
-              initial="hidden"
-              animate={animationState}
-              transition={{
-                duration: 0.8,
-                delay: 0.1,
-                ease: EASE,
-              }}
-              className="mb-8 inline-flex items-center gap-3 rounded-full border border-[#273638] bg-[#071012]/80 px-5 py-2.5 backdrop-blur-md"
-            >
-              <motion.span
-                className="h-[7px] w-[7px] rounded-full bg-[#1bc8b5] shadow-[0_0_10px_rgba(27,200,181,0.8)]"
-                animate={
-                  shouldReduceMotion
-                    ? {}
-                    : {
-                        opacity: [1, 0.55, 1],
-                        scale: [1, 1.2, 1],
-                      }
-                }
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-
-              <span className="text-[10px] font-medium tracking-[0.2em] text-[#c2cbca] sm:text-[11px]">
-                CIRCULAR CRITICAL MINERALS
-              </span>
-            </motion.div>
+       
 
             {/* Main Letter-Reveal Heading */}
             <motion.h1

@@ -347,10 +347,7 @@ export default function WhatDo() {
         }}
         className="pointer-events-none absolute bottom-8 right-[5vw] hidden items-center gap-3 lg:flex"
       >
-        <span className="h-px w-8 bg-[#299d8e]/50" />
-        <span className="text-[10px] font-semibold tracking-[0.2em] text-[#299d8e]/80">
-          BUILT FOR CIRCULARITY
-        </span>
+      
       </motion.div>
     </section>
   );

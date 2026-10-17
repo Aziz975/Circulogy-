@@ -144,7 +144,7 @@ export default function WhatWeRecover() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.2 }}
-            className="group relative min-h-[445px] overflow-hidden rounded-[20px] bg-[#087f7b] sm:min-h-[460px] lg:h-[445px]"
+            className="group relative min-h-[445px] overflow-hidden rounded-[20px] bg-[#101312] sm:min-h-[460px] lg:h-[445px]"
           >
             {/* LEFT IMAGE */}
             <div className="absolute inset-y-0 left-[-1%] w-[34%] overflow-hidden">
@@ -155,7 +155,7 @@ export default function WhatWeRecover() {
               />
 
               {/* Image overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-transparent to-[#087f7b]/20" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-transparent" />
             </div>
 
             {/* CARD BACKGROUND */}

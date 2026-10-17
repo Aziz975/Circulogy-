@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
+import { createPortal } from "react-dom";
 import { motion, useReducedMotion } from "motion/react";
 import {
   ArrowRight,
@@ -83,7 +84,7 @@ const founders = [
 ];
 
 /* =========================================================
-   ANIMATION VARIANTS
+   HEADING ANIMATION
 ========================================================= */
 
 const headingLines = [
@@ -111,6 +112,7 @@ const letterVariants = {
 
 /* =========================================================
    EXPERIENCE CARD
+   Original size and styling preserved
 ========================================================= */
 
 function ExperienceCard({ experience = [] }) {
@@ -158,7 +160,7 @@ function FounderCard({ founder, onViewProfile }) {
       {/* Top accent */}
       <div className="absolute left-0 right-0 top-0 z-20 h-[5px] bg-gradient-to-r from-[#278f82] via-[#58c1b0] to-[#a2e3d7]" />
 
-      {/* Image */}
+      {/* Founder image */}
       <div className="relative mx-[7px] mt-[7px] aspect-[1.06/1] overflow-hidden rounded-[13px] bg-[#edf6f3]">
         <img
           src={founder.src}
@@ -167,10 +169,8 @@ function FounderCard({ founder, onViewProfile }) {
           className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.055]"
         />
 
-        {/* Image highlight */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#073f3d]/15 via-transparent to-white/10 opacity-40 transition-opacity duration-500 group-hover:opacity-100" />
 
-        {/* Image bottom glow */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#32a092]/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       </div>
 
@@ -207,6 +207,7 @@ function FounderCard({ founder, onViewProfile }) {
 
 /* =========================================================
    FOUNDER PROFILE MODAL
+   Portal prevents clipping by parent sections
 ========================================================= */
 
 function FounderModal({ founder, onClose }) {
@@ -216,7 +217,9 @@ function FounderModal({ founder, onClose }) {
     const previousOverflow = document.body.style.overflow;
 
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") {
+        onClose();
+      }
     };
 
     document.body.style.overflow = "hidden";
@@ -228,18 +231,22 @@ function FounderModal({ founder, onClose }) {
     };
   }, [founder, onClose]);
 
-  if (!founder) return null;
+  if (!founder || typeof document === "undefined") {
+    return null;
+  }
 
-  return (
+  return createPortal(
     <motion.div
       key="founder-modal-backdrop"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.22 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-[#071b18]/65 p-3 backdrop-blur-sm sm:p-6"
+      className="fixed inset-0 z-[99999] flex items-center justify-center overflow-y-auto overscroll-contain bg-[#071b18]/65 p-3 backdrop-blur-sm sm:p-6"
       onMouseDown={(event) => {
-        if (event.target === event.currentTarget) onClose();
+        if (event.target === event.currentTarget) {
+          onClose();
+        }
       }}
     >
       <motion.div
@@ -248,11 +255,16 @@ function FounderModal({ founder, onClose }) {
         aria-labelledby="founder-modal-title"
         initial={{ opacity: 0, y: 18, scale: 0.975 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        transition={{
+          duration: 0.3,
+          ease: [0.22, 1, 0.36, 1],
+        }}
         className="relative my-auto w-full max-w-[850px] overflow-hidden rounded-[22px] border border-[#d9ebe7] bg-white shadow-[0_30px_100px_rgba(0,0,0,0.25)] sm:rounded-[24px]"
       >
+        {/* Top accent */}
         <div className="absolute left-0 right-0 top-0 z-10 h-[5px] bg-gradient-to-r from-[#278f82] via-[#58c1b0] to-[#a2e3d7]" />
 
+        {/* Close icon */}
         <button
           type="button"
           onClick={onClose}
@@ -279,7 +291,7 @@ function FounderModal({ founder, onClose }) {
             </div>
           </div>
 
-          {/* Dynamic founder information */}
+          {/* Founder information */}
           <div className="flex min-w-0 w-full flex-col justify-center p-4 sm:p-6 md:p-8 lg:p-9">
             <h2
               id="founder-modal-title"
@@ -292,6 +304,7 @@ function FounderModal({ founder, onClose }) {
               {founder.role}
             </p>
 
+            {/* Original experience box dimensions and styling */}
             <div className="w-full min-w-0">
               <ExperienceCard experience={founder.experience} />
             </div>
@@ -309,7 +322,8 @@ function FounderModal({ founder, onClose }) {
           </div>
         </div>
       </motion.div>
-    </motion.div>
+    </motion.div>,
+    document.body
   );
 }
 
@@ -327,7 +341,7 @@ export default function OurFounders() {
     setSelectedFounder(null);
   }, []);
 
-  /* Replay entrance animations on re-entering the viewport */
+  /* Replay entrance animations when re-entering the viewport */
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -368,20 +382,18 @@ export default function OurFounders() {
     };
   }, [prefersReducedMotion]);
 
-  const headingContainerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: prefersReducedMotion ? 0 : 0.035,
-        delayChildren: prefersReducedMotion ? 0 : 0.12,
-      },
-    },
-  };
-
   const activeLetterVariants = prefersReducedMotion
     ? {
-        hidden: { opacity: 1, y: 0, filter: "blur(0px)" },
-        visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+        hidden: {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+        },
+        visible: {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+        },
       }
     : letterVariants;
 
@@ -418,7 +430,6 @@ export default function OurFounders() {
         <div className="grid items-start gap-12 lg:grid-cols-[38%_62%] lg:gap-8 xl:grid-cols-[37%_63%]">
           {/* Left content */}
           <div className="pt-2 lg:pt-[25px]">
-            {/* Section label */}
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={
@@ -435,10 +446,9 @@ export default function OurFounders() {
               <span className="text-[11px] font-bold tracking-[0.25em] text-[#409e93] sm:text-[12px]">
                 OUR FOUNDERS
               </span>
-             
             </motion.div>
 
-            {/* Letter-by-letter main heading */}
+            {/* Letter-by-letter heading */}
             <h2
               aria-label="Built by people who have been in the trenches."
               className="mt-8 max-w-[570px] text-[47px] font-bold leading-[1.01] tracking-[-0.05em] sm:text-[54px] md:text-[60px] lg:text-[52px] xl:text-[59px]"
@@ -446,9 +456,7 @@ export default function OurFounders() {
               {headingLines.map((line, lineIndex) => (
                 <motion.span
                   key={line.text}
-                  className={`block ${
-                    line.accent ? "text-[#32a092]" : "text-[#101716]"
-                  }`}
+                  className={`block ${line.accent ? "text-[#32a092]" : "text-[#101716]"}`}
                   initial="hidden"
                   animate={visible ? "visible" : "hidden"}
                   variants={{
@@ -456,9 +464,7 @@ export default function OurFounders() {
                     visible: {
                       transition: {
                         staggerChildren: prefersReducedMotion ? 0 : 0.035,
-                        delayChildren: prefersReducedMotion
-                          ? 0
-                          : 0.12 + lineIndex * 0.2,
+                        delayChildren: prefersReducedMotion ? 0 : 0.12 + lineIndex * 0.2,
                       },
                     },
                   }}
@@ -511,7 +517,6 @@ export default function OurFounders() {
               Meet the leadership behind Circulogy.
             </motion.p>
 
-            {/* Decorative detail */}
             <motion.div
               initial={{ opacity: 0, x: -12 }}
               animate={
@@ -524,25 +529,7 @@ export default function OurFounders() {
                 delay: prefersReducedMotion ? 0 : 0.7,
               }}
               className="mt-8 hidden items-center gap-3 lg:flex"
-            >
-              <div className="flex -space-x-2">
-                {founders.map((founder) => (
-                  <div
-                    key={founder.id}
-                    className="h-8 w-8 overflow-hidden rounded-full border-2 border-[#f8fbfa] bg-[#e0f7f3]"
-                  >
-                    <img
-                      src={founder.src}
-                      alt=""
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-              <span className="text-[11px] font-medium tracking-[0.12em] text-[#71817d]">
-                BUILT ON EXPERIENCE
-              </span>
-            </motion.div>
+            />
           </div>
 
           {/* Founder cards */}
@@ -580,7 +567,7 @@ export default function OurFounders() {
         </div>
       </div>
 
-      {/* Founder profile modal */}
+      {/* Modal is rendered into document.body by createPortal */}
       <FounderModal
         founder={selectedFounder}
         onClose={closeModal}

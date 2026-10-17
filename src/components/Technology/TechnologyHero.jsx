@@ -112,10 +112,10 @@ export default function TechnologyHero() {
           />
 
           {/* ================= HEADING ================= */}
-          <div className="relative z-10 mx-auto max-w-[1120px] px-5 pt-12 text-center sm:px-8 sm:pt-14 md:pt-16 lg:pt-[64px] xl:pt-[62px]">
+          <div className="relative z-10 mx-auto max-w-[1120px] px-5 pt-12 text-center sm:px-8 sm:pt-14 md:pt-16 lg:pt-[64px] xl:pt-[42px]">
             <motion.h1
               variants={headingText}
-              className="text-[34px] font-bold leading-[1.08] tracking-[-1.5px] text-black sm:text-[42px] md:text-[50px] md:tracking-[-2px] lg:text-[55px] xl:text-[57px]"
+              className="text-[30px] font-bold leading-[1.08] tracking-[-1.5px] text-black sm:text-[37px] md:text-[45px] md:tracking-[-2px] lg:text-[48px] xl:text-[50px]"
             >
               <span className="block">
                 <span className="text-[#2b9d8c]">

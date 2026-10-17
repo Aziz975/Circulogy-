@@ -198,7 +198,7 @@ const Footer = () => {
   const hoverLift = reduceMotion ? {} : { y: -5, scale: 1.04 };
 
   return (
-    <footer className="relative isolate w-full overflow-hidden bg-[#031614] font-[Inter,sans-serif] text-white">
+    <footer className="relative isolate w-full overflow-hidden bg-[black] font-[Inter,sans-serif] text-white">
 
       {/* Background Effects */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">

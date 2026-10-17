@@ -445,7 +445,7 @@ export default function ElementGrid() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.15 }}
-            className="relative h-[600px] overflow-hidden rounded-[28px] bg-[#032b27] sm:h-[680px] md:h-[720px] xl:h-[590px]"
+            className="relative h-[600px] overflow-hidden rounded-[28px] bg-[#101312] sm:h-[680px] md:h-[720px] xl:h-[590px]"
           >
             {/* Background grid */}
             <div className="pointer-events-none absolute inset-0 opacity-20">
@@ -467,7 +467,7 @@ export default function ElementGrid() {
               viewport={{ once: false, amount: 0.2 }}
               className="absolute left-8 top-7 z-10 sm:left-10 sm:top-9"
             >
-              <p className="text-[9px] font-bold uppercase tracking-[0.24em] text-[#65bdb0]">
+              <p className="text-[9px] font-bold uppercase tracking-[0.24em] text-[white]">
                 Featured Material
               </p>
             </motion.div>
@@ -522,15 +522,15 @@ export default function ElementGrid() {
                     {selected.name}
                   </h2>
 
-                  <div className="mt-4 inline-flex rounded-full border border-[#278c7e] bg-[#0a4b44] px-3 py-1.5">
-                    <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-[#70c7ba]">
+                  <div className="mt-4 inline-flex rounded-full border border-[white] bg-[black] px-3 py-1.5">
+                    <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-[white]">
                       {selected.category}
                     </span>
                   </div>
 
-                  <div className="mt-7 grid grid-cols-[100px_1fr] border-t border-[#1b4b46] pt-5">
-                    <div className="border-r border-[#1b4b46]">
-                      <p className="text-[8px] font-medium uppercase tracking-[0.18em] text-[#6da39b]">
+                  <div className="mt-7 grid grid-cols-[100px_1fr] border-t border-[white] pt-5">
+                    <div className="border-r border-[white]">
+                      <p className="text-[8px] font-medium uppercase tracking-[0.18em] text-[white]">
                         Atomic Number
                       </p>
 
@@ -540,7 +540,7 @@ export default function ElementGrid() {
                     </div>
 
                     <div className="pl-6">
-                      <p className="text-[8px] font-medium uppercase tracking-[0.18em] text-[#6da39b]">
+                      <p className="text-[8px] font-medium uppercase tracking-[0.18em] text-[white]">
                         Recovered As
                       </p>
 
@@ -550,7 +550,7 @@ export default function ElementGrid() {
                     </div>
                   </div>
 
-                  <p className="mt-5 text-[8px] font-semibold uppercase tracking-[0.2em] text-[#63b6aa]">
+                  <p className="mt-5 text-[8px] font-semibold uppercase tracking-[0.2em] text-[white]">
                     {selected.source}
                   </p>
                 </motion.div>
@@ -575,7 +575,7 @@ export default function ElementGrid() {
                 Periodic Table · 118 Elements
               </h2>
 
-              <p className="hidden text-[9px] text-[#888e8a] md:block">
+              <p className="hidden text-[9px] font-bold text-[#888e8a] md:block">
                 Target materials are highlighted by output stream
               </p>
             </motion.div>
@@ -764,14 +764,14 @@ export default function ElementGrid() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className="h-3 w-3 rounded-[3px] bg-[#063d38]" />
+                  <span className="h-3 w-3 rounded-[3px] bg-[#202124]" />
                   <span className="text-[9px] font-medium text-[#6c746f]">
                     Rare earth elements
                   </span>
                 </div>
               </div>
 
-              <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#31877c]">
+              <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-[black]">
                 10 Target Elements · 2 Output Streams
               </p>
             </motion.div>
@@ -808,12 +808,12 @@ function PeriodicTile({ symbol, number, selected, onSelect }) {
         h-[51px] rounded-[7px] border p-[5px] text-left
         ${
           target
-            ? "cursor-pointer border-[#074d47] bg-[#063d38] text-white hover:bg-[#07584f]"
+            ? "cursor-pointer border-[#202124] bg-[#101312] text-white hover:bg-[#202124]"
             : "cursor-default border-[#dfe2dc] bg-[#f8f9f5] text-[#59605c]"
         }
         ${
           isSelected
-            ? "relative z-10 ring-2 ring-[#19cdb5] ring-offset-2 ring-offset-[#f4f6f0]"
+            ? "relative z-10 ring-2 ring-[black] ring-offset-2 ring-offset-[#f4f6f0]"
             : ""
         }
       `}
