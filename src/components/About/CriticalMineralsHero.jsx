@@ -67,37 +67,58 @@ export default function CriticalMineralsHero() {
           {/* ================= LEFT CONTENT ================= */}
           <div className="relative z-20 max-w-[650px]">
 
-           
+
 
             {/* Heading */}
-            <h1
-              className={`text-[52px] font-bold leading-[0.92] tracking-[-0.055em] sm:text-[64px] md:text-[76px] lg:text-[78px] xl:text-[82px]  ${isVisible ? "animate-fadeUp" : "opacity-0"} `}
-            >
-              <span className="block animate-[fadeUp_.8s_ease-out_.15s_forwards] opacity-0">
-                Refining
+
+            <h1 className={`text-[52px] font-bold leading-[0.92] tracking-[-0.055em] sm:text-[64px] md:text-[76px] lg:text-[78px] xl:text-[82px] ${isVisible ? "letter-reveal-active" : "opacity-0"}`}>
+              <span className="block">
+                {"Refining".split("").map((letter, index) => (
+                  <span key={index} className="reveal-letter" style={{ animationDelay: `${0.15 + index * 0.045}s` }}>
+                    {letter}
+                  </span>
+                ))}
               </span>
 
-              <span className="block animate-[fadeUp_.8s_ease-out_.25s_forwards] opacity-0">
-                India's{" "}
+              <span className="block">
+                {"India's ".split("").map((letter, index) => (
+                  <span key={index} className="reveal-letter" style={{ animationDelay: `${0.35 + index * 0.045}s` }}>
+                    {letter === " " ? "\u00A0" : letter}
+                  </span>
+                ))}
                 <span className="text-[#269f8e]">
-                  critical
+                  {"critical".split("").map((letter, index) => (
+                    <span key={index} className="reveal-letter" style={{ animationDelay: `${0.65 + index * 0.045}s` }}>
+                      {letter}
+                    </span>
+                  ))}
                 </span>
               </span>
 
-              <span className="block animate-[fadeUp_.8s_ease-out_.35s_forwards] opacity-0">
+              <span className="block">
                 <span className="text-[#269f8e]">
-                  minerals
-                </span>{" "}
-                and
-              </span>
-
-              <span className="block animate-[fadeUp_.8s_ease-out_.45s_forwards] opacity-0">
-                <span className="text-[#269f8e]">
-                  rare earths.
+                  {"minerals".split("").map((letter, index) => (
+                    <span key={index} className="reveal-letter" style={{ animationDelay: `${0.95 + index * 0.045}s` }}>
+                      {letter}
+                    </span>
+                  ))}
                 </span>
+                {" and".split("").map((letter, index) => (
+                  <span key={index} className="reveal-letter" style={{ animationDelay: `${1.25 + index * 0.045}s` }}>
+                    {letter === " " ? "\u00A0" : letter}
+                  </span>
+                ))}
               </span>
 
+              <span className="block text-[#269f8e]">
+                {"rare earths.".split("").map((letter, index) => (
+                  <span key={index} className="reveal-letter" style={{ animationDelay: `${1.5 + index * 0.045}s` }}>
+                    {letter}
+                  </span>
+                ))}
+              </span>
             </h1>
+
 
             {/* Buttons */}
             <div className="mt-8 flex flex-wrap gap-4 animate-[fadeUp_.8s_ease-out_.7s_forwards] opacity-0">
@@ -162,13 +183,13 @@ export default function CriticalMineralsHero() {
 
                 {/* Circulogy Style Logo */}
                 <div className="relative flex items-center justify-center w-48 h-48">
-  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 blur-2xl opacity-60 animate-spin-slow"></div>
-  <img
-    src="images/LOOP.png"
-    alt="circulogy logo"
-    className="relative animate-glow"
-  />
-</div>
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 blur-2xl opacity-60 animate-spin-slow"></div>
+                  <img
+                    src="images/LOOP.png"
+                    alt="circulogy logo"
+                    className="relative animate-glow"
+                  />
+                </div>
 
               </div>
 
@@ -188,12 +209,12 @@ export default function CriticalMineralsHero() {
               {/* Labels */}
               <div className="absolute left-[23%] top-[15%] rounded-full border border-[#d1ebe7] bg-white/90 px-4 py-2 text-[10px] font-black tracking-wider text-[#1b2927] shadow-lg backdrop-blur-md md:text-xs animate-[float_5s_ease-in-out_infinite]">
                 <span className="mr-2 inline-block h-2 w-2 rounded-full bg-[#249d8d]" />
-               NICKEL
+                NICKEL
               </div>
 
               <div className="absolute  right-[-9%] top-[43%] rounded-full border border-[#d1ebe7] bg-white/90 px-4 py-2 text-[10px] font-black tracking-wider text-[#1b2927] shadow-lg backdrop-blur-md md:text-xs animate-[float_5s_ease-in-out_infinite]">
                 <span className="mr-2 inline-block h-2 w-2 rounded-full bg-[#249d8d]" />
-               GRAPHITE
+                GRAPHITE
               </div>
 
               <div className="absolute right-[23%] bottom-[8%] rounded-full border border-[#d1ebe7] bg-white/90 px-4 py-2 text-[10px] font-black tracking-wider text-[#1b2927] shadow-lg backdrop-blur-md md:text-xs animate-[float_5s_ease-in-out_infinite]">
@@ -203,7 +224,7 @@ export default function CriticalMineralsHero() {
 
               <div className="absolute left-[-7%] bottom-[35%] rounded-full border border-[#d1ebe7] bg-white/90 px-4 py-2 text-[10px] font-black tracking-wider text-[#1b2927] shadow-lg backdrop-blur-md md:text-xs animate-[float_5s_ease-in-out_infinite]">
                 <span className="mr-2 inline-block h-2 w-2 rounded-full bg-[#249d8d]" />
-               LITHIUM
+                LITHIUM
               </div>
 
             </div>
@@ -211,7 +232,7 @@ export default function CriticalMineralsHero() {
 
             {/* Right Side Text */}
             <div className="absolute right-[-10px] top-[7%] hidden max-w-[120px] md:block">
-              <div/>
+              <div />
               <p className="text-[9px] font-semibold uppercase leading-[1.5] tracking-[0.18em] text-[#74a39e]">
                 Circular solutions
                 <br />
@@ -271,7 +292,7 @@ export default function CriticalMineralsHero() {
 
 `}
 
-{`
+        {`
   @keyframes fadeUp {
     0% {
       opacity: 0;
@@ -319,7 +340,51 @@ export default function CriticalMineralsHero() {
 
 
 
-</style>
+{`
+
+.reveal-letter {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(110%);
+  will-change: transform, opacity, filter;
+}
+
+.letter-reveal-active .reveal-letter {
+  animation: letterReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes letterReveal {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(110%);
+  }
+
+  65% {
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .letter-reveal-active .reveal-letter {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+
+`}
+
+      </style>
 
     </section>
   );

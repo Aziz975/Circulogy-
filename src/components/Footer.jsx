@@ -295,7 +295,7 @@ const Footer = () => {
       </div>
 
       {/* Main Container */}
-      <div className="relative z-10 mx-auto w-full max-w-[1487px] px-5 pb-[25px] pt-[45px] sm:px-8 sm:pt-[60px] lg:px-[50px] lg:pt-[75px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1487px] px-5 pb-[25px] pt-[45px] sm:px-4 sm:pt-[60px] lg:px-[30px] lg:pt-[75px]">
 
         {/* Footer Grid */}
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.18fr_1fr_1fr_1fr]">

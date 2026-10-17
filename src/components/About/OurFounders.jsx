@@ -1,5 +1,6 @@
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import {
   ArrowRight,
   X,
@@ -8,8 +9,6 @@ import {
   Recycle,
   Factory,
   ShieldCheck,
-  Leaf,
-  Zap,
   Truck,
   FlaskConical,
   Pickaxe,
@@ -17,7 +16,7 @@ import {
 } from "lucide-react";
 
 /* =========================================================
-   FOUNDER DATA — EACH FOUNDER HAS DIFFERENT PROFILE CONTENT
+   FOUNDER DATA
 ========================================================= */
 
 const founders = [
@@ -53,11 +52,11 @@ const founders = [
       },
       {
         icon: ShieldCheck,
-        text: "Architected the government of Uttar Pradesh's states startup mission. ",
+        text: "Architected the government of Uttar Pradesh's states startup mission.",
       },
       {
         icon: Truck,
-        text: "Owns business strategy ,government relations, partnerships and market.",
+        text: "Owns business strategy, government relations, partnerships and market.",
       },
     ],
   },
@@ -84,6 +83,33 @@ const founders = [
 ];
 
 /* =========================================================
+   ANIMATION VARIANTS
+========================================================= */
+
+const headingLines = [
+  { text: "Built by people", accent: false },
+  { text: "who have been", accent: false },
+  { text: "in the trenches.", accent: true },
+];
+
+const letterVariants = {
+  hidden: {
+    opacity: 0,
+    y: "110%",
+    filter: "blur(8px)",
+  },
+  visible: {
+    opacity: 1,
+    y: "0%",
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.65,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+/* =========================================================
    EXPERIENCE CARD
 ========================================================= */
 
@@ -95,11 +121,8 @@ function ExperienceCard({ experience = [] }) {
           const Icon = item.icon;
 
           return (
-            <div
-              key={index}
-              className="flex items-center gap-3 sm:gap-3.5"
-            >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#e0f7f3] text-[#278f82] sm:h-11 sm:w-11">
+            <div key={index} className="flex items-center gap-3 sm:gap-3.5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#e0f7f3] text-[#278f82] transition-all duration-300 hover:bg-[#d0f1e9] hover:shadow-[0_0_18px_rgba(54,162,148,0.18)] sm:h-11 sm:w-11">
                 <Icon size={21} strokeWidth={2} />
               </div>
 
@@ -122,20 +145,38 @@ function ExperienceCard({ experience = [] }) {
 
 function FounderCard({ founder, onViewProfile }) {
   return (
-    <div className="group relative overflow-hidden rounded-[18px] border border-[#d9ebe7] bg-white shadow-[0_12px_35px_rgba(28,110,99,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(28,110,99,0.12)]">
-      <div className="absolute left-0 right-0 top-0 z-20 h-[5px] bg-[#36a294]" />
+    <motion.div
+      whileHover={{
+        y: -7,
+        transition: { duration: 0.3, ease: "easeOut" },
+      }}
+      className="group relative isolate overflow-hidden rounded-[18px] border border-[#d9ebe7] bg-white shadow-[0_12px_35px_rgba(28,110,99,0.07)] transition-[border-color,box-shadow] duration-500 hover:border-[#75c8ba] hover:shadow-[0_22px_50px_rgba(28,110,99,0.14),0_0_28px_rgba(54,162,148,0.13)]"
+    >
+      {/* Hover glow */}
+      <div className="pointer-events-none absolute -inset-px -z-10 rounded-[19px] bg-[radial-gradient(ellipse_at_top,rgba(54,162,148,0.23),transparent_68%)] opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
 
+      {/* Top accent */}
+      <div className="absolute left-0 right-0 top-0 z-20 h-[5px] bg-gradient-to-r from-[#278f82] via-[#58c1b0] to-[#a2e3d7]" />
+
+      {/* Image */}
       <div className="relative mx-[7px] mt-[7px] aspect-[1.06/1] overflow-hidden rounded-[13px] bg-[#edf6f3]">
         <img
           src={founder.src}
           alt={founder.name}
           loading="lazy"
-          className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
+          className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.055]"
         />
+
+        {/* Image highlight */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#073f3d]/15 via-transparent to-white/10 opacity-40 transition-opacity duration-500 group-hover:opacity-100" />
+
+        {/* Image bottom glow */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#32a092]/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       </div>
 
-      <div className="px-5 pb-6 pt-5 sm:px-5">
-        <h3 className="text-[22px] font-semibold leading-[1.1] tracking-[-0.035em] text-[#0d1110] sm:text-[24px]">
+      {/* Founder details */}
+      <div className="relative px-5 pb-6 pt-5 sm:px-5">
+        <h3 className="text-[22px] font-semibold leading-[1.1] tracking-[-0.035em] text-[#0d1110] transition-colors duration-300 group-hover:text-[#167f73] sm:text-[24px]">
           {founder.name}
         </h3>
 
@@ -147,7 +188,7 @@ function FounderCard({ founder, onViewProfile }) {
           type="button"
           onClick={() => onViewProfile(founder)}
           aria-label={`View ${founder.name}'s profile`}
-          className="mt-6 flex h-[48px] w-full items-center justify-center gap-3 rounded-[12px] border-[1.5px] border-[#72c4b9] bg-white text-[15px] font-medium text-[#3ba394] transition-all duration-300 hover:bg-[#eef9f7] focus:outline-none focus:ring-2 focus:ring-[#36a294] focus:ring-offset-2"
+          className="mt-6 flex h-[48px] w-full items-center justify-center gap-3 rounded-[12px] border-[1.5px] border-[#72c4b9] bg-white text-[15px] font-medium text-[#3ba394] transition-all duration-300 hover:border-[#36a294] hover:bg-[#eef9f7] hover:shadow-[0_0_20px_rgba(54,162,148,0.14)] focus:outline-none focus:ring-2 focus:ring-[#36a294] focus:ring-offset-2"
         >
           View Profile
           <ArrowRight
@@ -157,12 +198,15 @@ function FounderCard({ founder, onViewProfile }) {
           />
         </button>
       </div>
-    </div>
+
+      {/* Bottom hover line */}
+      <div className="absolute bottom-0 left-0 z-20 h-[3px] w-0 bg-gradient-to-r from-[#278f82] to-[#8cddcd] transition-all duration-500 group-hover:w-full" />
+    </motion.div>
   );
 }
 
 /* =========================================================
-   REUSABLE FOUNDER PROFILE MODAL
+   FOUNDER PROFILE MODAL
 ========================================================= */
 
 function FounderModal({ founder, onClose }) {
@@ -187,19 +231,27 @@ function FounderModal({ founder, onClose }) {
   if (!founder) return null;
 
   return (
-    <div
+    <motion.div
+      key="founder-modal-backdrop"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.22 }}
       className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-[#071b18]/65 p-3 backdrop-blur-sm sm:p-6"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <div
+      <motion.div
         role="dialog"
         aria-modal="true"
         aria-labelledby="founder-modal-title"
-        className="relative my-auto w-full max-w-[850px] overflow-hidden rounded-[22px] border border-[#d9ebe7] bg-white shadow-[0_30px_100px_rgba(0,0,0,0.25)] sm:rounded-[24px] animate-[modalIn_0.25s_ease-out]"
+        initial={{ opacity: 0, y: 18, scale: 0.975 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        className="relative my-auto w-full max-w-[850px] overflow-hidden rounded-[22px] border border-[#d9ebe7] bg-white shadow-[0_30px_100px_rgba(0,0,0,0.25)] sm:rounded-[24px]"
       >
-        <div className="absolute left-0 right-0 top-0 z-10 h-[5px] bg-[#36a294]" />
+        <div className="absolute left-0 right-0 top-0 z-10 h-[5px] bg-gradient-to-r from-[#278f82] via-[#58c1b0] to-[#a2e3d7]" />
 
         <button
           type="button"
@@ -211,7 +263,7 @@ function FounderModal({ founder, onClose }) {
         </button>
 
         <div className="grid md:grid-cols-[0.8fr_1.2fr]">
-          {/* FOUNDER IMAGE */}
+          {/* Founder image */}
           <div className="relative min-h-[230px] bg-[#edf6f3] sm:min-h-[300px] md:min-h-[480px]">
             <img
               src={founder.src}
@@ -227,9 +279,7 @@ function FounderModal({ founder, onClose }) {
             </div>
           </div>
 
-          {/* DYNAMIC FOUNDER INFORMATION */}
-
-
+          {/* Dynamic founder information */}
           <div className="flex min-w-0 w-full flex-col justify-center p-4 sm:p-6 md:p-8 lg:p-9">
             <h2
               id="founder-modal-title"
@@ -238,7 +288,7 @@ function FounderModal({ founder, onClose }) {
               {founder.name}
             </h2>
 
-            <p className="mt-2 mb-4 text-sm font-medium text-[#36a294] sm:mb-5 sm:text-base">
+            <p className="mb-4 mt-2 text-sm font-medium text-[#36a294] sm:mb-5 sm:text-base">
               {founder.role}
             </p>
 
@@ -257,23 +307,9 @@ function FounderModal({ founder, onClose }) {
               </button>
             </div>
           </div>
-
         </div>
-      </div>
-
-      <style>{`
-        @keyframes modalIn {
-          from {
-            opacity: 0;
-            transform: translateY(12px) scale(0.98);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-      `}</style>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -282,76 +318,270 @@ function FounderModal({ founder, onClose }) {
 ========================================================= */
 
 export default function OurFounders() {
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
   const [selectedFounder, setSelectedFounder] = useState(null);
+  const prefersReducedMotion = useReducedMotion();
 
   const closeModal = useCallback(() => {
     setSelectedFounder(null);
   }, []);
 
+  /* Replay entrance animations on re-entering the viewport */
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    let frameOne;
+    let frameTwo;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (prefersReducedMotion) {
+            setVisible(true);
+            return;
+          }
+
+          setVisible(false);
+
+          frameOne = requestAnimationFrame(() => {
+            frameTwo = requestAnimationFrame(() => {
+              setVisible(true);
+            });
+          });
+        } else {
+          setVisible(false);
+          cancelAnimationFrame(frameOne);
+          cancelAnimationFrame(frameTwo);
+        }
+      },
+      { threshold: 0.12 }
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frameOne);
+      cancelAnimationFrame(frameTwo);
+    };
+  }, [prefersReducedMotion]);
+
+  const headingContainerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: prefersReducedMotion ? 0 : 0.035,
+        delayChildren: prefersReducedMotion ? 0 : 0.12,
+      },
+    },
+  };
+
+  const activeLetterVariants = prefersReducedMotion
+    ? {
+        hidden: { opacity: 1, y: 0, filter: "blur(0px)" },
+        visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+      }
+    : letterVariants;
+
   return (
-    <section className="relative overflow-hidden bg-[#f8fbfa] px-5 py-14 text-[#101716] sm:px-8 md:px-12 lg:px-[5vw] lg:py-[78px]">
-      {/* BACKGROUND GRID */}
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#e4eeeb_1px,transparent_1px),linear-gradient(to_bottom,#e4eeeb_1px,transparent_1px)] bg-[size:54px_54px] opacity-60" />
+    <section
+      ref={sectionRef}
+      className="relative isolate overflow-hidden bg-[#f8fbfa] px-5 py-14 text-[#101716] sm:px-8 md:px-12 lg:px-[5vw] lg:py-[78px]"
+    >
+      {/* Background grid */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,#e4eeeb_1px,transparent_1px),linear-gradient(to_bottom,#e4eeeb_1px,transparent_1px)] bg-[size:54px_54px] opacity-60" />
 
-      {/* TOP RIGHT ORBITS */}
-      <div className="pointer-events-none absolute -right-[95px] -top-[105px] h-[510px] w-[510px] rounded-full border border-[#dcece9]" />
-      <div className="pointer-events-none absolute right-[-30px] top-[-35px] h-[370px] w-[370px] rounded-full border border-[#dcece9]" />
-      <div className="pointer-events-none absolute right-[55px] top-[25px] h-[255px] w-[255px] rounded-full border border-[#dcece9]" />
+      {/* Top-right decorative orbits */}
+      <div className="pointer-events-none absolute -right-[95px] -top-[105px] -z-10 h-[510px] w-[510px] rounded-full border border-[#dcece9]" />
+      <div className="pointer-events-none absolute -right-[30px] -top-[35px] -z-10 h-[370px] w-[370px] rounded-full border border-[#dcece9]" />
+      <div className="pointer-events-none absolute right-[55px] top-[25px] -z-10 h-[255px] w-[255px] rounded-full border border-[#dcece9]" />
 
-      <div className="pointer-events-none absolute right-[9px] top-[142px] flex h-[29px] w-[29px] items-center justify-center rounded-full border border-[#a9dcd4] bg-[#f8fbfa]">
+      <div className="pointer-events-none absolute right-[9px] top-[142px] -z-10 flex h-[29px] w-[29px] items-center justify-center rounded-full border border-[#a9dcd4] bg-[#f8fbfa]">
         <span className="h-[9px] w-[9px] rounded-full bg-[#35a293] shadow-[0_0_0_5px_rgba(53,162,147,0.08)]" />
       </div>
 
-      {/* BOTTOM LEFT ORBITS */}
-      <div className="pointer-events-none absolute -bottom-[240px] left-[29%] h-[610px] w-[610px] rounded-full border border-[#dcece9]" />
-      <div className="pointer-events-none absolute -bottom-[170px] left-[33%] h-[470px] w-[470px] rounded-full border border-[#dcece9]" />
-      <div className="pointer-events-none absolute -bottom-[90px] left-[38%] h-[310px] w-[310px] rounded-full border border-[#dcece9]" />
+      {/* Bottom-left decorative orbits */}
+      <div className="pointer-events-none absolute -bottom-[240px] left-[29%] -z-10 h-[610px] w-[610px] rounded-full border border-[#dcece9]" />
+      <div className="pointer-events-none absolute -bottom-[170px] left-[33%] -z-10 h-[470px] w-[470px] rounded-full border border-[#dcece9]" />
+      <div className="pointer-events-none absolute -bottom-[90px] left-[38%] -z-10 h-[310px] w-[310px] rounded-full border border-[#dcece9]" />
 
-      <div className="pointer-events-none absolute bottom-[290px] left-[30.5%] flex h-[29px] w-[29px] items-center justify-center rounded-full border border-[#a9dcd4] bg-[#f8fbfa]">
+      <div className="pointer-events-none absolute bottom-[290px] left-[30.5%] -z-10 flex h-[29px] w-[29px] items-center justify-center rounded-full border border-[#a9dcd4] bg-[#f8fbfa]">
         <span className="h-[8px] w-[8px] rounded-full bg-[#35a293]" />
       </div>
 
+      {/* Soft ambient glow */}
+      <div className="pointer-events-none absolute left-[5%] top-[25%] -z-10 h-[280px] w-[280px] rounded-full bg-[#75cbbb]/[0.08] blur-[100px]" />
+
       <div className="relative z-10 mx-auto max-w-[1450px]">
         <div className="grid items-start gap-12 lg:grid-cols-[38%_62%] lg:gap-8 xl:grid-cols-[37%_63%]">
-          {/* LEFT CONTENT */}
+          {/* Left content */}
           <div className="pt-2 lg:pt-[25px]">
-            <div className="flex items-center gap-4">
-              <span className="text-[11px] font-black tracking-[0.25em] text-[#409e93] sm:text-[12px]">
+            {/* Section label */}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={
+                visible
+                  ? { opacity: 1, y: 0 }
+                  : { opacity: 0, y: 18 }
+              }
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.7,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="flex items-center gap-4"
+            >
+              <span className="text-[11px] font-bold tracking-[0.25em] text-[#409e93] sm:text-[12px]">
                 OUR FOUNDERS
               </span>
-            </div>
+              <span className="h-px w-10 origin-left bg-[#409e93]/50" />
+              <span className="h-1.5 w-1.5 rounded-full bg-[#35a293]" />
+            </motion.div>
 
-            <h2 className="mt-8 max-w-[570px] text-[47px] font-bold leading-[1.01] tracking-[-0.05em] sm:text-[54px] md:text-[60px] lg:text-[52px] xl:text-[59px]">
-              Built by people
-              <br />
-              who have been
-              <br />
-              <span className="text-[#32a092]">
-                in the trenches.
-              </span>
+            {/* Letter-by-letter main heading */}
+            <h2
+              aria-label="Built by people who have been in the trenches."
+              className="mt-8 max-w-[570px] text-[47px] font-bold leading-[1.01] tracking-[-0.05em] sm:text-[54px] md:text-[60px] lg:text-[52px] xl:text-[59px]"
+            >
+              {headingLines.map((line, lineIndex) => (
+                <motion.span
+                  key={line.text}
+                  className={`block ${
+                    line.accent ? "text-[#32a092]" : "text-[#101716]"
+                  }`}
+                  initial="hidden"
+                  animate={visible ? "visible" : "hidden"}
+                  variants={{
+                    hidden: {},
+                    visible: {
+                      transition: {
+                        staggerChildren: prefersReducedMotion ? 0 : 0.035,
+                        delayChildren: prefersReducedMotion
+                          ? 0
+                          : 0.12 + lineIndex * 0.2,
+                      },
+                    },
+                  }}
+                  aria-hidden="true"
+                >
+                  {Array.from(line.text).map((letter, letterIndex) => (
+                    <motion.span
+                      key={`${lineIndex}-${letterIndex}`}
+                      className="inline-block whitespace-pre"
+                      variants={activeLetterVariants}
+                    >
+                      {letter}
+                    </motion.span>
+                  ))}
+                </motion.span>
+              ))}
             </h2>
 
-            <p className="mt-8 text-[18px] leading-[1.5] text-[#697875] sm:text-[19px]">
+            {/* Accent underline */}
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={
+                visible
+                  ? { opacity: 1, scaleX: 1 }
+                  : { opacity: 0, scaleX: 0 }
+              }
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.75,
+                delay: prefersReducedMotion ? 0 : 0.85,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="mt-7 h-[3px] w-[76px] origin-left rounded-full bg-gradient-to-r from-[#278f82] to-[#a2e3d7]"
+            />
+
+            {/* Supporting text */}
+            <motion.p
+              initial={{ opacity: 0, y: 22, filter: "blur(4px)" }}
+              animate={
+                visible
+                  ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                  : { opacity: 0, y: 22, filter: "blur(4px)" }
+              }
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.75,
+                delay: prefersReducedMotion ? 0 : 0.55,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="mt-8 max-w-[400px] text-[18px] leading-[1.5] text-[#697875] sm:text-[19px]"
+            >
               Meet the leadership behind Circulogy.
-            </p>
+            </motion.p>
+
+            {/* Decorative detail */}
+            <motion.div
+              initial={{ opacity: 0, x: -12 }}
+              animate={
+                visible
+                  ? { opacity: 1, x: 0 }
+                  : { opacity: 0, x: -12 }
+              }
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.7,
+                delay: prefersReducedMotion ? 0 : 0.7,
+              }}
+              className="mt-8 hidden items-center gap-3 lg:flex"
+            >
+              <div className="flex -space-x-2">
+                {founders.map((founder) => (
+                  <div
+                    key={founder.id}
+                    className="h-8 w-8 overflow-hidden rounded-full border-2 border-[#f8fbfa] bg-[#e0f7f3]"
+                  >
+                    <img
+                      src={founder.src}
+                      alt=""
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+              <span className="text-[11px] font-medium tracking-[0.12em] text-[#71817d]">
+                BUILT ON EXPERIENCE
+              </span>
+            </motion.div>
           </div>
 
-          {/* FOUNDER CARDS */}
-          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5 xl:gap-7">
-            {founders.map((founder) => (
-              <FounderCard
+          {/* Founder cards */}
+          <div className="mt-2 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-8 lg:grid-cols-3 lg:gap-5 xl:gap-7">
+            {founders.map((founder, index) => (
+              <motion.div
                 key={founder.id}
-                founder={founder}
-                onViewProfile={setSelectedFounder}
-              />
+                initial={{
+                  opacity: 0,
+                  y: prefersReducedMotion ? 0 : 32,
+                  filter: "blur(4px)",
+                }}
+                animate={
+                  visible
+                    ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                    : {
+                        opacity: 0,
+                        y: prefersReducedMotion ? 0 : 32,
+                        filter: "blur(4px)",
+                      }
+                }
+                transition={{
+                  duration: prefersReducedMotion ? 0 : 0.75,
+                  delay: prefersReducedMotion ? 0 : 0.25 + index * 0.16,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
+                <FounderCard
+                  founder={founder}
+                  onViewProfile={setSelectedFounder}
+                />
+              </motion.div>
             ))}
           </div>
         </div>
-
-        
       </div>
 
-      {/* SHARED MODAL — CONTENT CHANGES WITH SELECTED FOUNDER */}
+      {/* Founder profile modal */}
       <FounderModal
         founder={selectedFounder}
         onClose={closeModal}

@@ -242,7 +242,7 @@ const Hero = () => {
               className="max-w-[800px] text-[40px] font-medium leading-[0.98] tracking-[-0.055em] sm:text-[68px] md:text-[79px] lg:text-[75px] xl:text-[85px] 2xl:text-[65px]"
             >
               {/* First Line */}
-              <span className="block overflow-hidden pb-[4px]">
+              <span className="block  pb-[4px]">
                 <span className="block">
                   {shouldReduceMotion
                     ? lineOne
@@ -251,7 +251,7 @@ const Hero = () => {
               </span>
 
               {/* Second Line */}
-              <span className="block overflow-hidden pb-[5px]">
+              <span className="block  pb-[5px]">
                 <span className="block">
                   {shouldReduceMotion ? (
                     <span className="text-[#16b5a5]">{lineTwo}</span>
