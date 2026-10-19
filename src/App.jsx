@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar/Navbar";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import Blog from "./components/Pages/Blog.jsx";
 import CareerApplication from "./components/Career/CareerApplication.jsx";
+import ExploreMining from "./components/Home/ExploreMining.jsx";
 
 
 function App() {
@@ -21,13 +22,14 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services />} />
+        {/* <Route path="/services" element={<Services />} /> */}
         <Route path="/technology" element={<Technology />} />
         <Route path="/blog" element={<Blog/>} />
         <Route path="/pledge" element={<Pledge />} />
         <Route path="/career" element={<Career />} />
         <Route path="/career1" element={<CareerApplication />} />
         <Route path="/about" element={<About />} />
+        <Route path="/exploremining" element={<ExploreMining />} />
       </Routes>
 
       <Footer/>

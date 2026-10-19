@@ -288,7 +288,7 @@ const Hero = () => {
                 className="sm:w-[310px]"
               >
                 <Link
-                  to="/services"
+                  to="/exploremining"
                   className="group flex h-[50px] w-full items-center justify-between rounded-full bg-[#20b8a7] px-7 text-[16px] font-medium text-white transition-colors duration-300 hover:bg-[#27c9b6] hover:shadow-[0_0_35px_rgba(32,184,167,0.25)] sm:text-[17px]"
                 >
                   <span>Explore Urban Mining</span>
