@@ -250,7 +250,7 @@ export default function ExploreMining() {
         className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#0b3a47] lg:flex-row lg:items-center"
       >
         {/* Background image (slow zoom-out) */}
-        <div className="relative order-2 min-h-[600px] w-full overflow-hidden lg:absolute lg:inset-0 lg:order-none">
+        <div className="relative order-2  w-full overflow-hidden lg:absolute lg:inset-0 lg:order-none">
           <img
             src="images/hero.png"
             alt="Circuit board, recycling plant and city skyline collage"
