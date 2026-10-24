@@ -345,7 +345,7 @@ const Footer = () => {
               variants={reveal}
               className="mt-[25px] max-w-[290px] text-[14px] leading-[23px] text-[#b8c3c1] sm:text-[15px]"
             >
-              A tech-enabled platform connecting and empowering every player in India's circular economy.
+            Recovering the critical minerals and rare earths India’s clean energy future runs on.
             </motion.p>
 
             {/* Address */}
