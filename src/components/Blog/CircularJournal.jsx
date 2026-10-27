@@ -229,7 +229,7 @@ const ArticleCard = ({ article, index, onSelect, onRead }) => {
 
       >
 
-        <div className="h-[145px] overflow-hidden sm:h-[150px] lg:h-[82px] xl:h-[120px]">
+        <div className="h-[145px] overflow-hidden sm:h-[150px] lg:h-[82px] xl:h-[140px]">
 
           <img
 
@@ -237,7 +237,7 @@ const ArticleCard = ({ article, index, onSelect, onRead }) => {
 
             alt={article.title}
 
-            className="h-full w-full object-cover transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06] group-hover:brightness-[1.05]"
+            className="h-[full] w-full object-cover transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06] group-hover:brightness-[1.05]"
 
           />
 
@@ -253,26 +253,25 @@ const ArticleCard = ({ article, index, onSelect, onRead }) => {
 
       {/* Metadata */}
 
-      <div className="relative z-10 mt-3 flex flex-wrap items-center gap-2">
-
+      <div className="relative z-10 mt-3 flex flex-wrap items-center gap-1">
+        {/* Category */}
         <span className="rounded-full bg-[#e5f6f5] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.02em] text-[#078f8d] transition-all duration-300 group-hover:bg-[#d3f3f1] group-hover:shadow-[0_0_16px_rgba(0,175,169,0.16)]">
-
           {article.category}
-
         </span>
-
-
 
         <span className="h-4 w-px bg-[#cbd5e1]" />
 
-
-
-        <span className="whitespace-nowrap text-[9px] font-medium uppercase tracking-[0.02em] text-[#7c879d]">
-
-          {article.readTime}
-
+        {/* Author */}
+        <span className="text-[11px] font-semibold text-[#7c879d]">
+          By {article.author}
         </span>
 
+        <span className="h-4 w-px bg-[#cbd5e1]" />
+
+        {/* Publication Date */}
+        <span className="whitespace-nowrap text-[11px] font-semibold text-[#7c879d]">
+          {article.date}
+        </span>
       </div>
 
 
@@ -363,7 +362,7 @@ const FeaturedArticle = ({ article, onRead }) => {
 
       {/* Featured image */}
 
-      <div className="relative z-10 h-[220px] w-full overflow-hidden rounded-[9px] border border-[#08b7b6] bg-[#eef6f5] transition-all duration-500 group-hover:border-[#00aaa7] sm:h-[280px] md:h-[320px] lg:h-[218px] xl:h-[270px]">
+      <div className="relative z-10 h-[200px] w-full overflow-hidden rounded-[9px] border border-[#08b7b6] bg-[#eef6f5] transition-all duration-500 group-hover:border-[#00aaa7] sm:h-[280px] md:h-[320px] lg:h-[218px] xl:h-[280px]">
 
         <img
 
@@ -371,7 +370,7 @@ const FeaturedArticle = ({ article, onRead }) => {
 
           alt={article.title}
 
-          className="h-full w-full object-cover transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.045] group-hover:brightness-[1.04]"
+          className="h-full w-full  transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.045] group-hover:brightness-[1.04]"
 
         />
 
@@ -397,27 +396,28 @@ const FeaturedArticle = ({ article, onRead }) => {
 
       {/* Metadata */}
 
-      <div className="relative z-10 mt-4 flex flex-wrap items-center gap-3">
+     
+<div className="relative z-10 mt-4 flex flex-wrap items-center gap-3">
+  {/* Category */}
+  <span className="rounded-full bg-[#e5f6f5] px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.04em] text-[#078f8d] transition-all duration-300 group-hover:bg-[#d5f3f1] group-hover:shadow-[0_0_18px_rgba(0,175,169,0.18)]">
+    {article.category}
+  </span>
 
-        <span className="rounded-full bg-[#e5f6f5] px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.04em] text-[#078f8d] transition-all duration-300 group-hover:bg-[#d5f3f1] group-hover:shadow-[0_0_18px_rgba(0,175,169,0.18)]">
+  <span className="h-5 w-px bg-[#cbd5e1]" />
 
-          {article.category}
+  {/* Author */}
+  <span className="text-[13px] font-semibold text-[#7c879d]">
+    By {article.author}
+  </span>
 
-        </span>
+  <span className="h-5 w-px bg-[#cbd5e1]" />
 
+  {/* Publication Date */}
+  <span className="text-[13px] font-semibold text-[#7c879d]">
+    {article.date}
+  </span>
+</div>
 
-
-        <span className="h-5 w-px bg-[#cbd5e1]" />
-
-
-
-        <span className="text-[11px] font-medium uppercase tracking-[0.04em] text-[#7c879d]">
-
-          {article.readTime}
-
-        </span>
-
-      </div>
 
 
 
@@ -433,7 +433,7 @@ const FeaturedArticle = ({ article, onRead }) => {
 
       {/* Description */}
 
-      <p className="relative z-10 mt-3 max-w-[620px] text-[16px] font-medium leading-[1.5] tracking-[-0.025em] text-[#6c7d79] sm:text-[17px]">
+      <p className="relative z-10 mt-3 max-w-[620px] text-[16px] font-semibold leading-[1.5] tracking-[-0.025em] text-[#6c7d79] sm:text-[17px]">
 
         {article.description}
 
@@ -599,11 +599,19 @@ const ArticleModal = ({ article, onClose }) => {
 
 
 
-          <span className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.04em] text-[#7c879d]">
+          <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase  text-[#7c879d]">
 
-            <Clock3 size={14} />
+            
 
-            {article.readTime}
+           By {article.author}
+
+          </span>
+
+          <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase  text-[#7c879d]">
+
+            
+
+           {article.date}
 
           </span>
 
@@ -625,7 +633,7 @@ const ArticleModal = ({ article, onClose }) => {
 
 
 
-        <p className="mt-5 whitespace-pre-line text-[16px] leading-[1.8] text-[#52645f] sm:text-[17px]">
+        <p className="mt-5 whitespace-pre-line font-semibold  text-[16px] leading-[1.8] text-[black] sm:text-[17px]">
 
           {article.description}
 
@@ -703,333 +711,259 @@ const CircularJournal = () => {
 
 
 
-const [articles, setArticles] = useState(initialArticles);
+  const [articles, setArticles] = useState(initialArticles);
 
-const [featuredId, setFeaturedId] = useState(initialArticles[0]?.id ?? null);
+  const [featuredId, setFeaturedId] = useState(initialArticles[0]?.id ?? null);
 
-const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory, setActiveCategory] = useState("All");
 
-const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
-const [selectedArticle, setSelectedArticle] = useState(null);
-
-
-
-const featuredArticle =
-
-  articles.find((article) => article.id === featuredId) || articles[0] || null;
+  const [selectedArticle, setSelectedArticle] = useState(null);
 
 
 
-const matchesFilters = (article) => {
+  const featuredArticle =
 
-  if (!article) return false;
-
-  const query = searchQuery.trim().toLowerCase();
+    articles.find((article) => article.id === featuredId) || articles[0] || null;
 
 
 
-  const matchesCategory =
+  const matchesFilters = (article) => {
 
-    activeCategory === "All" ||
+    if (!article) return false;
 
-    article.category.toLowerCase() === activeCategory.toLowerCase();
-
-
-
-  const matchesSearch =
-
-    !query ||
-
-    article.title.toLowerCase().includes(query) ||
-
-    article.category.toLowerCase().includes(query) ||
-
-    (article.description || "").toLowerCase().includes(query);
+    const query = searchQuery.trim().toLowerCase();
 
 
 
-  return matchesCategory && matchesSearch;
+    const matchesCategory =
 
-};
+      activeCategory === "All" ||
 
-
-
-const filteredArticles = articles.filter(
-
-  (article) => article.id !== featuredId && matchesFilters(article)
-
-);
+      article.category.toLowerCase() === activeCategory.toLowerCase();
 
 
 
-const featuredMatchesFilters = matchesFilters(featuredArticle);
+    const matchesSearch =
+
+      !query ||
+
+      article.title.toLowerCase().includes(query) ||
+
+      article.category.toLowerCase().includes(query) ||
+
+      (article.description || "").toLowerCase().includes(query);
 
 
 
-/* Move the clicked card into the featured position.
+    return matchesCategory && matchesSearch;
 
-   The previous featured article moves into its exact position. */
-
-const handleSelectArticle = (article) => {
-  if (!article || article.id === featuredId) return;
-  // The selected card becomes featured; the previous featured article returns to the card list.
-  setFeaturedId(article.id);
-};
-
-const handleReadArticle = (article) => {
-
-  setSelectedArticle(article);
-
-};
+  };
 
 
 
-const handleCategoryChange = (category) => {
+  const filteredArticles = articles.filter(
 
-  setActiveCategory(category);
+    (article) => article.id !== featuredId && matchesFilters(article)
 
-};
+  );
 
 
 
-return (
+  const featuredMatchesFilters = matchesFilters(featuredArticle);
 
-  <main className="min-h-screen w-full overflow-hidden bg-[#fcfdfd] px-4 py-6 sm:px-6 sm:py-8 md:px-8 lg:px-10 xl:px-[52px]">
 
-    <div className="mx-auto w-full max-w-[1600px]">
 
-      {/* Header */}
+  /* Move the clicked card into the featured position.
+  
+     The previous featured article moves into its exact position. */
 
-      <header className="relative">
+  const handleSelectArticle = (article) => {
+    if (!article || article.id === featuredId) return;
+    // The selected card becomes featured; the previous featured article returns to the card list.
+    setFeaturedId(article.id);
+  };
 
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+  const handleReadArticle = (article) => {
 
-          {/* Left header */}
+    setSelectedArticle(article);
 
-          <div className="min-w-0">
+  };
 
-            <Reveal delay={50} duration={650}>
 
-              <div className="mb-2 text-[13px] font-bold uppercase tracking-[0.18em] text-[#079db2]">
 
-                Circulogy Journal
+  const handleCategoryChange = (category) => {
+
+    setActiveCategory(category);
+
+  };
+
+
+
+  return (
+
+    <main className="min-h-screen w-full overflow-hidden bg-[#fcfdfd] px-4 py-6 sm:px-6 sm:py-8 md:px-8 lg:px-10 xl:px-[52px]">
+
+      <div className="mx-auto w-full max-w-[1600px]">
+
+        {/* Header */}
+
+        <header className="relative">
+
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+
+            {/* Left header */}
+
+            <div className="min-w-0">
+
+              <Reveal delay={50} duration={650}>
+
+                <div className="mb-2 text-[13px] font-bold uppercase tracking-[0.18em] text-[#079db2]">
+
+                  Circulogy Journal
+
+                </div>
+
+              </Reveal>
+
+
+
+              <h1 className="max-w-[950px] text-[clamp(42px,5vw,76px)] font-bold leading-[0.98] tracking-[-0.055em] text-[#050607] sm:text-[50px] md:text-[58px] lg:text-[54px] xl:text-[58px]">
+
+                <LetterReveal
+
+                  text="Ideas for building better ventures."
+
+                  delay={100}
+
+                />
+
+              </h1>
+
+
+
+              <Reveal delay={350} duration={800}>
+
+                <p className="mt-3 max-w-[1000px] text-[18px] font-medium leading-[1.25] tracking-[-0.025em] text-[#193c38] sm:text-[21px] md:text-[23px] lg:text-[21px] xl:text-[23px]">
+
+                  Practical perspectives on mentorship, founder decisions and
+
+                  the systems that help startups grow.
+
+                </p>
+
+              </Reveal>
+
+            </div>
+
+
+
+            {/* Functional search */}
+
+            <Reveal
+
+              delay={300}
+
+              duration={750}
+
+              className="w-full shrink-0 lg:mt-5 lg:w-[286px] xl:w-[300px]"
+
+            >
+
+              <div className="group relative">
+
+                <div className="pointer-events-none absolute -inset-1 rounded-full bg-[#0cc5c0]/20 opacity-0 blur-md transition-opacity duration-500 group-focus-within:opacity-100" />
+
+
+
+                <Search
+
+                  size={20}
+
+                  strokeWidth={2}
+
+                  className="absolute left-5 top-1/2 z-10 -translate-y-1/2 text-[#17284a] transition-colors duration-300 group-focus-within:text-[#00aaa7]"
+
+                />
+
+
+
+                <input
+
+                  type="search"
+
+                  value={searchQuery}
+
+                  onChange={(event) => setSearchQuery(event.target.value)}
+
+                  placeholder="Search articles"
+
+                  aria-label="Search articles"
+
+                  className="relative h-[48px] w-full rounded-full border-[1.5px] border-[#13c6c5] bg-white pl-14 pr-5 text-[14px] font-medium text-[#17284a] outline-none transition-all duration-300 placeholder:text-[#7b879e] hover:border-[#079f9c] focus:border-[#00aaa7] focus:ring-4 focus:ring-[#13c6c5]/10 sm:h-[50px]"
+
+                />
 
               </div>
 
             </Reveal>
 
-
-
-            <h1 className="max-w-[950px] text-[clamp(42px,5vw,76px)] font-bold leading-[0.98] tracking-[-0.055em] text-[#050607] sm:text-[50px] md:text-[58px] lg:text-[54px] xl:text-[58px]">
-
-              <LetterReveal
-
-                text="Ideas for building better ventures."
-
-                delay={100}
-
-              />
-
-            </h1>
-
-
-
-            <Reveal delay={350} duration={800}>
-
-              <p className="mt-3 max-w-[1000px] text-[18px] font-medium leading-[1.25] tracking-[-0.025em] text-[#193c38] sm:text-[21px] md:text-[23px] lg:text-[21px] xl:text-[23px]">
-
-                Practical perspectives on mentorship, founder decisions and
-
-                the systems that help startups grow.
-
-              </p>
-
-            </Reveal>
-
           </div>
 
 
 
-          {/* Functional search */}
+          {/* Functional category filters */}
 
-          <Reveal
+          <Reveal delay={350} duration={800}>
 
-            delay={300}
+            <div className="mt-6 flex flex-col gap-4 border-b border-[#d5dfea] pb-3 lg:flex-row lg:items-center lg:justify-between">
 
-            duration={750}
+              <div className="scrollbar-none flex gap-2 overflow-x-auto pb-1 lg:gap-3 lg:overflow-visible lg:pb-0">
 
-            className="w-full shrink-0 lg:mt-5 lg:w-[286px] xl:w-[300px]"
+                {categories.map((category) => {
 
-          >
+                  const isActive = activeCategory === category;
 
-            <div className="group relative">
 
-              <div className="pointer-events-none absolute -inset-1 rounded-full bg-[#0cc5c0]/20 opacity-0 blur-md transition-opacity duration-500 group-focus-within:opacity-100" />
 
+                  return (
 
+                    <button
 
-              <Search
+                      key={category}
 
-                size={20}
+                      type="button"
 
-                strokeWidth={2}
+                      onClick={() => handleCategoryChange(category)}
 
-                className="absolute left-5 top-1/2 z-10 -translate-y-1/2 text-[#17284a] transition-colors duration-300 group-focus-within:text-[#00aaa7]"
+                      aria-pressed={isActive}
 
-              />
+                      className={`group relative flex h-[44px] shrink-0 items-center justify-center overflow-hidden rounded-full px-6 text-[14px] font-bold tracking-[-0.02em] transition-all duration-300 sm:px-8 sm:text-[16px] ${isActive
 
+                        ? "bg-[#079b96] text-white shadow-[0_8px_24px_rgba(7,155,150,0.18)]"
 
+                        : "bg-[#e8f7f7] text-[#17284a] hover:-translate-y-1 hover:bg-[#d9f1f1] hover:text-[#078f8d] hover:shadow-[0_8px_24px_rgba(0,170,167,0.14)]"
 
-              <input
+                        }`}
 
-                type="search"
+                    >
 
-                value={searchQuery}
+                      <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
 
-                onChange={(event) => setSearchQuery(event.target.value)}
+                      <span className="relative z-10">{category}</span>
 
-                placeholder="Search articles"
+                    </button>
 
-                aria-label="Search articles"
+                  );
 
-                className="relative h-[48px] w-full rounded-full border-[1.5px] border-[#13c6c5] bg-white pl-14 pr-5 text-[14px] font-medium text-[#17284a] outline-none transition-all duration-300 placeholder:text-[#7b879e] hover:border-[#079f9c] focus:border-[#00aaa7] focus:ring-4 focus:ring-[#13c6c5]/10 sm:h-[50px]"
+                })}
 
-              />
+              </div>
 
-            </div>
 
-          </Reveal>
 
-        </div>
-
-
-
-        {/* Functional category filters */}
-
-        <Reveal delay={350} duration={800}>
-
-          <div className="mt-6 flex flex-col gap-4 border-b border-[#d5dfea] pb-3 lg:flex-row lg:items-center lg:justify-between">
-
-            <div className="scrollbar-none flex gap-2 overflow-x-auto pb-1 lg:gap-3 lg:overflow-visible lg:pb-0">
-
-              {categories.map((category) => {
-
-                const isActive = activeCategory === category;
-
-
-
-                return (
-
-                  <button
-
-                    key={category}
-
-                    type="button"
-
-                    onClick={() => handleCategoryChange(category)}
-
-                    aria-pressed={isActive}
-
-                    className={`group relative flex h-[44px] shrink-0 items-center justify-center overflow-hidden rounded-full px-6 text-[14px] font-bold tracking-[-0.02em] transition-all duration-300 sm:px-8 sm:text-[16px] ${isActive
-
-                      ? "bg-[#079b96] text-white shadow-[0_8px_24px_rgba(7,155,150,0.18)]"
-
-                      : "bg-[#e8f7f7] text-[#17284a] hover:-translate-y-1 hover:bg-[#d9f1f1] hover:text-[#078f8d] hover:shadow-[0_8px_24px_rgba(0,170,167,0.14)]"
-
-                      }`}
-
-                  >
-
-                    <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-
-                    <span className="relative z-10">{category}</span>
-
-                  </button>
-
-                );
-
-              })}
-
-            </div>
-
-
-
-            {(searchQuery || activeCategory !== "All") && (
-
-              <button
-
-                type="button"
-
-                onClick={() => {
-
-                  setSearchQuery("");
-
-                  setActiveCategory("All");
-
-                }}
-
-                className="shrink-0 self-start text-[13px] font-semibold text-[#078f8d] underline-offset-4 hover:underline lg:self-center"
-
-              >
-
-                Clear filters
-
-              </button>
-
-            )}
-
-          </div>
-
-        </Reveal>
-
-      </header>
-
-
-
-      {/* Article area */}
-
-      <section className="mt-4">
-
-        <div className="grid grid-cols-1 items-stretch gap-3 lg:grid-cols-[1.08fr_1fr]">
-
-          {/* Featured article: selected cards appear here */}
-
-          <div className="min-w-0">
-
-            {featuredMatchesFilters ? (
-
-              <Reveal key={featuredArticle.id} delay={100} duration={650}>
-
-                <FeaturedArticle
-
-                  article={featuredArticle}
-
-                  onRead={handleReadArticle}
-
-                />
-
-              </Reveal>
-
-            ) : (
-
-              <div className="flex min-h-[260px] flex-col items-center justify-center rounded-[12px] border border-dashed border-[#b9d9d7] bg-[#f5fbfa] p-6 text-center sm:min-h-[320px]">
-
-                <Search size={30} className="text-[#079b96]" />
-
-                <h2 className="mt-4 text-[22px] font-bold tracking-[-0.04em] text-[#193c38]">
-
-                  No featured article matches
-
-                </h2>
-
-                <p className="mt-2 max-w-[360px] text-[14px] leading-6 text-[#6c7d79]">
-
-                  Try another search or category. Matching articles are still
-
-                  available in the cards beside this section.
-
-                </p>
+              {(searchQuery || activeCategory !== "All") && (
 
                 <button
 
@@ -1043,82 +977,156 @@ return (
 
                   }}
 
-                  className="mt-5 rounded-full bg-[#079b96] px-5 py-2.5 text-[13px] font-semibold text-white transition hover:bg-[#087f7d]"
+                  className="shrink-0 self-start text-[13px] font-semibold text-[#078f8d] underline-offset-4 hover:underline lg:self-center"
 
                 >
 
-                  Show all articles
+                  Clear filters
 
                 </button>
 
-              </div>
-
-            )}
-
-          </div>
-
-
-
-          {/* Right-side cards with vertical scrollbar */}
-          <div className="journal-cards-scroll min-h-0 min-w-0 lg:max-h-[650px] lg:overflow-y-auto lg:overscroll-contain lg:pr-2">
-            <div className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2">
-              {filteredArticles.length > 0 ? (
-                filteredArticles.map((article, index) => (
-                  <ArticleCard
-                    key={article.id}
-                    article={article}
-                    index={index}
-                    onSelect={handleSelectArticle}
-                    onRead={handleReadArticle}
-                  />
-                ))
-              ) : (
-                <div className="col-span-full flex min-h-[240px] flex-col items-center justify-center rounded-[12px] border border-dashed border-[#b9d9d7] bg-[#f5fbfa] p-6 text-center">
-                  <Search size={28} className="text-[#079b96]" />
-                  <h3 className="mt-3 text-[20px] font-bold tracking-[-0.04em] text-[#193c38]">
-                    No articles found
-                  </h3>
-                  <p className="mt-2 text-[14px] leading-6 text-[#6c7d79]">
-                    Try a different title, keyword or category.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setSearchQuery("");
-                      setActiveCategory("All");
-                    }}
-                    className="mt-4 text-[14px] font-semibold text-[#079b96] hover:underline"
-                  >
-                    Clear search and filters
-                  </button>
-                </div>
               )}
+
             </div>
+
+          </Reveal>
+
+        </header>
+
+
+
+        {/* Article area */}
+
+        <section className="mt-4">
+
+          <div className="grid grid-cols-1 items-stretch gap-3 lg:grid-cols-[1.08fr_1fr]">
+
+            {/* Featured article: selected cards appear here */}
+
+            <div className="min-w-0">
+
+              {featuredMatchesFilters ? (
+
+                <Reveal key={featuredArticle.id} delay={100} duration={650}>
+
+                  <FeaturedArticle
+
+                    article={featuredArticle}
+
+                    onRead={handleReadArticle}
+
+                  />
+
+                </Reveal>
+
+              ) : (
+
+                <div className="flex min-h-[260px] flex-col items-center justify-center rounded-[12px] border border-dashed border-[#b9d9d7] bg-[#f5fbfa] p-6 text-center sm:min-h-[320px]">
+
+                  <Search size={30} className="text-[#079b96]" />
+
+                  <h2 className="mt-4 text-[22px] font-bold tracking-[-0.04em] text-[#193c38]">
+
+                    No featured article matches
+
+                  </h2>
+
+                  <p className="mt-2 max-w-[360px] text-[14px] leading-6 text-[#6c7d79]">
+
+                    Try another search or category. Matching articles are still
+
+                    available in the cards beside this section.
+
+                  </p>
+
+                  <button
+
+                    type="button"
+
+                    onClick={() => {
+
+                      setSearchQuery("");
+
+                      setActiveCategory("All");
+
+                    }}
+
+                    className="mt-5 rounded-full bg-[#079b96] px-5 py-2.5 text-[13px] font-semibold text-white transition hover:bg-[#087f7d]"
+
+                  >
+
+                    Show all articles
+
+                  </button>
+
+                </div>
+
+              )}
+
+            </div>
+
+
+
+            {/* Right-side cards with vertical scrollbar */}
+            <div className="journal-cards-scroll min-h-0 min-w-0 lg:max-h-[650px] lg:overflow-y-auto lg:overscroll-contain lg:pr-2">
+              <div className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2">
+                {filteredArticles.length > 0 ? (
+                  filteredArticles.map((article, index) => (
+                    <ArticleCard
+                      key={article.id}
+                      article={article}
+                      index={index}
+                      onSelect={handleSelectArticle}
+                      onRead={handleReadArticle}
+                    />
+                  ))
+                ) : (
+                  <div className="col-span-full flex min-h-[240px] flex-col items-center justify-center rounded-[12px] border border-dashed border-[#b9d9d7] bg-[#f5fbfa] p-6 text-center">
+                    <Search size={28} className="text-[#079b96]" />
+                    <h3 className="mt-3 text-[20px] font-bold tracking-[-0.04em] text-[#193c38]">
+                      No articles found
+                    </h3>
+                    <p className="mt-2 text-[14px] leading-6 text-[#6c7d79]">
+                      Try a different title, keyword or category.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSearchQuery("");
+                        setActiveCategory("All");
+                      }}
+                      className="mt-4 text-[14px] font-semibold text-[#079b96] hover:underline"
+                    >
+                      Clear search and filters
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+
           </div>
 
-        </div>
+        </section>
 
-      </section>
-
-    </div>
+      </div>
 
 
 
-    {/* Read article modal */}
+      {/* Read article modal */}
 
-    <ArticleModal
+      <ArticleModal
 
-      article={selectedArticle}
+        article={selectedArticle}
 
-      onClose={() => setSelectedArticle(null)}
+        onClose={() => setSelectedArticle(null)}
 
-    />
+      />
 
 
 
-    {/* Animations and scrollbar */}
+      {/* Animations and scrollbar */}
 
-    <style>{`
+      <style>{`
 
         .journal-cards-scroll {
           scrollbar-width: thin;
@@ -1184,9 +1192,9 @@ return (
 
       `}</style>
 
-  </main>
+    </main>
 
-);
+  );
 
 };
 
